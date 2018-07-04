@@ -1,0 +1,27 @@
+
+            //弹出框
+            var message = "<h3>Alert Dialog</h3><p>Example of an <strong>Alert Dialog</strong>. You can put any message over here.</p><br/>";
+
+            alertify.alert(message);
+
+            //确认框
+            var message = "<h3>Confirm Dialog</h3><p>Do you want to confirm this?</p><br/>";
+
+            alertify.confirm(message, function (e) {
+                if(e) {
+                    alertify.success("You clicked <strong>OK</strong>");
+                } else {
+                    alertify.error("You clicked <strong>Cancel</strong>");
+                }
+            });
+
+            //输入框
+            var message = "<h3>Prompt Dialog</h3><p>Please enter a value over here.</p><br/>";
+
+            alertify.prompt(message, function (e, str) {
+                if(e) {
+                    alertify.success("You typed <strong>"+str+"</strong>");             
+                } else {
+                    alertify.error("You clicked <strong>Cancel</strong>");
+                }
+            }, "Enter a value");
