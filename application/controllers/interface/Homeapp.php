@@ -41,6 +41,6 @@ class Homeapp extends Home_Controller{
 				'lun_ad'=>$lun_ad,
 			);
 
-		return $data;
+		echo json_encode($data);
 	}
 }
