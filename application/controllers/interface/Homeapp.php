@@ -40,6 +40,10 @@ class Homeapp extends Home_Controller{
 				'works'=>$works,
 				'lun_ad'=>$lun_ad,
 			);
+		var_dump($blogs);
+		var_dump($lun_ad);
+		var_dump($tags);
+		var_dump($works);
 
 		return $data;
 	}
