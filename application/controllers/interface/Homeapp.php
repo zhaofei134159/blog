@@ -1,4 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Homeapp extends Home_Controller{
 
@@ -8,9 +9,11 @@ class Homeapp extends Home_Controller{
 		parent::__construct();
 
 		$this->load->model('zf_blog_model');
-		$this->load->model('zf_user_model');
-		$this->load->model('zf_tag_model');
 		$this->load->model('zf_work_model');
+		$this->load->model('zf_cate_model');
+		$this->load->model('zf_tag_model');
+		$this->load->model('zf_user_model');
+        $this->load->library('pager');
 	}
 
 	public function index()
