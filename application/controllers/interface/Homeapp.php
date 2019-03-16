@@ -43,4 +43,9 @@ class Homeapp extends Home_Controller{
 
 		echo json_encode($data);
 	}
+
+	public function lookWork(){
+		var_dump($_GET);
+	}
+	
 }
