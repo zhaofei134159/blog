@@ -109,7 +109,7 @@ class Homeapp extends Home_Controller{
 		return $relevant;
 	}
 
-	function work_relevant(){
+	function tagList(){
 		
 		$tags = $this->zf_tag_model->get_list('is_del=0','*','',40,0);
 
