@@ -96,6 +96,7 @@ class Homeapp extends Home_Controller{
 
 		$relevant_where = 'blog_id='.$id.' and id != '.$wid.' and is_del=0 and (';
 		$tag_idarr=explode(',',$tag_ids);
+		$where = '';
 		foreach($tag_idarr as $key=>$val){
 			$where .= ' FIND_IN_SET('.$val.',tag_ids) or';
 		}
