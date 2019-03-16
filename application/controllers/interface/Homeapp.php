@@ -2,6 +2,8 @@
 
 class Homeapp extends Home_Controller{
 
+	public $blogId = 2; 
+
 	public function __construct(){
 		parent::__construct();
 
@@ -45,7 +47,63 @@ class Homeapp extends Home_Controller{
 	}
 
 	public function lookWork(){
-		var_dump($_GET);
+		$blogId = $this->blogId;
+		$workId = $_GET['workId'];
+
+		$where = 'blog_id='.$blogId.' and is_del=0';
+		$where .= ' and id='.$workId;
+		$work = $this->zf_work_model->select_one($where);
+		$work['user'] = $this->zf_user_model->select_one('id='.$work['uid']);
+		
+		//点击量
+		$work['browse_num'] += 1;
+		$this->zf_work_model->update(array('browse_num'=>$work['browse_num']),$where);
+
+
+		//标签
+		$tag_where = 'blog_id='.$blogId.'  and is_del=0';
+		if(!empty($work['tag_ids'])){
+			$tag_where .= ' and id in('.$work['tag_ids'].')';
+		}
+		$tags = $this->zf_tag_model->select($tag_where);
+
+		//分类
+		$cates = $this->zf_cate_model->get_list('blog_id='.$blogId.' and is_del=0','*','',5,0);
+
+		//相关文章
+		$relevant = $this->work_relevant($work['tag_ids'],$blogId,$workId);
+		
+
+		$data = array(
+				'cates'=>$cates,
+				'tags'=>$tags,
+				'work'=>$work,
+				'relevant'=>$relevant
+			);
+
+		echo json_encode($data);
 	}
+
+	//相关文章
+	function work_relevant($tag_ids,$id,$wid){
+		$data = array();
+		if(empty($tag_ids)){
+			return $data;
+		}
+
+		$relevant_where = 'blog_id='.$id.' and id != '.$wid.' and is_del=0 and (';
+		$tag_idarr=explode(',',$tag_ids);
+		foreach($tag_idarr as $key=>$val){
+			$where .= ' FIND_IN_SET('.$val.',tag_ids) or';
+		}
+		$relevant_where .= trim($where,'or');
+
+		$relevant_where .= ')';
+
+		$relevant = $this->zf_work_model->get_list($relevant_where,'*','',5,0);
+		
+		return $relevant;
+	}
+
 	
 }
