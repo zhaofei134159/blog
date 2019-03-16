@@ -18,15 +18,15 @@ class Homeapp extends Home_Controller{
 
 	public function index()
 	{
-		// $blogs = $this->zf_blog_model->get_list('is_del=0','*','',20,0);
-		// if(!empty($blogs)){
-		// 	foreach($blogs as $bk=>$blog){
-		// 		$blogs[$bk]['user'] = $this->zf_user_model->select_one('id='.$blog['uid']);
-		// 	}
-		// }
+		$blogs = $this->zf_blog_model->get_list('is_del=0','*','',20,0);
+		if(!empty($blogs)){
+			foreach($blogs as $bk=>$blog){
+				$blogs[$bk]['user'] = $this->zf_user_model->select_one('id='.$blog['uid']);
+			}
+		}
 
-		// 		//标签
-		// $tags = $this->zf_tag_model->get_list('is_del=0','*','',40,0);
+				//标签
+		$tags = $this->zf_tag_model->get_list('is_del=0','*','',40,0);
 
 		//热门的文章 点击量多的
 		$works = $this->zf_work_model->get_list('is_del=0','*','ctime desc',10,0);
