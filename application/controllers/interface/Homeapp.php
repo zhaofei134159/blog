@@ -111,7 +111,7 @@ class Homeapp extends Home_Controller{
 
 	function tagList(){
 		
-		$tags = $this->zf_tag_model->get_list('is_del=0 and blog_id='.$blogId,'*','',40,0);
+		$tags = $this->zf_tag_model->get_list('is_del=0 and blog_id='.$this->blogId,'*','',40,0);
 
 		$data = array(
 			'tags'=>$tags,
