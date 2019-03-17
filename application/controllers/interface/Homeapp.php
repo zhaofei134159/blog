@@ -128,11 +128,32 @@ class Homeapp extends Home_Controller{
 		$where .= ' and desc like "%'.$search.'%"';
 		$works = $this->zf_work_model->select($where);
 
-		$tags = $this->zf_tag_model->get_list('is_del=0 and blog_id='.$this->blogId,'*','ctime desc',40,0);
-
 		$data = array(
 			'works'=>$works,
-			'tags'=>$tags,
+		);
+		echo json_encode($data);
+	}
+
+	function tagSearch(){
+		$blogId = $this->blogId;
+		$tagId = $_GET['tagId'];
+
+
+		$where = 'blog_id='.$blogId.' and is_del=0';
+		if(!empty($tagId)){
+			$tag_idarr=explode(',',trim($tagId,','));
+			$where .= " and (";
+			foreach($tag_idarr as $key=>$val){
+				$tag_where .= ' FIND_IN_SET('.$val.',tag_ids) or';
+			}
+			$where .= trim($tag_where,'or');
+			$where .= ')';
+		}
+
+		$works = $this->zf_work_model->get_list($where,'*','browse_num desc',$pagesize, $offset);
+		
+		$data = array(
+			'works'=>$works,
 		);
 		echo json_encode($data);
 	}
