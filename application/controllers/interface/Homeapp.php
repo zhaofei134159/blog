@@ -138,7 +138,7 @@ class Homeapp extends Home_Controller{
 		$blogId = $this->blogId;
 		$tagId = $_GET['tagId'];
 
-
+		$tag_where = '';
 		$where = 'blog_id='.$blogId.' and is_del=0';
 		if(!empty($tagId)){
 			$tag_idarr=explode(',',trim($tagId,','));
@@ -151,7 +151,7 @@ class Homeapp extends Home_Controller{
 		}
 
 		$works = $this->zf_work_model->get_list($where,'*','browse_num desc',$pagesize, $offset);
-		
+
 		$data = array(
 			'works'=>$works,
 		);
