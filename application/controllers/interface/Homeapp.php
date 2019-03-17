@@ -150,7 +150,7 @@ class Homeapp extends Home_Controller{
 			$where .= ')';
 		}
 
-		$works = $this->zf_work_model->get_list($where,'*','browse_num desc',$pagesize, $offset);
+		$works = $this->zf_work_model->select($where);
 
 		$data = array(
 			'works'=>$works,
