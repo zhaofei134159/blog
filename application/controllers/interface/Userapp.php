@@ -16,7 +16,7 @@ class Userapp extends Home_Controller{
 		$this->load->model('zf_tag_model');
 		$this->load->model('zf_user_model');
         $this->load->library('pager');
-		$this->load->helper('wxBizDataCrypt');
+		$this->load->helper('wxbizdatacrypt');
 	}
 
 	public function index()
