@@ -21,6 +21,7 @@ class Userapp extends Home_Controller{
 
 	public function getuserinfo()
 	{
+		print_r($_POST);die;
 		$appid = $this->wxprogramappid;
 		$sessionKey = $this->wxprogramappsecret;
 
