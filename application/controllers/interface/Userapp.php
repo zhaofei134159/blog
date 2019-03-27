@@ -21,13 +21,13 @@ class Userapp extends Home_Controller{
 
 	public function getuserinfo()
 	{
-		print_r((array)$_POST['userInfo']);die;
+		print_r($_POST);die;
 		$appid = $this->wxprogramappid;
 		$sessionKey = $this->wxprogramappsecret;
 
-		$userinfo = $_POST['userInfo'];
-		$encryptedData = $userinfo['encryptedData'];
-		$iv = $userinfo['iv'];
+		$userInfo = $_POST['userInfo'];
+		$encryptedData = $_POST['encryptedData'];
+		$iv = $_POST['iv'];
 
 		$pc = new WXBizDataCrypt($appid, $sessionKey);
 		$errCode = $pc->decryptData($encryptedData, $iv, $data );
