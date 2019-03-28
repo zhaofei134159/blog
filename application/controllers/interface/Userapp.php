@@ -21,6 +21,7 @@ class Userapp extends Home_Controller{
 
 	public function getuserinfo()
 	{
+		var_dump($_POST);die;
 		$appid = $this->wxprogramappid;
 		$appsecret  = $this->wxprogramappsecret;//小程序的 app secret (在微信小程序管理后台获取)
 
@@ -32,13 +33,8 @@ class Userapp extends Home_Controller{
 		 
 		$params = "appid=".$appid."&secret=".$appsecret."&js_code=".$code."&grant_type=".$grant_type;
 		$url = "https://api.weixin.qq.com/sns/jscode2session?".$params;
-		 
 		$res = json_decode(httpGet($url),true);
 		$sessionKey = $res['session_key'];//取出json里对应的值
-
-
-
-
 
 		$pc = new WXBizDataCrypt($appid, $sessionKey);
 		$errCode = $pc->decryptData($encryptedData, $iv, $data);
