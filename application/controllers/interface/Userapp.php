@@ -26,7 +26,7 @@ class Userapp extends Home_Controller{
 
 		$userInfo = $_POST['userInfo'];
 		$encryptedData = $_POST['encryptedData'];
-		$iv = $_POST['iv'];
+		$iv = urldecode($_POST['iv']);
 		$code = $_POST['code'];
 		$grant_type = "authorization_code"; //授权（必填）
 		 
@@ -37,7 +37,6 @@ class Userapp extends Home_Controller{
 
 		$pc = new WXBizDataCrypt($appid, $sessionKey);
 		$errCode = $pc->decryptData($encryptedData, $iv, $data);
-		echo $data;die;
 
 		if($errCode!=0){
 			$arr = array();
@@ -64,7 +63,7 @@ class Userapp extends Home_Controller{
 			$zf_user['headimg'] = $headimg;
 			$zf_user['weixin_openid'] = $result['openId'];
 			$zf_user['user_type'] = 4;
-			$zf_user['ctime'] = time();
+)			$zf_user['ctime'] = time();
 			$zf_user['utime'] = time();
 			$uid = $this->zf_user_model->insert($zf_user);
 		}else{
