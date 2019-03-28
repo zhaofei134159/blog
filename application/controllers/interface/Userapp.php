@@ -37,7 +37,9 @@ class Userapp extends Home_Controller{
 
 		$pc = new WXBizDataCrypt($appid, $sessionKey);
 		$errCode = $pc->decryptData($encryptedData, $iv, $data);
-
+	    print($data);
+	    print($errCode);
+		
 		if ($errCode == 0) {
 		    print($data);
 		} else {
