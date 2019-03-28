@@ -91,6 +91,7 @@ class Userapp extends Home_Controller{
 	    return $res;
   	}
 
+
     /****
     * @desc 保存用户的头像
     * @param $url
@@ -120,5 +121,17 @@ class Userapp extends Home_Controller{
             return '';
         }
     }
+    
+    private function _curl_get_request($url){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,  $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        $return_str = curl_exec($ch);
+        curl_close($ch);
+        $format_result = json_decode($return_str, true);
+        return $format_result ? $format_result : $return_str;
+    }
+
 	
 }
