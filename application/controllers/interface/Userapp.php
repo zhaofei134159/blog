@@ -48,7 +48,7 @@ class Userapp extends Home_Controller{
 
 		$result = json_decode($data,true);
 		# 用户信息获取成功
-		$phone_where = 'weixin_openid='.$result['openId'];
+		$phone_where = "weixin_openid='".$result['openId']."'";
 		$blogUser = $this->zf_user_model->select_one($phone_where);
 		if(empty($blogUser)){
 			$headimg = $this->_save_external_user_avatar($result['avatarUrl']);
