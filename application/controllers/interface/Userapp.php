@@ -47,12 +47,15 @@ class Userapp extends Home_Controller{
 		}
 
 		$result = json_decode($data,true);
+		$headimg = $this->_save_external_user_avatar($result['avatarUrl']);
+		var_dump($result['avatarUrl']);
+		var_dump($headimg);
+		die;
+
 		# 用户信息获取成功
 		$phone_where = "weixin_openid='".$result['openId']."'";
 		$blogUser = $this->zf_user_model->select_one($phone_where);
 		if(empty($blogUser)){
-			$headimg = $this->_save_external_user_avatar($result['avatarUrl']);
-
 			$zf_user = array();
 			$login_stat = rand(1000,9999);
 			$zf_user['login_stat'] = $login_stat;
@@ -101,8 +104,9 @@ class Userapp extends Home_Controller{
         if (strpos($url, 'http://') !== 0||strpos($url, 'https://') !== 0){
             return '';
         }
-
+        var_dump($url);
         $content = $this->_curl_get_request($url);
+        var_dump($content);
             
         if ($content != false) {
             $save_dir = PUBLIC_URL.'headimg';
