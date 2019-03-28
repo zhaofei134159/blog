@@ -37,15 +37,44 @@ class Userapp extends Home_Controller{
 
 		$pc = new WXBizDataCrypt($appid, $sessionKey);
 		$errCode = $pc->decryptData($encryptedData, $iv, $data);
-	    print($data);
-	    print($errCode);
-		
-		if ($errCode == 0) {
-		    print($data);
-		} else {
-		    print($errCode);
+
+		if($errCode!=0){
+			$arr = array();
+			$arr['flag'] = false;
+			$arr['msg'] = '用户信息获取错误, 错误:'.$errCode;
+		  	echo json_encode($arr); 
+		  	die;
 		}
-		
+
+		# 用户信息获取成功
+		$phone_where = 'weixin_openid='.$data['openId'];
+		$blogUser = $this->zf_user_model->select_one($phone_where);
+		if(empty($blogUser)){
+			$headimg = $this->_save_external_user_avatar($data['avatarUrl']);
+
+			$zf_user = array();
+			$login_stat = rand(1000,9999);
+			$zf_user['login_stat'] = $login_stat;
+			$zf_user['password'] = md5(md5($data['openId']).$login_stat);
+			$zf_user['sex'] = $data['gender'];
+			$zf_user['name'] =  $data['nickName'];
+			$zf_user['nikename'] =  $data['nickName'];
+			$zf_user['headimg'] = $headimg;
+			$zf_user['weixin_openid'] = $data['openId'];
+			$zf_user['user_type'] = 4;
+			$zf_user['ctime'] = time();
+			$zf_user['utime'] = time();
+			$uid = $this->zf_user_model->insert($zf_user);
+		}else{
+			$zf_user = $blogUser;
+		}
+
+		$arr = array();
+		$arr['flag'] = true;
+		$arr['msg'] = '用户信息获取成功';
+		$arr['data'] = $zf_user;
+	  	echo json_encode($arr); 
+	  	die;
 	}
 
 
@@ -60,5 +89,35 @@ class Userapp extends Home_Controller{
 	    curl_close($curl);
 	    return $res;
   	}
+
+    /****
+    * @desc 保存用户的头像
+    * @param $url
+    * @return string
+    */
+    private function _save_external_user_avatar($url){	
+        if (strpos($url, 'http://') !== 0){
+            return '';
+        }
+
+        $content = $this->_curl_get_request($url);
+            
+        if ($content != false) {
+            $save_dir = PUBLIC_URL.'headimg';
+            $save_dir = trim($save_dir,'/');
+
+            $file_name = date('YmdHis') . rand(10000, 99999) . '.jpg';
+            $save_path = $save_dir . '/' . $file_name;
+
+            file_put_contents($save_path, $content);
+            $web_path = $save_dir . '/' . $file_name;
+
+            return $web_path;
+        }
+        else
+        {
+            return '';
+        }
+    }
 	
 }
