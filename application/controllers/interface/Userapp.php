@@ -63,7 +63,7 @@ class Userapp extends Home_Controller{
 			$zf_user['headimg'] = $headimg;
 			$zf_user['weixin_openid'] = $result['openId'];
 			$zf_user['user_type'] = 4;
-)			$zf_user['ctime'] = time();
+			$zf_user['ctime'] = time();
 			$zf_user['utime'] = time();
 			$uid = $this->zf_user_model->insert($zf_user);
 		}else{
