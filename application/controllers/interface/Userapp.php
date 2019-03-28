@@ -45,22 +45,23 @@ class Userapp extends Home_Controller{
 		  	echo json_encode($arr); 
 		  	die;
 		}
-
+		
+		$result = json_decode($data,true);
 		# 用户信息获取成功
-		$phone_where = 'weixin_openid='.$data['openId'];
+		$phone_where = 'weixin_openid='.$result['openId'];
 		$blogUser = $this->zf_user_model->select_one($phone_where);
 		if(empty($blogUser)){
-			$headimg = $this->_save_external_user_avatar($data['avatarUrl']);
+			$headimg = $this->_save_external_user_avatar($result['avatarUrl']);
 
 			$zf_user = array();
 			$login_stat = rand(1000,9999);
 			$zf_user['login_stat'] = $login_stat;
-			$zf_user['password'] = md5(md5($data['openId']).$login_stat);
-			$zf_user['sex'] = $data['gender'];
-			$zf_user['name'] =  $data['nickName'];
-			$zf_user['nikename'] =  $data['nickName'];
+			$zf_user['password'] = md5(md5($result['openId']).$login_stat);
+			$zf_user['sex'] = $result['gender'];
+			$zf_user['name'] =  $result['nickName'];
+			$zf_user['nikename'] =  $result['nickName'];
 			$zf_user['headimg'] = $headimg;
-			$zf_user['weixin_openid'] = $data['openId'];
+			$zf_user['weixin_openid'] = $result['openId'];
 			$zf_user['user_type'] = 4;
 			$zf_user['ctime'] = time();
 			$zf_user['utime'] = time();
