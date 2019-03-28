@@ -37,6 +37,7 @@ class Userapp extends Home_Controller{
 
 		$pc = new WXBizDataCrypt($appid, $sessionKey);
 		$errCode = $pc->decryptData($encryptedData, $iv, $data);
+		echo $data;die;
 
 		if($errCode!=0){
 			$arr = array();
@@ -45,7 +46,7 @@ class Userapp extends Home_Controller{
 		  	echo json_encode($arr); 
 		  	die;
 		}
-		
+
 		$result = json_decode($data,true);
 		# 用户信息获取成功
 		$phone_where = 'weixin_openid='.$result['openId'];
