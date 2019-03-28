@@ -48,6 +48,7 @@ class Userapp extends Home_Controller{
 
 		$result = json_decode($data,true);
 		$headimg = $this->_save_external_user_avatar($result['avatarUrl']);
+
 		var_dump($result['avatarUrl']);
 		var_dump($headimg);
 		die;
@@ -101,12 +102,8 @@ class Userapp extends Home_Controller{
     * @return string
     */
     private function _save_external_user_avatar($url){	
-        if (strpos($url, 'http://') !== 0||strpos($url, 'https://') !== 0){
-            return '';
-        }
-        var_dump($url);
+
         $content = $this->_curl_get_request($url);
-        var_dump($content);
             
         if ($content != false) {
             $save_dir = PUBLIC_URL.'headimg';
