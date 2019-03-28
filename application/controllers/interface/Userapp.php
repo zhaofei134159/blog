@@ -98,7 +98,7 @@ class Userapp extends Home_Controller{
     * @return string
     */
     private function _save_external_user_avatar($url){	
-        if (strpos($url, 'http://') !== 0){
+        if (strpos($url, 'http://') !== 0||strpos($url, 'https://') !== 0){
             return '';
         }
 
@@ -121,7 +121,7 @@ class Userapp extends Home_Controller{
             return '';
         }
     }
-    
+
     private function _curl_get_request($url){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,  $url);
