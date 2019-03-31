@@ -2,7 +2,7 @@
 include '/data/html/blog/tools/class/WebSocket.php';
  
 $addr = 'blog.myfeiyou.com';
-$port = '8282';
+$port = '443';
 $callback = 'WSevent';//回调函数的函数名
 $log = true;
 
