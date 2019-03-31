@@ -1,5 +1,5 @@
 <?php
-include './class/WebSocket.php';
+include '/data/html/blog/tools/class/WebSocket.php';
  
 $addr = 'wss://blog.myfeiyou.com';
 $port = '8282';
