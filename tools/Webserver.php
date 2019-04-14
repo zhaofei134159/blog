@@ -13,6 +13,8 @@ $socket->start();
 
 function WSevent($type,$usermsg){
     global $socket;
+    var_dump($type);
+    var_dump($usermsg);
     if('in'==$type){
       $socket->log('客户进入id:'.$usermsg['userid']);
     }elseif('out'==$type){
