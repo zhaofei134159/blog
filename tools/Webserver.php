@@ -25,9 +25,9 @@ function WSevent($type,$usermsg){
  
 function roboot($sign,$msg){
   global $socket;
-  echo $sign;
-  echo $msg;
   $json = json_decode($msg,true);
+  echo $sign;
+  var_dump($msg);
   // $show = json_encode($json);
   if(empty($msg)){
       return ;
