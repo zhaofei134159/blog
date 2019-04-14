@@ -27,7 +27,7 @@ function roboot($sign,$msg){
   global $socket;
   $json = json_decode($msg,true);
   echo $sign;
-  var_dump($msg);
+  var_dump($json);
   // $show = json_encode($json);
   if(empty($msg)){
       return ;
