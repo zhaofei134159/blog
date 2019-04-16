@@ -13,8 +13,6 @@ $socket->start();
 
 function WSevent($type,$usermsg){
     global $socket;
-    var_dump($type);
-    var_dump($usermsg);
     if('in'==$type){
       $socket->log('客户进入id:'.$usermsg['userid']);
     }elseif('out'==$type){
@@ -28,8 +26,6 @@ function WSevent($type,$usermsg){
 function roboot($sign,$msg){
   global $socket;
   $json = json_decode($msg,true);
-  echo $sign;
-  var_dump($json);
   // $show = json_encode($json);
   if(empty($msg)){
       return ;
