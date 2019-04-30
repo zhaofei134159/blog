@@ -4,8 +4,8 @@
 	$config['smtpserverport'] = 25;//SMTP服务器端口
 	$config['smtpusermail'] = "blogfamily@163.com";//SMTP服务器的用户邮箱
 	$config['smtpuser'] = "blogfamily@163.com";//SMTP服务器的用户帐号
-	// $config['smtppass'] = "zf134159";//SMTP服务器的用户密码
-	$config['smtppass'] = "zhaofei134159";//SMTP服务器的用户密码
+	$config['smtppass'] = "zf134159";//SMTP服务器的用户密码
+	// $config['smtppass'] = "zhaofei134159";//SMTP服务器的用户密码
 	$config['mailtype'] = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件
 
 	//微博登陆
