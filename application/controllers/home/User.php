@@ -110,7 +110,7 @@ class User extends Home_Controller{
 		$mailtitle = '博客之家【blogfamily】注册成功';//邮件主题
 		//邮件内容
 		$mailcontent = "<h2>博客之家,注册成功</h2>";
-		$mailcontent .= "<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击 <a href='http://zf.blogfamily.ren/home/login/activate_email?addr=".base64_encode($email)."&start=".base64_encode('blogfamily')."&token=".base64_encode($email.'zhaofei')."'>链接</a> 激活邮箱成为博主，就可以发表属于自己的文章。（如果不是本人操作，请忽略本条信息）</h3>";
+		$mailcontent .= "<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击 <a href='http:/blog.myfeiyou.com/home/login/activate_email?addr=".base64_encode($email)."&start=".base64_encode('blogfamily')."&token=".base64_encode($email.'zhaofei')."'>链接</a> 激活邮箱成为博主，就可以发表属于自己的文章。（如果不是本人操作，请忽略本条信息）</h3>";
 		
 		//************************ 配置信息 ****************************
 		$smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass);//这里面的一个true是表示使用身份验证,否则不使用身份验证.
