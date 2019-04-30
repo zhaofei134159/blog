@@ -235,14 +235,15 @@ class User extends Home_Controller{
 		$post = $this->input->post();
 
 		$post['utime'] = time();
+	
+		$id = $post['id'];
+		unset($post['id']);
 		
 		if(empty($post['id'])){
 			$post['is_del']=0;
 			$post['ctime']=time();
 			$cate_count = $this->zf_cate_model->insert($post);
 		}else{
-			$id = $post['id'];
-			unset($post['id']);
 			$cate_count = $this->zf_cate_model->update($post,'id='.$id);
 		}
 
