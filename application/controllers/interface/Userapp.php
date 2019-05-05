@@ -3,7 +3,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Userapp extends Home_Controller{
 
-	public $blogId = 2; 
+	public $blogId = 1; 
 	public $wxprogramappid = 'wxc0c4a718e3688f4f';
 	public $wxprogramappsecret = '47737efeb2ac9bd4bcfd87b0674f51b4';
 

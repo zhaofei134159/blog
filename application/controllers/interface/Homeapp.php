@@ -3,7 +3,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Homeapp extends Home_Controller{
 
-	public $blogId = 2; 
+	public $blogId = 1; 
 
 	public function __construct(){
 		parent::__construct();
