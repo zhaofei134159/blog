@@ -1,7 +1,7 @@
 <?php
 include './class/WebSocket.php';
  
-$addr = '172.93.37.18';
+$addr = '104.243.18.161';
 $port = '8282';
 $callback = 'WSevent';//回调函数的函数名
 $log = true;
