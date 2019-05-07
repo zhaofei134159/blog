@@ -35,6 +35,7 @@ class Homeapp extends Home_Controller{
 				$works[$wk]['user'] = $this->zf_user_model->select_one('id='.$work['uid']);
 			}
 		}
+		var_dump($works);
 
 		// 轮播
 		$lun_ad = $this->zf_work_model->get_list('is_del=0 and img!=""','*','browse_num desc',4,0);
