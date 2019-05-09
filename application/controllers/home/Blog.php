@@ -80,9 +80,9 @@ class Blog extends Home_Controller{
 		$works = $this->zf_work_model->get_list($where,'*','browse_num desc',$pagesize, $offset);
 
 		//标签
-		$tags = $this->zf_tag_model->get_list('blog_id='.$id.' and is_del=0','*','',40,0);
+		$tags = $this->zf_tag_model->get_list('blog_id='.$id.' and is_del=0','*','',100,0);
 		//分类
-		$cates = $this->zf_cate_model->get_list('blog_id='.$id.' and is_del=0','*','',5,0);
+		$cates = $this->zf_cate_model->get_list('blog_id='.$id.' and is_del=0','*','',50,0);
 
 		$data = array(
 				'cates'=>$cates,
