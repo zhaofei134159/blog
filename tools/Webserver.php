@@ -1,5 +1,6 @@
 <?php
 include './class/WebSocket.php';
+include './class/MySql.php';
 
 $db_conf = array(
     'host' => '127.0.0.1',
