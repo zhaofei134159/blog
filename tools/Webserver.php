@@ -1,6 +1,7 @@
 <?php
 include './class/WebSocket.php';
-include '../application/models/Zf_blog_model.php';
+include './class/MY_Model.php';
+include './class/Zf_user_model.php';
  
 $addr = '104.243.18.161';
 $port = '8282';
@@ -24,13 +25,14 @@ function WSevent($type,$usermsg){
       message_analysis($usermsg['userid'],$usermsg['msg'],$type);
     }
 }
+ 
 
 # 语言解析
 function message_analysis($userid,$usermsg,$type){
   global $socket;
-  $this->load->model('zf_blog_model');
+  $this->load->model('Zf_user_model');
 
-  $blogs = $this->zf_blog_model->get_list('is_del=0','*','',20,0);
+  $blogs = $this->Zf_user_model->get_list('is_del=0','*','',20,0);
 
 
   if($type=='in'){
