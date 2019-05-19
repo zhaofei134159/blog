@@ -20,19 +20,23 @@ function WSevent($type,$usermsg){
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
       roboot($usermsg['userid'],$usermsg['msg']);
-      message_analysis($usermsg['userid'],$usermsg['msg']);
+      message_analysis($usermsg['userid'],$usermsg['msg'],$type);
     }
 }
 
 # 语言解析
 function message_analysis($userid,$usermsg,$type){
-
-}
- 
-
- 
-function roboot($sign,$msg){
   global $socket;
+  $this->load->model('zf_blog_model');
+
+  if($type=='in'){
+
+  }else if($type=='msg'){
+
+  }else if($type=='out'){
+
+  }
+
   $json = json_decode($msg,true);
   // $show = json_encode($json);
   if(empty($msg)){
@@ -59,3 +63,4 @@ function roboot($sign,$msg){
 
   $socket->allweite($msg);
 }
+ 
