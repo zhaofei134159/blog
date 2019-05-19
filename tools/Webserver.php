@@ -1,14 +1,22 @@
 <?php
 include './class/WebSocket.php';
-include './class/MY_Model.php';
-include './class/Zf_user_model.php';
- 
+
+$db_conf = array(
+    'host' => '127.0.0.1',
+    'port' => '3306',
+    'user' => 'root',
+    'passwd' => 'zhaofei',
+    'dbname' => 'blog',
+);
 $addr = '104.243.18.161';
 $port = '8282';
 $callback = 'WSevent';//回调函数的函数名
 $log = true;
 
+# mysql
+$mysql = new MMysql($db_conf);
 
+# socket
 $socket = new WebSocket($addr,$port,$callback,$log);
 $socket->start();
 
@@ -25,15 +33,16 @@ function WSevent($type,$usermsg){
       message_analysis($usermsg['userid'],$usermsg['msg'],$type);
     }
 }
- 
+
 
 # 语言解析
 function message_analysis($userid,$usermsg,$type){
   global $socket;
-  $this->load->model('Zf_user_model');
+  global $mysql;
 
-  $blogs = $this->Zf_user_model->get_list('is_del=0','*','',20,0);
-
+  $sql = "select * from zf_user_relation";
+  $res = $mysql->doSql($sql);
+  var_dump($res);die;
 
   if($type=='in'){
 
