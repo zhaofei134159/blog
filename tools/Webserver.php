@@ -1,5 +1,6 @@
 <?php
 include './class/WebSocket.php';
+include '../application/core/MY_Controller.php';
  
 $addr = '104.243.18.161';
 $port = '8282';
@@ -18,21 +19,20 @@ function WSevent($type,$usermsg){
     }elseif('out'==$type){
       $socket->log('客户退出id:'.$usermsg['userid']);
     }elseif('msg'==$type){
-      echo 12312;
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
-      echo 12312321;
+      roboot($usermsg['userid'],$usermsg['msg']);
       message_analysis($usermsg['userid'],$usermsg['msg'],$type);
     }
 }
 
 # 语言解析
 function message_analysis($userid,$usermsg,$type){
-  echo 123123123;
   global $socket;
   $this->load->model('zf_blog_model');
 
   $blogs = $this->zf_blog_model->get_list('is_del=0','*','',20,0);
-  var_dump($blogs);
+
+
   if($type=='in'){
 
   }else if($type=='msg'){
@@ -41,7 +41,7 @@ function message_analysis($userid,$usermsg,$type){
 
   }
 
-  // $json = json_decode($msg,true);
+  $json = json_decode($msg,true);
   // $show = json_encode($json);
   if(empty($msg)){
       return ;
