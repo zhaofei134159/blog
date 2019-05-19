@@ -77,10 +77,10 @@ class User extends Admin_Controller {
 		$post['password'] = md5(md5($post['password']).$login_stat);
 		$post['login_stat'] = $login_stat;
 
+		$id = $post['id'];
+		unset($post['id']);
+		
 		if(isset($post['id'])&&!empty($post['id'])){
-			$id = $post['id'];
-			unset($post['id']);
-
 			$this->zf_user_model->update($post,'id='.$id);
 		}else{
 			$this->zf_user_model->insert($post);
