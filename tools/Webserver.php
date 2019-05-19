@@ -1,6 +1,6 @@
 <?php
 include './class/WebSocket.php';
-include '../application/core/MY_Model.php';
+include '../application/models/Zf_blog_model.php';
  
 $addr = '104.243.18.161';
 $port = '8282';
