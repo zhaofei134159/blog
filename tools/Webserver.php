@@ -1,6 +1,6 @@
 <?php
 include './class/WebSocket.php';
-include '../application/core/MY_Controller.php';
+include '../application/core/MY_Model.php';
  
 $addr = '104.243.18.161';
 $port = '8282';
