@@ -18,7 +18,9 @@ function WSevent($type,$usermsg){
     }elseif('out'==$type){
       $socket->log('客户退出id:'.$usermsg['userid']);
     }elseif('msg'==$type){
+      echo 12312;
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
+      echo 12312321;
       message_analysis($usermsg['userid'],$usermsg['msg'],$type);
     }
 }
