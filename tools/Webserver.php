@@ -30,7 +30,6 @@ function WSevent($type,$usermsg){
       $socket->log('客户退出id:'.$usermsg['userid']);
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
-      roboot($usermsg['userid'],$usermsg['msg']);
       message_analysis($usermsg['userid'],$usermsg['msg'],$type);
     }
 }
