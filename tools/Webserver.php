@@ -40,7 +40,7 @@ function message_analysis($userid,$usermsg,$type){
   global $socket;
   global $mysql;
 
-  $sql = "select * from zf_user_relation";
+  $sql = "select * from zf_user";
   $res = $mysql->doSql($sql);
   var_dump($res);die;
 
