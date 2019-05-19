@@ -64,7 +64,7 @@
                         </td>
                         <td><?=date('Y-m-d H:i',$work['ctime'])?></td>
                         <td><?=date('Y-m-d H:i',$work['utime'])?></td>
-                        <td><a href="http://zf.blogfamily.ren/home/blog/<?=$work['blog_id']?>/detail/<?=$work['id']?>" target="__black">查看</a></td>
+                        <td><a href="http://blog.myfeiyou.com/home/blog/<?=$work['blog_id']?>/detail/<?=$work['id']?>" target="__black">查看</a></td>
                         <!-- <td style="text-align:center;"> <a href="<?=ADMIN_URL?>user_work/edit?id=<?=$work['id']?>">修改信息</a></td> -->
                       </tr>
                     <?php }?>
