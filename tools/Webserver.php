@@ -29,6 +29,8 @@ function message_analysis($userid,$usermsg,$type){
   global $socket;
   $this->load->model('zf_blog_model');
 
+  $blogs = $this->zf_blog_model->get_list('is_del=0','*','',20,0);
+  var_dump($blogs);
   if($type=='in'){
 
   }else if($type=='msg'){
