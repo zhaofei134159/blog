@@ -41,7 +41,17 @@ function message_analysis($userid,$usermsg,$type){
   global $mysql;
 
   if($type=='in'){
+    $sql = "SELECT * FROM zf_user WHERE (userid=";
+    $sql = "SELECT * FROM zf_user_relation WHERE (userid=";
+    $res = $mysql->doSql($sql);
 
+    $relation = array(
+      'userid'=>,
+      'msg_userid'=>$usermsg['toUserId'],
+      'rala_status'=>1,
+      'ctime'=>time(),
+    );
+    $mysql->insert('zf_user_relation',$data);
   }else if($type=='msg'){
 
   }else if($type=='out'){
@@ -73,5 +83,15 @@ function message_analysis($userid,$usermsg,$type){
   // $redis->hSet('chat',1,$chat);
 
   $socket->allweite($msg);
+}
+
+# 获取用户ID
+function getUserInfo($openid){
+    global $mysql;
+
+    $sql = "SELECT * FROM zf_user WHERE weixin_openid={$openid}";
+    $res = $mysql->doSql($sql);
+
+    var_dump($res);
 }
  
