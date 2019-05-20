@@ -86,7 +86,7 @@ function message_analysis($userid,$usermsg,$type){
 function getUserInfo($openid){
     global $mysql;
 
-    $sql = "SELECT * FROM zf_user WHERE weixin_openid={$openid}";
+    $sql = "SELECT * FROM zf_user WHERE weixin_openid='{$openid}'";
     $res = $mysql->doSql($sql);
 
     var_dump($res);
