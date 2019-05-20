@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set("PRC");
+
 include './class/WebSocket.php';
 include './class/MySql.php';
 
@@ -26,11 +28,11 @@ function WSevent($type,$usermsg){
     global $socket;
     if('in'==$type){
       $socket->log('客户进入id:'.$usermsg['userid']);
-      error_log(date('Y-m-d H:i:s').' 客户进入id:'.$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
+      error_log(date('Y-m-d H:i:s')."\t  客户进入id:".$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
 
     }elseif('out'==$type){
       $socket->log('客户退出id:'.$usermsg['userid']);
-      error_log(date('Y-m-d H:i:s').' 客户退出id:'.$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
+      error_log(date('Y-m-d H:i:s')."\t  客户退出id:".$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
 
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
