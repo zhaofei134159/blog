@@ -26,10 +26,17 @@ function WSevent($type,$usermsg){
     global $socket;
     if('in'==$type){
       $socket->log('客户进入id:'.$usermsg['userid']);
+      error_log(date('Y-m-d H:i:s').' 客户进入id:'.$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
+
     }elseif('out'==$type){
       $socket->log('客户退出id:'.$usermsg['userid']);
+      error_log(date('Y-m-d H:i:s').' 客户退出id:'.$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
+
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
+      error_log(date('Y-m-d H:i:s')."\t ".$usermsg['userid']." 消息: ".$usermsg['msg'].PHP_EOL,3,"./log/webServer.log");
+
+      # 存放数据库
       message_analysis($usermsg['userid'],$usermsg['msg'],$type);
     }
 }
@@ -40,29 +47,17 @@ function message_analysis($userid,$usermsg,$type){
   global $socket;
   global $mysql;
 
-  if($type=='in'){
-    $sql = "SELECT * FROM zf_user WHERE (userid=";
-    $sql = "SELECT * FROM zf_user_relation WHERE (userid=";
-    $res = $mysql->doSql($sql);
 
-    $relation = array(
-      'userid'=>,
-      'msg_userid'=>$usermsg['toUserId'],
-      'rala_status'=>1,
-      'ctime'=>time(),
-    );
-    $mysql->insert('zf_user_relation',$data);
-  }else if($type=='msg'){
+  if($type=='msg'){
+      if(empty($usermsg)){
+          error_log(date('Y-m-d H:i:s')."\t ".$userid." 消息为空".PHP_EOL,3,"./log/webServer.log");
+          return ;
+      }
+      $usermsgJson = json_decode($usermsg,true);
 
-  }else if($type=='out'){
-
-  }
-
-  $json = json_decode($msg,true);
-  // $show = json_encode($json);
-  if(empty($msg)){
-      return ;
-  }
+      $userinfo = getUserInfo($usermsgJson['userId']);
+  } 
+  
 
   // $redis = new redis();  
   // $redis->connect('127.0.0.1', 6379);  
