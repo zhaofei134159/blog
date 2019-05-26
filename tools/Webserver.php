@@ -58,6 +58,12 @@ function message_analysis($userid,$usermsg,$type){
       $usermsgJson = json_decode($usermsg,true);
 
       $userinfo = getUserInfo($usermsgJson['userId']);
+      if(empty($userinfo)){
+          error_log(date('Y-m-d H:i:s')."\t ".$userid." 用户信息为空".PHP_EOL,3,"./log/webServer.log");
+          return ;
+      }
+
+      
   } 
   
 
@@ -89,6 +95,9 @@ function getUserInfo($openid){
     $sql = "SELECT * FROM zf_user WHERE weixin_openid='{$openid}'";
     $res = $mysql->doSql($sql);
 
-    var_dump($res);
+    if(empty($res)){
+      return array();
+    }
+    return $res['0'];
 }
  
