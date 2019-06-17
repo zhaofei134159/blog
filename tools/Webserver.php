@@ -56,9 +56,9 @@ function message_analysis($userid,$usermsg,$type){
       $usermsgJson = json_decode($usermsg,true);
 
       if(empty($usermsg)){
-          error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 消息为空".PHP_EOL,3,"./log/webServer.log");
+          error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 0;
-          $resultData['msg'] = '消息为空';
+          $resultData['msg'] = 'json数据为空';
           $resultData['data'] = array();
           return $resultData;
       }
@@ -74,11 +74,24 @@ function message_analysis($userid,$usermsg,$type){
       }
 
       # 是否有交流关联记录 若无 则新增
-      $relation = userRelation($userinfo['id'],$usermsgJson['toUserId']);
+      $relationId = userRelation($userinfo['id'],$usermsgJson['toUserId']);
+      if(empty($relationId)){
+          error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 交流关联记录错误".PHP_EOL,3,"./log/webServer.log");
+          $resultData['flog'] = 0;
+          $resultData['msg'] = '交流记录错误';
+          $resultData['data'] = array();
+          return $resultData;
+      }
 
 
+      # 交流记录
+      $messageLog = userMessage($relationId,$usermsgJson['content'],$usermsgJson['type']);
 
-      
+      error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 聊天记录返回 relationId：".$relationId.PHP_EOL,3,"./log/webServer.log");
+      $resultData['flog'] = 1;
+      $resultData['msg'] = '聊天信息';
+      $resultData['data'] = $messageLog;
+      return $resultData;
   } 
   
 
@@ -120,24 +133,58 @@ function getUserInfo($openid){
 /*
 * 用户交流记录
 * 两个用户ID 因为是交流  所以每个人都可能是发送者
+* 返回交流ID
 */
 function userRelation($userid,$touserid){
     global $mysql;
 
-    // $sql = "SELECT * from zf_user_relation where (userid={$userid} or msg_userid={$userid}) and (userid={$touserid} or msg_userid={$touserid})";
-    $sql = "SELECT * from zf_user_relation where (userid=82 or msg_userid=82) and (userid={$touserid} or msg_userid={$touserid})";
+    $sql = "SELECT * from zf_user_relation where (userid={$userid} or msg_userid={$userid}) and (userid={$touserid} or msg_userid={$touserid})";
     $result = $mysql->doSql($sql);
 
     if(empty($result)){
       $insert = array();
-      $insert['userid'] = 82;
+      $insert['userid'] = $userid;
       $insert['msg_userid'] = $touserid;
       $insert['ctime'] = time();
-      $relaId = $mysql->insert('zf_user_relation',$insert);
-    }else{
-      $relaId = $result['0']['id'];
+      $mysql->insert('zf_user_relation',$insert);
+
+      $sql = "SELECT * from zf_user_relation where (userid={$userid} or msg_userid={$userid}) and (userid={$touserid} or msg_userid={$touserid})";
+      $result = $mysql->doSql($sql);
+    }
+   
+    $relaId = $result['0']['id'];
+
+    return $relaId;
+} 
+
+/*
+* 交流信息
+* ralaId：交流ID  content：内容  type：类型
+* 聊天记录
+*/
+function userMessage($ralaId,$content,$type){
+    global $mysql;
+
+    if(empty($content)){
+      #　图片
+      $typeContent = $content;
+      if($type=='image'){
+
+
+      }
+
+      $insert = array();
+      $insert['rela_id'] = $ralaId;
+      $insert['content'] = $typeContent;
+      $insert['type'] = $type;
+      $insert['msg_time'] = time();
+      $mysql->insert('zf_message',$insert);
     }
 
-    var_dump($relaId);
-    // return $result['0'];
-} 
+
+    # 查询聊天记录
+    $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2";
+    $result = $mysql->doSql($sql);
+
+    return $result;
+}
