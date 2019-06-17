@@ -127,13 +127,14 @@ function userRelation($userid,$touserid){
     $sql = "SELECT * from zf_user_relation where (userid={$userid} or msg_userid={$userid}) and (userid={$touserid} or msg_userid={$touserid})";
     $result = $mysql->doSql($sql);
 
-    $relaId = $result['0']['id'];
     if(empty($result)){
       $insert = array();
       $insert['userid'] = $userid;
       $insert['msg_userid'] = $touserid;
       $insert['ctime'] = time();
       $relaId = $mysql->insert('zf_user_relation',$insert);
+    }else{
+      $relaId = $result['0']['id'];
     }
 
     var_dump($relaId);
