@@ -74,7 +74,7 @@ function message_analysis($userid,$usermsg,$type){
       }
 
       # 是否有交流关联记录 若无 则新增
-      $relation = userRelation($usermsgJson['userId'],$usermsgJson['toUserId']);
+      $relation = userRelation($userinfo['id'],$usermsgJson['toUserId']);
 
 
 
