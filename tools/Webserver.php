@@ -48,20 +48,35 @@ function WSevent($type,$usermsg){
 function message_analysis($userid,$usermsg,$type){
   global $socket;
   global $mysql;
+  # 返回数据
+  $resultData = array();
 
 
   if($type=='msg'){
-      if(empty($usermsg)){
-          error_log(date('Y-m-d H:i:s')."\t ".$userid." 消息为空".PHP_EOL,3,"./log/webServer.log");
-          return ;
-      }
       $usermsgJson = json_decode($usermsg,true);
 
+      if(empty($usermsg)){
+          error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 消息为空".PHP_EOL,3,"./log/webServer.log");
+          $resultData['flog'] = 0;
+          $resultData['msg'] = '消息为空';
+          $resultData['data'] = array();
+          return $resultData;
+      }
+
+      # 用户信息
       $userinfo = getUserInfo($usermsgJson['userId']);
       if(empty($userinfo)){
-          error_log(date('Y-m-d H:i:s')."\t ".$userid." 用户信息为空".PHP_EOL,3,"./log/webServer.log");
-          return ;
+          error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 用户信息为空".PHP_EOL,3,"./log/webServer.log");
+          $resultData['flog'] = 0;
+          $resultData['msg'] = '用户信息为空';
+          $resultData['data'] = array();
+          return $resultData;
       }
+
+      # 是否有交流关联记录 若无 则新增
+      $relation = userRelation($usermsgJson['userId'],$usermsgJson['toUserId']);
+
+
 
       
   } 
@@ -85,8 +100,9 @@ function message_analysis($userid,$usermsg,$type){
   // // $redis->set('chat',$chat);
   // $redis->hSet('chat',1,$chat);
 
-  $socket->allweite($msg);
+  // $socket->allweite($msg);
 }
+
 
 # 获取用户ID
 function getUserInfo($openid){
@@ -100,4 +116,26 @@ function getUserInfo($openid){
     }
     return $res['0'];
 }
- 
+
+/*
+* 用户交流记录
+* 两个用户ID 因为是交流  所以每个人都可能是发送者
+*/
+function userRelation($userid,$touserid){
+    global $mysql;
+
+    $sql = "SELECT * from zf_user_relation where (userid={$userid} or msg_userid={$userid}) and (userid={$touserid} or msg_userid={$touserid})";
+    $result = $mysql->doSql($sql);
+
+    $relaId = $result['0']['id']
+    if(empty($result)){
+      $insert = array();
+      $insert['userid'] = $userid;
+      $insert['msg_userid'] = $touserid;
+      $insert['ctime'] = time();
+      $relaId = $mysql->insert('zf_user_relation',$insert);
+    }
+
+    var_dump($relaId);
+    // return $result['0'];
+} 
