@@ -124,7 +124,8 @@ function getUserInfo($openid){
 function userRelation($userid,$touserid){
     global $mysql;
 
-    $sql = "SELECT * from zf_user_relation where (userid={$userid} or msg_userid={$userid}) and (userid={$touserid} or msg_userid={$touserid})";
+    // $sql = "SELECT * from zf_user_relation where (userid={$userid} or msg_userid={$userid}) and (userid={$touserid} or msg_userid={$touserid})";
+    $sql = "SELECT * from zf_user_relation where (userid=82 or msg_userid=82) and (userid={$touserid} or msg_userid={$touserid})";
     $result = $mysql->doSql($sql);
 
     if(empty($result)){
