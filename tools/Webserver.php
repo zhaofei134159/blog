@@ -1,5 +1,6 @@
 <?php
 date_default_timezone_set("PRC");
+header("Content-type: text/html; charset=utf-8");
 
 include './class/WebSocket.php';
 include './class/MySql.php';
