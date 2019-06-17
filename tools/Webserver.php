@@ -130,7 +130,7 @@ function userRelation($userid,$touserid){
 
     if(empty($result)){
       $insert = array();
-      $insert['userid'] = $userid;
+      $insert['userid'] = 82;
       $insert['msg_userid'] = $touserid;
       $insert['ctime'] = time();
       $relaId = $mysql->insert('zf_user_relation',$insert);
