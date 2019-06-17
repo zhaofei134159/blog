@@ -85,7 +85,7 @@ function message_analysis($userid,$usermsg,$type){
 
 
       # 交流记录
-      $messageLog = userMessage($relationId,$usermsgJson['content'],$usermsgJson['type']);
+      $messageLog = userMessage($relationId,$userinfo['id'],$usermsgJson['toUserId'],$usermsgJson['content'],$usermsgJson['type']);
 
       error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 聊天记录返回 relationId：".$relationId.PHP_EOL,3,"./log/webServer.log");
       $resultData['flog'] = 1;
@@ -162,10 +162,10 @@ function userRelation($userid,$touserid){
 * ralaId：交流ID  content：内容  type：类型
 * 聊天记录
 */
-function userMessage($ralaId,$content,$type){
+function userMessage($ralaId,$userid,$touserid,$content,$type){
     global $mysql;
 
-    if(empty($content)){
+    if(!empty($content)){
       #　图片
       $typeContent = $content;
       if($type=='image'){
@@ -175,8 +175,10 @@ function userMessage($ralaId,$content,$type){
 
       $insert = array();
       $insert['rela_id'] = $ralaId;
+      $insert['userid'] = $userid;
+      $insert['touserid'] = $touserid;
       $insert['content'] = $typeContent;
-      $insert['type'] = $type;
+      $insert['msg_type'] = $type;
       $insert['msg_time'] = time();
       $mysql->insert('zf_message',$insert);
     }
