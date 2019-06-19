@@ -24,7 +24,7 @@ $mysql = new MMysql($db_conf);
 do{
   $socket = new WebSocket($addr,$port,$callback,$log);
   $socket->start();
-}while(!$socket);
+}while(true);
 
 
 function WSevent($type,$usermsg){
