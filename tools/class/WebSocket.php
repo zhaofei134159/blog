@@ -80,7 +80,7 @@ class WebSocket{
 		        }else{
 					var_dump($buffer);
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
-		          	$len = socket_recv($sign,$buffer,2048,0);
+		          	$len = socket_recv($sign,$buffer,8192,0);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
 		          	if($len<7){
