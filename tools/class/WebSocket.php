@@ -77,6 +77,7 @@ class WebSocket{
 		          	$usermsg = array('userid'=>$userid,'sign'=>$sign);
 		          	$this->userreturn('in',$usermsg);
 		        }else{
+					var_dump($buffer);
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
 		          	$len = socket_recv($sign,$buffer,2048,0);
 		          	$userid = $this->search($sign);
