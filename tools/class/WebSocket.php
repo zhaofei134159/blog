@@ -87,7 +87,7 @@ class WebSocket{
 		          	}else{
 		            	$buffer = $this->uncode($buffer);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
-		            	if(!empty($usermsg)){
+		            	if(!empty($buffer)){
 		            		$this->userreturn('msg',$usermsg);
 		            	}
 		          	}
