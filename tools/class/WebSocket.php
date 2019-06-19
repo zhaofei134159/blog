@@ -53,6 +53,9 @@ class WebSocket{
     //开始启动
 	public function start(){
 		while(true){
+			if(strpos($buffer,'toUserId') !== false){
+				continue;
+			}
       		$changes = $this->sockets;
 	      	//使用select非阻塞模式socket,读取客户端信息
 	      	@socket_select($changes,$write=NULL,$except=NULL,NULL);
@@ -72,7 +75,6 @@ class WebSocket{
 		          	$usermsg = array('userid'=>$userid,'sign'=>$sign);
 		          	$this->userreturn('in',$usermsg);
 		        }else{
-		        	var_dump(code($buffer));
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
 		          	$len = socket_recv($sign,$buffer,2048,0);
 		          	$userid = $this->search($sign);
