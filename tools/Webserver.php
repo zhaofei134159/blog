@@ -61,7 +61,7 @@ function message_analysis($userid,$usermsg,$type){
           $resultData['flog'] = 0;
           $resultData['msg'] = 'json数据为空';
           $resultData['data'] = array();
-          $socket->userreturn('error',$resultData);
+          $socket->allweite(json_encode($resultData));
           return '1';
       }
 
@@ -72,7 +72,7 @@ function message_analysis($userid,$usermsg,$type){
           $resultData['flog'] = 0;
           $resultData['msg'] = '用户信息为空';
           $resultData['data'] = array();
-          $socket->userreturn('error',$resultData);
+          $socket->allweite(json_encode($resultData));
           return '2';
       }
 
@@ -83,7 +83,7 @@ function message_analysis($userid,$usermsg,$type){
           $resultData['flog'] = 0;
           $resultData['msg'] = '交流记录错误';
           $resultData['data'] = array();
-          $socket->userreturn('error',$resultData);
+          $socket->allweite(json_encode($resultData));
           return '3';
       }
 
