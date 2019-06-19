@@ -78,7 +78,7 @@ class WebSocket{
 		          	$user = $this->users[$userid];
 		          	var_dump($userid);
 		          	var_dump($len);
-		          	if($len<7){
+		          	if($len===false){
 		            	$this->close($sign);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign);
 		            	$this->userreturn('out',$usermsg);
