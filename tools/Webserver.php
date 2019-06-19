@@ -21,8 +21,10 @@ $log = true;
 $mysql = new MMysql($db_conf);
 
 # socket
-$socket = new WebSocket($addr,$port,$callback,$log);
-$socket->start();
+do{
+  $socket = new WebSocket($addr,$port,$callback,$log);
+  $socket->start();
+}while(!$socket);
 
 
 function WSevent($type,$usermsg){
@@ -61,7 +63,7 @@ function message_analysis($userid,$usermsg,$type){
           $resultData['flog'] = 0;
           $resultData['msg'] = 'json数据为空';
           $resultData['data'] = array();
-          $socket->userreturn('error',json_encode($resultData));
+          $socket->userreturn('error',$resultData);
       }
 
       # 用户信息
@@ -71,7 +73,7 @@ function message_analysis($userid,$usermsg,$type){
           $resultData['flog'] = 0;
           $resultData['msg'] = '用户信息为空';
           $resultData['data'] = array();
-          $socket->userreturn('error',json_encode($resultData));
+          $socket->userreturn('error',$resultData);
       }
 
       # 是否有交流关联记录 若无 则新增
@@ -81,7 +83,7 @@ function message_analysis($userid,$usermsg,$type){
           $resultData['flog'] = 0;
           $resultData['msg'] = '交流记录错误';
           $resultData['data'] = array();
-          $socket->userreturn('error',json_encode($resultData));
+          $socket->userreturn('error',$resultData);
       }
 
 
