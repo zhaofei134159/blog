@@ -83,7 +83,7 @@ class WebSocket{
 		            	$this->userreturn('out',$usermsg);
 		            	continue;
 		          	}
-		          	if(!$this->users[$userid]['hand']){//没有握手进行握手
+		          	if(!$this->users[$userid]['hand']||$len==32){//没有握手进行握手
 		            	$this->handshake($userid,$buffer);
 		          	}else{
 		            	$buffer = $this->uncode($buffer);
