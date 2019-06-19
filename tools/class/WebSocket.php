@@ -76,7 +76,6 @@ class WebSocket{
 		          	$len = socket_recv($sign,$buffer,2048,0);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
-		          	var_dump(socket_strerror(socket_last_error($sign)));
 		          	if($len<7){
 		            	$this->close($sign);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign);
@@ -88,7 +87,9 @@ class WebSocket{
 		          	}else{
 		            	$buffer = $this->uncode($buffer);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
-		            	$this->userreturn('msg',$usermsg);
+		            	if(!empty($usermsg)){
+		            		$this->userreturn('msg',$usermsg);
+		            	}
 		          	}
 		        }
 	      	}
