@@ -57,7 +57,6 @@ class WebSocket{
 	      	//使用select非阻塞模式socket,读取客户端信息
 	      	@socket_select($changes,$write=NULL,$except=NULL,NULL);
 	      	foreach($changes as $sign){
-	      		var_dump($sign);
 
 	      		//如果为当前资源
 		        if($sign == $this->master){
@@ -77,7 +76,8 @@ class WebSocket{
 		          	$len = socket_recv($sign,$buffer,2048,0);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
-
+		          	var_dump($userid);
+		          	var_dump($len);
 		          	if($len<7){
 		            	$this->close($sign);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign);
