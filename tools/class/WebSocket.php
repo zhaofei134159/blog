@@ -53,7 +53,7 @@ class WebSocket{
     //开始启动
 	public function start(){
 		while(true){
-			if(strpos($buffer,'toUserId') !== false){
+			if($buffer&&strpos($buffer,'toUserId') !== false){
 				continue;
 			}
       		$changes = $this->sockets;
