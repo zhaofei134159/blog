@@ -61,6 +61,7 @@ function message_analysis($userid,$usermsg,$type){
           $resultData['flog'] = 0;
           $resultData['msg'] = 'json数据为空';
           $resultData['data'] = array();
+          var_dump($resultData);
           $socket->allweit(json_encode($resultData));
       }
 
