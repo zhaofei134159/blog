@@ -61,7 +61,6 @@ class WebSocket{
       		$changes = $this->sockets;
 	      	//使用select非阻塞模式socket,读取客户端信息
 	      	@socket_select($changes,$write=NULL,$except=NULL,NULL);
-      		var_dump($changes);
 	      	foreach($changes as $sign){
 
 	      		//如果为当前资源
@@ -78,7 +77,6 @@ class WebSocket{
 		          	$usermsg = array('userid'=>$userid,'sign'=>$sign);
 		          	$this->userreturn('in',$usermsg);
 		        }else{
-					var_dump($buffer);
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
 		          	$len = socket_recv($sign,$buffer,8192,0);
 		          	$userid = $this->search($sign);
@@ -92,6 +90,9 @@ class WebSocket{
 		          	if(!$this->users[$userid]['hand']){//没有握手进行握手
 		            	$this->handshake($userid,$buffer);
 		          	}else{
+		          		if($buffer==NULL){
+		          			continue;
+		          		}
 		            	$buffer = $this->uncode($buffer);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
 	            		$this->userreturn('msg',$usermsg);
