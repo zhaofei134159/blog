@@ -56,8 +56,9 @@ class WebSocket{
       		$changes = $this->sockets;
 	      	//使用select非阻塞模式socket,读取客户端信息
 	      	@socket_select($changes,$write=NULL,$except=NULL,NULL);
-	      	var_dump($changes);
 	      	foreach($changes as $sign){
+	      		var_dump($sign);
+
 	      		//如果为当前资源
 		        if($sign == $this->master){
 		          	$client=socket_accept($this->master);
