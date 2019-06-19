@@ -54,6 +54,7 @@ class WebSocket{
 	public function start(){
 		while(true){
 			if(isset($buffer)&&strpos($buffer,'toUserId') !== false){
+				var_dump($buffer);
 				continue;
 			}
       		$changes = $this->sockets;
