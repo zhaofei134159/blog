@@ -55,7 +55,7 @@ function message_analysis($userid,$usermsg,$type){
 
   if($type=='msg'){
       $usermsgJson = json_decode(json_decode($usermsg,true),true);
-
+      var_Dump(1);
       if(empty($usermsg)){
           error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 0;
@@ -64,7 +64,7 @@ function message_analysis($userid,$usermsg,$type){
           $socket->allweite(json_encode($resultData));
           return '1';
       }
-
+      var_Dump(2);
       # 用户信息
       $userinfo = getUserInfo($usermsgJson['userId']);
       if(empty($userinfo)){
@@ -75,7 +75,7 @@ function message_analysis($userid,$usermsg,$type){
           $socket->allweite(json_encode($resultData));
           return '2';
       }
-
+      var_Dump(3);
       # 是否有交流关联记录 若无 则新增
       $relationId = userRelation($userinfo['id'],$usermsgJson['toUserId']);
       if(empty($relationId)){
@@ -87,9 +87,11 @@ function message_analysis($userid,$usermsg,$type){
           return '3';
       }
 
+      var_Dump(4);
 
       # 交流记录
       $messageLog = userMessage($relationId,$userinfo['id'],$usermsgJson['toUserId'],$usermsgJson['content'],$usermsgJson['type']);
+      var_Dump(5);
 
       error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 聊天记录返回 relationId：".$relationId.PHP_EOL,3,"./log/webServer.log");
       $resultData['flog'] = 1;
