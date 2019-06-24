@@ -92,6 +92,9 @@ class WebSocket{
 			          	while($recv_len){
 			            	$read .= $this->uncode($buffer);
 			            	$recv_len -= 137;
+			            	if($recv_len<=0){
+			            		$recv_len = 0;
+			            	}
 			          	}
 			          	var_dump($recv_len);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
