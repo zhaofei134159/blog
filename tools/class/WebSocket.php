@@ -73,8 +73,8 @@ class WebSocket{
 		          	$this->userreturn('in',$usermsg);
 		        }else{
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
-		          	$len = socket_recv($sign,$buffer,8192,0);
-		          	var_dump($len);
+		          	$len = socket_recv($sign,$buffer,1024,0);
+		          	
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
 		          	if($len<7){
@@ -86,9 +86,11 @@ class WebSocket{
 		          	if(!$this->users[$userid]['hand']){//没有握手进行握手
 		            	$this->handshake($userid,$buffer);
 		          	}else{
-		            	$buffer = $this->uncode($buffer);
-		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
-	            		$this->userreturn('msg',$usermsg);
+			          	while(socket_recv($sign, $buffer, 1024, 0) >= 1){
+			            	$buffer = $this->uncode($buffer);
+			            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
+		            		$this->userreturn('msg',$usermsg);
+			          	}
 		          	}
 		        }
 	      	}
