@@ -40,7 +40,8 @@ function WSevent($type,$usermsg){
       error_log(date('Y-m-d H:i:s')."\t ".$usermsg['userid']." 消息: ".$usermsg['msg'].PHP_EOL,3,"./log/webServer.log");
 
       # 存放数据库
-      message_analysis($usermsg['userid'],$usermsg['msg'],$type);
+      $l = message_analysis($usermsg['userid'],$usermsg['msg'],$type);
+      var_dump($l);
     }
 }
 
