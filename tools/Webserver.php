@@ -64,9 +64,8 @@ function message_analysis($userid,$usermsg,$type){
 
       if(empty($usermsgJson)){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
-          $resultData['flog'] = 0;
+          $resultData['flog'] = 1;
           $resultData['msg'] = 'json数据为空';
-          $resultData['data'] = array();
           $socket->allweite(json_encode($resultData));
           return '1';
       }
@@ -75,9 +74,8 @@ function message_analysis($userid,$usermsg,$type){
       $userinfo = getUserInfo($usermsgJson['userId']);
       if(empty($userinfo)){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." 用户信息为空".PHP_EOL,3,"./log/webServer.log");
-          $resultData['flog'] = 0;
+          $resultData['flog'] = 2;
           $resultData['msg'] = '用户信息为空';
-          $resultData['data'] = array();
           $socket->allweite(json_encode($resultData));
           return '2';
       }
@@ -86,9 +84,8 @@ function message_analysis($userid,$usermsg,$type){
       $relationId = userRelation($userinfo['id'],$usermsgJson['toUserId']);
       if(empty($relationId)){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." 交流关联记录错误".PHP_EOL,3,"./log/webServer.log");
-          $resultData['flog'] = 0;
+          $resultData['flog'] = 3;
           $resultData['msg'] = '交流记录错误';
-          $resultData['data'] = array();
           $socket->allweite(json_encode($resultData));
           return '3';
       }
@@ -99,17 +96,15 @@ function message_analysis($userid,$usermsg,$type){
 
       if(empty($messageLog)){
         error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog为空".PHP_EOL,3,"./log/webServer.log");
-        $resultData['flog'] = 0;
-        $resultData['msg'] = '聊天信息';
-        $resultData['data'] = array();
+        $resultData['flog'] = 4;
+        $resultData['msg'] = '无聊天数据';
         $socket->allweite(json_encode($resultData));
         return '4';
       }
 
-      // error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog: ".json_encode($messageLog).PHP_EOL,3,"./log/webServer.log");
-      $resultData['flog'] = 0;
-      $resultData['msg'] = '聊天信息';
-      $resultData['data'] = array();
+      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog 不为空".PHP_EOL,3,"./log/webServer.log");
+      $resultData['flog'] = 5;
+      $resultData['msg'] = '有聊天数据';
       $socket->allweite(json_encode($resultData));
       return '5';
   } 
