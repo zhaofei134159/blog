@@ -53,6 +53,11 @@ class WebSocket{
     //开始启动
 	public function start(){
 		while(true){
+			if(isset($buffer)&&strpos($buffer,'toUserId') !== false){
+				var_dump($buffer);
+				$buffer=0;
+				continue;
+			}
       		$changes = $this->sockets;
 	      	//使用select非阻塞模式socket,读取客户端信息
 	      	socket_select($changes,$write=NULL,$except=NULL,NULL);
@@ -85,9 +90,7 @@ class WebSocket{
 		          	if(!$this->users[$userid]['hand']){//没有握手进行握手
 		            	$this->handshake($userid,$buffer);
 		          	}else{
-						if(isset($buffer)&&strpos($buffer,'toUserId') === false){
-		            		$buffer = $this->uncode($buffer);
-		            	}
+		            	$buffer = $this->uncode($buffer);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
 	            		$this->userreturn('msg',$usermsg);
 		          	}
