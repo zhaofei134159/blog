@@ -54,7 +54,7 @@ function message_analysis($userid,$usermsg,$type){
 
 
   if($type=='msg'){
-      $usermsgJson = json_encode(json_decode($usermsg,true),true);
+      $usermsgJson = json_decode(json_decode($usermsg,true),true);
 
       if(empty($usermsgJson)){
           error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
@@ -92,7 +92,7 @@ function message_analysis($userid,$usermsg,$type){
       $messageLog = userMessage($relationId,$userinfo['id'],$usermsgJson['toUserId'],$usermsgJson['content'],$usermsgJson['type']);
 
       error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 聊天记录返回 relationId：".$relationId.PHP_EOL,3,"./log/webServer.log");
-      $resultData['flog'] = 1;
+      $resultData['flog'] = 0;
       $resultData['msg'] = '聊天信息';
       $resultData['data'] = $messageLog;
       $socket->allweite(json_encode($resultData));
