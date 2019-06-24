@@ -53,6 +53,8 @@ class WebSocket{
     //开始启动
 	public function start(){
 		while(true){
+			var_dump($buffer);
+			
       		$changes = $this->sockets;
 	      	//使用select非阻塞模式socket,读取客户端信息
 	      	@socket_select($changes,$write=NULL,$except=NULL,NULL);
