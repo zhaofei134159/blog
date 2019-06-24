@@ -54,6 +54,10 @@ class WebSocket{
 	public function start(){
 		while(true){
 			var_dump($buffer);
+			if($buffer===false){
+				$buffer=NULL;
+				continue;
+			}
 			// if(isset($buffer)&&strpos($buffer,'toUserId') === false){
 				// var_dump($buffer);
 				// $buffer=0;
