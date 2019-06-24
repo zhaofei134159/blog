@@ -75,12 +75,12 @@ class WebSocket{
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
 		        	$read = '';
 		          	while(($flag=socket_recv($sign, $buffer, 8192,0))>0){
-			              $asc=ord(substr($bufferbuffer, -1));
+			              $asc=ord(substr($buffer, -1));
 			            if ($asc==0) {
 			                $read.=substr($buffer,0,-1);
 			                break;
 			            }else{
-			                $read.=$buf;
+			                $read.=$buffer;
 			            }
 			        }
 		          	$len = socket_recv($sign,$buffer,8192000,0);
