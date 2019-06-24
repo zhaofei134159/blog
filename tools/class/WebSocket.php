@@ -88,11 +88,12 @@ class WebSocket{
 		          	}else{
 		          		$read = '';
 		          		$recv_len = $len;
+		          		var_dump($recv_len);
 			          	while($recv_len){
 			            	$read .= $this->uncode($buffer);
 			            	$recv_len -= 137;
 			          	}
-
+			          	var_dump($recv_len);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
 	            		$this->userreturn('msg',$usermsg);
 		          	}
