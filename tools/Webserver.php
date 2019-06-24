@@ -40,8 +40,8 @@ function WSevent($type,$usermsg){
       error_log(date('Y-m-d H:i:s')."\t ".$usermsg['userid']." 消息: ".$usermsg['msg'].PHP_EOL,3,"./log/webServer.log");
 
       # 存放数据库
-      $l = message_analysis($usermsg['userid'],$usermsg['msg'],$type);
-      var_dump($l);
+      message_analysis($usermsg['userid'],$usermsg['msg'],$type);
+
     }
 }
 
@@ -92,17 +92,26 @@ function message_analysis($userid,$usermsg,$type){
           $socket->allweite(json_encode($resultData));
           return '3';
       }
-
+      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." 聊天记录返回 relationId：".$relationId.PHP_EOL,3,"./log/webServer.log");
 
       # 交流记录
       $messageLog = userMessage($relationId,$userinfo['id'],$usermsgJson['toUserId'],$usermsgJson['content'],$usermsgJson['type']);
 
-      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." 聊天记录返回 relationId：".$relationId.PHP_EOL,3,"./log/webServer.log");
+      if(empty($messageLog)){
+        error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog为空".PHP_EOL,3,"./log/webServer.log");
+        $resultData['flog'] = 0;
+        $resultData['msg'] = '聊天信息';
+        $resultData['data'] = $messageLog;
+        $socket->allweite(json_encode($resultData));
+        return '4';
+      }
+
+      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog".$messageLog.PHP_EOL,3,"./log/webServer.log");
       $resultData['flog'] = 0;
       $resultData['msg'] = '聊天信息';
       $resultData['data'] = $messageLog;
       $socket->allweite(json_encode($resultData));
-      return '4';
+      return '5';
   } 
   
 
