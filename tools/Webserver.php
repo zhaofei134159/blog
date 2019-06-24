@@ -54,6 +54,10 @@ function message_analysis($userid,$usermsg,$type){
 
 
   if($type=='msg'){
+      var_dump($usermsg);
+      if(empty($usermsg)){
+
+      }
       $usermsgJson = json_decode(json_decode($usermsg,true),true);
 
       if(empty($usermsgJson)){
