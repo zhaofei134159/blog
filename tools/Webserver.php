@@ -55,7 +55,7 @@ function message_analysis($userid,$usermsg,$type){
 
   if($type=='msg'){
       $usermsgJson = json_decode($usermsg,true);
-
+      var_dump($usermsgJson);die;
       if(empty($usermsg)){
           error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 0;
