@@ -60,7 +60,7 @@ function message_analysis($userid,$usermsg,$type){
           return '0';
       }
 
-      $usermsgJson = json_decode(json_decode($usermsg,true),true);
+      $usermsgJson = json_decode($usermsg,true);
 
       if(empty($usermsgJson)){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
