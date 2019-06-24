@@ -96,6 +96,7 @@ function message_analysis($userid,$usermsg,$type){
       $resultData['msg'] = '聊天信息';
       $resultData['data'] = $messageLog;
       $socket->allweite(json_encode($resultData));
+      return '4';
   } 
   
 
