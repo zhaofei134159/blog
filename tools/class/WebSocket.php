@@ -87,8 +87,10 @@ class WebSocket{
 		            	$this->handshake($userid,$buffer);
 		          	}else{
 		          		$read = '';
-			          	while(socket_recv($sign, $buffer, 1024, 0) >= 1){
+		          		$recv_len = $len;
+			          	while($recv_len){
 			            	$read .= $this->uncode($buffer);
+			            	$recv_len -= 137;
 			          	}
 
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
