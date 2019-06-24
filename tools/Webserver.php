@@ -54,14 +54,15 @@ function message_analysis($userid,$usermsg,$type){
 
 
   if($type=='msg'){
-      var_dump($usermsg);
-      if(empty($usermsg)){
-
+      if(empty($usermsg)||$usermsg==false){
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 发送数据为空".PHP_EOL,3,"./log/webServer.log");
+          return '0';
       }
+
       $usermsgJson = json_decode(json_decode($usermsg,true),true);
 
       if(empty($usermsgJson)){
-          error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."\t  真实用户".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 0;
           $resultData['msg'] = 'json数据为空';
           $resultData['data'] = array();
@@ -72,7 +73,7 @@ function message_analysis($userid,$usermsg,$type){
       # 用户信息
       $userinfo = getUserInfo($usermsgJson['userId']);
       if(empty($userinfo)){
-          error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 用户信息为空".PHP_EOL,3,"./log/webServer.log");
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."\t  真实用户".$usermsgJson['userId']." 用户信息为空".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 0;
           $resultData['msg'] = '用户信息为空';
           $resultData['data'] = array();
@@ -83,7 +84,7 @@ function message_analysis($userid,$usermsg,$type){
       # 是否有交流关联记录 若无 则新增
       $relationId = userRelation($userinfo['id'],$usermsgJson['toUserId']);
       if(empty($relationId)){
-          error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 交流关联记录错误".PHP_EOL,3,"./log/webServer.log");
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."\t  真实用户".$usermsgJson['userId']." 交流关联记录错误".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 0;
           $resultData['msg'] = '交流记录错误';
           $resultData['data'] = array();
@@ -95,7 +96,7 @@ function message_analysis($userid,$usermsg,$type){
       # 交流记录
       $messageLog = userMessage($relationId,$userinfo['id'],$usermsgJson['toUserId'],$usermsgJson['content'],$usermsgJson['type']);
 
-      error_log(date('Y-m-d H:i:s')."\t ".$usermsgJson['userId']." 聊天记录返回 relationId：".$relationId.PHP_EOL,3,"./log/webServer.log");
+      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."\t  真实用户".$usermsgJson['userId']." 聊天记录返回 relationId：".$relationId.PHP_EOL,3,"./log/webServer.log");
       $resultData['flog'] = 0;
       $resultData['msg'] = '聊天信息';
       $resultData['data'] = $messageLog;
