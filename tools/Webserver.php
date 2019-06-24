@@ -101,15 +101,15 @@ function message_analysis($userid,$usermsg,$type){
         error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog为空".PHP_EOL,3,"./log/webServer.log");
         $resultData['flog'] = 0;
         $resultData['msg'] = '聊天信息';
-        $resultData['data'] = $messageLog;
+        $resultData['data'] = array();
         $socket->allweite(json_encode($resultData));
         return '4';
       }
 
-      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog".json_encode($messageLog).PHP_EOL,3,"./log/webServer.log");
+      // error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog: ".json_encode($messageLog).PHP_EOL,3,"./log/webServer.log");
       $resultData['flog'] = 0;
       $resultData['msg'] = '聊天信息';
-      $resultData['data'] = $messageLog;
+      $resultData['data'] = array();
       $socket->allweite(json_encode($resultData));
       return '5';
   } 
