@@ -74,12 +74,14 @@ class WebSocket{
 		        }else{
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
 		          	$len = socket_recv($sign,$buffer,8192,0);
-		          	$read = '';
-		          	while (@socket_recv($sign, $data, 8192, 0)) {
-			            $read .= $data;
-			        }
-			        // $len = strlen($read);
-			        var_dump($read);
+
+					// $read = '';
+					// while (@socket_recv($sign, $data, 8192, 0)) {
+					// 	$read .= $data;
+					// }
+					// $len = strlen($read);
+					// var_dump($read);
+					
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
 		          	if($len<7){
