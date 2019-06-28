@@ -79,7 +79,7 @@ class WebSocket{
 			            $read .= $data;
 			        }
 			        // $len = strlen($read);
-			        
+			        var_dump($read);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
 		          	if($len<7){
@@ -91,8 +91,8 @@ class WebSocket{
 		          	if(!$this->users[$userid]['hand']){//没有握手进行握手
 		            	$this->handshake($userid,$buffer);
 		          	}else{
-		            	$read = $this->uncode($read);
-		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
+		            	$buffer = $this->uncode($buffer);
+		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
 	            		$this->userreturn('msg',$usermsg);
 		          	}
 		        }
