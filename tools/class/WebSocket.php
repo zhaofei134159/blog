@@ -86,7 +86,7 @@ class WebSocket{
 		            	$this->handshake($userid,$buffer);
 		          	}else{
 		          		$read = '';
-				 	  	while(($flag=socket_recv($sign, $buf, $length,0))>0){
+				 	  	while(($flag=socket_recv($sign, $buf, 8192,0))>0){
 				             $asc=ord(substr($buf, -1));
 				            if ($asc==0) {
 				                $read.=substr($buf,0,-1);
