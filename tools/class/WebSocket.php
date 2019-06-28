@@ -89,7 +89,7 @@ class WebSocket{
 		            	continue;
 		          	}
 		          	if(!$this->users[$userid]['hand']){//没有握手进行握手
-		            	$this->handshake($userid,$read);
+		            	$this->handshake($userid,$buffer);
 		          	}else{
 		            	$read = $this->uncode($read);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
