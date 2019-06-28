@@ -156,6 +156,15 @@ class WebSocket{
 	    if (hexdec($head{1}) === 8) {  
 	      	$data = false;  
 	    }else if (hexdec($head{1}) === 1){  
+	    	if(substr($msg[1],2,2)=='fe'){
+                $len=substr($msg[1],4,4);
+                $len=hexdec($len);
+                $msg[1]=substr($msg[1],4);
+            }else if(substr($msg[1],2,2)=='ff'){
+                $len=substr($msg[1],4,16);
+                $len=hexdec($len);
+                $msg[1]=substr($msg[1],16);
+            }
 	      	$mask[] = hexdec(substr($msg[1],4,2));
 	      	$mask[] = hexdec(substr($msg[1],6,2));
 	      	$mask[] = hexdec(substr($msg[1],8,2));
@@ -163,12 +172,7 @@ class WebSocket{
 	      	$s = 12;  
 	      	$e = strlen($msg[1])-2;  
 	      	$n = 0;  
-	      	if($mask[0] == 0){
-	      		$mask[0] = 125;
-	      	}
-	      	var_dump($msg);
-	      	var_dump($mask);
-	      	for ($i=$s; $i<= $e; $i+= 2) { 
+	      	for ($i=$s; $i<= $e; $i+= 2) {  
 	        	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
 	        	$n++;  
 	      	}  
