@@ -94,7 +94,9 @@ class WebSocket{
 							$str .= $read;
 							$str_len += strlen($read);  
 						}
+						var_dump($buffer);
 						var_dump($str);
+						var_dump($this->uncode($str));
 		            	$buffer = $this->uncode($buffer);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
 	            		$this->userreturn('msg',$usermsg);
