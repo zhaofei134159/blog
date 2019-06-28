@@ -95,9 +95,9 @@ class WebSocket{
 							$str_len += strlen($read);  
 						}
 						var_dump($this->uncode($str));
-		            	$buffer = $this->uncode($buffer);
-		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
-	            		$this->userreturn('msg',$usermsg);
+		            	// $buffer = $this->uncode($buffer);
+		            	// $usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
+	            		// $this->userreturn('msg',$usermsg);
 		          	}
 		        }
 	      	}
