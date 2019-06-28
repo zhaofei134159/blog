@@ -89,13 +89,6 @@ class WebSocket{
 
 		            	$buffer = $this->uncode($buffer);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
-
-						$read = '';
-						while (@socket_recv($sign, $sss, 8192, 0)) {
-							$read .= $sss;
-						}
-						var_dump($read);
-						
 	            		$this->userreturn('msg',$usermsg);
 		          	}
 		        }
