@@ -87,6 +87,7 @@ class WebSocket{
 		          	}else{
 						$per_len = 40;
 						$str = '';
+						$str_len = 0;
 						while($str_len<$len)
 						{
 							$read = socket_read($sign, $per_len,PHP_BINARY_READ);
