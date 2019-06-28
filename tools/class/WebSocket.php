@@ -95,10 +95,9 @@ class WebSocket{
 				                $read.=$buf;
 				            }
 				        }
-						var_dump($this->uncode($read));
-		            	// $buffer = $this->uncode($buffer);
-		            	// $usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
-	            		// $this->userreturn('msg',$usermsg);
+		            	$read = $this->uncode($read);
+		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
+	            		$this->userreturn('msg',$usermsg);
 		          	}
 		        }
 	      	}
@@ -173,8 +172,6 @@ class WebSocket{
 	      	$s = 12;  
 	      	$e = strlen($msg[1])-2;  
 	      	$n = 0;
-	      	var_dump($msg);
-	      	var_dump($mask);
 	      	for ($i=$s; $i<= $e; $i+= 2) {  
 	        	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
 	        	$n++;  
