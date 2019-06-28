@@ -163,7 +163,7 @@ class WebSocket{
 	      	$s = 12;  
 	      	$e = strlen($msg[1])-2;  
 	      	$n = 0;  
-	      	var_dump($msg[1]);
+	      	var_dump($msg);
 	      	for ($i=$s; $i<= $e; $i+= 2) {  
 	        	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
 	        	$n++;  
