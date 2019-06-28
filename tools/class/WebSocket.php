@@ -94,8 +94,6 @@ class WebSocket{
 							$str .= $read;
 							$str_len += strlen($read);  
 						}
-						var_dump($buffer);
-						var_dump($str);
 						var_dump($this->uncode($str));
 		            	$buffer = $this->uncode($buffer);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
@@ -165,6 +163,7 @@ class WebSocket{
 	      	$s = 12;  
 	      	$e = strlen($msg[1])-2;  
 	      	$n = 0;  
+	      	var_dump($msg[1]);
 	      	for ($i=$s; $i<= $e; $i+= 2) {  
 	        	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
 	        	$n++;  
