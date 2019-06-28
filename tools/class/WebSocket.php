@@ -92,7 +92,7 @@ class WebSocket{
 
 						$read = '';
 						while (@socket_recv($sign, $sss, 8192, 0)) {
-							$read .= $ssss;
+							$read .= $sss;
 						}
 						var_dump($read);
 						
