@@ -88,7 +88,7 @@ class WebSocket{
 	          			$read = '';
 						while (true) {
 							$len_read = socket_recv($sign, $string_read, 1024, 0);
-							if ($len_read === false) {
+							if ($len_read < 7) {
 								break;
 							}else {
 								$read .= trim($string_read);
