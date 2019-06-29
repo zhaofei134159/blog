@@ -105,7 +105,7 @@ function message_analysis($userid,$usermsg,$type){
       error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog 不为空".PHP_EOL,3,"./log/webServer.log");
       $resultData['flog'] = 5;
       $resultData['msg'] = '有聊天数据';
-      $resultData['result'] = $messageLog;
+      $resultData['result'] = json_encode($messageLog);
       $socket->allweite(json_encode($resultData));
       return '5';
   } 
