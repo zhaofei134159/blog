@@ -86,11 +86,14 @@ class WebSocket{
 		            	$this->handshake($userid,$buffer);
 		          	}else{
 		          		$read = '';
-						while(($flag=socket_recv($sign, $buffer, 8192,0))>0){
-							$read .= $buffer;
+						while (true) {
+							$len_read = socket_recv($sign, $string_read, 8192, 0);
+							$read .= trim($string_read);
+							if($len_read === 0){
+								break;
+							}
 						}
-
-
+						var_dump($read);
 		            	$read = $this->uncode($read);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
 	            		$this->userreturn('msg',$usermsg);
@@ -153,12 +156,8 @@ class WebSocket{
 	      	$data = false;  
 	    }else if (hexdec($head{1}) === 1){  
 	    	if(substr($msg[1],2,2)=='fe'){
-                $len=substr($msg[1],4,4);
-                $len=hexdec($len);
                 $msg[1]=substr($msg[1],4);
             }else if(substr($msg[1],2,2)=='ff'){
-                $len=substr($msg[1],4,16);
-                $len=hexdec($len);
                 $msg[1]=substr($msg[1],16);
             }
 	      	$mask[] = hexdec(substr($msg[1],4,2));
