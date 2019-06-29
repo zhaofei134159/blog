@@ -87,7 +87,7 @@ class WebSocket{
 		          	}else{
 	          			$read = '';
 						while (true) {
-							$len_read = socket_recv($sign, $string_read, 2014, 0);
+							$len_read = socket_recv($sign, $string_read, 1024, 0);
 							if ($len_read === false) {
 								break;
 							}else {
