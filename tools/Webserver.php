@@ -208,5 +208,5 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
     $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2 order by id desc limit 1";
     $result = $mysql->doSql($sql);
 
-    return $result;
+    return $result['0'];
 }
