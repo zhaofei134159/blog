@@ -60,6 +60,11 @@ function message_analysis($userid,$usermsg,$type){
           return '0';
       }
 
+      if($usermsg=='ping'){
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  心跳验证".PHP_EOL,3,"./log/webServer.log");
+          return '0';
+      }
+
       $usermsgJson = json_decode($usermsg,true);
 
       if(empty($usermsgJson)){
@@ -191,22 +196,30 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
       if($type=='image'){
 
 
+      }else if($type=='text'){
+        $insert = array();
+        $insert['rela_id'] = $ralaId;
+        $insert['userid'] = $userid;
+        $insert['touserid'] = $touserid;
+        $insert['content'] = $typeContent;
+        $insert['msg_type'] = $type;
+        $insert['msg_time'] = time();
+        $mysql->insert('zf_message',$insert);
       }
-
-      $insert = array();
-      $insert['rela_id'] = $ralaId;
-      $insert['userid'] = $userid;
-      $insert['touserid'] = $touserid;
-      $insert['content'] = $typeContent;
-      $insert['msg_type'] = $type;
-      $insert['msg_time'] = time();
-      $mysql->insert('zf_message',$insert);
     }
 
 
-    # 查询聊天记录
-    $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2 order by id desc limit 1";
-    $result = $mysql->doSql($sql);
+    if($type=='record'){
+      # 查询聊天记录
+      $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2";
+      $result = $mysql->doSql($sql);
+      return $result;
+      
+    }else{
+      # 查询聊天记录
+      $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2 order by id desc limit 1";
+      $result = $mysql->doSql($sql);
+      return $result['0'];
+    }
 
-    return $result['0'];
 }
