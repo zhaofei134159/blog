@@ -86,13 +86,8 @@ class WebSocket{
 		            	$this->handshake($userid,$buffer);
 		          	}else{
 	          			$read = '';
-						while (true) {
-							$len_read = socket_recv($sign, $string_read, 1024, 0);
-							if ($len_read < 7) {
-								break;
-							}else {
-								$read .= trim($string_read);
-							}
+						while($buffer=@socket_read($sign,512,PHP_NORMAL_READ)){
+							$read .= $buffer;
 						}
 						$read = $this->uncode($read);
 						var_dump($read);
