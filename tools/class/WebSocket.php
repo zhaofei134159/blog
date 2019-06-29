@@ -87,14 +87,7 @@ class WebSocket{
 		          	}else{
 		          		$read = '';
 						while(($flag=socket_recv($sign, $buffer, 8192,0))>0){
-							$asc = ord(substr($buffer, -1));
-							var_dump($asc);
-							if ($asc==0) {
-								$read .= substr($buffer,0,-1);
-								break;
-							}else{
-								$read .= $buffer;
-							}
+							$read .= $buffer;
 						}
 
 
