@@ -92,8 +92,8 @@ class WebSocket{
 								$read .= $buf;
 								break;
 							}
-						}while(true)
-						
+						}while(true);
+
 		            	$read = $this->uncode($read);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
 	            		$this->userreturn('msg',$usermsg);
