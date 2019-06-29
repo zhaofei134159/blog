@@ -66,6 +66,7 @@ function message_analysis($userid,$usermsg,$type){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 1;
           $resultData['msg'] = 'json数据为空';
+          $resultData['result'] = array();
           $socket->allweite(json_encode($resultData));
           return '1';
       }
@@ -76,6 +77,7 @@ function message_analysis($userid,$usermsg,$type){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." 用户信息为空".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 2;
           $resultData['msg'] = '用户信息为空';
+          $resultData['result'] = array();
           $socket->allweite(json_encode($resultData));
           return '2';
       }
@@ -86,6 +88,7 @@ function message_analysis($userid,$usermsg,$type){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." 交流关联记录错误".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 3;
           $resultData['msg'] = '交流记录错误';
+          $resultData['result'] = array();
           $socket->allweite(json_encode($resultData));
           return '3';
       }
@@ -98,6 +101,7 @@ function message_analysis($userid,$usermsg,$type){
         error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog为空".PHP_EOL,3,"./log/webServer.log");
         $resultData['flog'] = 4;
         $resultData['msg'] = '无聊天数据';
+        $resultData['result'] = array();
         $socket->allweite(json_encode($resultData));
         return '4';
       }
@@ -105,7 +109,7 @@ function message_analysis($userid,$usermsg,$type){
       error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog 不为空".PHP_EOL,3,"./log/webServer.log");
       $resultData['flog'] = 5;
       $resultData['msg'] = '有聊天数据';
-      $resultData['result'] = json_encode($messageLog);
+      $resultData['result'] = $messageLog;
       $socket->allweite(json_encode($resultData));
       return '5';
   } 
@@ -201,7 +205,7 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
 
 
     # 查询聊天记录
-    $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2";
+    $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2 order by id desc limit 1";
     $result = $mysql->doSql($sql);
 
     return $result;
