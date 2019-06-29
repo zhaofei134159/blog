@@ -166,15 +166,33 @@ class WebSocket{
 	    return $data;
   	}
 
-  	public function code($msg){
+  	public function code_old($msg){
       	$msg = preg_replace(array('/\r$/','/\n$/','/\r\n$/',), '', $msg);
-     	 $frame = array();  
+     	$frame = array();  
       	$frame[0] = '81';  
       	$len = strlen($msg);  
       	$frame[1] = $len<16?'0'.dechex($len):dechex($len);
       	$frame[2] = $this->ord_hex($msg);
       	$data = implode('',$frame);
       	return pack("H*", $data);
+    }
+
+    public function code($msg){
+	   	$frame = array(); 
+        $frame[0] = '81'; 
+        $len = strlen($msg);
+        if($len < 126){
+            $frame[1] = $len<16?'0'.dechex($len):dechex($len);
+        }else if($len < 65025){
+            $s=dechex($len);
+            $frame[1]='7e'.str_repeat('0',4-strlen($s)).$s;
+        }else{
+            $s=dechex($len);
+            $frame[1]='7f'.str_repeat('0',16-strlen($s)).$s;
+        }
+        $frame[2] = $this->ord_hex($msg);
+        $data = implode('',$frame); 
+        return pack("H*", $data); 
     }
 
     public function ord_hex($data){  
