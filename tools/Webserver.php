@@ -111,12 +111,24 @@ function message_analysis($userid,$usermsg,$type){
         return '4';
       }
 
-      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog 不为空".PHP_EOL,3,"./log/webServer.log");
-      $resultData['flog'] = 5;
-      $resultData['msg'] = '有聊天数据';
-      $resultData['result'] = $messageLog;
-      $socket->allweite(json_encode($resultData));
-      return '5';
+
+      if($usermsgJson['type']=='record'){
+        foreach($messageLog as $key=>$val){
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog: ".json_encode($val).PHP_EOL,3,"./log/webServer.log");
+          $resultData['flog'] = 5;
+          $resultData['msg'] = '接收数据返回';
+          $resultData['result'] = $val;
+          $socket->allweite(json_encode($resultData));
+        }
+        return '5';
+      }else{
+        error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog: ".json_encode($messageLog).PHP_EOL,3,"./log/webServer.log");
+        $resultData['flog'] = 5;
+        $resultData['msg'] = '接收数据返回';
+        $resultData['result'] = $messageLog;
+        $socket->allweite(json_encode($resultData));
+        return '5';
+      }
   } 
   
 
@@ -214,7 +226,7 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
       $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2";
       $result = $mysql->doSql($sql);
       return $result;
-      
+
     }else{
       # 查询聊天记录
       $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2 order by id desc limit 1";
