@@ -73,7 +73,7 @@ class WebSocket{
 		          	$this->userreturn('in',$usermsg);
 		        }else{
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
-		          	$len = socket_recv($sign,$buffer,8192,0);
+		          	$len = socket_recv($sign,$buffer,2,0);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
 		          	if($len<7){
@@ -86,10 +86,11 @@ class WebSocket{
 		            	$this->handshake($userid,$buffer);
 		          	}else{
 	          			$read = '';
-						while(0 != strlen(($str = socket_read($sign, 40,PHP_NORMAL_READ)))){
-							$read .= $this->uncode($str);
+						while($flag = socket_recv($sign, $buffer, 2, 0)) {
+							var_dump($flag);
 						}
-
+						$read = $this->uncode($buffer);
+						var_dump($flag);
 						var_dump($read);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
 	            		$this->userreturn('msg',$usermsg);
