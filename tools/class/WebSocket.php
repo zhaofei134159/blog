@@ -85,14 +85,10 @@ class WebSocket{
 		          	if(!$this->users[$userid]['hand']){//没有握手进行握手
 		            	$this->handshake($userid,$buffer);
 		          	}else{
+		          		$flag=socket_recv($descriptor, $buf, $length,0);
+		          		var_dump($flag);
 		          		$read = '';
-				        do {
-							$p = 0;
-							if (($ret = socket_recv($sign, $buf, 1024, 0)) ==0 ) {
-								$read .= $buf;
-								break;
-							}
-						}while(true);
+				      
 
 		            	$read = $this->uncode($read);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$read);
