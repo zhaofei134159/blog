@@ -223,16 +223,45 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
 
     if($type=='record'){
       # 查询聊天记录
-      $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.id WHERE 1 and m.rela_id={$ralaId} and m.msg_status != 2 order by id desc limit 10";
-      $result = $mysql->doSql($sql);
+      $result = userMessageList($ralaId,'limit 10');
       $result = array_reverse($result);
+
+      # 如果是和管理员说话  并且之前没有聊天记录
+      if($touserid==84&&empty($result)){
+        $sql = "SELECT * FROM zf_user where id={$userid}";
+        $zf_user = $mysql->doSql($sql);
+
+        $content = '你好, 亲爱的'.$zf_user['nikename'].'<br> 可以输入关键字，来搜索文章。<br> 例如: php、mysql、python';
+        $insert = array();
+        $insert['rela_id'] = $ralaId;
+        $insert['userid'] = 84;
+        $insert['touserid'] = $userid;
+        $insert['content'] = $content;
+        $insert['msg_type'] = 'text';
+        $insert['msg_time'] = time();
+        $mysql->insert('zf_message',$insert);
+        
+        $result = userMessageList($ralaId,'limit 1');
+      }
+
       return $result;
     }else{
+
       # 查询聊天记录
-      // $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2 order by id desc limit 1";
-      $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.id WHERE 1 and m.rela_id={$ralaId} and m.msg_status != 2 order by id desc limit 1";
-      $result = $mysql->doSql($sql);
+      $result = userMessageList($ralaId,'limit 1');
+
       return $result['0'];
     }
 
+}
+
+# 用户消息
+function userMessageList($ralaId,$limit){
+    global $mysql;
+
+    // $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2 order by id desc limit 1";
+    $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.id WHERE 1 and m.rela_id={$ralaId} and m.msg_status != 2 order by id desc {$limit}";
+    $result = $mysql->doSql($sql);
+
+    return $result;
 }
