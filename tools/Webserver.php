@@ -228,7 +228,7 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
 
       # 如果是和管理员说话  并且之前没有聊天记录
       if($touserid==84&&empty($result)){
-        $sql = "SELECT * FROM zf_user where id={$userid}";
+        $sql = "SELECT * FROM zf_user where id={$userid} limit 1";
         $zf_user = $mysql->doSql($sql);
 
         $content = '你好, 亲爱的 '.$zf_user[0]['nikename']."\n 可以输入关键字，来搜索文章。\n 例如: php、mysql、python ";
