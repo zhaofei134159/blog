@@ -62,6 +62,10 @@ function message_analysis($userid,$usermsg,$type){
 
       if($usermsg=='ping'){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  心跳验证".PHP_EOL,3,"./log/webServer.log");
+          $resultData['flog'] = 0;
+          $resultData['msg'] =  '心跳验证';
+          $resultData['result'] = array();
+          $socket->allweite(json_encode($resultData));
           return '0';
       }
 
