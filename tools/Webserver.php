@@ -231,7 +231,7 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
         $sql = "SELECT * FROM zf_user where id={$userid}";
         $zf_user = $mysql->doSql($sql);
 
-        $content = '你好, 亲爱的'.$zf_user['nikename'].'<br> 可以输入关键字，来搜索文章。<br> 例如: php、mysql、python';
+        $content = '你好, 亲爱的 '.$zf_user['nikename'].' <br> 可以输入关键字，来搜索文章。<br> 例如: php、mysql、python';
         $insert = array();
         $insert['rela_id'] = $ralaId;
         $insert['userid'] = 84;
