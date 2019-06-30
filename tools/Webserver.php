@@ -223,14 +223,14 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
 
     if($type=='record'){
       # 查询聊天记录
-      $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.idWHERE 1  m.rela_id={$ralaId} and m.msg_status != 2 order by id desc limit 10";
+      $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.id WHERE 1  m.rela_id={$ralaId} and m.msg_status != 2 order by id desc limit 10";
       $result = $mysql->doSql($sql);
       $result = array_reverse($result);
       return $result;
     }else{
       # 查询聊天记录
       // $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2 order by id desc limit 1";
-      $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.idWHERE 1  m.rela_id={$ralaId} and m.msg_status != 2 order by id desc limit 1";
+      $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.id WHERE 1  m.rela_id={$ralaId} and m.msg_status != 2 order by id desc limit 1";
       $result = $mysql->doSql($sql);
       return $result['0'];
     }
