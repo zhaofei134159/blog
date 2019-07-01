@@ -218,6 +218,11 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
 
 
       }else if($type=='text'&&$touserid!=84){
+        # 是否存在，敏感词
+        $callback = sensitiveWordsSearch($search);
+        $setWord = $callback['setWord'];
+        $typeContent = $callback['search'];
+        
         $insert = array();
         $insert['rela_id'] = $ralaId;
         $insert['userid'] = $userid;
@@ -297,13 +302,9 @@ function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
     global $participle;
 
     # 是否存在敏感词
-    $setWord = 0;
-    foreach($sensitiveWords as $key=>$word){
-        if(strpos($search,$word) !== false){
-          $search = str_replace($word,'***',$search);
-          $setWord = 1;
-        }
-    }
+    $callback = sensitiveWordsSearch($search);
+    $setWord = $callback['setWord'];
+    $search = $callback['search'];
 
     # 存在敏感词
     if($setWord==1){
@@ -386,4 +387,24 @@ function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
     }
 
     return count($works)+1;
+}
+
+
+/*
+* 是否存在敏感词
+*/
+function sensitiveWordsSearch($search){
+    global $sensitiveWords;
+
+    $setWord = 0;
+    foreach($sensitiveWords as $key=>$word){
+        if(strpos($search,$word) !== false){
+          $search = str_replace($word,'***',$search);
+          $setWord = 1;
+        }
+    }
+
+    $callback = array('setWord'=>$setWord,'search'=>$search);
+
+    return $callback;
 }
