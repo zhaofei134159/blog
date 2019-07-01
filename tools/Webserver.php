@@ -258,13 +258,13 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
     }else if($touserid==84&&$type=='text'){
       # 系统管理员
       # 通过输入的文字 查询文章
-      $search = UserSearchArticles($typeContent,$ralaId,$userid,$touserid);
+      $workNum = UserSearchArticles($typeContent,$ralaId,$userid,$touserid);
 
       # 查询聊天记录
-      $result = userMessageList($ralaId,'limit 2');
+      $result = userMessageList($ralaId,'limit '.$workNum);
       $result = array_reverse($result);
-      return $result['0'];
-
+      
+      return $result;
     }else{
       # 查询聊天记录
       $result = userMessageList($ralaId,'limit 1');
@@ -325,12 +325,21 @@ function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
         $insert['msg_time'] = time();
         $mysql->insert('zf_message',$insert);
 
-        return 'set sensitive word';
+        return 2;
     }
+
+    # 先把用户搜索的存库
+    $insert = array();
+    $insert['rela_id'] = $ralaId;
+    $insert['userid'] = $userid;
+    $insert['touserid'] = $touserid;
+    $insert['content'] = $search;
+    $insert['msg_type'] = 'text';
+    $insert['msg_time'] = time();
+    $mysql->insert('zf_message',$insert);
 
 
     # php  分词  查询文章
-    
     //载入词典
     $participle->LoadDict();
         
@@ -341,7 +350,40 @@ function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
     $participle->StartAnalysis(true);
     
     $keyword = $participle->GetFinallyKeywords();
+    $keywordArr = explode(',',$keyword);
 
-    var_dump($keyword);
+    # 拼接sql
+    $work_sql = "SELECT id,title from zf_work  where 1 and blog_id=1 and ";
+    $workSqlArr = array();
+    foreach($keywordArr as $wd){
+      $workSqlArr[] = " (title like '%{$wd}%' or `desc` like '%{$wd}%') ";
+    }
+    $work_sql .= implode(' or ',$workSqlArr);
+    $works = $mysql->doSql($work_sql);
+
+    if(empty($works)){
+      $insert = array();
+      $insert['rela_id'] = $ralaId;
+      $insert['userid'] = $touserid;
+      $insert['touserid'] = $userid;
+      $insert['content'] = "未检索到您希望看到的文章\n 我会提醒主人更新的。";
+      $insert['msg_type'] = 'text';
+      $insert['msg_time'] = time();
+      $mysql->insert('zf_message',$insert);
+
+      return 2;
+    }
+
+    foreach($works as $work){
+      $insert = array();
+      $insert['rela_id'] = $ralaId;
+      $insert['userid'] = $touserid;
+      $insert['touserid'] = $userid;
+      $insert['content'] = "<navigator url='../detail/detail?workId=".$work['id']."'>".$work['title']."</navigator>";
+      $insert['msg_type'] = 'text';
+      $insert['msg_time'] = time();
+      $mysql->insert('zf_message',$insert);
+    }
+
+    return count($works)+1;
 }
-
