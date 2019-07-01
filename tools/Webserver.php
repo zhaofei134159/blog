@@ -263,7 +263,7 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
       # 查询聊天记录
       $result = userMessageList($ralaId,'limit '.$workNum);
       $result = array_reverse($result);
-      
+
       return $result;
     }else{
       # 查询聊天记录
@@ -300,7 +300,7 @@ function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
     $setWord = 0;
     foreach($sensitiveWords as $key=>$word){
         if(strpos($search,$word) !== false){
-          $search = str_replace($word,'*',$search);
+          $search = str_replace($word,'***',$search);
           $setWord = 1;
         }
     }
