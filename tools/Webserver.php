@@ -5,6 +5,11 @@ header("Content-type: text/html; charset=utf-8");
 include './class/WebSocket.php';
 include './class/MySql.php';
 
+
+# 敏感词
+$sensitiveWords = array('妈的','sb','我靠','傻逼','md','cnm','草你妈','nmb','你妈逼');
+
+# 数据库配置
 $db_conf = array(
     'host' => '127.0.0.1',
     'port' => '3306',
@@ -12,6 +17,8 @@ $db_conf = array(
     'passwd' => 'zhaofei',
     'dbname' => 'blog',
 );
+
+# socket配置
 $addr = '104.243.18.161';
 $port = '8282';
 $callback = 'WSevent';//回调函数的函数名
@@ -125,6 +132,15 @@ function message_analysis($userid,$usermsg,$type){
           $socket->allweite(json_encode($resultData));
         }
         return '5';
+      }else if($usermsgJson['toUserId']==84){
+        foreach($messageLog as $key=>$val){
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog: ".json_encode($val).PHP_EOL,3,"./log/webServer.log");
+          $resultData['flog'] = 5;
+          $resultData['msg'] = '接收数据返回';
+          $resultData['result'] = $val;
+          $socket->allweite(json_encode($resultData));
+        }
+        return '5';
       }else{
         error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog: ".json_encode($messageLog).PHP_EOL,3,"./log/webServer.log");
         $resultData['flog'] = 5;
@@ -135,27 +151,8 @@ function message_analysis($userid,$usermsg,$type){
       }
   } 
   
-
-  // $redis = new redis();  
-  // $redis->connect('127.0.0.1', 6379);  
-  // $chat = array();
-  // // !$redis->exists('chat')
-  // if($redis->hLen('chat')<=0){
-  //   $chat[] = $json;
-  // }else{
-  //   // $cun = $redis->get('chat');
-  //   $cun = $redis->hGetAll('chat');
-  //   $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
-  //   $chat = json_decode($cun,true);
-  //   $redis->del('chat');
-  //   $chat[] = $json;
-  // }
-  // $chat = json_encode($chat);  
-  // // $redis->set('chat',$chat);
-  // $redis->hSet('chat',1,$chat);
-
-  // $socket->allweite($msg);
 }
+
 
 
 # 获取用户ID
@@ -206,6 +203,7 @@ function userRelation($userid,$touserid){
 function userMessage($ralaId,$userid,$touserid,$content,$type){
     global $mysql;
 
+    # 存数据
     if(!empty($content)){
       #　图片
       $typeContent = $content;
@@ -225,6 +223,7 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
     }
 
 
+    # 返回聊天记录
     if($type=='record'){
       # 查询聊天记录
       $result = userMessageList($ralaId,'limit 10');
@@ -249,11 +248,20 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
       }
 
       return $result;
-    }else{
+    }else if($touserid==84&&$type=='text'){
+      # 系统管理员
+      # 通过输入的文字 查询文章
+      $search = UserSearchArticles($typeContent,$ralaId,$userid,$touserid);
 
       # 查询聊天记录
-      $result = userMessageList($ralaId,'limit 1');
+      $result = userMessageList($ralaId,'limit 2');
+      $result = array_reverse($result);
+      return $result['0'];
 
+    }else{
+      # 查询聊天记录
+      $result = userMessageList($ralaId,'limit 1');
+      $result = array_reverse($result);
       return $result['0'];
     }
 
@@ -269,3 +277,51 @@ function userMessageList($ralaId,$limit){
 
     return $result;
 }
+
+
+/*
+* 用户搜索文章
+* $search 用户输入的文字
+* return 
+*/
+function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
+    global $mysql;
+    global $sensitiveWords;
+
+    # 是否存在敏感词
+    $setWord = 0;
+    foreach($sensitiveWords as $key=>$word){
+        if(strpos($search,$word) !== false){
+          $search = str_replace($word,'*',$search);
+          $setWord = 1;
+        }
+    }
+
+    # 存在敏感词
+    if($setWord==1){
+        $insert = array();
+        $insert['rela_id'] = $ralaId;
+        $insert['userid'] = $userid;
+        $insert['touserid'] = $touserid;
+        $insert['content'] = $search;
+        $insert['msg_type'] = 'text';
+        $insert['msg_time'] = time();
+        $mysql->insert('zf_message',$insert);
+
+        $insert = array();
+        $insert['rela_id'] = $ralaId;
+        $insert['userid'] = $touserid;
+        $insert['touserid'] = $userid;
+        $insert['content'] = "维护网络文明，人人有则 \n 请注意您的言语。";
+        $insert['msg_type'] = 'text';
+        $insert['msg_time'] = time();
+        $mysql->insert('zf_message',$insert);
+
+        return 'set sensitive word';
+    }
+
+
+    # php  分词  查询文章
+    
+}
+
