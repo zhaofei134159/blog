@@ -2,9 +2,9 @@
 date_default_timezone_set("PRC");
 header("Content-type: text/html; charset=utf-8");
 
-include './class/WebSocket.php'; # socket
-include './class/MySql.php';  # mysql
-include './class/phpanalysis.class.php'; # php分词
+require_once './class/WebSocket.php'; # socket
+require_once './class/MySql.php';  # mysql
+require_once './class/phpanalysis/phpanalysis.class.php'; # php分词
 
 
 # 敏感词
@@ -35,6 +35,7 @@ $socket->start();
 # 分词
 PhpAnalysis::$loadInit = false;
 $participle = new PhpAnalysis('utf-8', 'utf-8', true);
+var_dump($participle);
 
 
 
