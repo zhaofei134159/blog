@@ -28,14 +28,15 @@ $log = true;
 # mysql
 $mysql = new MMysql($db_conf);
 
-# socket
-$socket = new WebSocket($addr,$port,$callback,$log);
-$socket->start();
-
 # 分词
 PhpAnalysis::$loadInit = false;
 $participle = new PhpAnalysis('utf-8', 'utf-8', true);
 var_dump($participle);
+
+# socket
+$socket = new WebSocket($addr,$port,$callback,$log);
+$socket->start();
+
 
 
 
