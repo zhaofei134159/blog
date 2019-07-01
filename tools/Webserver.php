@@ -2,8 +2,9 @@
 date_default_timezone_set("PRC");
 header("Content-type: text/html; charset=utf-8");
 
-include './class/WebSocket.php';
-include './class/MySql.php';
+include './class/WebSocket.php'; # socket
+include './class/MySql.php';  # mysql
+include './class/phpanalysis.class.php'; # php分词
 
 
 # 敏感词
@@ -30,6 +31,11 @@ $mysql = new MMysql($db_conf);
 # socket
 $socket = new WebSocket($addr,$port,$callback,$log);
 $socket->start();
+
+# 分词
+PhpAnalysis::$loadInit = false;
+$participle = new PhpAnalysis('utf-8', 'utf-8', true);
+
 
 
 function WSevent($type,$usermsg){
@@ -287,6 +293,7 @@ function userMessageList($ralaId,$limit){
 function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
     global $mysql;
     global $sensitiveWords;
+    global $participle;
 
     # 是否存在敏感词
     $setWord = 0;
@@ -323,5 +330,17 @@ function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
 
     # php  分词  查询文章
     
+    //载入词典
+    $participle->LoadDict();
+        
+    //执行分词
+    $participle->SetSource($search);
+    $participle->differMax = true;
+    $participle->unitWord = true;
+    $participle->StartAnalysis(true);
+    
+    $keyword = $participle->GetFinallyKeywords();
+
+    var_dump($keyword);
 }
 
