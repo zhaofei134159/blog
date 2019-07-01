@@ -217,7 +217,7 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
       if($type=='image'){
 
 
-      }else if($type=='text'){
+      }else if($type=='text'&&$touserid!=84){
         $insert = array();
         $insert['rela_id'] = $ralaId;
         $insert['userid'] = $userid;
