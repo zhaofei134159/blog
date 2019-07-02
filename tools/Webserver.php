@@ -142,6 +142,9 @@ function message_analysis($userid,$usermsg,$type){
       }else if($usermsgJson['toUserId']==84){
         foreach($messageLog as $key=>$val){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog: ".json_encode($val).PHP_EOL,3,"./log/webServer.log");
+          if($val['msg_type']=='work'){
+              $val['content'] = json_decode($val['content'],'true');
+          }
           $resultData['flog'] = 5;
           $resultData['msg'] = '接收数据返回';
           $resultData['result'] = $val;
@@ -360,6 +363,7 @@ function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
       $workSqlArr[] = " (title like '%{$wd}%' or `desc` like '%{$wd}%') ";
     }
     $work_sql .= implode(' or ',$workSqlArr);
+    // $work_sql .= " limit 5";
     $works = $mysql->doSql($work_sql);
 
     if(empty($works)){
@@ -380,8 +384,8 @@ function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
       $insert['rela_id'] = $ralaId;
       $insert['userid'] = $touserid;
       $insert['touserid'] = $userid;
-      $insert['content'] = "<navigator url='../detail/detail?workId=".$work['id']."'>".$work['title']."</navigator>";
-      $insert['msg_type'] = 'text';
+      $insert['content'] = json_encode($work);
+      $insert['msg_type'] = 'work';
       $insert['msg_time'] = time();
       $mysql->insert('zf_message',$insert);
     }
@@ -398,8 +402,8 @@ function sensitiveWordsSearch($search){
 
     $setWord = 0;
     foreach($sensitiveWords as $key=>$word){
-        if(strpos($search,$word) !== false){
-          $search = str_replace($word,'***',$search);
+        if(strpos(strtolower($search),$word) !== false){
+          $search = str_ireplace($word,'***',$search);
           $setWord = 1;
         }
     }
