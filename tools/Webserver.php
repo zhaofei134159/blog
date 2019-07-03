@@ -133,6 +133,9 @@ function message_analysis($userid,$usermsg,$type){
       if($usermsgJson['type']=='record'){
         foreach($messageLog as $key=>$val){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." messageLog: ".json_encode($val).PHP_EOL,3,"./log/webServer.log");
+          if($val['msg_type']=='work'){
+              $val['content'] = json_decode($val['content'],'true');
+          }
           $resultData['flog'] = 5;
           $resultData['msg'] = '接收数据返回';
           $resultData['result'] = $val;
