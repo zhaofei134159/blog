@@ -9,7 +9,7 @@ class Userapp extends Home_Controller{
 
 	public function __construct(){
 		parent::__construct();
-
+		$this->load->helper('common');
 		$this->load->model('zf_blog_model');
 		$this->load->model('zf_work_model');
 		$this->load->model('zf_cate_model');
