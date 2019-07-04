@@ -222,7 +222,15 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
       $typeContent = $content;
       if($type=='image'){
 
-
+        $insert = array();
+        $insert['rela_id'] = $ralaId;
+        $insert['userid'] = $userid;
+        $insert['touserid'] = $touserid;
+        $insert['content'] = $typeContent;
+        $insert['msg_type'] = $type;
+        $insert['msg_time'] = time();
+        $mysql->insert('zf_message',$insert);
+        
       }else if($type=='text'&&$touserid!=84){
         # 是否存在，敏感词
         $callback = sensitiveWordsSearch($search);
