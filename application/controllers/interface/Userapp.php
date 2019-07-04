@@ -132,6 +132,7 @@ class Userapp extends Home_Controller{
 
     public function setMesssageImage(){
 		$file = $_FILES;
+		var_dump($file);die;
 		return upload_img($file,'messageimg');
     }
 
