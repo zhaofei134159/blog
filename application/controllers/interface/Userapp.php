@@ -130,5 +130,10 @@ class Userapp extends Home_Controller{
         return $format_result ? $format_result : $return_str;
     }
 
+    public function setMesssageImage(){
+		$file = $_FILES;
+		var_dump($file);
+    }
+
 	
 }
