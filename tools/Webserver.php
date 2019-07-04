@@ -230,7 +230,7 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
         $insert['msg_type'] = $type;
         $insert['msg_time'] = time();
         $mysql->insert('zf_message',$insert);
-        
+
       }else if($type=='text'&&$touserid!=84){
         # 是否存在，敏感词
         $callback = sensitiveWordsSearch($search);
@@ -274,10 +274,13 @@ function userMessage($ralaId,$userid,$touserid,$content,$type){
       }
 
       return $result;
-    }else if($touserid==84&&$type=='text'){
-      # 系统管理员
-      # 通过输入的文字 查询文章
-      $workNum = UserSearchArticles($typeContent,$ralaId,$userid,$touserid);
+    }else if($touserid==84){
+      $workNum = 1;
+      if($type=='text'){
+        # 系统管理员
+        # 通过输入的文字 查询文章
+        $workNum = UserSearchArticles($typeContent,$ralaId,$userid,$touserid);
+      }
 
       # 查询聊天记录
       $result = userMessageList($ralaId,'limit '.$workNum);
