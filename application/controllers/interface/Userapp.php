@@ -133,7 +133,8 @@ class Userapp extends Home_Controller{
     public function setMesssageImage(){
 		$file = $_FILES['file'];
 
-		return upload_img($file,'messageimg');
+		echo upload_img($file,'messageimg');
+		die;
     }
 
 	
