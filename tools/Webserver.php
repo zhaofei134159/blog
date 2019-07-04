@@ -367,6 +367,7 @@ function UserSearchArticles($search,$ralaId,$userid,$touserid='84'){
     }
     $work_sql .= implode(' or ',$workSqlArr);
     // $work_sql .= " limit 5";
+    echo $work_sql;
     $works = $mysql->doSql($work_sql);
 
     if(empty($works)){
