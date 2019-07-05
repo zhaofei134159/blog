@@ -76,6 +76,7 @@ class WebSocket{
 		          	$len = socket_recv($sign,$buffer,8192,0);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
+		          	var_dump($buffer);
 		          	if($len<7){
 		            	$this->close($sign);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign);
