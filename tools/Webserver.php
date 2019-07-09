@@ -72,15 +72,7 @@ function message_analysis($userid,$usermsg,$type){
   global $mysql;
   # 返回数据
   $resultData = array();
-  if($type=='in'){
-      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." type: ".$type.PHP_EOL,3,"./log/webServer.log");
-      $resultData['flog'] = -2;
-      $resultData['msg'] = '进入';
-      $resultData['result'] = array();
-      $socket->allweite(json_encode($resultData));
-
-      return '0';
-  }else if($type=='out'){
+  if($type=='out'){
       error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." type: ".$type.PHP_EOL,3,"./log/webServer.log");
       $resultData['flog'] = -1;
       $resultData['msg'] = '退出';
