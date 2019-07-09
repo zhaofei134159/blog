@@ -46,14 +46,14 @@ function WSevent($type,$usermsg){
       error_log(date('Y-m-d H:i:s')."\t  客户进入id:".$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
 
       # 存放数据库
-      message_analysis($usermsg['userid'],$usermsg['msg'],$type);
+      message_analysis($usermsg['userid'],'',$type);
 
     }elseif('out'==$type){
       $socket->log('客户退出id:'.$usermsg['userid']);
       error_log(date('Y-m-d H:i:s')."\t  客户退出id:".$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
 
       # 存放数据库
-      message_analysis($usermsg['userid'],$usermsg['msg'],$type);
+      message_analysis($usermsg['userid'],'',$type);
 
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
