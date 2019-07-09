@@ -85,7 +85,7 @@ function message_analysis($userid,$usermsg,$type,$sign){
 
       # 退出
       if($usermsgJson['type']=='out'){
-          $socket->log('客户退出id:'.$usermsg['userid']);
+          $socket->log('客户退出id:'.$userid);
 
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userId']." 退出".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = -1;
