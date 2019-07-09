@@ -45,9 +45,15 @@ function WSevent($type,$usermsg){
       $socket->log('客户进入id:'.$usermsg['userid']);
       error_log(date('Y-m-d H:i:s')."\t  客户进入id:".$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
 
+      # 存放数据库
+      message_analysis($usermsg['userid'],$usermsg['msg'],$type);
+
     }elseif('out'==$type){
       $socket->log('客户退出id:'.$usermsg['userid']);
       error_log(date('Y-m-d H:i:s')."\t  客户退出id:".$usermsg['userid'].PHP_EOL,3,"./log/webServer.log");
+
+      # 存放数据库
+      message_analysis($usermsg['userid'],$usermsg['msg'],$type);
 
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
@@ -66,9 +72,23 @@ function message_analysis($userid,$usermsg,$type){
   global $mysql;
   # 返回数据
   $resultData = array();
+  if($type=='in'){
+      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." type: ".$type.PHP_EOL,3,"./log/webServer.log");
+      $resultData['flog'] = -2;
+      $resultData['msg'] = '进入';
+      $resultData['result'] = array();
+      $socket->allweite(json_encode($resultData));
 
+      return '0';
+  }else if($type=='out'){
+      error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." type: ".$type.PHP_EOL,3,"./log/webServer.log");
+      $resultData['flog'] = -1;
+      $resultData['msg'] = '退出';
+      $resultData['result'] = array();
+      $socket->allweite(json_encode($resultData));
 
-  if($type=='msg'){
+      return '0';
+  }else if($type=='msg'){
       if(empty($usermsg)||$usermsg==false){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 发送数据为空".PHP_EOL,3,"./log/webServer.log");
           return '0';
