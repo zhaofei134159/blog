@@ -35,11 +35,6 @@ class MMysql {
         $this->_user = $conf['user'];
         $this->_pass = $conf['passwd'];
         $this->_dbName = $conf['dbname'];
-        var_dump($this->_host);
-        var_dump($this->_port);
-        var_dump($this->_user);
-        var_dump($this->_pass);
-        var_dump($this->_dbName);
         //连接数据库
         if ( is_null(self::$_dbh) ) {
             $this->_connect();
@@ -52,11 +47,16 @@ class MMysql {
     protected function _connect() {
         $dsn = $this->_dbType.':host='.$this->_host.';port='.$this->_port.';dbname='.$this->_dbName;
         $options = $this->_pconnect ? array(PDO::ATTR_PERSISTENT=>true) : array();
+
+        # mysql
+        error_log(date('Y-m-d H:i:s')." dsn: ".$dsn.PHP_EOL,3,S_PATH."/log/webServer.log");
         try { 
             $dbh = new PDO($dsn, $this->_user, $this->_pass, $options);
+            error_log(date('Y-m-d H:i:s')." dbh: ".json_encode((array)$dbh).PHP_EOL,3,S_PATH."/log/webServer.log");
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  //设置如果sql语句执行错误则抛出异常，事务会自动回滚
             $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); //禁用prepared statements的仿真效果(防SQL注入)
         } catch (PDOException $e) { 
+            error_log(date('Y-m-d H:i:s')." e: ".json_encode((array)$e).PHP_EOL,3,S_PATH."/log/webServer.log");
             die('Connection failed: ' . $e->getMessage());
         }
         $dbh->exec('SET NAMES utf8');
