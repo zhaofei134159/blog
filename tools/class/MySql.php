@@ -35,6 +35,11 @@ class MMysql {
         $this->_user = $conf['user'];
         $this->_pass = $conf['passwd'];
         $this->_dbName = $conf['dbname'];
+        var_dump($this->_host);
+        var_dump($this->_port);
+        var_dump($this->_user);
+        var_dump($this->_pass);
+        var_dump($this->_dbName);
         //连接数据库
         if ( is_null(self::$_dbh) ) {
             $this->_connect();
