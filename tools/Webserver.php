@@ -1,12 +1,11 @@
 <?php
 date_default_timezone_set("PRC");
 header("Content-type: text/html; charset=utf-8");
-define('S_PATH', substr(dirname(__FILE__), 0, -4));
+define('S_PATH', dirname(__FILE__));
 
-var_dump(S_PATH);
-require_once './class/WebSocket.php'; # socket
-require_once './class/MySql.php';  # mysql
-require_once './class/phpanalysis/phpanalysis.class.php'; # php分词
+require_once S_PATH.'/class/WebSocket.php'; # socket
+require_once S_PATH.'/class/MySql.php';  # mysql
+require_once S_PATH.'/class/phpanalysis/phpanalysis.class.php'; # php分词
 
 error_log(date('Y-m-d H:i:s')." 开始".PHP_EOL,3,"./log/webServer.log");
 
