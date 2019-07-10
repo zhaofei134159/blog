@@ -31,7 +31,7 @@ class MMysql {
     public function __construct(array $conf) {
         error_log(date('Y-m-d H:i:s')." PDO: ".class_exists('PDO').PHP_EOL,3,S_PATH."/log/webServer.log");
         
-        class_exists('PDO') or die("PDO: class not exists.");
+        // class_exists('PDO') or die("PDO: class not exists.");
         $this->_host = $conf['host'];
         $this->_port = $conf['port'];
         $this->_user = $conf['user'];
