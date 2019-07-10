@@ -9,6 +9,7 @@ require_once './class/phpanalysis/phpanalysis.class.php'; # php分词
 # 有几个脚本执行
 $num = exec("ps aux | grep 'Webserver.php' | grep -v grep | wc -l");
 if($num>1){
+  error_log(date('Y-m-d H:i:s')." 已经有脚本了".PHP_EOL,3,"./log/webServer.log");
   exit(date('Y-m-d').' 已经有脚本了');
 }
 
