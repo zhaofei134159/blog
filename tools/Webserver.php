@@ -6,6 +6,12 @@ require_once './class/WebSocket.php'; # socket
 require_once './class/MySql.php';  # mysql
 require_once './class/phpanalysis/phpanalysis.class.php'; # php分词
 
+# 有几个脚本执行
+$num = exec("ps aux | grep 'Webserver.php' | grep -v grep | wc -l");
+if($num>1){
+  exit(date('Y-m-d').' 已经有脚本了');
+}
+
 
 # 敏感词
 $sensitiveWords = array('妈的','sb','我靠','傻逼','md','cnm','草你妈','nmb','你妈逼');
