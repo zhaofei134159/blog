@@ -35,6 +35,8 @@ class MMysql {
         $this->_user = $conf['user'];
         $this->_pass = $conf['passwd'];
         $this->_dbName = $conf['dbname'];
+
+        error_log(date('Y-m-d H:i:s')." _dbh: ".is_null(self::$_dbh).PHP_EOL,3,S_PATH."/log/webServer.log");
         //连接数据库
         if ( is_null(self::$_dbh) ) {
             $this->_connect();
