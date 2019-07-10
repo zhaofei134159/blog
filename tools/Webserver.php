@@ -6,6 +6,7 @@ require_once './class/WebSocket.php'; # socket
 require_once './class/MySql.php';  # mysql
 require_once './class/phpanalysis/phpanalysis.class.php'; # php分词
 
+error_log(date('Y-m-d H:i:s')." 开始".PHP_EOL,3,"./log/webServer.log");
 
 # 有几个脚本执行
 $num = exec("ps aux | grep 'Webserver.php' | grep -v grep | wc -l");
