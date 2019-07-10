@@ -2,6 +2,7 @@
 date_default_timezone_set("PRC");
 header("Content-type: text/html; charset=utf-8");
 
+var_dump(S_PATH);
 require_once './class/WebSocket.php'; # socket
 require_once './class/MySql.php';  # mysql
 require_once './class/phpanalysis/phpanalysis.class.php'; # php分词
