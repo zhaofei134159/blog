@@ -23,7 +23,7 @@ $sensitiveWords = array('妈的','sb','我靠','傻逼','md','cnm','草你妈','
 
 # 数据库配置
 $db_conf = array(
-    'host' => '127.0.0.1',
+    'host' => '104.243.18.161',
     'port' => '3306',
     'user' => 'root',
     'passwd' => 'zhaofei',
