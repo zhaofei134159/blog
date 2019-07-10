@@ -68,7 +68,6 @@ define('PUBLIC_URL', '/public/public/');
 
 define('HOME_URL', '/home/');
 define('ADMIN_URL', '/backstage/');
-define('S_PATH', substr(dirname(__FILE__), 0, -4));
 
 session_start();
 /*
