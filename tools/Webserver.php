@@ -15,9 +15,12 @@ if($num>1){
   exit(date('Y-m-d').' 已经有脚本了');
 }
 
+error_log(date('Y-m-d H:i:s')."\t  1".PHP_EOL,3,"./log/webServer.log");
 
 # 敏感词
 $sensitiveWords = array('妈的','sb','我靠','傻逼','md','cnm','草你妈','nmb','你妈逼');
+
+error_log(date('Y-m-d H:i:s')."\t  2".PHP_EOL,3,"./log/webServer.log");
 
 # 数据库配置
 $db_conf = array(
@@ -27,12 +30,16 @@ $db_conf = array(
     'passwd' => 'zhaofei',
     'dbname' => 'blog',
 );
+error_log(date('Y-m-d H:i:s')."\t  3".PHP_EOL,3,"./log/webServer.log");
+
 
 # socket配置
 $addr = '104.243.18.161';
 $port = '8282';
 $callback = 'WSevent';//回调函数的函数名
 $log = true;
+
+error_log(date('Y-m-d H:i:s')."\t  4".PHP_EOL,3,"./log/webServer.log");
 
 # mysql
 $mysql = new MMysql($db_conf);
