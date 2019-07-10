@@ -2,7 +2,7 @@
 /**
  * Desc: php操作mysql的封装类
  * Author zhifeng
- * Date: 2015/04/15
+ * Date: 2019/04/15
  * 连接模式：PDO
  */
  
