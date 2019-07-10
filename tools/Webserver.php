@@ -10,6 +10,7 @@ error_log(date('Y-m-d H:i:s')." 开始".PHP_EOL,3,"./log/webServer.log");
 
 # 有几个脚本执行
 $num = exec("ps aux | grep 'Webserver.php' | grep -v grep | wc -l");
+error_log(date('Y-m-d H:i:s')." 脚本数".$num.PHP_EOL,3,"./log/webServer.log");
 if($num>1){
   error_log(date('Y-m-d H:i:s')." 已经有脚本了".PHP_EOL,3,"./log/webServer.log");
   exit(date('Y-m-d').' 已经有脚本了');
