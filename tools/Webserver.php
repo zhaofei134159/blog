@@ -37,6 +37,9 @@ $callback = 'WSevent';//回调函数的函数名
 $log = true;
 
 # mysql
+var_dump(class_exists('MMysql', false));
+error_log(date('Y-m-d H:i:s')." MMysql".class_exists('MMysql', false).PHP_EOL,3,"./log/webServer.log");
+
 $mysql = new MMysql($db_conf);
 
 
