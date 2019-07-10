@@ -38,9 +38,10 @@ $log = true;
 
 # mysql
 var_dump(class_exists('MMysql', false));
-error_log(date('Y-m-d H:i:s')." MMysql".class_exists('MMysql', false).PHP_EOL,3,"./log/webServer.log");
+error_log(date('Y-m-d H:i:s')." MMysql: ".class_exists('MMysql', false).PHP_EOL,3,"./log/webServer.log");
 
 $mysql = new MMysql($db_conf);
+error_log(date('Y-m-d H:i:s')." mysql: ".json_encode($mysql).PHP_EOL,3,"./log/webServer.log");
 
 
 # 分词
