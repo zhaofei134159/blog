@@ -8,12 +8,12 @@ include S_PATH.'/class/WebSocket.php'; # socket
 include S_PATH.'/class/MySql.php';  # mysql
 include S_PATH.'/class/phpanalysis/phpanalysis.class.php'; # php分词
 
-error_log(date('Y-m-d H:i:s')." 开始".PHP_EOL,3,S_PATH."/log/webServer.log");
+// error_log(date('Y-m-d H:i:s')." 开始".PHP_EOL,3,S_PATH."/log/webServer.log");
 
 # 有几个脚本执行
 $num = exec("ps aux | grep 'Webserver.php' | grep -v grep | wc -l");
 if($num>1){
-  error_log(date('Y-m-d H:i:s')." 已经有脚本了".PHP_EOL,3,S_PATH."/log/webServer.log");
+  // error_log(date('Y-m-d H:i:s')." 已经有脚本了".PHP_EOL,3,S_PATH."/log/webServer.log");
   exit(date('Y-m-d').' 已经有脚本了');
 }
 
@@ -37,10 +37,7 @@ $callback = 'WSevent';//回调函数的函数名
 $log = true;
 
 # mysql
-error_log(date('Y-m-d H:i:s')." MMysql: ".class_exists('MMysql', false).PHP_EOL,3,S_PATH."/log/webServer.log");
-
 $mysql = new MMysql($db_conf);
-error_log(date('Y-m-d H:i:s')." mysql: ".json_encode((array)$mysql).PHP_EOL,3,S_PATH."/log/webServer.log");
 
 
 # 分词
