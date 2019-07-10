@@ -1,7 +1,7 @@
 <?php
 /**
  * Desc: php操作mysql的封装类
- * Author zhifeng
+ * Author zhaofei
  * Date: 2019/04/15
  * 连接模式：PDO
  */
@@ -29,6 +29,8 @@ class MMysql {
      * @param array $conf 数据库配置
      */
     public function __construct(array $conf) {
+        error_log(date('Y-m-d H:i:s')." PDO: ".class_exists('PDO').PHP_EOL,3,S_PATH."/log/webServer.log");
+        
         class_exists('PDO') or die("PDO: class not exists.");
         $this->_host = $conf['host'];
         $this->_port = $conf['port'];
