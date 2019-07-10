@@ -60,20 +60,18 @@ function WSevent($type,$usermsg){
       error_log(date('Y-m-d H:i:s')."\t ".$usermsg['userid']." 消息: ".$usermsg['msg'].PHP_EOL,3,"./log/webServer.log");
 
       # 存放数据库
-      message_analysis($usermsg['userid'],$usermsg['msg'],$type);
+      message_analysis($usermsg['userid'],$usermsg['msg'],$type,$usermsg['sign']);
 
     }
 }
 
 
 # 语言解析
-function message_analysis($userid,$usermsg,$type){
+function message_analysis($userid,$usermsg,$type,$sign){
   global $socket;
   global $mysql;
   # 返回数据
   $resultData = array();
-
-
   if($type=='msg'){
       if(empty($usermsg)||$usermsg==false){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 发送数据为空".PHP_EOL,3,"./log/webServer.log");
@@ -91,6 +89,20 @@ function message_analysis($userid,$usermsg,$type){
 
       $usermsgJson = json_decode($usermsg,true);
 
+      # 退出
+      if($usermsgJson['type']=='out'){
+          $socket->log('客户退出id:'.$userid);
+
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userId']." 退出".PHP_EOL,3,"./log/webServer.log");
+          $resultData['flog'] = -1;
+          $resultData['msg'] = '退出';
+          $resultData['result'] = array();
+          $socket->allweite(json_encode($resultData));
+
+          $socket->close($sign);
+          return '1';
+      }
+      
       if(empty($usermsgJson)){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userId']." json数据为空".PHP_EOL,3,"./log/webServer.log");
           $resultData['flog'] = 1;
