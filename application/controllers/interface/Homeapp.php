@@ -19,10 +19,10 @@ class Homeapp extends Home_Controller{
 
 	public function index()
 	{
-		// $workIndex = $_GET['workIndex'];
-		// if(!isset($_GET['workIndex'])||empty($_GET['workIndex'])){
-		// 	$workIndex = 1;
-		// }
+		$workIndex = $_GET['workIndex'];
+		if(!isset($_GET['workIndex'])||empty($_GET['workIndex'])){
+			$workIndex = 1;
+		}
 
 		// $blogs = $this->zf_blog_model->get_list('is_del=0','*','',20,0);
 		// if(!empty($blogs)){
