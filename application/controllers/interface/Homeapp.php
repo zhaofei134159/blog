@@ -19,10 +19,10 @@ class Homeapp extends Home_Controller{
 
 	public function index()
 	{
-		$workIndex = $_GET['workIndex'];
-		if(!isset($_GET['workIndex'])||empty($_GET['workIndex'])){
-			$workIndex = 1;
-		}
+		// $workIndex = $_GET['workIndex'];
+		// if(!isset($_GET['workIndex'])||empty($_GET['workIndex'])){
+		// 	$workIndex = 1;
+		// }
 
 		// $blogs = $this->zf_blog_model->get_list('is_del=0','*','',20,0);
 		// if(!empty($blogs)){
@@ -36,7 +36,7 @@ class Homeapp extends Home_Controller{
 		$tags = $this->zf_tag_model->get_list('is_del=0','*','',40,0);
 
 		//热门的文章 点击量多的
-		$offset = $this->workPageNum*(int)($workIndex-1);
+		$offset = $this->workPageNum*((int)$workIndex-1);
 		$works = $this->zf_work_model->get_list('is_del=0','*','ctime desc',$this->workPageNum,$offset);
 		if(!empty($works)){
 			foreach($works as $wk=>$work){
