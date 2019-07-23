@@ -31,7 +31,6 @@ function get_used_status(){
   $cpu_info = explode(",",$sys_info[4]);  //CPU占有量  数组
   $tast_info = explode(",",$sys_info[3]);//进程 数组
   $mem_info = explode(",",$sys_info[5]); //内存占有量 数组
-  var_dump($sys_info);die;
 
   //正在运行的进程数
   $tast_running = trim(trim($tast_info[1],'running'));
