@@ -43,7 +43,7 @@ function get_used_status(){
   $tast_running = trim(trim($tast_info[1],'running'));
    
   //CPU占有量
-  $cpu_usage = trim(trim($cpu_info[0],'%Cpu(s): '),'%us');  //百分比
+  $cpu_usage = trim(trim($cpu_info[0],'%Cpu(s): '),'us');  //百分比
    
 
   //内存占有量
