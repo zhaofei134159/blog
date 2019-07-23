@@ -71,7 +71,7 @@ function get_used_status(){
  //echo date("Y-m-d H:i:s",time())."<br>";
   
  $status = get_used_status();
- $host = isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
+ $host =  gethostbyname($_SERVER["SERVER_NAME"]);
  var_dump($host);
  var_dump($status);
  die;
