@@ -79,7 +79,7 @@ $insert['hd_usage'] = $status['hd_usage'];
 $insert['tast_running'] = $status['tast_running'];
 $insert['detection_time'] = $status['detection_time'];
 $insert['createtime'] = date('Y-m-d H:i:s');
-$mysql->insert('zf_message',$insert);
+$mysql->insert('server_info_desc',$insert);
 
 unset($status);
 
