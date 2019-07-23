@@ -6,6 +6,13 @@ error_reporting(E_ALL);
 
 include S_PATH.'/class/MySql.php';  # mysql
 
+
+$num = exec("ps aux | grep 'serverInfoDesc.php' | grep -v grep | wc -l");
+if($num>1){
+  exit(date('Y-m-d').' 已经有脚本了');
+}
+
+
 # 数据库配置
 $db_conf = array(
     'host' => '104.243.18.161',
