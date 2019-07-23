@@ -42,7 +42,10 @@ function get_used_status(){
   //内存占有量
   $mem_total = trim(trim($mem_info[0],'Mem: '),'k total'); 
   $mem_used = trim($mem_info[1],'k used');
-  $mem_usage = round(100*intval($mem_used)/intval($mem_total),2);  //百分比
+  $mem_usage = 0;
+  if($mem_total!=0){
+    $mem_usage = round(100*intval($mem_used)/intval($mem_total),2);  //百分比
+  }
    
    
   $fp = popen('df -lh | grep -E "^(/)"',"r");
@@ -68,7 +71,7 @@ function get_used_status(){
  //echo date("Y-m-d H:i:s",time())."<br>";
   
  $status = get_used_status();
- var_dump($status);
+ var_dump($status);die;
   
  $sql = "insert into performance(ip,cpu_usage,mem_usage,hd_avail,hd_usage,tast_running,detection_time) ";
  $sql .= " value('".MONITORED_IP."','".$status['cpu_usage']."','".$status['mem_usage']."','".$status['hd_avail']."','".$status['hd_usage']."','".$status['tast_running']."','".$status['detection_time']."')";
