@@ -47,8 +47,8 @@ function get_used_status(){
    
 
   //内存占有量
-  $mem_total = trim(trim($mem_info[0],'Mem: '),'k total'); 
-  $mem_used = trim($mem_info[1],'k used');
+  $mem_total = trim(trim($mem_info[0],'KiB Mem: '),' total'); 
+  $mem_used = trim($mem_info[1],' used');
   $mem_usage = 0;
   if($mem_total!=0){
     $mem_usage = round(100*intval($mem_used)/intval($mem_total),2);  //百分比
