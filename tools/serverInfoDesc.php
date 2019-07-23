@@ -1,4 +1,9 @@
 <?php
+date_default_timezone_set("PRC");
+header("Content-type: text/html; charset=utf-8");
+define('S_PATH', dirname(__FILE__));
+error_reporting(E_ALL);
+
 include S_PATH.'/class/MySql.php';  # mysql
 
 # 数据库配置
