@@ -20,7 +20,7 @@ $mysql = new MMysql($db_conf);
   
   
 function get_used_status(){
-  $fp = popen('top -b -n 2 | grep -E "^(%Cpu|Mem|Tasks)"',"r");//获取某一时刻系统cpu和内存使用情况
+  $fp = popen('top -b -n 2 | grep -E "^(%Cpu|KiB Mem|Tasks)"',"r");//获取某一时刻系统cpu和内存使用情况
   $rs = "";
   while(!feof($fp)){
     $rs .= fread($fp,1024);
