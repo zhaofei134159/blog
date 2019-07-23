@@ -26,11 +26,9 @@ function get_used_status(){
     $rs .= fread($fp,1024);
   }
   pclose($fp);
-  var_dump($rs);
-  die;
 
-  
   $sys_info = explode("\n",$rs);
+  var_dump($sys_info);die;
   $cpu_info = explode(",",$sys_info[4]);  //CPU占有量  数组
   $tast_info = explode(",",$sys_info[3]);//进程 数组
   $mem_info = explode(",",$sys_info[5]); //内存占有量 数组
