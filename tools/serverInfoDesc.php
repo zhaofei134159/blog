@@ -44,9 +44,7 @@ function get_used_status(){
    
   //CPU占有量
   $cpu_usage = trim(trim($cpu_info[0],'%Cpu(s): '),'us');  //百分比
-  var_dump(trim($cpu_info[0],'%Cpu(s): '));
-  var_dump(trim(trim($cpu_info[0],'%Cpu(s): '),'us'));
-
+  
   //内存占有量
   $mem_total = trim(trim($mem_info[0],'KiB Mem: '),' total'); 
   $mem_used = trim($mem_info[1],' used');
