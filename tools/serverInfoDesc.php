@@ -36,7 +36,7 @@ function get_used_status(){
   $tast_running = trim(trim($tast_info[1],'running'));
    
   //CPU占有量
-  $cpu_usage = trim(trim($cpu_info[0],'%Cpu(s): '),'%us');  //百分比
+  $detection_time = trim(trim($cpu_info[0],'%Cpu(s): '),'%us');  //百分比
    
 
   //内存占有量
@@ -67,28 +67,20 @@ function get_used_status(){
    
   return array('cpu_usage'=>$cpu_usage,'mem_usage'=>$mem_usage,'hd_avail'=>$hd_avail,'hd_usage'=>$hd_usage,'tast_running'=>$tast_running,'detection_time'=>$detection_time);
 }
-  
- //echo date("Y-m-d H:i:s",time())."<br>";
-  
- $status = get_used_status();
- $host =  gethostbyname($_SERVER["SERVER_NAME"]);
- var_dump($host);
- var_dump($status);
- die;
-  
- $sql = "insert into performance(ip,cpu_usage,mem_usage,hd_avail,hd_usage,tast_running,detection_time) ";
- $sql .= " value('".MONITORED_IP."','".$status['cpu_usage']."','".$status['mem_usage']."','".$status['hd_avail']."','".$status['hd_usage']."','".$status['tast_running']."','".$status['detection_time']."')";
- $query = mysql_query($sql) or die("SQL 语句执行失败!");
- unset($status);
 
-  $insert = array();
-  $insert['rela_id'] = $ralaId;
-  $insert['userid'] = 84;
-  $insert['touserid'] = $userid;
-  $insert['content'] = $content;
-  $insert['msg_type'] = 'text';
-  $insert['msg_time'] = time();
-  $mysql->insert('zf_message',$insert);
+$status = get_used_status();
 
-  
+$insert = array();
+$insert['ip'] = $db_conf['host'];
+$insert['cpu_usage'] = $status['cpu_usage'];
+$insert['mem_usage'] = $status['mem_usage'];
+$insert['hd_avail'] = $status['hd_avail'];
+$insert['hd_usage'] = $status['hd_usage'];
+$insert['tast_running'] = $status['tast_running'];
+$insert['detection_time'] = $status['detection_time'];
+$insert['createtime'] = date('Y-m-d H:i:s');
+$mysql->insert('zf_message',$insert);
+
+unset($status);
+
 ?>
