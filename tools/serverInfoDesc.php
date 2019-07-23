@@ -51,7 +51,7 @@ function get_used_status(){
      
    
   //检测时间
-  $fp = popen("date +"%Y-%m-%d %H:%M"","r");
+  $fp = popen("date +'%Y-%m-%d %H:%M'","r");
   $rs = fread($fp,1024);
   pclose($fp);
   $detection_time = trim($rs);
