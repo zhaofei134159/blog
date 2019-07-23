@@ -71,13 +71,24 @@ function get_used_status(){
  //echo date("Y-m-d H:i:s",time())."<br>";
   
  $status = get_used_status();
- var_dump($status);die;
+ $host = isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
+ var_dump($host);
+ var_dump($status);
+ die;
   
  $sql = "insert into performance(ip,cpu_usage,mem_usage,hd_avail,hd_usage,tast_running,detection_time) ";
  $sql .= " value('".MONITORED_IP."','".$status['cpu_usage']."','".$status['mem_usage']."','".$status['hd_avail']."','".$status['hd_usage']."','".$status['tast_running']."','".$status['detection_time']."')";
  $query = mysql_query($sql) or die("SQL 语句执行失败!");
  unset($status);
-  
- //echo date("Y-m-d H:i:s",time())."<br>";
+
+  $insert = array();
+  $insert['rela_id'] = $ralaId;
+  $insert['userid'] = 84;
+  $insert['touserid'] = $userid;
+  $insert['content'] = $content;
+  $insert['msg_type'] = 'text';
+  $insert['msg_time'] = time();
+  $mysql->insert('zf_message',$insert);
+
   
 ?>
