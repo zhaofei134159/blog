@@ -67,7 +67,7 @@ class Homeapp extends Home_Controller{
 		$where = 'blog_id='.$blogId.' and is_del=0';
 		$where .= ' and id='.$workId;
 		$work = $this->zf_work_model->select_one($where);
-		$work['desc'] = $Htmlrepair->fix_html_tags($work['desc'],strlen($work['desc']));
+		$work['desc'] = $Htmlrepair->fix_html_tags($work['desc']);
 
 
 
