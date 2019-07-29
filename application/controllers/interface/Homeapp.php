@@ -69,8 +69,7 @@ class Homeapp extends Home_Controller{
 		$work = $this->zf_work_model->select_one($where);
 		// var_dump($work['desc']);
 		// $work['desc'] = $Htmlrepair->fix_html_tags($work['desc']);
-		$work['desc'] = preg_replace('/<span(.*)>(.*)</span>/','<span>(//2)</span>',$work['desc']);
-		$work['desc'] = preg_replace('/<p(.*)>(.*)</p>/','<p>(//2)</p>',$work['desc']);
+		$work['desc'] = str_replace('"=""','',$work['desc']);
 		// var_dump($work['desc']);die;
 
 
