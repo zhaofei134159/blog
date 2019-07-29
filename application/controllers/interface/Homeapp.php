@@ -9,6 +9,7 @@ class Homeapp extends Home_Controller{
 	public function __construct(){
 		parent::__construct();
 
+		$this->load->helper('htmlrepair');
 		$this->load->model('zf_blog_model');
 		$this->load->model('zf_work_model');
 		$this->load->model('zf_cate_model');
@@ -64,6 +65,10 @@ class Homeapp extends Home_Controller{
 		$where = 'blog_id='.$blogId.' and is_del=0';
 		$where .= ' and id='.$workId;
 		$work = $this->zf_work_model->select_one($where);
+		$work['desc'] = subHtml($work['desc']);
+
+
+
 		$work['user'] = $this->zf_user_model->select_one('id='.$work['uid']);
 		
 		//点击量
