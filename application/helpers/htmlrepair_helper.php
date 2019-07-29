@@ -30,11 +30,11 @@ class Htmlrepair{
       } else if (preg_match("~<!--.*?-->~si", $tag)) { 
         $result .= $tag; 
       } else { 
-        if ($len + mstrlen($tag) < $length) { 
+        if ($len + $this->mstrlen($tag) < $length) { 
           $result .= $tag; 
-          $len += mstrlen($tag); 
+          $len += $this->mstrlen($tag); 
         } else { 
-          $str = msubstr($tag, 0, $length - $len + 1); 
+          $str = $this->msubstr($tag, 0, $length - $len + 1); 
           $result .= $str; 
           break; 
         } 
