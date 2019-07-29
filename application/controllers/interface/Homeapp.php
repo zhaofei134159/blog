@@ -67,8 +67,11 @@ class Homeapp extends Home_Controller{
 		$where = 'blog_id='.$blogId.' and is_del=0';
 		$where .= ' and id='.$workId;
 		$work = $this->zf_work_model->select_one($where);
+		// var_dump($work['desc']);
 		// $work['desc'] = $Htmlrepair->fix_html_tags($work['desc']);
-		$work['desc'] = strip_tags($work['desc'],'<div><img><br><strong><ul><li><h1><h2><h3><h4>');  
+		$work['desc'] = preg_replace('/^<span(.*)>$/','<span>',$work['desc']);
+		$work['desc'] = preg_replace('/^<p(.*)>$/','<p>',$work['desc']);
+		// var_dump($work['desc']);die;
 
 
 
