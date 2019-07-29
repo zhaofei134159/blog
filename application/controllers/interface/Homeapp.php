@@ -70,7 +70,7 @@ class Homeapp extends Home_Controller{
 		// var_dump($work['desc']);
 		$work['desc'] = $Htmlrepair->fix_html_tags($work['desc']);
 		$work['desc'] = str_replace('"=""','',$work['desc']);
-		var_dump($work['desc']);die;
+		// var_dump($work['desc']);die;
 
 
 
