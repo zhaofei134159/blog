@@ -29,7 +29,7 @@
     });
 </script>
 <!-- MENU SECTION END-->
-<div class="content-wrapper" style="min-height:500px;">
+<div class="content-wrapper" style="min-height:600px;">
     <div class="container">
        <!--  <div class="row pad-botm">
             <div class="col-md-12">
