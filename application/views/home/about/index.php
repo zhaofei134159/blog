@@ -17,7 +17,7 @@
        	</div>
         <hr>
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12" style="height:150px;">
+            <div class="col-md-12 col-sm-12 col-xs-12" style="height:80px;">
                 <h5>&nbsp;&nbsp;&nbsp;&nbsp;如有宝贵的建议,欢迎发送邮件到 blogfamily@163.com 或 微信公众账号, 如若采用,我们会赠上精美礼物!</h5>
                 
             </div>
