@@ -61,7 +61,7 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a href="<?=HOME_URL?>" class="menu-top-active">首页</a></li>
+                            <li><a href="http://blog.myfeiyou.com/home/" class="menu-top-active">首页</a></li>
                             <?php if(empty($home)){?>
                                 <li><a href="<?=HOME_URL?>login">登录</a></li>
                             <?php }else{?>
