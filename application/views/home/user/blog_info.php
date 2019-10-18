@@ -18,7 +18,7 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         分类列表 
-                        <a href="<?=HOME_URL?>user/blog_info_edit">
+                        <a href="<?=HOME_URL_HTTP?>user/blog_info_edit">
                             <span style="float:right;padding-bottom:3px;" class="btn btn-success btn-sm">添加</span>
                         </a>
                     </div>
@@ -40,9 +40,9 @@
                                             <td><?=$cate['title']?></td>
                                             <td><?=mb_substr($cate['desc'],0,10,'utf-8')?></td>
                                             <td>
-                                              <a href="<?=HOME_URL?>user/blog_info_edit?id=<?=base64_encode($cate['id'])?>"><button class="btn btn-primary btn-sm"><i class="fa fa-edit "></i>编辑</button></a>
+                                              <a href="<?=HOME_URL_HTTP?>user/blog_info_edit?id=<?=base64_encode($cate['id'])?>"><button class="btn btn-primary btn-sm"><i class="fa fa-edit "></i>编辑</button></a>
 
-                                              <a href="<?=HOME_URL?>user/blog_info_del?id=<?=base64_encode($cate['id'])?>"><button class="btn btn-danger btn-sm"><i class="fa fa-pencil"></i>删除</button></a>
+                                              <a href="<?=HOME_URL_HTTP?>user/blog_info_del?id=<?=base64_encode($cate['id'])?>"><button class="btn btn-danger btn-sm"><i class="fa fa-pencil"></i>删除</button></a>
                                             </td>
                                         </tr>
                                         <?php }?>

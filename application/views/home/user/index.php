@@ -26,7 +26,7 @@
                     用户信息
                   </div>
                   <div class="panel-body">
-                    <form action="<?=HOME_URL?>user/update_info" onsubmit="return infoForm()" method="post" enctype="multipart/form-data">
+                    <form action="<?=HOME_URL_HTTP?>user/update_info" onsubmit="return infoForm()" method="post" enctype="multipart/form-data">
                       <div class="form-group col-md-4">
                         <div class="">
                           <label>头像：</label>
@@ -131,7 +131,7 @@
       var flog = 0;
       $.ajax({
           type: "POST",
-          url: "<?=HOME_URL?>user/check_phone",
+          url: "<?=HOME_URL_HTTP?>user/check_phone",
           async: false,
           data: {phone:phone},
           dataType: "json",

@@ -29,7 +29,7 @@
                         </div>-->
                        <?php foreach($lun_ad as $lk=>$lv){?>
                             <div class="item <?=($lk==0)?'active':''?>">
-                                <a href="<?=HOME_URL?>blog/<?=$lv['blog_id']?>/detail/<?=$lv['id']?>" target="__black">
+                                <a href="<?=HOME_URL_HTTP?>blog/<?=$lv['blog_id']?>/detail/<?=$lv['id']?>" target="__black">
                                     <img src="/<?=$lv['img']?>"  style="width:100%;height:300px;" alt="<?=$lv['title']?>" />
                                 </a>
                             </div>
@@ -61,7 +61,7 @@
                             if(!empty($tags)){
                                 foreach($tags as $tag){
                         ?>
-                            <a href="<?=HOME_URL?>blog/<?=$tag['blog_id']?>/art_list?tag=<?=$tag['id']?>," target="__black" class="btn btn-default btn-sm"><?=$tag['name']?></a>
+                            <a href="<?=HOME_URL_HTTP?>blog/<?=$tag['blog_id']?>/art_list?tag=<?=$tag['id']?>," target="__black" class="btn btn-default btn-sm"><?=$tag['name']?></a>
                         <?php 
                                 }
                             }
@@ -88,7 +88,7 @@
                                     $headimg = '/'.$blog['user']['headimg'];
                                 }
                         ?>
-                                <a href="<?=HOME_URL?>blog/<?=$blog['id']?>" target="__black">
+                                <a href="<?=HOME_URL_HTTP?>blog/<?=$blog['id']?>" target="__black">
                                     <img class="img-thumbnail" src="<?=$headimg?>" width="70"/>
                                 </a>
                         <?php 
@@ -120,12 +120,12 @@
                                 }
                         ?>
                             <li class="media">
-                                <a class="pull-left" href="<?=HOME_URL?>blog/<?=$work['blog_id']?>/" target="__black">
+                                <a class="pull-left" href="<?=HOME_URL_HTTP?>blog/<?=$work['blog_id']?>/" target="__black">
                                  <img class="media-object img-circle img-comments" src="<?=$headimg?>" width="80" />
                                </a>
                                 <div class="media-body">
                                     <h4 class="media-heading" style="margin-bottom:0px;"><?=$work['title']?></h4>
-                                    <a href="<?=HOME_URL?>blog/<?=$work['blog_id']?>/detail/<?=$work['id']?>" target="__black">
+                                    <a href="<?=HOME_URL_HTTP?>blog/<?=$work['blog_id']?>/detail/<?=$work['id']?>" target="__black">
                                         <p>
                                             <?php 
                                                 if(!empty($work['desc'])){

@@ -23,11 +23,11 @@
                         <div class="tab-pane fade active in" id="home">
                             <h4 style="padding-top:5px;line-height:35px;">
                               分类<?=(empty($cate)?'添加':'修改')?>
-                              <a href="<?=HOME_URL?>user/blog_info">
+                              <a href="<?=HOME_URL_HTTP?>user/blog_info">
                                 <span style="float:right;" class="btn btn-default btn-sm">返回</span>
                               </a>
                             </h4>
-                            <form action="<?=HOME_URL?>user/blog_info_update"  method="post" onsubmit="return bloginfoForm()">
+                            <form action="<?=HOME_URL_HTTP?>user/blog_info_update"  method="post" onsubmit="return bloginfoForm()">
                                 <div class="form-group  col-md-12">
                                     <label>分类名称：</label>
                                     <input type="text" class="form-control" name="title" value="<?=empty($cate['title'])?'':$cate['title']?>">
