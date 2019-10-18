@@ -1,10 +1,10 @@
 .waifu {
     position: fixed;
     bottom: 0;
-    /*right: 0;*/
+    right: 70px;
     z-index: 1;
     font-size: 0;
-    /*transition: all .3s ease-in-out;*/
+    transition: all .3s ease-in-out;
     -webkit-transform: translateY(3px);
     transform: translateY(3px);
 }
