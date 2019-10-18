@@ -61,19 +61,19 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a href="http://blog.myfeiyou.com/home/" class="menu-top-active">首页</a></li>
+                            <li><a href="<?=HOME_URL_HTTP?>" class="menu-top-active">首页</a></li>
                             <?php if(empty($home)){?>
-                                <li><a href="<?=HOME_URL?>login">登录</a></li>
+                                <li><a href="<?=HOME_URL_HTTP?>login">登录</a></li>
                             <?php }else{?>
                                 <li>
                                     <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> <?=!empty($home['nikename'])?$home['nikename']:$home['name']?> <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                        <li role="presentation" ><a role="menuitem" tabindex="-1" href="<?=HOME_URL?>user">个人信息</a></li>
-                                        <li role="presentation" ><a role="menuitem" tabindex="-1" href="<?=HOME_URL?>login/unlogin">退出</a></li>
+                                        <li role="presentation" ><a role="menuitem" tabindex="-1" href="<?=HOME_URL_HTTP?>user">个人信息</a></li>
+                                        <li role="presentation" ><a role="menuitem" tabindex="-1" href="<?=HOME_URL_HTTP?>login/unlogin">退出</a></li>
                                     </ul>
                                 </li>
                             <?php }?>
-                            <li><a href="<?=HOME_URL?>about" class="menu-top-active">关于我们</a></li>
+                            <li><a href="<?=HOME_URL_HTTP?>about" class="menu-top-active">关于我们</a></li>
                         </ul>
                     </div>
                 </div>
