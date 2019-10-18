@@ -125,7 +125,7 @@
                                </a>
                                 <div class="media-body">
                                     <h4 class="media-heading" style="margin-bottom:0px;">
-                                        <a href="<?=HOME_URL_HTTP?>blog/<?=$work['blog_id']?>/detail/<?=$work['id']?>" target="__black">
+                                        <a href="<?=HOME_URL_HTTP?>blog/<?=$work['blog_id']?>/detail/<?=$work['id']?>" target="__black" style="color:#F07818;">
                                             <?=$work['title']?>
                                         </a>
                                     </h4>
