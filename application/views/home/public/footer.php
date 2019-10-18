@@ -17,7 +17,9 @@
     <!-- 看板娘 -->
     <script src="<?=HOME_PUBLIC_URL?>assets/waifu-tips.js"></script>
     <script src="<?=HOME_PUBLIC_URL?>assets/live2d.js"></script>
-    <script type="text/javascript">initModel("assets/")</script>
+    <script type="text/javascript">
+    	initModel("/public/home/assets/")
+    </script>
 
 
 <!-- CONTENT-WRAPPER SECTION END-->
