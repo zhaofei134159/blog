@@ -49,7 +49,7 @@ $('.waifu-tool .fui-user').click(function (){
 
 $('.waifu-tool .fui-info-circle').click(function (){
     //window.open('https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02');
-    window.open('https://www.fghrsh.net/post/123.html');
+    window.open('http://blog.myfeiyou.com/home/about');
 });
 
 $('.waifu-tool .fui-cross').click(function (){
