@@ -30,6 +30,9 @@
     <script src="<?=HOME_PUBLIC_URL?>js/bootstrap.js"></script>
       <!-- CUSTOM SCRIPTS  -->
     <!--<script src="<?=HOME_PUBLIC_URL?>js/custom.js"></script>-->
+    
+    <!-- 看板娘 -->
+    <link rel="stylesheet" type="text/css" href="<?=HOME_PUBLIC_URL?>assets/waifu.css"/>
 
 	<link rel="shortcut icon" href="<?=PUBLIC_URL?>/images/favicon.ico" />
 
