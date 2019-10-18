@@ -40,11 +40,11 @@
                         <span style="display:none;"><input type="file" name="headimg"></span>
                         <button type="button" onclick="upload_file()" class="btn btn-success">上传头像</button>
                       </div>
-                      <div class="form-group  col-md-12">
+                      <div class="form-group  col-md-12" id="author">
                           <label>名称：</label>
                           <input type="text" class="form-control" name="nikename" value="<?=empty($user['nikename'])?'':$user['nikename']?>">
                       </div>
-                      <div class="form-group  col-md-12">
+                      <div class="form-group  col-md-12" id="mail">
                           <label>邮箱：</label>
                           <input type="text" class="form-control" disabled name="email" value="<?=empty($user['email'])?'':$user['email']?>"> 
                       </div>
