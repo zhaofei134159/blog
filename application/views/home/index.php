@@ -124,7 +124,11 @@
                                  <img class="media-object img-circle img-comments" src="<?=$headimg?>" width="80" />
                                </a>
                                 <div class="media-body">
-                                    <h4 class="media-heading" style="margin-bottom:0px;"><?=$work['title']?></h4>
+                                    <h4 class="media-heading" style="margin-bottom:0px;">
+                                        <a href="<?=HOME_URL_HTTP?>blog/<?=$work['blog_id']?>/detail/<?=$work['id']?>" target="__black">
+                                            <?=$work['title']?>
+                                        </a>
+                                    </h4>
                                     <a href="<?=HOME_URL_HTTP?>blog/<?=$work['blog_id']?>/detail/<?=$work['id']?>" target="__black">
                                         <p>
                                             <?php 
