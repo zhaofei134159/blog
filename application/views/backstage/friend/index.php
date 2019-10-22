@@ -58,7 +58,7 @@
                         <td><?=$friend['id']?></td>
                         <td><?=$friend['title']?></td>
                         <td><?=$friend['cont']?></td>
-                        <td><img src="<?=$friend['img']?>" width="60px" height="60px"></td>
+                        <td><img src="/<?=$friend['img']?>" width="60px" height="60px"></td>
                         <td><a href="<?=$friend['addr']?>" target="__black"><?=$friend['addr']?></a></td>
                         <td>
                             <button onclick="check_del(<?=$friend['id']?>)" class="btn btn-mini <?=($friend['is_del']==0)?'btn-success':'btn-warning'?>">

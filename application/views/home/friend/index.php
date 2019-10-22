@@ -20,7 +20,7 @@
                                     $headimg = '/'.$friend['img'];
                                 }
                         ?>
-                                <a href="<?=$friend['addr']?>" target="__black">
+                                <a href="/<?=$friend['addr']?>" target="__black">
                                     <img class="img-thumbnail" src="<?=$headimg?>" width="70"/>
                                 </a>
                         <?php 
