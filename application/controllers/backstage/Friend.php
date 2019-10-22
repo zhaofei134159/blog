@@ -63,7 +63,7 @@ class Friend extends Admin_Controller{
 			$id = $post['id'];
 			unset($post['id']);
 		}
-		if(!empty($post['img']['0'])){
+		if(!empty($file)){
 			$post['img'] = upload_img($file,'friendimg');
 		}
 
