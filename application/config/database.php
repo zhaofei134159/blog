@@ -50,32 +50,9 @@ $active_record = TRUE;
 
 
 
-// $db['default'] = array(
-//     'dsn'   => '',
-//     'hostname' => '127.0.0.1',
-//     'username' => 'root',
-//     'password' => 'zhaofei',
-//     'database' => 'blog',
-//     'dbdriver' => 'mysqli',
-//     'dbprefix' => '',
-//     'pconnect' => FALSE,
-//     'db_debug' => true,
-//     'cache_on' => FALSE,
-//     'cachedir' => '',
-//     'char_set' => 'utf8',
-//     'dbcollat' => 'utf8_general_ci',
-//     'swap_pre' => '',
-//     'encrypt' => FALSE,
-//     'compress' => FALSE,
-//     'stricton' => FALSE,
-//     'failover' => array(),
-//     'save_queries' => TRUE
-// );
-
-
 $db['default'] = array(
     'dsn'   => '',
-    'hostname' => '104.243.18.161',
+    'hostname' => '127.0.0.1',
     'username' => 'root',
     'password' => 'zhaofei',
     'database' => 'blog',
@@ -94,6 +71,29 @@ $db['default'] = array(
     'failover' => array(),
     'save_queries' => TRUE
 );
+
+
+// $db['default'] = array(
+//     'dsn'   => '',
+//     'hostname' => '104.243.18.161',
+//     'username' => 'root',
+//     'password' => 'zhaofei',
+//     'database' => 'blog',
+//     'dbdriver' => 'mysqli',
+//     'dbprefix' => '',
+//     'pconnect' => FALSE,
+//     'db_debug' => true,
+//     'cache_on' => FALSE,
+//     'cachedir' => '',
+//     'char_set' => 'utf8',
+//     'dbcollat' => 'utf8_general_ci',
+//     'swap_pre' => '',
+//     'encrypt' => FALSE,
+//     'compress' => FALSE,
+//     'stricton' => FALSE,
+//     'failover' => array(),
+//     'save_queries' => TRUE
+// );
 
 
 
