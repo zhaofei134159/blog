@@ -58,6 +58,8 @@ class Friend extends Admin_Controller{
 	public function update(){
 		$post = $this->input->post();
 		$file = $_FILES['img'];
+		var_dump($_FILES);
+		var_dump($post);die;
 
 		if(isset($post['id'])&&!empty($post['id'])){
 			$id = $post['id'];
