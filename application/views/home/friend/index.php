@@ -52,7 +52,7 @@
                                     $headimg = '/'.$friend['img'];
                                 }
                                 $mar = 0;
-                                if(($key-5)/9==0){
+                                if(($key-5)%9==0){
                                 	$mar = 1;
                                 }
                         ?>
