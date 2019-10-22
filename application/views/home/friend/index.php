@@ -53,8 +53,188 @@
                                 }
                         ?>
 							<li>
-	                            <a href="/<?=$friend['addr']?>" target="__black">
-	                                <img class="img-thumbnail" src="<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
+	                            </a>
+							</li>
+							<li>
+	                            <a href="<?=$friend['addr']?>" target="__black">
+	                                <img class="img-thumbnail" src="/<?=$headimg?>" width="70" title="<?=$friend['title']?>"/>
 	                            </a>
 							</li>
                         <?php 
