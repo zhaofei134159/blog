@@ -22,7 +22,7 @@
 						<h5> <?=(empty($friend)?'添加':'修改')?>  信息 </h5>
 					</div>
 					<div class="widget-content nopadding">
-						<form class="form-horizontal" method="post" action="<?=ADMIN_URL?>friend/update" onsubmit="return validateForm()" name="form" id="form" novalidate="novalidate">
+						<form class="form-horizontal" method="post" action="<?=ADMIN_URL?>friend/update" onsubmit="return validateForm()"  name="form" id="form" novalidate="novalidate" enctype="multipart/form-data">
 							<?php if(!empty($friend)){?>
 								<div class="control-group">
 									<label class="control-label">ID</label>
@@ -55,7 +55,7 @@
 								<label class="control-label">图片:</label>
 								<div class="controls">
                   					<img src="" id="img" width="100" alt="">
-									<input type="file" name="img[]" class="img">
+									<input type="file" name="img" class="img">
 								</div>
 							</div>
 
