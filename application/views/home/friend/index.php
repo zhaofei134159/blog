@@ -58,7 +58,7 @@
                         ?>
 							<li <?php if($mar){?>class="mar"<?php }?>>
 	                            <a href="<?=$friend['addr']?>" target="__black">
-	                                <img class="img-thumbnail" src="<?=$headimg?>"  title="<?=$friend['title']?>"/>
+	                                <img class="img-thumbnail" src="<?=$headimg?>" width="100" height="100" title="<?=$friend['title']?>"/>
 	                            </a>
 							</li>
                         <?php 
