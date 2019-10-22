@@ -70,7 +70,6 @@ define('HOME_URL_HTTP', 'http://blog.myfeiyou.com/home/');
 define('HOME_URL', '/home/');
 define('ADMIN_URL', '/backstage/');
 
-session_start();
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

@@ -101,6 +101,7 @@
       <a href="#"> <i class="icon-user"></i> <span class="text">网站管理</span></a>
       <ul>
         <li><a href="<?=ADMIN_URL?>ad">轮播管理</a></li>
+        <li><a href="<?=ADMIN_URL?>friend">友链管理</a></li>
       </ul>
     </li>
     <!-- <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label">3</span></a>
