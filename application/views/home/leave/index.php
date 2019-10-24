@@ -34,7 +34,7 @@
 
             </div>
         </div>
-<!-- 
+
         <div class="row">
             <div class="col-md-12">
                 <div class="leaveAll">
@@ -42,7 +42,7 @@
                   企鹅窝无群二无群 
                 </div>
             </div>
-        </div> -->
+        </div>
 
     </div>
 </div>
