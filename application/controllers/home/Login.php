@@ -380,7 +380,7 @@ class Login extends Home_Controller{
 
             $access_token = $token['access_token'];
 
-            $user_url = 'https://api.github.com/user?Authorization=token '.$access_token;
+            $user_url = 'https://api.github.com/user?access_token='.$access_token;
             $header = array();
             $header[] = "Accept: application/vnd.github.v3.full+json";
             $header[] = "Authorization: token ".$access_token;
