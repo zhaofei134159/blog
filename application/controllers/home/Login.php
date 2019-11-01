@@ -501,7 +501,8 @@ class Login extends Home_Controller{
     //登录机制
     protected function _external_session_login($login_user,$user_data){
 		$this->user_session($login_user);
-
+        var_dump($login_user);
+        var_dump($user_data);die;
         if (empty($login_user['headimg']))  // 更新用户头像 at 2016-06-01
         {	
         	if(!empty($user_data['avatar_large'])){
