@@ -506,7 +506,6 @@ class Login extends Home_Controller{
         {	
         	if(!empty($user_data['avatar_large'])){
                 $headimg = $this->_save_external_user_avatar($user_data['avatar_large']);
-                var_dump($headimg);
                 $this->zf_user_model->update(array('headimg' => $headimg), 'id =' . $login_user['id']);
         	}
         }
@@ -518,7 +517,7 @@ class Login extends Home_Controller{
     * @return string
     */
     private function _save_external_user_avatar($url){	
-        if (strpos($url, 'http://') !== 0){
+        if (strpos($url, 'http://') !== 0&&strpos($url, 'https://') !== 0){
             return '';
         }
 
@@ -533,7 +532,6 @@ class Login extends Home_Controller{
 
             file_put_contents($save_path, $content);
             $web_path = $save_dir . '/' . $file_name;
-                var_dump($file_name);
 
             return $web_path;
         }
