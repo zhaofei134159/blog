@@ -6,6 +6,7 @@ class Login extends Home_Controller{
                 'weibo'=>'weibo_uid',
                 'weixin'=>'weixin_openid',
                 'qq'=>'qq_openid',
+                'github'=>'github_id',
             );
 
 	public function __construct(){
@@ -243,12 +244,12 @@ class Login extends Home_Controller{
 
 
 				//微博账号存在且有手机号
-				if($weibo_user['flag']==1){
+				// if($weibo_user['flag']==1){
 					header('location:'.HOME_URL);
-				}else{
+				// }else{
 					// $this->load->view(HOME_URL.'login/bind_user_phone',array('user'=>$weibo_user['data'],'type'=>'weibo'));
-                    header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($weibo_user['data']['id']).'&type='.base64_encode('weibo'));
-				}
+                    // header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($weibo_user['data']['id']).'&type='.base64_encode('weibo'));
+				// }
 			}
 
 		}else{
@@ -328,12 +329,12 @@ class Login extends Home_Controller{
             $qq_user = $this->user_data('qq',$user_data);
 
             //微信账号存在且有手机号
-            if($qq_user['flag']==1){
+            // if($qq_user['flag']==1){
                 header('location:'.HOME_URL);
-            }else{
+            // }else{
                 // $this->load->view('external_login/bind_user_phone',array('user'=>$weixin_user['data'],'type'=>'weixin'));
-                header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($qq_user['data']['id']).'&type='.base64_encode('qq'));
-            }
+                // header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($qq_user['data']['id']).'&type='.base64_encode('qq'));
+            // }
 
         }else{
             //微信登录错误的跳转页面
@@ -385,38 +386,27 @@ class Login extends Home_Controller{
             $header[] = "Accept: application/vnd.github.v3.full+json";
             $header[] = "user-agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)";
             $user_info = $this->_curl_get_request($user_url,$header);
-            var_dump($user_info);die;
 
-            $user_info = str_replace('callback(','',$user_info);
-            $user_info = str_replace(');','',$user_info);
-            $user_info = json_decode($user_info,true);
-
-            if(!array_key_exists("openid",$user_info)){
-                $this->load->view(HOME_URL.'login/web_error',array('type'=>'腾讯QQ','login'=>'qq'));
-            }
-
-            $qq_user_url = 'https://graph.qq.com/user/get_user_info?access_token='.$access_token.'&oauth_consumer_key='.$appkey.'&openid='.$user_info['openid'];
-            $qq_user_info = $this->_curl_get_request($qq_user_url);
-
-            if($qq_user_info['ret']<0){
-                $this->load->view(HOME_URL.'login/web_error',array('type'=>'腾讯QQ','login'=>'qq'));
+            if(!array_key_exists("node_id",$user_info)){
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'github','login'=>'github'));
             }
 
             $user_data = array(
-                    'id'=>$user_info['openid'],
-                    'name'=>$qq_user_info['nickname'],
-                    'gender'=>($qq_user_info['gender']=='男')?'m':'w',
-                    'avatar_large'=>$qq_user_info['figureurl_qq_1'],
+                    'id'=>$user_info['node_id'],
+                    'name'=>$user_info['login'],
+                    'nikename'=>$user_info['name'],
+                    'gender'=>'m',
+                    'avatar_large'=>$user_info['avatar_url'],
                 );
-            $qq_user = $this->user_data('qq',$user_data);
+            $qq_user = $this->user_data('github',$user_data);
 
             //微信账号存在且有手机号
-            if($qq_user['flag']==1){
+            // if($qq_user['flag']==1){
                 header('location:'.HOME_URL);
-            }else{
+            // }else{
                 // $this->load->view('external_login/bind_user_phone',array('user'=>$weixin_user['data'],'type'=>'weixin'));
-                header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($qq_user['data']['id']).'&type='.base64_encode('qq'));
-            }
+                // header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($qq_user['data']['id']).'&type='.base64_encode('qq'));
+            // }
 
         }else{
             //微信登录错误的跳转页面
