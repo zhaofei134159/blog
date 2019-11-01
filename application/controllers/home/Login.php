@@ -395,6 +395,7 @@ class Login extends Home_Controller{
                     'nikename'=>$user_info['name'],
                     'gender'=>'m',
                     'avatar_large'=>$user_info['avatar_url'],
+                    'email'=>$user_info['email'],
                 );
             $qq_user = $this->user_data('github',$user_data);
 
