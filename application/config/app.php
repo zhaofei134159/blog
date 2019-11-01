@@ -18,6 +18,12 @@
 	$config['qq_appsecret'] = "c166d5355d23ccd0f30e55529ae411a0";
 	$config['qq_login'] = "http://blog.myfeiyou.com/home/login/qq_web";
 
+	//github登录
+	$config['cliend_id'] = '11b1110e779590c616fe';
+	$config['cliend_secret'] = 'ea9e3db091199805a5ea527e8e72368276a2607c';
+	$config['cliend_login'] = 'http://blog.myfeiyou.com/home/login/github_web';
+
+
 	//代理的导航
  	$config['user_type'] = array(
  		2=>'博主',

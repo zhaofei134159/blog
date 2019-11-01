@@ -65,6 +65,8 @@
                         <a href="<?=HOME_URL?>login/qq_login" target="__block"><img src="<?=PUBLIC_URL?>images/qq_login.png" width="32" alt="使用腾讯QQ账号登录" title="腾讯QQ账号登录"></a>
                         &nbsp;
                         <a href="<?=HOME_URL?>login/weibo_login" target="__block"><img src="<?=PUBLIC_URL?>images/weibo32.png" alt="使用微博账号登录" title="微博账号登录"></a>
+                        &nbsp;
+                        <a href="<?=HOME_URL?>login/github_login" target="__block"><img src="<?=PUBLIC_URL?>images/github.jpg" width="44"  alt="使用github账号登录" title="github账号登录"></a>
                     </div>
                 </div>
             </div>

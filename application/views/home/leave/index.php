@@ -15,6 +15,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
  			          <div class="Main">
+
                     <?php if(empty($this->homeid)||empty($this->home['id'])){?>
                     <div class="Input_Box" style="border-color: rgb(204, 204, 204); box-shadow: none;text-align:center;line-height:204px;font-size:15px;">
                         请先 <a href="<?=HOME_URL_HTTP?>login">登录</a>, 在留言
@@ -30,16 +31,11 @@
                         </div>
                     </div>
                     <?php }?>
-                </div>
 
-            </div>
-        </div>
+                    <div class="leaveAll">
+                       去问问企鹅完全二我为
+                    </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="leaveAll">
-
-                  企鹅窝无群二无群 
                 </div>
             </div>
         </div>

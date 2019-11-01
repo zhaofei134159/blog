@@ -341,6 +341,20 @@ class Login extends Home_Controller{
         }
     }
 
+    # github登录
+    function github_login(){
+
+        $cliend_id = $this->config->item('cliend_id');
+        $cliend_secret = $this->config->item('cliend_secret');
+        $cliend_login = $this->config->item('cliend_login');
+
+        header('location:https://github.com/login/oauth/authorize?client_id='.$client_id.'&scope=user:email');
+    }
+
+    function github_web(){
+
+    }
+
     /**
     * 判断微博账号是否在网站已经存在且是否有手机号
     * 1.若存在且有手机号，则直接登录
