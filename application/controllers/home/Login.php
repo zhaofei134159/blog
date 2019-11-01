@@ -382,7 +382,7 @@ class Login extends Home_Controller{
 
             $user_url = 'https://api.github.com/user?access_token='.$access_token;
             $header = array();
-            $header[] = "Content-type: application/vnd.github.v3+json";
+            $header[] = "Accept: application/json";
             $user_info = $this->_curl_get_request($user_url,$header);
             var_dump($user_info);die;
 
