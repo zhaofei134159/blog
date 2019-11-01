@@ -348,7 +348,7 @@ class Login extends Home_Controller{
         $cliend_secret = $this->config->item('cliend_secret');
         $cliend_login = $this->config->item('cliend_login');
 
-        header('location:https://github.com/login/oauth/authorize?client_id='.$client_id.'&scope=user:email');
+        header('location:https://github.com/login/oauth/authorize?client_id='.$cliend_id.'&scope=user:email');
     }
 
     function github_web(){
