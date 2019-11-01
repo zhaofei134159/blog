@@ -443,8 +443,10 @@ class Login extends Home_Controller{
 
     		$data = array(
     				'id'=>$user_data['id'],
-    				'nickname'=>$user_data['name'],
-    				'sex'=>($user_data['gender']=='m')?1:2,
+                    'nickname'=>empty($user_data['nikename'])?$user_data['name']:$user_data['nikename'],
+    				'name'=>$user_data['name'],
+                    'sex'=>($user_data['gender']=='m')?1:2,
+    				'avatar_large'=>$user_data['avatar_large'],
     			);
 
 			$login_user = $this->_external_auth_register($type,$data);
