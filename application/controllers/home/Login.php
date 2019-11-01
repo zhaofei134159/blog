@@ -381,7 +381,9 @@ class Login extends Home_Controller{
             $access_token = $token['access_token'];
 
             $user_url = 'https://api.github.com/user?access_token='.$access_token;
-            $user_info = $this->_curl_get_request($user_url);
+            $header = array();
+            $header[] = "Content-type: application/vnd.github.v3+json";
+            $user_info = $this->_curl_get_request($user_url,$header);
             var_dump($user_info);die;
 
             $user_info = str_replace('callback(','',$user_info);
@@ -550,9 +552,12 @@ class Login extends Home_Controller{
 
 
     //curl
-    private function _curl_get_request($url){
+    private function _curl_get_request($url,$header=array()){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,  $url);
+        if(!empty($header)){
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+        }
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
         $return_str = curl_exec($ch);
