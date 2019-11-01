@@ -244,12 +244,12 @@ class Login extends Home_Controller{
 
 
 				//微博账号存在且有手机号
-				// if($weibo_user['flag']==1){
+				if($weibo_user['flag']==1){
 					header('location:'.HOME_URL);
-				// }else{
+				}else{
 					// $this->load->view(HOME_URL.'login/bind_user_phone',array('user'=>$weibo_user['data'],'type'=>'weibo'));
-                    // header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($weibo_user['data']['id']).'&type='.base64_encode('weibo'));
-				// }
+                    header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($weibo_user['data']['id']).'&type='.base64_encode('weibo'));
+				}
 			}
 
 		}else{
@@ -329,12 +329,12 @@ class Login extends Home_Controller{
             $qq_user = $this->user_data('qq',$user_data);
 
             //微信账号存在且有手机号
-            // if($qq_user['flag']==1){
+            if($qq_user['flag']==1){
                 header('location:'.HOME_URL);
-            // }else{
+            }else{
                 // $this->load->view('external_login/bind_user_phone',array('user'=>$weixin_user['data'],'type'=>'weixin'));
-                // header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($qq_user['data']['id']).'&type='.base64_encode('qq'));
-            // }
+                header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($qq_user['data']['id']).'&type='.base64_encode('qq'));
+            }
 
         }else{
             //微信登录错误的跳转页面
