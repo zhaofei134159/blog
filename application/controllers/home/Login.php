@@ -364,23 +364,23 @@ class Login extends Home_Controller{
 
             $token_info = $this->_curl_get_request($token_url);
 
-            var_dump($token_info);die;
             if(empty($token_info)||!strstr($token_info,'access_token')){
                 //登录错误的跳转页面
-                $this->load->view(HOME_URL.'login/web_error',array('type'=>'腾讯QQ','login'=>'qq'));
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'github','login'=>'github'));
             }
 
             $token = array();
             parse_str($token_info,$token);
 
             if(!isset($token['access_token'])&&empty($token['access_token'])){
-                $this->load->view(HOME_URL.'login/web_error',array('type'=>'腾讯QQ','login'=>'qq'));
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'github','login'=>'github'));
             }
 
             $access_token = $token['access_token'];
 
-            $user_url = 'https://graph.qq.com/oauth2.0/me?access_token='.$access_token;
+            $user_url = ' https://api.github.com/user?access_token='.$access_token;
             $user_info = $this->_curl_get_request($user_url);
+            var_dump($user_info);die;
 
             $user_info = str_replace('callback(','',$user_info);
             $user_info = str_replace(');','',$user_info);
