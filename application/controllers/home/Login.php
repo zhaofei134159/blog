@@ -352,7 +352,71 @@ class Login extends Home_Controller{
     }
 
     function github_web(){
+        $code = $this->input->get('code');
 
+        $cliend_id = $this->config->item('cliend_id');
+        $cliend_secret = $this->config->item('cliend_secret');
+        $cliend_login = $this->config->item('cliend_login');
+
+        if(!empty($code)){
+            //获取access token
+            $token_url = 'https://github.com/login/oauth/access_token?client_id='.$cliend_id.'&client_secret='.$cliend_secret.'&code='.$code;
+
+            $token_info = $this->_curl_get_request($token_url);
+
+            var_dump($token_info);die;
+            if(empty($token_info)||!strstr($token_info,'access_token')){
+                //登录错误的跳转页面
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'腾讯QQ','login'=>'qq'));
+            }
+
+            $token = array();
+            parse_str($token_info,$token);
+
+            if(!isset($token['access_token'])&&empty($token['access_token'])){
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'腾讯QQ','login'=>'qq'));
+            }
+
+            $access_token = $token['access_token'];
+
+            $user_url = 'https://graph.qq.com/oauth2.0/me?access_token='.$access_token;
+            $user_info = $this->_curl_get_request($user_url);
+
+            $user_info = str_replace('callback(','',$user_info);
+            $user_info = str_replace(');','',$user_info);
+            $user_info = json_decode($user_info,true);
+
+            if(!array_key_exists("openid",$user_info)){
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'腾讯QQ','login'=>'qq'));
+            }
+
+            $qq_user_url = 'https://graph.qq.com/user/get_user_info?access_token='.$access_token.'&oauth_consumer_key='.$appkey.'&openid='.$user_info['openid'];
+            $qq_user_info = $this->_curl_get_request($qq_user_url);
+
+            if($qq_user_info['ret']<0){
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'腾讯QQ','login'=>'qq'));
+            }
+
+            $user_data = array(
+                    'id'=>$user_info['openid'],
+                    'name'=>$qq_user_info['nickname'],
+                    'gender'=>($qq_user_info['gender']=='男')?'m':'w',
+                    'avatar_large'=>$qq_user_info['figureurl_qq_1'],
+                );
+            $qq_user = $this->user_data('qq',$user_data);
+
+            //微信账号存在且有手机号
+            if($qq_user['flag']==1){
+                header('location:'.HOME_URL);
+            }else{
+                // $this->load->view('external_login/bind_user_phone',array('user'=>$weixin_user['data'],'type'=>'weixin'));
+                header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($qq_user['data']['id']).'&type='.base64_encode('qq'));
+            }
+
+        }else{
+            //微信登录错误的跳转页面
+            $this->load->view(HOME_URL.'login/web_error',array('type'=>'github','login'=>'github'));
+        }
     }
 
     /**
