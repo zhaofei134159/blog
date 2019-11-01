@@ -364,7 +364,6 @@ class Login extends Home_Controller{
             $token_url = 'https://github.com/login/oauth/access_token?client_id='.$cliend_id.'&client_secret='.$cliend_secret.'&code='.$code;
 
             $token_info = $this->_curl_get_request($token_url);
-            var_dump($token_info);
 
             if(empty($token_info)||!strstr($token_info,'access_token')){
                 //登录错误的跳转页面
@@ -373,7 +372,6 @@ class Login extends Home_Controller{
 
             $token = array();
             parse_str($token_info,$token);
-            var_dump($token);
 
             if(!isset($token['access_token'])&&empty($token['access_token'])){
                 $this->load->view(HOME_URL.'login/web_error',array('type'=>'github','login'=>'github'));
