@@ -446,7 +446,8 @@ class Login extends Home_Controller{
                     'nickname'=>empty($user_data['nikename'])?$user_data['name']:$user_data['nikename'],
     				'name'=>$user_data['name'],
                     'sex'=>($user_data['gender']=='m')?1:2,
-    				'avatar_large'=>$user_data['avatar_large'],
+                    'avatar_large'=>$user_data['avatar_large'],
+    				'email'=>$user_data['email'],
     			);
 
 			$login_user = $this->_external_auth_register($type,$data);
@@ -482,6 +483,9 @@ class Login extends Home_Controller{
         $map['ctime'] = time();
         $map['utime'] = time();
 		$map['phone'] = '';
+        if(!empty($user_data['email'])){
+            $map['email'] = $user_data['email'];
+        }
 		$map['user_type'] = 3;
         $class = $class_arr[$type];
         $map[$class] = $external_uid;
