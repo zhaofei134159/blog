@@ -66,7 +66,7 @@ define('HOME_PUBLIC_URL', '/public/home/');
 define('ADMIN_PUBLIC_URL', '/public/backstage/');
 define('PUBLIC_URL', '/public/public/');
 
-define('HOME_URL_HTTP', 'http://blog.myfeiyou.com/home/');
+define('HOME_URL_HTTP', 'https://blog.myfeiyou.com/home/');
 define('HOME_URL', '/home/');
 define('ADMIN_URL', '/backstage/');
 
