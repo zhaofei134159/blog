@@ -4,7 +4,7 @@
 	/*margin: 0 auto;*/
 }
 .Input_Box {
-	width:95%;
+	width:97%;
 	height: 204px;
 	border: 1px solid #ccc;
 	transition: border linear .2s, box-shadow linear .5s;
