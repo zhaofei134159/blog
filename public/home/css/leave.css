@@ -1,9 +1,10 @@
 .Main {
 	width:100%;
+	margin-top:30px;
 	/*margin: 0 auto;*/
 }
 .Input_Box {
-	width:92%;
+	width:95%;
 	height: 204px;
 	border: 1px solid #ccc;
 	transition: border linear .2s, box-shadow linear .5s;
@@ -107,19 +108,6 @@
 
 /* 留言版 */
 .leaveAll{
-	width:92%;
-	border: 1px solid #ccc;
-	transition: border linear .2s, box-shadow linear .5s;
-	-moz-transition: border linear .2s, -moz-box-shadow linear .5s;
-	-webkit-transition: border linear .2s, -webkit-box-shadow linear .5s;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	background-color: #fff;
-	overflow: hidden;
-	position: static;
-	-moz-box-shadow: 0 0 5px #ccc;
-	-webkit-box-shadow: 0 0 5px #ccc;
-	box-shadow: 0 0 5px #ccc;
-}
+	width:94.7%;
+	min-height:300px;
 }
