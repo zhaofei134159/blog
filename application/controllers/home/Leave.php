@@ -23,7 +23,7 @@ class Leave extends Home_Controller{
         list($offset, $leave_htm) = $this->pager->pagestring($leave_count, $pagesize);
 		$leaves = $this->zf_leave_model->get_list($where,'*','ctime desc',$pagesize, $offset);
 
-		$users = $this->zf_user_model->select('1','*','');
+		$users = $this->zf_user_model->select('1=1');
 		$userList = array();
 		foreach($users as $k=>$v){
 			$userList[$v['id']] = $v;
