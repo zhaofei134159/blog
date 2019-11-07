@@ -29,7 +29,7 @@
                             <div class="media-body">
                                 <h4 class="media-heading" style="margin-bottom:0px;">
                                     <a href="#" target="__black" style="color:#F07818;">
-                                        <?=$userList[$val['uid']]['name'];?>
+                                        <?=$userList[$val['uid']]['nikename'];?>
                                     </a>
                                 </h4>
                                 <p>
