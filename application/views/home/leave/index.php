@@ -18,25 +18,27 @@
                     <ul class="media-list">
                     <?php 
                             $headimg = PUBLIC_URL.'headimg/timg.jpg';
+                            if(!empty($leaves)){
+                                foreach($leaves as $val){
+                                    $headimg = $userList[$val['uid']]['headimg'];
+                            }
                     ?>
                         <li class="media">
-                            <a class="pull-left" href="<?=HOME_URL_HTTP?>blog" target="__black">
-                             <img class="media-object img-circle img-comments" src="<?=$headimg?>" width="80" />
-                           </a>
+                            <a class="pull-left" href="#" target="__black">
+                                <img class="media-object img-circle img-comments" src="<?=$headimg?>" width="80" />
+                            </a>
                             <div class="media-body">
                                 <h4 class="media-heading" style="margin-bottom:0px;">
-                                    <a href="<?=HOME_URL_HTTP?>blog" target="__black" style="color:#F07818;">
-                                       232132132
+                                    <a href="#" target="__black" style="color:#F07818;">
+                                        <?=$userList[$val['uid']]['name'];?>
                                     </a>
                                 </h4>
-                                <a href="<?=HOME_URL_HTTP?>blog" target="__black">
-                                    <p>
-                                        这为全文为我得到in第五期恩低年级三弟啊恩kin房地局去哪玩都砍死你开单的卡巴覅捷安达卡萨诺俯瞰SDK去哪网是我得你请我肯我群殴马拉松的玛莎拉蒂马萨拉蒂JS阿里度假建瓯可是军队斯安达价格比我能打开是你的擦拭的 我我的奶加拿大卡苏宁电器我教你 诶就这为全文为我得到in第五期恩低年级三弟啊恩kin房地局去哪玩都砍死你开单的卡巴覅捷安达卡萨诺俯瞰SDK去哪网是我得你请我肯我群殴马拉松的玛莎拉蒂马萨拉蒂JS阿里度假建瓯可是军队斯安达价格比我能打开是你的擦拭的 我我的奶加拿大卡苏宁电器我教你 诶就这为全文为我得到in第五期恩低年级三弟啊恩kin房地局去哪玩都砍死你开单的卡巴覅捷安达卡萨诺俯瞰SDK去哪网是我得你请我肯我群殴马拉松的玛莎拉蒂马萨拉蒂JS阿里度假建瓯可是军队斯安达价格比我能打开是你的擦拭的 我我的奶加拿大卡苏宁电器我教你 诶就
-                                    </p>
-                                </a>
+                                <p>
+                                   <?=$val['content']?>
+                                </p>
                                 <div style="float:right;margin-top:5px;">
-                                    <span style="margin: 3px 7px;" onclick=""><img src="/public/home/img/dianzan.png" alt="点赞" style="width:20px;"></span>
-                                    <span style="margin: 3px 7px;" onclick=""><img src="/public/home/img/huifu.png" alt="回复" style="width:20px;"></span>
+                                    <span style="margin: 3px 7px;" onclick=""><img src="/public/home/img/dianzan.png" alt="点赞" style="width:20px;">(0)</span>
+                                    <span style="margin: 3px 7px;" onclick=""><img src="/public/home/img/huifu.png" alt="回复" style="width:20px;">(0)</span>
                                 </div>
                             </div>
                         </li>
@@ -74,8 +76,8 @@
         // 判断是否登录
         var Input_text = $('.Input_text').val();
         console.log(Input_text);
-        
-        
+
+
         $.ajax({
              type: "POST",
              url: "/home/leave/leave_save",

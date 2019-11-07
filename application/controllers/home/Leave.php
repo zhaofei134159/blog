@@ -19,7 +19,9 @@ class Leave extends Home_Controller{
 		
 		$where = 'is_del=0 and is_show=0';
 
-		$friends = $this->zf_leave_model->select($where,'*','');
+        $leave_count = $this->zf_leave_model->count($where);
+        list($offset, $leave_htm) = $this->pager->pagestring($leave_count, $pagesize);
+		$leaves = $this->zf_leave_model->get_list($where,'*','ctime desc',$pagesize, $offset);
 
 		$users = $this->zf_user_model->select('1','*','');
 		$userList = array();
@@ -28,7 +30,8 @@ class Leave extends Home_Controller{
 		}
 
 		$data = array(
-				'friends'=>$friends,
+				'leaves'=>$leaves,
+				'leave_htm'=>$leave_htm,
 				'userList'=>$userList,
 			);
 		$this->load->view(HOME_URL.'leave/index',$data);
