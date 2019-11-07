@@ -48,6 +48,9 @@
                     }
                     ?>
                     </ul>
+                    <div style="margin-top:20px;">
+                        <?=$leave_htm;?>
+                    </div>
                 </div>
  			    <div class="Main">
 

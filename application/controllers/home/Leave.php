@@ -14,7 +14,7 @@ class Leave extends Home_Controller{
 
 	public function index()
 	{
-		$pagesize = 30;
+		$pagesize = 20;
 		$offset = 0;
 		
 		$where = 'is_del=0 and is_show=0';
