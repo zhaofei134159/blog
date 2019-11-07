@@ -8,6 +8,8 @@ class Leave extends Home_Controller{
 		$this->load->model('zf_leave_model');
 		$this->load->model('zf_user_model');
         $this->load->library('pager');
+		$this->load->helper('common');
+		$this->load->config('app');
 	}
 
 	public function index()
