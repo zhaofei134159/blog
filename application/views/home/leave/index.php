@@ -37,7 +37,7 @@
                                    <?=$val['content']?>
                                 </p>
                                 <div style="float:right;margin-top:5px;">
-                                    <span style="margin: 3px 7px;">留言时间：<?=$val['ctime']?></span>
+                                    <span style="margin: 3px 7px;font-size:10px;"><?=$val['ctime']?></span>
                                     <span style="margin: 3px 7px;" onclick=""><img src="/public/home/img/dianzan.png" alt="点赞" style="width:20px;">(0)</span>
                                     <span style="margin: 3px 7px;" onclick=""><img src="/public/home/img/huifu.png" alt="回复" style="width:20px;">(0)</span>
                                 </div>
