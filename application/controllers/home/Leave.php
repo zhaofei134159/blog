@@ -39,10 +39,9 @@ class Leave extends Home_Controller{
   		$map = array();
   		$map['leave_id'] = '0';
   		$map['uid'] = $this->home['id'];
-  		$map['this'] = $post['Input_text'];
+  		$map['content'] = $post['Input_text'];
   		$map['ctime'] = date('Y-m-d H:i:s');
         $uid = $this->zf_leave_model->insert($map);
-
 
 		$data['flog']=1; 
 		$data['msg']='留言成功'; 
