@@ -74,7 +74,8 @@
         // 判断是否登录
         var Input_text = $('.Input_text').val();
         console.log(Input_text);
-
+        
+        
         $.ajax({
              type: "POST",
              url: "/home/leave/leave_save",
@@ -88,12 +89,7 @@
                     myModal.css('display','block');
                     return false;
                 }else{
-                    myModalBody.html(res.msg);
-                    myModal.addClass('alert-success');
-                    myModal.css('display','block');
-                    setTimeout(function(){
-                        window.location.href = '/home/leave';
-                    },2000)
+                    window.location.href = '/home/leave';
                 }
              }
         });
