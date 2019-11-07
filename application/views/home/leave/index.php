@@ -20,7 +20,7 @@
                             $headimg = PUBLIC_URL.'headimg/timg.jpg';
                             if(!empty($leaves)){
                                 foreach($leaves as $val){
-                                    $headimg = $userList[$val['uid']]['headimg'];
+                                    $headimg = '/'.$userList[$val['uid']]['headimg'];
                     ?>
                         <li class="media">
                             <a class="pull-left" href="#" target="__black">
