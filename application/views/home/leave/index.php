@@ -92,7 +92,7 @@
                     myModal.addClass('alert-success');
                     myModal.css('display','block');
                     setTimeout(function(){
-                        window.location.href = '/home/index/index';
+                        window.location.href = '/home/leave';
                     },2000)
                 }
              }
@@ -101,5 +101,5 @@
 </script>
 
 <?php
-	$this->load->view('home/public/footer');
+	// $this->load->view('home/public/footer');
 ?>
