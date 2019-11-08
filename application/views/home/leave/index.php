@@ -111,10 +111,7 @@
             var imgPath = "/public/home/img/";
             var faceName = ImgIputHandler.facePath[i].faceName;
 
-            console.log(faceName);
-            console.log($.inArray(faceName,textArr));
-
-            if($.inArray(faceName,textArr)>0){
+            if($.inArray(faceName,textArr)>=0){
                 gifTextArr.faceName = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
             }
         }
