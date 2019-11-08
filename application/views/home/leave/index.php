@@ -95,7 +95,6 @@
     $('.postBtn').click(function(){
         // 判断是否登录
         var Input_text = $('.Input_text').val();
-        console.log(Input_text);
 
         var regex2 = /\[(.+?)\]/g;  // [] 中括号
         var gifArr = Input_text.match(regex2);
@@ -112,11 +111,14 @@
             var imgPath = "/public/home/img/";
             var faceName = ImgIputHandler.facePath[i].faceName;
 
+            consoel.log(faceName);
+            consoel.log($.inArray(faceName,textArr));
+            
             if($.inArray(faceName,textArr)>0){
                 gifTextArr.faceName = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
             }
         }
-        
+
         console.log(gifArr);
         console.log(textArr);
         console.log(gifTextArr);
