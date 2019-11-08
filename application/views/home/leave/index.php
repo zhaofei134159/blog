@@ -98,13 +98,24 @@
         console.log(Input_text);
 
         var regex2 = /\[(.+?)\]/g;  // [] 中括号
-        // 输出是一个数组
         var gifArr = Input_text.match(regex2);
+        var textArr = [];
         $.each(gifArr,function(i,index){
-            console.log(index);
-            console.log(index.replace('[',''));
-            console.log(index.replace(']',''));
+            var gif = index;
+            gif = gif.replace('[','');
+            gif = gif.replace(']','');
+            textArr.push(gif);
         })
+
+        var gifTextArr = {};
+        for(var i=0;i<ImgIputHandler.facePath.length;i++){
+            var imgPath = "/public/home/img/";
+            if($.inArray(ImgIputHandler.facePath[i].faceName,textArr)>0){
+                var faceName = ImgIputHandler.facePath[i].faceName;
+                gifTextArr.faceName = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
+            }
+        }
+        console.log(gifTextArr);
         return false;
 
 
