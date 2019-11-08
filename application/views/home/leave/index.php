@@ -42,10 +42,12 @@
                                         <img src="/public/home/img/dianzan.png" alt="点赞" style="width:20px;">
                                         (<span id="<?=$val['id'];?>_fabulous"><?=$val['fabulous'];?></span>)
                                     </span>
+                                    <!--
                                     <span style="margin: 7px;cursor:pointer;" onclick="onReply()">
                                         <img src="/public/home/img/huifu.png" alt="回复" style="width:20px;">
                                         (0)
                                     </span>
+                                    -->
                                 </div>
                             </div>
                         </li>
