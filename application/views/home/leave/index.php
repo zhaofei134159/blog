@@ -106,13 +106,13 @@
             textArr.push(gif);
         })
 
-        var gifTextArr = {};
+        var gifTextArr = [];
         for(var i=0;i<ImgIputHandler.facePath.length;i++){
             var imgPath = "/public/home/img/";
             var faceName = ImgIputHandler.facePath[i].faceName;
 
             if($.inArray(faceName,textArr)>=0){
-                gifTextArr.faceName = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
+                gifTextArr[faceName] = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
             }
         }
 
