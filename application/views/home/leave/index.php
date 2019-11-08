@@ -42,7 +42,10 @@
                                         <img src="/public/home/img/dianzan.png" alt="点赞" style="width:20px;">
                                         (<span id="<?=$val['id'];?>_fabulous"><?=$val['fabulous'];?></span>)
                                     </span>
-                                    <span style="margin: 7px;cursor:pointer;" onclick=""><img src="/public/home/img/huifu.png" alt="回复" style="width:20px;">(0)</span>
+                                    <span style="margin: 7px;cursor:pointer;" onclick="onReply()">
+                                        <img src="/public/home/img/huifu.png" alt="回复" style="width:20px;">
+                                        (0)
+                                    </span>
                                 </div>
                             </div>
                         </li>
@@ -56,6 +59,11 @@
                     </div>
                 </div>
  			    <div class="Main">
+                    <?php if(empty($this->homeid)||empty($this->home['id'])){?>
+                    <div class="Input_Box" style="border-color: rgb(204, 204, 204); box-shadow: none;text-align:center;line-height:204px;font-size:15px;">
+                        请先 <a href="<?=HOME_URL_HTTP?>login">登录</a> (建议使用github登录), 在留言
+                    </div>
+                    <?php }else{?>
                     <div class="Input_Box" style="border-color: rgb(204, 204, 204); box-shadow: none;">
                         <textarea class="Input_text"></textarea>
                         <div class="faceDiv" style="margin-top: 0px;"> 
@@ -65,6 +73,7 @@
                             <a class="postBtn">确定</a> 
                         </div>
                     </div>
+                    <?php }?>
                 </div>
             </div>
         </div>
