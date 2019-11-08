@@ -4,7 +4,7 @@ $(document).ready(function(e) {
 });
 var ImgIputHandler={
   facePath:[
-      {faceName:"微笑",facePath:"0_微笑.gif"},
+    {faceName:"微笑",facePath:"0_微笑.gif"},
     {faceName:"撇嘴",facePath:"1_撇嘴.gif"},
     {faceName:"色",facePath:"2_色.gif"},
     {faceName:"发呆",facePath:"3_发呆.gif"},
@@ -24,7 +24,7 @@ var ImgIputHandler={
     {faceName:"抓狂",facePath:"18_抓狂.gif"},
     {faceName:"吐",facePath:"19_吐.gif"},
     {faceName:"偷笑",facePath:"20_偷笑.gif"},
-      {faceName:"可爱",facePath:"21_可爱.gif"},
+    {faceName:"可爱",facePath:"21_可爱.gif"},
     {faceName:"白眼",facePath:"22_白眼.gif"},
     {faceName:"傲慢",facePath:"23_傲慢.gif"},
     {faceName:"饥饿",facePath:"24_饥饿.gif"},

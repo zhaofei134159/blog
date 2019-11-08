@@ -97,6 +97,11 @@
         var Input_text = $('.Input_text').val();
         console.log(Input_text);
 
+        var regex2 = /\[(.+?)\]/g;  // [] 中括号
+        // 输出是一个数组
+        console.log(Input_text.match(regex2));
+        return false;
+
 
         $.ajax({
              type: "POST",
