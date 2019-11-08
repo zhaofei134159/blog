@@ -87,6 +87,9 @@
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
 <script src="<?=HOME_PUBLIC_URL?>js/leave.js"></script>
 <script type="text/javascript">
     $('.postBtn').click(function(){
