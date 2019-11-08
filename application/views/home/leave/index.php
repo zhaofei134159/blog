@@ -110,11 +110,15 @@
         var gifTextArr = {};
         for(var i=0;i<ImgIputHandler.facePath.length;i++){
             var imgPath = "/public/home/img/";
-            if($.inArray(ImgIputHandler.facePath[i].faceName,textArr)>0){
-                var faceName = ImgIputHandler.facePath[i].faceName;
+            var faceName = ImgIputHandler.facePath[i].faceName;
+
+            if($.inArray(faceName,textArr)>0){
                 gifTextArr.faceName = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
             }
         }
+        
+        console.log(gifArr);
+        console.log(textArr);
         console.log(gifTextArr);
         return false;
 
