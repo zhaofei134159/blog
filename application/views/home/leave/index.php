@@ -38,11 +38,11 @@
                                 </p>
                                 <div style="float:right;margin-top:5px;">
                                     <span style="margin: 7px;font-size: 10px;display: block;float: left;line-height: 18px;"><?=$val['ctime']?></span>
-                                    <span style="margin: 7px;" onclick="fabulous('<?=$val['id'];?>')">
+                                    <span style="margin: 7px;cursor:pointer;" onclick="fabulous('<?=$val['id'];?>')">
                                         <img src="/public/home/img/dianzan.png" alt="点赞" style="width:20px;">
                                         (<span id="<?=$val['id'];?>_fabulous"><?=$val['fabulous'];?></span>)
                                     </span>
-                                    <span style="margin: 7px;" onclick=""><img src="/public/home/img/huifu.png" alt="回复" style="width:20px;">(0)</span>
+                                    <span style="margin: 7px;cursor:pointer;" onclick=""><img src="/public/home/img/huifu.png" alt="回复" style="width:20px;">(0)</span>
                                 </div>
                             </div>
                         </li>
