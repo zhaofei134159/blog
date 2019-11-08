@@ -56,12 +56,6 @@
                     </div>
                 </div>
  			    <div class="Main">
-
-                    <?php if(empty($this->homeid)||empty($this->home['id'])){?>
-                    <div class="Input_Box" style="border-color: rgb(204, 204, 204); box-shadow: none;text-align:center;line-height:204px;font-size:15px;">
-                        请先 <a href="<?=HOME_URL_HTTP?>login">登录</a> (建议使用github登录), 在留言
-                    </div>
-                    <?php }else{?>
                     <div class="Input_Box" style="border-color: rgb(204, 204, 204); box-shadow: none;">
                         <textarea class="Input_text"></textarea>
                         <div class="faceDiv" style="margin-top: 0px;"> 
@@ -71,7 +65,6 @@
                             <a class="postBtn">确定</a> 
                         </div>
                     </div>
-                    <?php }?>
                 </div>
             </div>
         </div>
@@ -115,18 +108,11 @@
                 gifTextArr['['+faceName+']'] = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
             }
         }
-        console.log(gifTextArr);
 
         var html = Input_text;
-        $.each(gifTextArr,function(i,index){
-            console.log(i);
-            console.log(index);
-            html = html.replace(i,index);
-        })
-        console.log(Input_text);
-        console.log(html);
-
-        return false;
+        for (x in gifTextArr) {
+            html = html.replace(x,gifTextArr[x]);
+        }
 
 
         $.ajax({
