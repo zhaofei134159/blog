@@ -119,7 +119,7 @@
              type: "POST",
              url: "/home/leave/leave_save",
              async: false,
-             data: {'Input_text':Input_text},
+             data: {'Input_text':html},
              dataType: "json",
              success: function(res){
                 if(res.flog!=1){
