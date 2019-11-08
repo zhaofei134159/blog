@@ -62,7 +62,7 @@ class Leave extends Home_Controller{
 		$leaveFab = $this->zf_leave_fabulous_model->select_one('leave_id='.$post['id'].' and uid='.$this->home['id']);
 
 		if(!empty($leaveFab)){
-			$fabulousNum = intval($post['num'])-1;
+			$fabulousNum = intval($post['nums'])-1;
 
 			$this->zf_leave_fabulous_model->delete('id='.$leaveFab['id']);
 
@@ -70,7 +70,7 @@ class Leave extends Home_Controller{
 			$this->zf_leave_model->update(array('fabulous'=>$fabulousNum),'id='.$post['id']);
 
 		}else{
-			$fabulousNum = intval($post['num'])+1;
+			$fabulousNum = intval($post['nums'])+1;
 
 			$insert = array();
 			$insert['leave_id'] = $post['id'];
