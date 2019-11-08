@@ -106,7 +106,7 @@
         });
     })
     function fabulous(id){
-        var nums = Number($('#'+id+'_fabulous').val());
+        var nums = Number($('#'+id+'_fabulous').html());
         console.log(nums);
 
         $.ajax({
@@ -117,7 +117,7 @@
              dataType: "json",
              success: function(res){
                 console.log(res);
-                $('#'+id+'_fabulous').val(res.data.num);
+                $('#'+id+'_fabulous').html(res.data.num);
              }
         });
     }
