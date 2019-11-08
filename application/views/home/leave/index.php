@@ -132,5 +132,5 @@
 </script>
 
 <?php
-	// $this->load->view('home/public/footer');
+	$this->load->view('home/public/footer');
 ?>
