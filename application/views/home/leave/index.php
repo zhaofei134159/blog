@@ -112,13 +112,16 @@
             var faceName = ImgIputHandler.facePath[i].faceName;
 
             if($.inArray(faceName,textArr)>=0){
-                gifTextArr[faceName] = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
+                gifTextArr['['+faceName+']'] = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
             }
         }
 
-        console.log(gifArr);
-        console.log(textArr);
-        console.log(gifTextArr);
+        var html = '';
+        $.each(gifTextArr,function(i,index){
+            html = Input_text.replace(i,index);
+        })
+        console.log(html);
+
         return false;
 
 
