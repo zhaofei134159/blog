@@ -115,11 +115,13 @@
                 gifTextArr['['+faceName+']'] = "<img title="+faceName+" src="+imgPath+ImgIputHandler.facePath[i].facePath+" />";
             }
         }
+        console.log(gifTextArr);
 
-        var html = '';
+        var html = Input_text;
         $.each(gifTextArr,function(i,index){
-            html = Input_text.replace(i,index);
+            html = html.replace(i,index);
         })
+        console.log(Input_text);
         console.log(html);
 
         return false;
