@@ -7,6 +7,7 @@ class Leave extends Home_Controller{
 
 		$this->load->model('zf_leave_model');
 		$this->load->model('zf_user_model');
+		$this->load->model('zf_leave_fabulous_model');
         $this->load->library('pager');
 		$this->load->helper('common');
 		$this->load->config('app');
@@ -52,5 +53,39 @@ class Leave extends Home_Controller{
 		$data['msg']='留言成功'; 
 		$data['data']=array(); 
 		return_json($data);
+	}
+
+	public function leave_fabulous(){
+		$post = $this->input->post();
+		$data = array();
+
+		$leaveFab = $this->zf_leave_fabulous_model->select_one('leave_id='.$post['id'].' and uid='.$this->home['id']);
+
+		if(!empty($leaveFab)){
+			$fabulousNum = intval($post['num'])-1;
+
+			$this->zf_leave_fabulous_model->delete('id='.$leaveFab['id']);
+
+			//点击量
+			$this->zf_leave_model->update(array('fabulous'=>$fabulousNum),'id='.$post['id']);
+
+		}else{
+			$fabulousNum = intval($post['num'])+1;
+
+			$insert = array();
+			$insert['leave_id'] = $post['id'];
+			$insert['uid'] = $this->home['id'];
+			$this->zf_leave_fabulous_model->insert($insert);
+
+			//点击量
+			$this->zf_leave_model->update(array('fabulous'=>$fabulousNum),'id='.$post['id']);
+		}
+
+
+		$data['flog']=1; 
+		$data['msg']='成功'; 
+		$data['data']=array('num'=>$fabulousNum); 
+		return_json($data);
+
 	}
 }
