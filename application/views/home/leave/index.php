@@ -119,6 +119,8 @@
 
         var html = Input_text;
         $.each(gifTextArr,function(i,index){
+            console.log(i);
+            console.log(index);
             html = html.replace(i,index);
         })
         console.log(Input_text);
