@@ -99,7 +99,12 @@
 
         var regex2 = /\[(.+?)\]/g;  // [] 中括号
         // 输出是一个数组
-        console.log(Input_text.match(regex2));
+        var gifArr = Input_text.match(regex2);
+        $.each(gifArr,function(i,index){
+            console.log(index);
+            console.log(index.replace('[',''));
+            console.log(index.replace(']',''));
+        })
         return false;
 
 
