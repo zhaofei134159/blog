@@ -6,6 +6,7 @@ class Login extends Home_Controller{
                 'weibo'=>'weibo_uid',
                 'weixin'=>'weixin_openid',
                 'qq'=>'qq_openid',
+                'github'=>'github_id',
             );
 
 	public function __construct(){
@@ -341,6 +342,77 @@ class Login extends Home_Controller{
         }
     }
 
+    # github登录
+    function github_login(){
+
+        $cliend_id = $this->config->item('cliend_id');
+        $cliend_secret = $this->config->item('cliend_secret');
+        $cliend_login = $this->config->item('cliend_login');
+
+        header('location:https://github.com/login/oauth/authorize?client_id='.$cliend_id.'&scope=user:email');
+    }
+
+    function github_web(){
+        $code = $this->input->get('code');
+
+        $cliend_id = $this->config->item('cliend_id');
+        $cliend_secret = $this->config->item('cliend_secret');
+        $cliend_login = $this->config->item('cliend_login');
+
+        if(!empty($code)){
+            //获取access token
+            $token_url = 'https://github.com/login/oauth/access_token?client_id='.$cliend_id.'&client_secret='.$cliend_secret.'&code='.$code;
+
+            $token_info = $this->_curl_get_request($token_url);
+
+            if(empty($token_info)||!strstr($token_info,'access_token')){
+                //登录错误的跳转页面
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'github','login'=>'github'));
+            }
+
+            $token = array();
+            parse_str($token_info,$token);
+
+            if(!isset($token['access_token'])&&empty($token['access_token'])){
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'github','login'=>'github'));
+            }
+
+            $access_token = $token['access_token'];
+
+            $user_url = 'https://api.github.com/user?access_token='.$access_token;
+            $header = array();
+            $header[] = "Accept: application/vnd.github.v3.full+json";
+            $header[] = "user-agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)";
+            $user_info = $this->_curl_get_request($user_url,$header);
+
+            if(!array_key_exists("node_id",$user_info)){
+                $this->load->view(HOME_URL.'login/web_error',array('type'=>'github','login'=>'github'));
+            }
+
+            $user_data = array(
+                    'id'=>$user_info['node_id'],
+                    'name'=>$user_info['login'],
+                    'nikename'=>$user_info['name'],
+                    'gender'=>'m',
+                    'avatar_large'=>$user_info['avatar_url'],
+                    'email'=>$user_info['email'],
+                );
+            $qq_user = $this->user_data('github',$user_data);
+
+            //微信账号存在且有手机号
+            // if($qq_user['flag']==1){
+                header('location:'.HOME_URL);
+            // }else{
+                // $this->load->view('external_login/bind_user_phone',array('user'=>$weixin_user['data'],'type'=>'weixin'));
+                // header('location:'.HOME_URL.'login/bind_user_phone?user='.base64_encode($qq_user['data']['id']).'&type='.base64_encode('qq'));
+            // }
+
+        }else{
+            //微信登录错误的跳转页面
+            $this->load->view(HOME_URL.'login/web_error',array('type'=>'github','login'=>'github'));
+        }
+    }
+
     /**
     * 判断微博账号是否在网站已经存在且是否有手机号
     * 1.若存在且有手机号，则直接登录
@@ -372,8 +444,11 @@ class Login extends Home_Controller{
 
     		$data = array(
     				'id'=>$user_data['id'],
-    				'nickname'=>$user_data['name'],
-    				'sex'=>($user_data['gender']=='m')?1:2,
+                    'nickname'=>empty($user_data['nikename'])?$user_data['name']:$user_data['nikename'],
+    				'name'=>$user_data['name'],
+                    'sex'=>($user_data['gender']=='m')?1:2,
+                    'avatar_large'=>$user_data['avatar_large'],
+    				'email'=>$user_data['email'],
     			);
 
 			$login_user = $this->_external_auth_register($type,$data);
@@ -409,6 +484,9 @@ class Login extends Home_Controller{
         $map['ctime'] = time();
         $map['utime'] = time();
 		$map['phone'] = '';
+        if(!empty($user_data['email'])){
+            $map['email'] = $user_data['email'];
+        }
 		$map['user_type'] = 3;
         $class = $class_arr[$type];
         $map[$class] = $external_uid;
@@ -444,7 +522,7 @@ class Login extends Home_Controller{
     * @return string
     */
     private function _save_external_user_avatar($url){	
-        if (strpos($url, 'http://') !== 0){
+        if (strpos($url, 'http://') !== 0&&strpos($url, 'https://') !== 0){
             return '';
         }
 
@@ -470,9 +548,12 @@ class Login extends Home_Controller{
 
 
     //curl
-    private function _curl_get_request($url){
+    private function _curl_get_request($url,$header=array()){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,  $url);
+        if(!empty($header)){
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+        }
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
         $return_str = curl_exec($ch);

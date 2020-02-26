@@ -13,7 +13,7 @@
 <script src="<?=HOME_PUBLIC_URL?>js/user.js"></script>
 
 
-<div class="content-wrapper" style="min-height:500px;">
+<div class="content-wrapper" style="min-height:600px;">
     <div class="container">
 		<hr>
 		<div class="row">

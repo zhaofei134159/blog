@@ -29,7 +29,7 @@
     });
 </script>
 <!-- MENU SECTION END-->
-<div class="content-wrapper" style="min-height:500px;">
+<div class="content-wrapper" style="min-height:600px;">
     <div class="container">
        <!--  <div class="row pad-botm">
             <div class="col-md-12">
@@ -50,11 +50,11 @@
                         <div class="tab-pane fade active in" id="home">
                             <h4 style="padding-top:5px;line-height:35px;">
                               文章<?=(empty($work)?'添加':'修改')?>
-                              <a href="<?=HOME_URL?>user/blog_work_info">
+                              <a href="<?=HOME_URL_HTTP?>user/blog_work_info">
                                 <span style="float:right;" class="btn btn-default btn-sm">返回</span>
                               </a>
                             </h4>
-                            <form action="<?=HOME_URL?>user/blog_work_update"  method="post" onsubmit="return blogworkForm()" enctype="multipart/form-data">
+                            <form action="<?=HOME_URL_HTTP?>user/blog_work_update"  method="post" onsubmit="return blogworkForm()" enctype="multipart/form-data">
 
                                 <div class="form-group col-md-4">
                                     <div class="">

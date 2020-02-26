@@ -52,7 +52,8 @@ $active_record = TRUE;
 
 $db['default'] = array(
     'dsn'   => '',
-    'hostname' => '127.0.0.1',
+    // 'hostname' => '127.0.0.1',
+    'hostname' => '104.243.18.161',
     'username' => 'root',
     'password' => 'zhaofei',
     'database' => 'blog',
@@ -71,6 +72,8 @@ $db['default'] = array(
     'failover' => array(),
     'save_queries' => TRUE
 );
+
+
 
 
 /* End of file database.php */

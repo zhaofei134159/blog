@@ -2,7 +2,7 @@
 	$this->load->view('home/public/top');
 ?>
 <!-- MENU SECTION END-->
-<div class="content-wrapper" style="min-height:500px;">
+<div class="content-wrapper" style="min-height:600px;">
     <div class="container">
        <!--  <div class="row pad-botm">
             <div class="col-md-12">
@@ -26,7 +26,7 @@
                     用户信息
                   </div>
                   <div class="panel-body">
-                    <form action="<?=HOME_URL?>user/update_info" onsubmit="return infoForm()" method="post" enctype="multipart/form-data">
+                    <form action="<?=HOME_URL_HTTP?>user/update_info" onsubmit="return infoForm()" method="post" enctype="multipart/form-data">
                       <div class="form-group col-md-4">
                         <div class="">
                           <label>头像：</label>
@@ -40,11 +40,11 @@
                         <span style="display:none;"><input type="file" name="headimg"></span>
                         <button type="button" onclick="upload_file()" class="btn btn-success">上传头像</button>
                       </div>
-                      <div class="form-group  col-md-12">
+                      <div class="form-group  col-md-12" id="author">
                           <label>名称：</label>
                           <input type="text" class="form-control" name="nikename" value="<?=empty($user['nikename'])?'':$user['nikename']?>">
                       </div>
-                      <div class="form-group  col-md-12">
+                      <div class="form-group  col-md-12" id="mail">
                           <label>邮箱：</label>
                           <input type="text" class="form-control" disabled name="email" value="<?=empty($user['email'])?'':$user['email']?>"> 
                       </div>
@@ -131,7 +131,7 @@
       var flog = 0;
       $.ajax({
           type: "POST",
-          url: "<?=HOME_URL?>user/check_phone",
+          url: "<?=HOME_URL_HTTP?>user/check_phone",
           async: false,
           data: {phone:phone},
           dataType: "json",
