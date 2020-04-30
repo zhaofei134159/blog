@@ -110,6 +110,7 @@ class MY_Model extends CI_Model {
 	function select($where,$select="*",$order=''){
 
 		$this->db->select($select);
+		var_dump($where);
         $this->db->where($where);
 		
 		if(!empty($order)){
