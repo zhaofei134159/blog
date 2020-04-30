@@ -2,7 +2,7 @@
   $this->load->view('backstage/public/top');
 ?>
 
-<link rel="stylesheet" type="text/css" href="<?=PUBLIC_URL?>css/public.css">
+<link rel="stylesheet" type="text/css" href="<?=ADMIN_PUBLIC_URL?>css/public.css">
 <div id="content">
     <div id="content-header">
       <div id="breadcrumb">
