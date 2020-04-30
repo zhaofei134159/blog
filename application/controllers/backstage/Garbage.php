@@ -30,7 +30,7 @@ class Garbage extends Admin_Controller {
 		$post = $this->input->post();
 
 		$where = ' 1 ';
-		$garbageType = $this->zf_garbage_type_model->select($where,'*','ctime desc');
+		$garbageType = $this->zf_garbage_type_model->select($where,'*','createtime desc');
 
 		$data = array(
 				'garbageType' => $garbageType,
