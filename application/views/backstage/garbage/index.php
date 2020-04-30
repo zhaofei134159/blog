@@ -22,10 +22,10 @@
                   <div class="big-category category">
                     <input type="text" readonly="readonly" value="电器">
                     <div class="btns">
-                      <a><img src="./icon_add.png"></a>
-                      <a><img src="./icon_edit.png"></a>
-                      <a><img src="./icon_close.png"></a>
-                      <a class="up-btn"><img src="./icon_bottom.png"></a>
+                      <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_add.png"></a>
+                      <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_edit.png"></a>
+                      <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_close.png"></a>
+                      <a class="up-btn"><img src="<?=ADMIN_PUBLIC_URL?>css/icon_bottom.png"></a>
                     </div>
                   </div>
                   <!--子分类-->
@@ -33,10 +33,10 @@
                     <div class="in-category category">
                       <input type="text" readonly="readonly" value="空调">
                       <div class="btns">
-                        <a><img src="./icon_add.png"></a>
-                        <a><img src="./icon_edit.png"></a>
-                        <a><img src="./icon_close.png"></a>
-                        <a class="up-btn"><img src="./icon_bottom.png"></a>
+                        <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_add.png"></a>
+                        <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_edit.png"></a>
+                        <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_close.png"></a>
+                        <a class="up-btn"><img src="<?=ADMIN_PUBLIC_URL?>css/icon_bottom.png"></a>
                       </div>
                     </div>
                     <!--小分类-->
@@ -44,29 +44,29 @@
                       <div class="small-category category">
                         <input type="text" readonly="readonly" value="A163">
                         <div class="btns">
-                          <a><img src="./icon_edit.png"></a>
-                          <a><img src="./icon_close.png"></a>
+                          <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_edit.png"></a>
+                          <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_close.png"></a>
                         </div>
                       </div>
                       <div class="small-category category">
                         <input type="text" readonly="readonly" value="A201">
                         <div class="btns">
-                          <a><img src="./icon_edit.png"></a>
-                          <a><img src="./icon_close.png"></a>
+                          <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_edit.png"></a>
+                          <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_close.png"></a>
                         </div>
                       </div>
                       <div class="small-category category">
                         <input type="text" readonly="readonly" value="B85">
                         <div class="btns">
-                          <a><img src="./icon_edit.png"></a>
-                          <a><img src="./icon_close.png"></a>
+                          <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_edit.png"></a>
+                          <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_close.png"></a>
                         </div>
                       </div>
                       <div class="small-category category">
                         <input type="text" readonly="readonly" value="B127">
                         <div class="btns">
-                          <a><img src="./icon_edit.png"></a>
-                          <a><img src="./icon_close.png"></a>
+                          <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_edit.png"></a>
+                          <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_close.png"></a>
                         </div>
                       </div>
                     </div>
@@ -75,9 +75,9 @@
                     <div class="in-category category">
                       <input type="text" readonly="readonly" value="洗衣机">
                       <div class="btns">
-                        <a><img src="./icon_add.png"></a>
-                        <a><img src="./icon_edit.png"></a>
-                        <a><img src="./icon_close.png"></a>
+                        <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_add.png"></a>
+                        <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_edit.png"></a>
+                        <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_close.png"></a>
                       </div>
                     </div>
                   </div>
@@ -85,9 +85,9 @@
                     <div class="in-category category">
                       <input type="text" readonly="readonly" value="冰箱">
                       <div class="btns">
-                        <a><img src="./icon_add.png"></a>
-                        <a><img src="./icon_edit.png"></a>
-                        <a><img src="./icon_close.png"></a>
+                        <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_add.png"></a>
+                        <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_edit.png"></a>
+                        <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_close.png"></a>
                       </div>
                     </div>
                   </div>
@@ -96,9 +96,9 @@
                   <div class="big-category category">
                     <input type="text" readonly="readonly" value="厨具">
                     <div class="btns">
-                      <a><img src="./icon_add.png"></a>
-                      <a><img src="./icon_edit.png"></a>
-                      <a><img src="./icon_close.png"></a>
+                      <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_add.png"></a>
+                      <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_edit.png"></a>
+                      <a><img src="<?=ADMIN_PUBLIC_URL?>css/icon_close.png"></a>
                     </div>
                   </div>
                 </div>
