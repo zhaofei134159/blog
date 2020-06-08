@@ -1,5 +1,6 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+date_default_timezone_set("Asia/Shanghai"); //设置时区
 
 class Extendapp extends Home_Controller{
 
@@ -16,8 +17,12 @@ class Extendapp extends Home_Controller{
 	}
 
 	public function picToWord(){
-		var_dump($_FILES);
-		var_dump($_POST);die;
+		$code = $_FILES['file'];//获取小程序传来的图片
+		if(!is_uploaded_file($_FILES['file']['tmp_name'])) {  
+			exit('error');
+		}
+
+		var_dump($_FILES['file']['tmp_name']);
 	}
 	
 }
