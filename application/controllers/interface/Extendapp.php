@@ -38,17 +38,19 @@ class Extendapp extends Home_Controller{
 		$token = $resultArr['access_token'];
 		$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/webimage?access_token=';
 		$wordRes = $this->getBdPicToWord($url,$token,$picFile);
-		if(empty($wordRes['words_result_num'])){
+		$wordResArr = json_decode($wordRes,true);
+		if(empty($wordResArr['words_result_num'])){
 			$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=';
 			$wordRes = $this->getBdPicToWord($url,$token,$picFile);
+			$wordResArr = json_decode($wordRes,true);
 		}
 		
-		// if(empty($wordRes['words_result_num'])){
-		// 	$callback = array('errorMsg'=>'未识别出文字','errorNo'=>'109');
-	 //    	exit(json_encode($callback));
-		// }
+		if(empty($wordResArr['words_result_num'])){
+			$callback = array('errorMsg'=>'未识别出文字','errorNo'=>'109');
+	    	exit(json_encode($callback));
+		}
 
-		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordRes);
+		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordResArr);
     	exit(json_encode($callback));
 	}
 
