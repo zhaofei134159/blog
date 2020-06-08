@@ -17,12 +17,10 @@ class Extendapp extends Home_Controller{
 	}
 
 	public function picToWord(){
-		$code = $_FILES['upload_file'];//获取小程序传来的图片
-		if(!is_uploaded_file($_FILES['upload_file']['tmp_name'])) {  
-			exit('error');
-		}
+		$file = $_FILES['file'];
 
-		echo $_FILES['upload_file']['tmp_name'];
+		echo upload_img($file,'picToWord');
+		die;
 	}
 	
 }
