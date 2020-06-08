@@ -37,7 +37,7 @@ class Extendapp extends Home_Controller{
 	    # 获取百度图文识别后的返回
 		$token = $resultArr['access_token'];
 		$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/webimage?access_token=' . $token;
-		$img = file_get_contents($picFile);
+		$img = file_get_contents(PUBLIC_URL.$picFile);
 		$img = base64_encode($img);
 		$bodys = array(
 		    'image' => $img
