@@ -25,7 +25,7 @@ class Extendapp extends Home_Controller{
 		$file = $_FILES['file'];
 
 		// $picFile = upload_img($file,'picToWord');
-		$picFile = 'public/public/images/tu1.jpg';
+		$picFile = 'public/public/images/tu2.jpg';
 
 		# 获取百度的 access_token
 		$result = $this->getBdAccessToken();
