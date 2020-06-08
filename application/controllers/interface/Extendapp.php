@@ -38,10 +38,10 @@ class Extendapp extends Home_Controller{
 	    # 获取百度图文识别后的返回
 		$token = $resultArr['access_token'];
 		$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/webimage?access_token=';
-		$wordRes = getBdPicToWord($url,$token,$picFile);
+		$wordRes = $this->getBdPicToWord($url,$token,$picFile);
 		if(empty($wordRes['words_result_num'])){
 			$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=';
-			$wordRes = getBdPicToWord($url,$token,$picFile);
+			$wordRes = $this->getBdPicToWord($url,$token,$picFile);
 		}
 		
 		var_dump($wordRes);
