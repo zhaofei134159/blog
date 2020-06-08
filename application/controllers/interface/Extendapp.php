@@ -24,14 +24,13 @@ class Extendapp extends Home_Controller{
 	public function picToWord(){
 		$file = $_FILES['file'];
 
-		// $picFile = upload_img($file,'picToWord');
-		$picFile = 'public/public/images/tu2.jpg';
+		$picFile = upload_img($file,'picToWord');
 
 		# 获取百度的 access_token
 		$result = $this->getBdAccessToken();
 		$resultArr = json_decode($result,true);
 	    if(!isset($resultArr['access_token']) || empty($resultArr['access_token'])){
-	    	$callback = array('error'=>'百度token获取错误','errorNo'=>'101');
+	    	$callback = array('errorMsg'=>'百度token获取错误','errorNo'=>'101');
 	    	exit(json_encode($callback));
 	    }
 
@@ -44,8 +43,13 @@ class Extendapp extends Home_Controller{
 			$wordRes = $this->getBdPicToWord($url,$token,$picFile);
 		}
 		
-		var_dump($wordRes);
-
+		if(!empty($wordRes['words_result_num'])){
+			$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordRes);
+	    	exit(json_encode($callback));
+		}else{
+			$callback = array('errorMsg'=>'未识别出文字','errorNo'=>'109');
+	    	exit(json_encode($callback));
+		}
 	}
 
 	/**
