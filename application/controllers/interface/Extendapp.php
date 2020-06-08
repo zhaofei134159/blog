@@ -28,17 +28,14 @@ class Extendapp extends Home_Controller{
 
 		# 获取百度的 access_token
 		$result = $this->getBdAccessToken();
-		var_dump($result);
-		var_dump($result['access_token']);
-		var_dump(!isset($result['access_token']));
-		var_dump(empty($result['access_token']));
-	    if(!isset($result['access_token']) || empty($result['access_token'])){
+		$resultArr = json_decode($result,true);
+	    if(!isset($resultArr['access_token']) || empty($resultArr['access_token'])){
 	    	$callback = array('error'=>'百度token获取错误','errorNo'=>'101');
 	    	exit(json_encode($callback));
 	    }
 
 	    # 获取百度图文识别后的返回
-		$token = $result['access_token'];
+		$token = $resultArr['access_token'];
 		$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/webimage?access_token=' . $token;
 		$img = file_get_contents($picFile);
 		$img = base64_encode($img);
