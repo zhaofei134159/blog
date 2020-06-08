@@ -43,13 +43,13 @@ class Extendapp extends Home_Controller{
 			$wordRes = $this->getBdPicToWord($url,$token,$picFile);
 		}
 		
-		if(!empty($wordRes['words_result_num'])){
-			$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordRes);
-	    	exit(json_encode($callback));
-		}else{
+		if(empty($wordRes['words_result_num'])){
 			$callback = array('errorMsg'=>'未识别出文字','errorNo'=>'109');
 	    	exit(json_encode($callback));
 		}
+
+		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordRes);
+    	exit(json_encode($callback));
 	}
 
 	/**
