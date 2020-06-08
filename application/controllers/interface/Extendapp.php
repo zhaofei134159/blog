@@ -50,6 +50,8 @@ class Extendapp extends Home_Controller{
 	    	exit(json_encode($callback));
 		}
 
+		@unlink($picFile);
+
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordResArr);
     	exit(json_encode($callback));
 	}
