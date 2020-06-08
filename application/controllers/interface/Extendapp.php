@@ -41,7 +41,7 @@ class Extendapp extends Home_Controller{
 		$bodys = array(
 		    'image' => $img
 		);
-		$res = request_post($url, $bodys);
+		$res = $this->request_post($url, $bodys);
 
 		var_dump($res);
 
@@ -63,7 +63,7 @@ class Extendapp extends Home_Controller{
 	    	$o.= "$k=" . urlencode( $v ). "&" ;
 	    }
 	    $post_data = substr($o,0,-1);
-	    $res = request_post($url, $post_data);
+	    $res = $this->request_post($url, $post_data);
 
 	    return $res;
 	}
