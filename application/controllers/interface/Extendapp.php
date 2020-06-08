@@ -37,19 +37,32 @@ class Extendapp extends Home_Controller{
 
 	    # 获取百度图文识别后的返回
 		$token = $resultArr['access_token'];
-		$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/webimage?access_token=' . $token;
-		// $img = file_get_contents($picFile);
-		// $img = base64_encode($img);
+		$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/webimage?access_token=';
+		$wordRes = getBdPicToWord($url,$token,$picFile);
+		if(empty($wordRes['words_result_num'])){
+			$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=';
+			$wordRes = getBdPicToWord($url,$token,$picFile);
+		}
+		
+		var_dump($wordRes);
+
+	}
+
+	/**
+	* 获取百度图文信息
+	* @return 图文信息
+	*/
+	function getBdPicToWord($url,$token,$file){
+
+		$url = $url . $token;
 		$bodys = array(
-		    // 'image' => $img,
-		    'url' => 'http://blog.myfeiyou.com/'.$picFile,
+		    'url' => 'http://blog.myfeiyou.com/'.$file,
 		    'detect_direction' => true,
 		    'detect_language' => true,
 		);
 		$res = $this->request_post($url, $bodys);
 
-		var_dump($res);
-
+		return $res;
 	}
 
 	/**
