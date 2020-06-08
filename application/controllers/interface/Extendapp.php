@@ -5,8 +5,8 @@ date_default_timezone_set("Asia/Shanghai"); //设置时区
 class Extendapp extends Home_Controller{
 
 	# 图文识别的appKey
-	$picToWordAppkey = '9PZah23T4Yaa1pePDzCdCzwR';
-	$picToWordSecretkey = 'ehvwNTa1Y3VbTjXEEfbEF57eeRX2s2uj';
+	public $picToWordAppkey = '9PZah23T4Yaa1pePDzCdCzwR';
+	public $picToWordSecretkey = 'ehvwNTa1Y3VbTjXEEfbEF57eeRX2s2uj';
 
 	public function __construct(){
 		parent::__construct();
