@@ -29,6 +29,9 @@ class Extendapp extends Home_Controller{
 		# 获取百度的 access_token
 		$result = $this->getBdAccessToken();
 		var_dump($result);
+		var_dump($result['access_token']);
+		var_dump(!isset($result['access_token']));
+		var_dump(empty($result['access_token']));
 	    if(!isset($result['access_token']) || empty($result['access_token'])){
 	    	$callback = array('error'=>'百度token获取错误','errorNo'=>'101');
 	    	exit(json_encode($callback));
