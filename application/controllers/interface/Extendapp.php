@@ -27,7 +27,7 @@ class Extendapp extends Home_Controller{
 		$picFile = upload_img($file,'picToWord');
 
 		# 获取百度的 access_token
-		$result = getBdAccessToken();
+		$result = $this->getBdAccessToken();
 	    if(!isset($result['access_token']) || empty($result['access_token'])){
 	    	$callback = array('error'=>'百度token获取错误','errorNo'=>'101');
 	    	exit(json_encode($callback));
