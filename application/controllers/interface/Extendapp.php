@@ -22,7 +22,7 @@ class Extendapp extends Home_Controller{
 			exit('error');
 		}
 
-		var_dump($_FILES['upload_file']['tmp_name']);
+		echo $_FILES['upload_file']['tmp_name'];
 	}
 	
 }
