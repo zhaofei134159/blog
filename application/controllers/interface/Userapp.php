@@ -78,6 +78,29 @@ class Userapp extends Home_Controller{
 	  	die;
 	}
 
+	public function openidGetUserinfo()
+	{
+		$openid = $_POST['openid'];
+		if(empty($openid)){
+			$arr = array();
+			$arr['flag'] = false;
+			$arr['msg'] = '用户openid为空';
+		  	echo json_encode($arr); 
+		  	die;
+		}
+
+		$phone_where = "weixin_openid='".$openid."'";
+		$blogUser = $this->zf_user_model->select_one($phone_where);
+		
+		$arr = array();
+		$arr['flag'] = true;
+		$arr['msg'] = '用户信息获取成功';
+		$arr['data'] = $blogUser;
+	  	echo json_encode($arr); 
+	  	die;
+
+	}
+
 
 	function httpGet($url) {
 	    $curl = curl_init();
