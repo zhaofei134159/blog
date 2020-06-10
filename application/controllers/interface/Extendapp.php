@@ -21,6 +21,7 @@ class Extendapp extends Home_Controller{
         $this->load->library('pager');
 	}
 
+	// 图文转换文字
 	public function picToWord(){
 		$file = $_FILES['file'];
 
@@ -54,6 +55,11 @@ class Extendapp extends Home_Controller{
 
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordResArr);
     	exit(json_encode($callback));
+	}
+
+	// 录音转换文字
+	public function voiceToWord(){
+
 	}
 
 	/**
