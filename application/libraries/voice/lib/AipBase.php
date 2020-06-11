@@ -60,6 +60,9 @@ class AipBase {
      * @param string $secretKey
      */
     public function __construct($appId, $apiKey, $secretKey){
+        var_dump($appId);
+        var_dump($apiKey);
+        var_dump($secretKey);
         $this->appId = trim($appId);
         $this->apiKey = trim($apiKey);
         $this->secretKey = trim($secretKey);
