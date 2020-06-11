@@ -59,13 +59,10 @@ class AipBase {
      * @param string $apiKey
      * @param string $secretKey
      */
-    public function __construct($appId, $apiKey, $secretKey){
-        var_dump($appId);
-        var_dump($apiKey);
-        var_dump($secretKey);
-        $this->appId = trim($appId);
-        $this->apiKey = trim($apiKey);
-        $this->secretKey = trim($secretKey);
+    public function __construct($conf){
+        $this->appId = trim($conf['appId']);
+        $this->apiKey = trim($conf['apiKey']);
+        $this->secretKey = trim($conf['secretKey']);
         $this->isCloudUser = null;
         $this->client = new AipHttpClient();
         $this->version = '1_6_0';
