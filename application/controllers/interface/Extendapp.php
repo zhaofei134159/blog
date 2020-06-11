@@ -24,7 +24,14 @@ class Extendapp extends Home_Controller{
 		$this->load->model('zf_cate_model');
 		$this->load->model('zf_tag_model');
 		$this->load->model('zf_user_model');
-        $this->load->library('voice/AipSpeech',array($this->voiceAppId,$this->voiceAppkey,$this->voiceSecretkey));
+
+
+		$voiceArr = array(
+			'appId'=>$this->voiceAppId,
+			'apiKey'=>$this->voiceAppkey,
+			'secretKey'=>$this->voiceSecretkey
+		);
+        $this->load->library('voice/AipSpeech',$voiceArr);
 	}
 
 	// 图文转换文字
