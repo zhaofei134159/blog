@@ -19,7 +19,7 @@ class Extendapp extends Home_Controller{
 		$this->load->model('zf_cate_model');
 		$this->load->model('zf_tag_model');
 		$this->load->model('zf_user_model');
-        $this->load->library('pager');
+        $this->load->library('voice/lib/AipBase');
         $this->load->library('voice/AipSpeech');
 	}
 
