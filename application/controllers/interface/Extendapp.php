@@ -70,6 +70,9 @@ class Extendapp extends Home_Controller{
 		$picFile = 'public/public/voiceToWord/2020061115390652348.mp3';
 
 		// 你的 APPID AK SK 
+		var_dump($this->voiceAppId);
+		var_dump($this->voiceAppkey);
+		var_dump($this->voiceSecretkey);
 		$client = $this->AipSpeech($this->voiceAppId, $this->voiceAppkey, $this->voiceSecretkey);
 		$word = $client->asr(file_get_contents($picFile), 'mp3', 16000, array(
 		    'dev_pid' => 1537,
