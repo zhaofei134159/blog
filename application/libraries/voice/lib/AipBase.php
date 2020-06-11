@@ -15,9 +15,9 @@
 * the License.
 */
 
-require_once 'AipHttpClient.php';
-require_once 'AipBCEUtil.php';
-require_once 'AipImageUtil.php';
+require_once APPPATH.'/libraries/voice/lib/AipHttpClient.php';
+require_once APPPATH.'/libraries/voice/lib/AipBCEUtil.php';
+require_once APPPATH.'/libraries/voice/lib/AipImageUtil.php';
 
 /**
  * Aip Base 基类

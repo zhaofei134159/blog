@@ -15,7 +15,7 @@
 * the License.
 */
 
-require_once 'lib/AipBase.php';
+require_once APPPATH.'/libraries/voice/lib/AipBase.php';
 
 /**
  * 百度语音
