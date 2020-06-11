@@ -61,8 +61,9 @@ class Extendapp extends Home_Controller{
 
 	// 录音转换文字
 	public function voiceToWord(){
-		$file = $_FILES['file'];
-		$picFile = upload_file($file,'voiceToWord');
+		// $file = $_FILES['file'];
+		// $picFile = upload_file($file,'voiceToWord');
+		$picFile = 'public/public/voiceToWord/2020061115390652348.mp3';
 
 		// 你的 APPID AK SK
 		$client = $this->AipSpeech($this->picToWordAppId, $this->picToWordAppkey, $this->picToWordSecretkey);
