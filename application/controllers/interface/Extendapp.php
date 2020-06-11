@@ -9,6 +9,11 @@ class Extendapp extends Home_Controller{
 	public $picToWordAppkey = '9PZah23T4Yaa1pePDzCdCzwR';
 	public $picToWordSecretkey = 'ehvwNTa1Y3VbTjXEEfbEF57eeRX2s2uj';
 
+	# 语音处理
+	public $voiceAppId = '20349172';
+	public $voiceAppkey = 'GY3XkTZKNwElpcTknlWUSo0A';
+	public $voiceSecretkey = 'N51MrcfuKMrhGhF3F9Du8EgMt4GZgmdn';
+
 	public function __construct(){
 		parent::__construct();
 
@@ -19,7 +24,6 @@ class Extendapp extends Home_Controller{
 		$this->load->model('zf_cate_model');
 		$this->load->model('zf_tag_model');
 		$this->load->model('zf_user_model');
-        $this->load->library('voice/lib/AipBase');
         $this->load->library('voice/AipSpeech');
 	}
 
@@ -65,8 +69,8 @@ class Extendapp extends Home_Controller{
 		// $picFile = upload_file($file,'voiceToWord');
 		$picFile = 'public/public/voiceToWord/2020061115390652348.mp3';
 
-		// 你的 APPID AK SK
-		$client = $this->AipSpeech($this->picToWordAppId, $this->picToWordAppkey, $this->picToWordSecretkey);
+		// 你的 APPID AK SK 
+		$client = $this->AipSpeech($this->voiceAppId, $this->voiceAppkey, $this->voiceSecretkey);
 		$word = $client->asr(file_get_contents($picFile), 'mp3', 16000, array(
 		    'dev_pid' => 1537,
 		));
