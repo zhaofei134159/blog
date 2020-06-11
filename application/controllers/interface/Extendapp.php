@@ -60,7 +60,7 @@ class Extendapp extends Home_Controller{
 	}
 
 	// 录音转换文字
-	public function voiceUpload(){
+	public function voiceToWord(){
 		$file = $_FILES['file'];
 		$picFile = upload_file($file,'voiceToWord');
 
