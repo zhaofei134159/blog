@@ -5,6 +5,7 @@ date_default_timezone_set("Asia/Shanghai"); //设置时区
 class Extendapp extends Home_Controller{
 
 	# 图文识别的appKey
+	public $picToWordAppId = '11521585';
 	public $picToWordAppkey = '9PZah23T4Yaa1pePDzCdCzwR';
 	public $picToWordSecretkey = 'ehvwNTa1Y3VbTjXEEfbEF57eeRX2s2uj';
 
@@ -19,6 +20,7 @@ class Extendapp extends Home_Controller{
 		$this->load->model('zf_tag_model');
 		$this->load->model('zf_user_model');
         $this->load->library('pager');
+        $this->load->library('voice/AipSpeech');
 	}
 
 	// 图文转换文字
@@ -58,39 +60,21 @@ class Extendapp extends Home_Controller{
 	}
 
 	// 录音转换文字
-	public function voiceToWord(){
+	public function voiceUpload(){
 		$file = $_FILES['file'];
-		var_dump($file);
-		var_dump($_POST);die;
+		$picFile = upload_file($file,'voiceToWord');
 
-		# 获取百度的 access_token
-		$result = $this->getBdAccessToken();
-		$resultArr = json_decode($result,true);
-	    if(!isset($resultArr['access_token']) || empty($resultArr['access_token'])){
-	    	$callback = array('errorMsg'=>'百度token获取错误','errorNo'=>'101');
-	    	exit(json_encode($callback));
-	    }
+		// 你的 APPID AK SK
+		$client = $this->AipSpeech($this->picToWordAppId, $this->picToWordAppkey, $this->picToWordSecretkey);
+		$word = $client->asr(file_get_contents($picFile), 'mp3', 16000, array(
+		    'dev_pid' => 1537,
+		));
+		var_dump($client);
+		var_dump($word);
+		// @unlink($picFile);
 
-	    # 获取百度图文识别后的返回
-		$token = $resultArr['access_token'];
-		$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/webimage?access_token=';
-		$wordRes = $this->getBdPicToWord($url,$token,$picFile);
-		$wordResArr = json_decode($wordRes,true);
-		if(empty($wordResArr['words_result_num'])){
-			$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=';
-			$wordRes = $this->getBdPicToWord($url,$token,$picFile);
-			$wordResArr = json_decode($wordRes,true);
-		}
-		
-		if(empty($wordResArr['words_result_num'])){
-			$callback = array('errorMsg'=>'未识别出文字','errorNo'=>'109');
-	    	exit(json_encode($callback));
-		}
-
-		@unlink($picFile);
-
-		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordResArr);
-    	exit(json_encode($callback));
+		// $callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordResArr);
+  //   	exit(json_encode($callback));
 	}
 
 	/**
