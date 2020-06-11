@@ -24,7 +24,7 @@ class Extendapp extends Home_Controller{
 		$this->load->model('zf_cate_model');
 		$this->load->model('zf_tag_model');
 		$this->load->model('zf_user_model');
-        $this->load->library('voice/aipSpeech');
+        $this->load->library('voice/aipSpeech',array($this->voiceAppId,$this->voiceAppkey,$this->voiceSecretkey));
 	}
 
 	// 图文转换文字
@@ -73,11 +73,9 @@ class Extendapp extends Home_Controller{
 		var_dump($this->voiceAppId);
 		var_dump($this->voiceAppkey);
 		var_dump($this->voiceSecretkey);
-		$client = $this->AipSpeech($this->voiceAppId, $this->voiceAppkey, $this->voiceSecretkey);
-		$word = $client->asr(file_get_contents($picFile), 'mp3', 16000, array(
+		$word = $this->AipSpeech->asr(file_get_contents($picFile), 'mp3', 16000, array(
 		    'dev_pid' => 1537,
 		));
-		var_dump($client);
 		var_dump($word);
 		// @unlink($picFile);
 
