@@ -59,7 +59,38 @@ class Extendapp extends Home_Controller{
 
 	// 录音转换文字
 	public function voiceToWord(){
+		$file = $_FILES['file'];
+		var_dump($file);
+		var_dump($_POST);die;
 
+		# 获取百度的 access_token
+		$result = $this->getBdAccessToken();
+		$resultArr = json_decode($result,true);
+	    if(!isset($resultArr['access_token']) || empty($resultArr['access_token'])){
+	    	$callback = array('errorMsg'=>'百度token获取错误','errorNo'=>'101');
+	    	exit(json_encode($callback));
+	    }
+
+	    # 获取百度图文识别后的返回
+		$token = $resultArr['access_token'];
+		$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/webimage?access_token=';
+		$wordRes = $this->getBdPicToWord($url,$token,$picFile);
+		$wordResArr = json_decode($wordRes,true);
+		if(empty($wordResArr['words_result_num'])){
+			$url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=';
+			$wordRes = $this->getBdPicToWord($url,$token,$picFile);
+			$wordResArr = json_decode($wordRes,true);
+		}
+		
+		if(empty($wordResArr['words_result_num'])){
+			$callback = array('errorMsg'=>'未识别出文字','errorNo'=>'109');
+	    	exit(json_encode($callback));
+		}
+
+		@unlink($picFile);
+
+		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordResArr);
+    	exit(json_encode($callback));
 	}
 
 	/**
