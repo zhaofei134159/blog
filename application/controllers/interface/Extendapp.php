@@ -77,7 +77,7 @@ class Extendapp extends Home_Controller{
 		// $picFile = 'http://blog.myfeiyou.com/public/public/voiceToWord/2020061209504258040.amr';
 
 		// 你的 APPID AK SK 
-		$word = $this->my_speech->asr(file_get_contents($picFile), 'amr', 16000, array(
+		$word = $this->my_speech->asr(file_get_contents($picFile), 'pcm', 16000, array(
 		    'dev_pid' => 1537,
 		));
 		var_dump($word);
