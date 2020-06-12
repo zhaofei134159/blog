@@ -73,18 +73,26 @@ class Extendapp extends Home_Controller{
 	// 录音转换文字
 	public function voiceToWord(){
 		// $file = $_FILES['file'];
-		// $picFile = upload_file($file,'voiceToWord');
-		$picFile = 'http://blog.myfeiyou.com/public/public/voiceToWord/2020061210292770607.pcm';
+		// $voiceFile = upload_file($file,'voiceToWord');
+		$voiceFile = 'http://blog.myfeiyou.com/public/public/voiceToWord/2020061210292770607.pcm';
 
 		// 你的 APPID AK SK 
-		$word = $this->my_speech->asr(file_get_contents($picFile), 'pcm', 16000, array(
+		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'pcm', 16000, array(
 		    'dev_pid' => 1537,
 		));
-		var_dump($word);
-		// @unlink($picFile);
+		// @unlink($voiceFile);
 
-		// $callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordResArr);
-  //   	exit(json_encode($callback));
+		if(!empty($word['err_no'])){
+			$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
+	    	exit(json_encode($callback));
+		}
+
+		$wordArr = array();
+		$wordArr['voicePath'] = $voiceFile;
+		$wordArr['word'] = $word['result'];
+
+		$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>'0','seccuss'=>$wordArr);
+    	exit(json_encode($callback));
 	}
 
 	/**
