@@ -31,7 +31,7 @@ class Extendapp extends Home_Controller{
 			'apiKey'=>$this->voiceAppkey,
 			'secretKey'=>$this->voiceSecretkey
 		);
-        $this->load->library('voice/AipSpeech',$voiceArr);
+        $this->load->library('voice/AipSpeech',$voiceArr,'my_speech');
 	}
 
 	// 图文转换文字
@@ -80,7 +80,7 @@ class Extendapp extends Home_Controller{
 		var_dump($this->voiceAppId);
 		var_dump($this->voiceAppkey);
 		var_dump($this->voiceSecretkey);
-		$word = $this->AipSpeech->asr(file_get_contents($picFile), 'mp3', 16000, array(
+		$word = $this->my_speech->asr(file_get_contents($picFile), 'mp3', 16000, array(
 		    'dev_pid' => 1537,
 		));
 		var_dump($word);
