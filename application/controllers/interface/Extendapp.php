@@ -74,7 +74,7 @@ class Extendapp extends Home_Controller{
 	public function voiceToWord(){
 		// $file = $_FILES['file'];
 		// $voiceFile = upload_file($file,'voiceToWord');
-		$voiceFile = 'http://blog.myfeiyou.com/public/public/voiceToWord/2020061210292770607.pcm';
+		$voiceFile = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061210292770607.pcm';
 
 		// 你的 APPID AK SK 
 		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'pcm', 16000, array(
