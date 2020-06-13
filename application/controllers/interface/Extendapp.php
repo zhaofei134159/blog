@@ -72,12 +72,12 @@ class Extendapp extends Home_Controller{
 
 	// 录音转换文字
 	public function voiceToWord(){
-		// $file = $_FILES['file'];
-		// $voiceFile = upload_file($file,'voiceToWord');
-		$voiceFile = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061210292770607.pcm';
+		$file = $_FILES['file'];
+		$voiceFile = upload_file($file,'voiceToWord');
+		// $voiceFile = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061210292770607.pcm';
 
 		// 你的 APPID AK SK 
-		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'pcm', 16000, array(
+		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'wav', 16000, array(
 		    'dev_pid' => 1537,
 		));
 		// @unlink($voiceFile);
@@ -86,6 +86,8 @@ class Extendapp extends Home_Controller{
 			$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
 	    	exit(json_encode($callback));
 		}
+		
+		@unlink($voiceFile);
 
 		$wordArr = array();
 		$wordArr['voicePath'] = $voiceFile;
