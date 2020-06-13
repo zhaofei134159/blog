@@ -87,7 +87,7 @@ class Extendapp extends Home_Controller{
 	    	exit(json_encode($callback));
 		}
 
-		@unlink($voiceFile);
+		// @unlink($voiceFile);
 
 		$wordArr = array();
 		$wordArr['voicePath'] = $voiceFile;
