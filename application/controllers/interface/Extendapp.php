@@ -74,6 +74,7 @@ class Extendapp extends Home_Controller{
 	public function voiceToWord(){
 		// $file = $_FILES['file'];
 		// $voiceFile = upload_file($file,'voiceToWord');
+		var_dump(BASEPATH);die;
 		$voiceFile = '/public/public/voiceToWord/2020061513515020187.wav';
 
 		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'wav', 16000, array(
