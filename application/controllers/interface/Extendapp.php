@@ -93,49 +93,43 @@ class Extendapp extends Home_Controller{
 		// ));
 
 		# 使用腾讯
-		// $params = array();
-		// $params['Action'] = 'CreateRecTask';
-		// $params['Version'] = '2019-06-14';
-		// $params['Timestamp'] = time();
-		// $params['Nonce'] = rand(10000000,99999999);
-		// $params['ChannelNum'] = 1;
-		// $params['EngineModelType'] = '16k_zh';
-		// $params['ResTextFormat'] = 1;
-		// $params['SourceType'] = 0;
-		// $params['Url'] = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061516045033604.mp3';
+		
 		// sort($params)
 		// $srcStr  = 'GETasr.tencentcloudapi.com/?'.http_build_query($params);
 		// $signStr = base64_encode(hash_hmac('sha1', $srcStr, $this->config->item('SecretKey'), true));
 
 
-
-		// if(!empty($word['err_no'])){
-		// 	$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
-		// 	exit(json_encode($callback));
-		// }
 		$secretId = "AKIDz8krbsJ5yKBZQpn74WFkmLPx3EXAMPLE";
 		$secretKey = "Gu5t9xGARNpq86cd98joQYCN3EXAMPLE";
-		$param["Nonce"] = 11886;//rand();
-		$param["Timestamp"] = 1465185768;//time();
-		$param["Region"] = "ap-guangzhou";
-		$param["SecretId"] = $secretId;
-		$param["Version"] = "2017-03-12";
-		$param["Action"] = "DescribeInstances";
-		$param["InstanceIds.0"] = "ins-09dx96dg";
-		$param["Limit"] = 20;
-		$param["Offset"] = 0;
+		$params = array();
+		$params['Action'] = 'CreateRecTask';
+		$params['Version'] = '2019-06-14';
+		$params['Timestamp'] = time();
+		$params['Nonce'] = rand(10000000,99999999);
+		$params['ChannelNum'] = 1;
+		$params['EngineModelType'] = '16k_zh';
+		$params['ResTextFormat'] = 1;
+		$params['SourceType'] = 0;
+		$params['Url'] = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061516045033604.mp3';
 
-		ksort($param);
+		ksort($params);
 
-		$signStr = "GETcvm.tencentcloudapi.com/?";
-		foreach ( $param as $key => $value ) {
+		$signStr = "GETasr.tencentcloudapi.com/?";
+		foreach ( $params as $key => $value ) {
 		    $signStr = $signStr . $key . "=" . $value . "&";
 		}
 		$signStr = substr($signStr, 0, -1);
 
-		$signature = base64_encode(hash_hmac("sha1", $signStr, $secretKey, true));
+		$signature  = base64_encode(hash_hmac('sha1', $srcStr, $this->config->item('SecretKey'), true));
 		echo $signature.PHP_EOL;
 		die;
+
+
+
+		if(!empty($word['err_no'])){
+			$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
+			exit(json_encode($callback));
+		}
 
 		// @unlink($voiceFile);
 

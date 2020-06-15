@@ -34,9 +34,6 @@
 	$config['voiceAppkey'] = 'GY3XkTZKNwElpcTknlWUSo0A';
 	$config['voiceSecretkey'] = 'N51MrcfuKMrhGhF3F9Du8EgMt4GZgmdn';
 
-	//腾讯
-	$config['SecretId'] = 'AKIDC8nAI83YBW2zfWuIxEExOYREuHOL6k26 ';
-	$config['SecretKey'] = 'A4kBLG6fx81kfJirjJgmgMltjIbqpeCS';
 
 
 	//代理的导航
