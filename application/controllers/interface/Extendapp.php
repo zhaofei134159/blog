@@ -72,12 +72,22 @@ class Extendapp extends Home_Controller{
 
 	// 录音转换文字
 	public function voiceToWord(){
-		// $file = $_FILES['file'];
-		// $voiceFile = upload_file($file,'voiceToWord');
-		$voiceFile = BLOGURL.'/public/public/voiceToWord/2020061513515020187.wav';
-		var_dump($voiceFile);
-		
-		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'wav', 16000, array(
+		$file = $_FILES['file'];
+		$voiceFile = upload_file($file,'voiceToWord');
+		// $voiceFile = BLOGURL.'/public/public/voiceToWord/2020061513515020187.wav';
+		var_dump($voiceFile);die;
+		// $url = 'http://server.com/sound.mp3';
+
+		// $data = json_decode(file_get_contents('http://api.rest7.com/v1/sound_convert.php?url=' . $url . '&format=wav'));
+
+		// if (@$data->success !== 1)  
+		// {
+		//     die('Failed');
+		// }
+		// $wave = file_get_contents($data->file);
+		// file_put_contents('sound.wav', $wave);  
+
+		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'mp3', 16000, array(
 		    'lan' => 'zh',
 		));
 
