@@ -5,14 +5,14 @@ date_default_timezone_set("Asia/Shanghai"); //设置时区
 class Extendapp extends Home_Controller{
 
 	# 图文识别的appKey
-	public $picToWordAppId = '11521585';
-	public $picToWordAppkey = '9PZah23T4Yaa1pePDzCdCzwR';
-	public $picToWordSecretkey = 'ehvwNTa1Y3VbTjXEEfbEF57eeRX2s2uj';
+	public $picToWordAppId = '';
+	public $picToWordAppkey = '';
+	public $picToWordSecretkey = '';
 
 	# 语音处理
-	public $voiceAppId = '20349172';
-	public $voiceAppkey = 'GY3XkTZKNwElpcTknlWUSo0A';
-	public $voiceSecretkey = 'N51MrcfuKMrhGhF3F9Du8EgMt4GZgmdn';
+	public $voiceAppId = '';
+	public $voiceAppkey = '';
+	public $voiceSecretkey = '';
 
 	public function __construct(){
 		parent::__construct();
@@ -24,6 +24,15 @@ class Extendapp extends Home_Controller{
 		$this->load->model('zf_cate_model');
 		$this->load->model('zf_tag_model');
 		$this->load->model('zf_user_model');
+		$this->load->config('app');
+
+        $this->picToWordAppId = $this->config->item('picToWordAppId');
+        $this->picToWordAppkey = $this->config->item('picToWordAppkey');
+        $this->picToWordSecretkey = $this->config->item('picToWordSecretkey');
+
+        $this->voiceAppId = $this->config->item('voiceAppId');
+        $this->voiceAppkey = $this->config->item('voiceAppkey');
+        $this->voiceSecretkey = $this->config->item('voiceSecretkey');
 
 
 		$voiceArr = array(
@@ -77,20 +86,56 @@ class Extendapp extends Home_Controller{
 		// $file = $_FILES['file'];
 		// $voiceFile = upload_file($file,'voiceToWord');
 		// $voiceFile = 'public/public/voiceToWord/2020061516045033604.mp3';
-		// $pcmFile = voiceFormatConversion($blogUrl.$voiceFile,'pcm','voiceToWord');
 
-		$pcmFile = 'public/public/voiceToWord/2020061517034994298.pcm';
+		# 百度不支持MP3 
+		// $word = $this->my_speech->asr(file_get_contents($blogUrl.$pcmFile), 'pcm', 16000, array(
+		//     'lan' => 'zh',
+		// ));
 
-		  
+		# 使用腾讯
+		// $params = array();
+		// $params['Action'] = 'CreateRecTask';
+		// $params['Version'] = '2019-06-14';
+		// $params['Timestamp'] = time();
+		// $params['Nonce'] = rand(10000000,99999999);
+		// $params['ChannelNum'] = 1;
+		// $params['EngineModelType'] = '16k_zh';
+		// $params['ResTextFormat'] = 1;
+		// $params['SourceType'] = 0;
+		// $params['Url'] = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061516045033604.mp3';
+		// sort($params)
+		// $srcStr  = 'GETasr.tencentcloudapi.com/?'.http_build_query($params);
+		// $signStr = base64_encode(hash_hmac('sha1', $srcStr, $this->config->item('SecretKey'), true));
 
-		$word = $this->my_speech->asr(file_get_contents($blogUrl.$pcmFile), 'pcm', 16000, array(
-		    'lan' => 'zh',
-		));
 
-		if(!empty($word['err_no'])){
-			$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
-	    	exit(json_encode($callback));
+
+		// if(!empty($word['err_no'])){
+		// 	$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
+		// 	exit(json_encode($callback));
+		// }
+		$secretId = "AKIDz8krbsJ5yKBZQpn74WFkmLPx3EXAMPLE";
+		$secretKey = "Gu5t9xGARNpq86cd98joQYCN3EXAMPLE";
+		$param["Nonce"] = 11886;//rand();
+		$param["Timestamp"] = 1465185768;//time();
+		$param["Region"] = "ap-guangzhou";
+		$param["SecretId"] = $secretId;
+		$param["Version"] = "2017-03-12";
+		$param["Action"] = "DescribeInstances";
+		$param["InstanceIds.0"] = "ins-09dx96dg";
+		$param["Limit"] = 20;
+		$param["Offset"] = 0;
+
+		ksort($param);
+
+		$signStr = "GETcvm.tencentcloudapi.com/?";
+		foreach ( $param as $key => $value ) {
+		    $signStr = $signStr . $key . "=" . $value . "&";
 		}
+		$signStr = substr($signStr, 0, -1);
+
+		$signature = base64_encode(hash_hmac("sha1", $signStr, $secretKey, true));
+		echo $signature.PHP_EOL;
+		die;
 
 		// @unlink($voiceFile);
 
