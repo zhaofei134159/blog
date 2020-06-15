@@ -72,9 +72,9 @@ class Extendapp extends Home_Controller{
 
 	// 录音转换文字
 	public function voiceToWord(){
-		$file = $_FILES['file'];
-		$voiceFile = upload_file($file,'voiceToWord');
-		$voiceFile = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061401523382460.wav';
+		// $file = $_FILES['file'];
+		// $voiceFile = upload_file($file,'voiceToWord');
+		$voiceFile = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061513515020187.wav';
 
 		// 你的 APPID AK SK 
 		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'wav', 16000, array(
