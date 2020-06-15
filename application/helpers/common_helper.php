@@ -94,3 +94,23 @@ function upload_file($file,$address,$url=''){
 
     return $web_path;
 }
+
+function voiceFormatConversion($url,$format,$address){
+    $data = json_decode(file_get_contents('http://api.rest7.com/v1/sound_convert.php?url=' . $url . '&format='.$pcm));
+
+    if (@$data->success !== 1)  
+    {
+        die('Failed');
+    }
+    $wave = file_get_contents($data->file);
+
+    $save_dir = PUBLIC_URL.$address;
+    $save_dir = trim($save_dir,'/');
+
+    $file_name = date('YmdHis') . rand(10000, 99999) . '.'.$zhui;
+    $save_path = $save_dir . '/' . $file_name;
+
+    file_put_contents($save_path, $wave);
+    
+    return $save_path;
+}

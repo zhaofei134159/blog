@@ -72,20 +72,22 @@ class Extendapp extends Home_Controller{
 
 	// 录音转换文字
 	public function voiceToWord(){
-		$file = $_FILES['file'];
-		$voiceFile = upload_file($file,'voiceToWord');
-		// $voiceFile = BLOGURL.'/public/public/voiceToWord/2020061513515020187.wav';
-		var_dump($voiceFile);die;
-		// $url = 'http://server.com/sound.mp3';
+		// $file = $_FILES['file'];
+		// $voiceFile = upload_file($file,'voiceToWord');
+		$blogUrl = 'http://blog.myfeiyou.com/';
+		$voiceFile = 'public/public/voiceToWord/2020061516045033604.mp3';
+		$pcmFile = voiceFormatConversion($blogUrl.$voiceFile,'pcm','voiceToWord');
+		var_dump($voiceFile);
+		var_dump($pcmFile);die;
 
-		// $data = json_decode(file_get_contents('http://api.rest7.com/v1/sound_convert.php?url=' . $url . '&format=wav'));
+		$data = json_decode(file_get_contents('http://api.rest7.com/v1/sound_convert.php?url=' . $blogUrl.$voiceFile . '&format=pcm'));
 
-		// if (@$data->success !== 1)  
-		// {
-		//     die('Failed');
-		// }
-		// $wave = file_get_contents($data->file);
-		// file_put_contents('sound.wav', $wave);  
+		if (@$data->success !== 1)  
+		{
+		    die('Failed');
+		}
+		$wave = file_get_contents($data->file);
+		file_put_contents(BLOGURL.'public/public/voiceToWord/sound.pcm', $wave);  
 
 		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'mp3', 16000, array(
 		    'lan' => 'zh',
