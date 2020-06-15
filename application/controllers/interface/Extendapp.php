@@ -74,14 +74,13 @@ class Extendapp extends Home_Controller{
 	public function voiceToWord(){
 		// $file = $_FILES['file'];
 		// $voiceFile = upload_file($file,'voiceToWord');
-		$voiceFile = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061513515020187.wav';
+		$voiceFile = './public/public/voiceToWord/2020061513515020187.wav';
 
 		// 你的 APPID AK SK 
-		$word = $this->my_speech->asr(null, 'wav', 16000, array(
-			'url' => $voiceFile,
-		    'dev_pid' => 1537,
+		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'wav', 16000, array(
+		    'lan' => 'zh',
 		));
-		// @unlink($voiceFile);
+		var_dump($word);
 
 		if(!empty($word['err_no'])){
 			$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
