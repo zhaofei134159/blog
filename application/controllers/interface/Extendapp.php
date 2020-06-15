@@ -77,7 +77,8 @@ class Extendapp extends Home_Controller{
 		$voiceFile = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061513515020187.wav';
 
 		// 你的 APPID AK SK 
-		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'wav', 16000, array(
+		$word = $this->my_speech->asr(null, 'wav', 16000, array(
+			'url' => $voiceFile,
 		    'dev_pid' => 1537,
 		));
 		// @unlink($voiceFile);
