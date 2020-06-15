@@ -70,6 +70,8 @@ define('HOME_URL_HTTP', 'https://blog.myfeiyou.com/home/');
 define('HOME_URL', '/home/');
 define('ADMIN_URL', '/backstage/');
 
+define('BLOGURL', dirname(__FILE__));
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
