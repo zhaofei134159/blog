@@ -83,7 +83,7 @@ class Extendapp extends Home_Controller{
 
 		  
 
-		$word = $this->my_speech->asr(file_get_contents($blogUrl.$pcmFile), 'mp3', 16000, array(
+		$word = $this->my_speech->asr(file_get_contents($blogUrl.$pcmFile), 'pcm', 16000, array(
 		    'lan' => 'zh',
 		));
 
