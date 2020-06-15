@@ -96,7 +96,7 @@ function upload_file($file,$address,$url=''){
 }
 
 function voiceFormatConversion($url,$format,$address){
-    $data = json_decode(file_get_contents('http://api.rest7.com/v1/sound_convert.php?url=' . $url . '&format='.$pcm));
+    $data = json_decode(file_get_contents('http://api.rest7.com/v1/sound_convert.php?url=' . $url . '&format='.$format));
 
     if (@$data->success !== 1)  
     {
@@ -107,7 +107,7 @@ function voiceFormatConversion($url,$format,$address){
     $save_dir = PUBLIC_URL.$address;
     $save_dir = trim($save_dir,'/');
 
-    $file_name = date('YmdHis') . rand(10000, 99999) . '.'.$zhui;
+    $file_name = date('YmdHis') . rand(10000, 99999) . '.'.$format;
     $save_path = $save_dir . '/' . $file_name;
 
     file_put_contents($save_path, $wave);
