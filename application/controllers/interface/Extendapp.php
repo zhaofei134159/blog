@@ -76,11 +76,10 @@ class Extendapp extends Home_Controller{
 		// $voiceFile = upload_file($file,'voiceToWord');
 		$voiceFile = BLOGURL.'/public/public/voiceToWord/2020061513515020187.wav';
 		var_dump($voiceFile);
+		
 		$word = $this->my_speech->asr(file_get_contents($voiceFile), 'wav', 16000, array(
 		    'lan' => 'zh',
 		));
-		var_dump(file_get_contents($voiceFile));
-		var_dump($word);
 
 		if(!empty($word['err_no'])){
 			$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
