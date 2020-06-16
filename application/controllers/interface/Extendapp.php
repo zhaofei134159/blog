@@ -127,11 +127,12 @@ class Extendapp extends Home_Controller{
 		$getTaskId = $this->request($getTaskIdUrl);
 
 		$getTaskIdArr = json_decode($getTaskId,true);
+		var_dump($getTaskIdArr);
+		
 		if(!empty($getTaskIdArr['Response']['Data']['TaskId'])){
 			$callback = array('errorMsg'=>$getTaskIdArr['Response']['Error']['Message'],'errorNo'=>$getTaskIdArr['Response']['Error']['Code']);
 			exit(json_encode($callback));
 		}
-		var_dump($getTaskId);
 
 		$taskIdArr = array();
 		$taskIdArr['Action'] = 'DescribeTaskStatus';
@@ -140,6 +141,7 @@ class Extendapp extends Home_Controller{
 		$taskIdArr['Nonce'] = rand(10000000,99999999);
 		$taskIdArr['SecretId'] = $this->secretId;
 		$taskIdArr['TaskId'] = $getTaskIdArr['Response']['Data']['TaskId'];
+		ksort($taskIdArr);
 
 		$taskIdArr['Signature'] = $this->setSignature($taskIdArr);
 		$url = 'https://asr.tencentcloudapi.com/?'.http_build_query($taskIdArr);
