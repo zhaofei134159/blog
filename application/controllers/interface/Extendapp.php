@@ -111,7 +111,7 @@ class Extendapp extends Home_Controller{
 		$params['Version'] = '2019-06-14';
 		$params['Timestamp'] = time();
 		$params['Nonce'] = rand(10000000,99999999);
-		$params['SecretId'] = $this->secretId;
+		// $params['SecretId'] = $this->secretId;
 		$params['ChannelNum'] = 1;
 		$params['EngineModelType'] = '16k_zh';
 		$params['ResTextFormat'] = 1;
@@ -121,12 +121,33 @@ class Extendapp extends Home_Controller{
 
 		# 生成签名
 		$params['Signature'] = $this->setSignature($params);
-		$url = 'https://asr.tencentcloudapi.com/?'.http_build_query($params);
-		echo $url.'<br>';
+		$getTaskIdUrl = 'https://asr.tencentcloudapi.com/?'.http_build_query($params);
 
+		# 获取TaskId
+		$getTaskId = $this->request($getTaskIdUrl);
+
+		$getTaskIdArr = json_decode($getTaskId,true);
+		if(!empty($getTaskIdArr['Response']['Data']['TaskId'])){
+			// $callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
+			// exit(json_encode($callback));
+			var_dump($getTaskId);
+			die;
+		}
+
+		$taskIdArr = array();
+		$taskIdArr['Action'] = 'DescribeTaskStatus';
+		$taskIdArr['Version'] = '2019-06-14';
+		$taskIdArr['Timestamp'] = time();
+		$taskIdArr['Nonce'] = rand(10000000,99999999);
+		$taskIdArr['SecretId'] = $this->secretId;
+		$taskIdArr['TaskId'] = $getTaskIdArr['Response']['Data']['TaskId'];
+
+		$taskIdArr['Signature'] = $this->setSignature($taskIdArr);
+		$url = 'https://asr.tencentcloudapi.com/?'.http_build_query($taskIdArr);
+
+		# 请求返回
 		$result = $this->request($url);
 		var_dump($result);
-
 		die;
 
 		if(!empty($word['err_no'])){
