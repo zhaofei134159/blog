@@ -111,7 +111,7 @@ class Extendapp extends Home_Controller{
 		$params['Version'] = '2019-06-14';
 		$params['Timestamp'] = time();
 		$params['Nonce'] = rand(10000000,99999999);
-		// $params['SecretId'] = $this->secretId;
+		$params['SecretId'] = $this->secretId;
 		$params['ChannelNum'] = 1;
 		$params['EngineModelType'] = '16k_zh';
 		$params['ResTextFormat'] = 1;
@@ -128,11 +128,10 @@ class Extendapp extends Home_Controller{
 
 		$getTaskIdArr = json_decode($getTaskId,true);
 		if(!empty($getTaskIdArr['Response']['Data']['TaskId'])){
-			// $callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
-			// exit(json_encode($callback));
-			var_dump($getTaskId);
-			die;
+			$callback = array('errorMsg'=>$getTaskIdArr['Response']['Error']['Message'],'errorNo'=>$getTaskIdArr['Response']['Error']['Code']);
+			exit(json_encode($callback));
 		}
+		var_dump($getTaskId);
 
 		$taskIdArr = array();
 		$taskIdArr['Action'] = 'DescribeTaskStatus';
