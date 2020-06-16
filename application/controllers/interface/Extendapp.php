@@ -128,8 +128,8 @@ class Extendapp extends Home_Controller{
 
 		$getTaskIdArr = json_decode($getTaskId,true);
 		var_dump($getTaskIdArr);
-		
-		if(!empty($getTaskIdArr['Response']['Data']['TaskId'])){
+
+		if(empty($getTaskIdArr['Response']['Data']['TaskId'])){
 			$callback = array('errorMsg'=>$getTaskIdArr['Response']['Error']['Message'],'errorNo'=>$getTaskIdArr['Response']['Error']['Code']);
 			exit(json_encode($callback));
 		}
