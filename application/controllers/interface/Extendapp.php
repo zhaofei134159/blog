@@ -153,7 +153,7 @@ class Extendapp extends Home_Controller{
 		}
 
 		$result =  array();
-		$result['word'] = $resultArr['Response']['Data']['Result'];
+		$result['word'] = preg_replace('(\[|\d|,|:|\.|\])','',$resultArr['Response']['Data']['Result']);
 		$result['taskId'] = $task_id;
 
 		$callback = array('errorMsg'=>$resultArr['Response']['Data']['StatusStr'],'errorNo'=>'0','success'=>$result);
