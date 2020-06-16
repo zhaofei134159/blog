@@ -17,7 +17,7 @@ class Extendapp extends Home_Controller{
 	//腾讯
 	public $secretId = '';
 	public $secretKey = '';
-	
+
 	public function __construct(){
 		parent::__construct();
 
@@ -118,17 +118,15 @@ class Extendapp extends Home_Controller{
 		$params['Url'] = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061516045033604.mp3';
 		ksort($params);
 
-		$signStr = "GETasr.tencentcloudapi.com/?";
-		foreach ( $params as $key => $value ) {
-		    $signStr = $signStr . $key . "=" . $value . "&";
-		}
-		$signStr = substr($signStr, 0, -1);
+		# 生成签名
+		$params['Signature'] = setSignature($params);
+		$url = 'https://asr.tencentcloudapi.com/?'.http_build_query($params);
+		echo $url.'<br>';
 
-		$signature  = base64_encode(hash_hmac('sha1', $signStr, $this->secretKey, true));
-		echo $signature.PHP_EOL;
+		$result = request($url);
+		var_dump($result);
+
 		die;
-
-
 
 		if(!empty($word['err_no'])){
 			$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
@@ -157,7 +155,7 @@ class Extendapp extends Home_Controller{
 		    'detect_direction' => true,
 		    'detect_language' => true,
 		);
-		$res = $this->request_post($url, $bodys);
+		$res = $this->request($url, $bodys);
 
 		return $res;
 	}
@@ -178,9 +176,25 @@ class Extendapp extends Home_Controller{
 	    	$o.= "$k=" . urlencode( $v ). "&" ;
 	    }
 	    $post_data = substr($o,0,-1);
-	    $res = $this->request_post($url, $post_data);
+	    $res = $this->request($url, $post_data);
 
 	    return $res;
+	}
+
+	/**
+	* 生成腾讯签名
+	* @return 签名
+	*/
+	function setSignature($params){
+
+		$signStr = "GETasr.tencentcloudapi.com/?";
+		foreach ( $params as $key => $value ) {
+		    $signStr = $signStr . $key . "=" . $value . "&";
+		}
+		$signStr = substr($signStr, 0, -1);
+		$signature  = base64_encode(hash_hmac('sha1', $signStr, $this->secretKey, true));
+
+		return $signature;
 	}
 
 	/**
@@ -189,9 +203,9 @@ class Extendapp extends Home_Controller{
 	* @param string $param
 	* @return - http response body if succeeds, else false.
 	*/
-	function request_post($url = '', $param = '')
+	function request($url = '', $param = array())
 	{
-		if (empty($url) || empty($param)) {
+		if (empty($url)) {
 			return false;
 		}
 
@@ -205,8 +219,10 @@ class Extendapp extends Home_Controller{
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		// post提交方式
-		curl_setopt($curl, CURLOPT_POST, 1);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
+		if(!empty($curlPost)){
+			curl_setopt($curl, CURLOPT_POST, 1);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
+		}
 		// 运行curl
 		$data = curl_exec($curl);
 		curl_close($curl);
