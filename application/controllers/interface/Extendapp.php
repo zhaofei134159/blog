@@ -116,7 +116,7 @@ class Extendapp extends Home_Controller{
 	*/
 	function getVoiceUploadDesc(){
 		$task_id = $_GET['task_id'];
-		$voiceFile = $_GET['voiceFile'];
+		$voiceFile = $_GET['voicePath'];
 
 		if(!isset($task_id)||empty($task_id)){
 			$taskIdJson = $this->getVoiceUploadTaskid($voiceFile);
