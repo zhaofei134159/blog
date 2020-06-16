@@ -123,7 +123,7 @@ class Extendapp extends Home_Controller{
 		$url = 'https://asr.tencentcloudapi.com/?'.http_build_query($params);
 		echo $url.'<br>';
 
-		$result = request($url);
+		$result = $this->request($url);
 		var_dump($result);
 
 		die;
