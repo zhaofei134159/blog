@@ -119,7 +119,7 @@ class Extendapp extends Home_Controller{
 		ksort($params);
 
 		# 生成签名
-		$params['Signature'] = setSignature($params);
+		$params['Signature'] = $this->setSignature($params);
 		$url = 'https://asr.tencentcloudapi.com/?'.http_build_query($params);
 		echo $url.'<br>';
 
