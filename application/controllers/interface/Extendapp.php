@@ -106,8 +106,6 @@ class Extendapp extends Home_Controller{
 		// $signStr = base64_encode(hash_hmac('sha1', $srcStr, $this->config->item('SecretKey'), true));
 
 
-		$secretId = "AKIDz8krbsJ5yKBZQpn74WFkmLPx3EXAMPLE";
-		$secretKey = "Gu5t9xGARNpq86cd98joQYCN3EXAMPLE";
 		$params = array();
 		$params['Action'] = 'CreateRecTask';
 		$params['Version'] = '2019-06-14';
@@ -118,7 +116,6 @@ class Extendapp extends Home_Controller{
 		$params['ResTextFormat'] = 1;
 		$params['SourceType'] = 0;
 		$params['Url'] = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061516045033604.mp3';
-
 		ksort($params);
 
 		$signStr = "GETasr.tencentcloudapi.com/?";
@@ -127,7 +124,7 @@ class Extendapp extends Home_Controller{
 		}
 		$signStr = substr($signStr, 0, -1);
 
-		$signature  = base64_encode(hash_hmac('sha1', $srcStr, $this->config->item('SecretKey'), true));
+		$signature  = base64_encode(hash_hmac('sha1', $signStr, $this->secretKey, true));
 		echo $signature.PHP_EOL;
 		die;
 
