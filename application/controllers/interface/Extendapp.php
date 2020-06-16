@@ -15,8 +15,8 @@ class Extendapp extends Home_Controller{
 	public $voiceSecretkey = '';
 
 	//腾讯
-	public $voiceAppkey = '';
-	public $voiceSecretkey = '';
+	public $secretId = '';
+	public $secretKey = '';
 	
 	public function __construct(){
 		parent::__construct();
