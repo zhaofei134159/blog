@@ -14,20 +14,19 @@ class Extendapp extends Home_Controller{
 	public $voiceAppkey = '';
 	public $voiceSecretkey = '';
 
-	//腾讯
+	# 腾讯
 	public $secretId = '';
 	public $secretKey = '';
+	
+	# 请求地址	
+	public	$blogUrl = 'https://blog.myfeiyou.com/';
 
 	public function __construct(){
 		parent::__construct();
 
 		$this->load->helper('common');
 		$this->load->helper('htmlrepair');
-		$this->load->model('zf_blog_model');
-		$this->load->model('zf_work_model');
-		$this->load->model('zf_cate_model');
-		$this->load->model('zf_tag_model');
-		$this->load->model('zf_user_model');
+		$this->load->model('Zf_garbage_voice_model');
 		$this->load->config('secretkey');
 
         $this->picToWordAppId = $this->config->item('picToWordAppId');
@@ -88,24 +87,85 @@ class Extendapp extends Home_Controller{
 
 	// 录音转换文字
 	public function voiceToWord(){
-		$blogUrl = 'https://blog.myfeiyou.com/';
-
-		// $file = $_FILES['file'];
-		// $voiceFile = upload_file($file,'voiceToWord');
-		// $voiceFile = 'public/public/voiceToWord/2020061516045033604.mp3';
+		$file = $_FILES['file'];
+		$voiceFile = upload_file($file,'voiceToWord');
 
 		# 百度不支持MP3 
-		// $word = $this->my_speech->asr(file_get_contents($blogUrl.$pcmFile), 'pcm', 16000, array(
-		//     'lan' => 'zh',
-		// ));
-
-		# 使用腾讯
+		/*
+			$word = $this->my_speech->asr(file_get_contents($blogUrl.$pcmFile), 'pcm', 16000, array(
+			    'lan' => 'zh',
+			));
+		*/
 		
-		// sort($params)
-		// $srcStr  = 'GETasr.tencentcloudapi.com/?'.http_build_query($params);
-		// $signStr = base64_encode(hash_hmac('sha1', $srcStr, $this->config->item('SecretKey'), true));
+		$result =  array();
+		$result['voiceFile'] = $voiceFile;
 
+		$taskIdJson = getVoiceUploadTaskid($voiceFile);
+		$taskIdArr = json_decode($taskIdJson,true);
+		if(empty($taskIdArr['errorNo'])){
+			$result['taskId'] = $taskIdArr['taskId'];
+		}
 
+		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$result);
+    	exit(json_encode($callback));
+	}
+
+	/**
+	* 获取每个录音文件任务的内容
+	* @return 内容
+	*/
+	function getVoiceUploadDesc(){
+		$task_id = $_GET['task_id'];
+		$voiceFile = $_GET['voiceFile'];
+
+		if(!isset($task_id)||empty($task_id)){
+			$taskIdJson = getVoiceUploadTaskid($voiceFile);
+			$taskIdArr = json_decode($taskIdJson,true);
+			if(!empty($taskIdArr['errorNo'])){
+		    	exit($taskIdJson);
+			}
+			$task_id = $taskIdArr['taskId'];
+		}
+
+		if(empty($task_id)){
+			$callback = array('errorMsg'=>'task_id未找到','errorNo'=>'19991');
+			exit(json_encode($callback));
+		}
+
+		$taskIdArr = array();
+		$taskIdArr['Action'] = 'DescribeTaskStatus';
+		$taskIdArr['Version'] = '2019-06-14';
+		$taskIdArr['Timestamp'] = time();
+		$taskIdArr['Nonce'] = rand(10000000,99999999);
+		$taskIdArr['SecretId'] = $this->secretId;
+		$taskIdArr['TaskId'] = $task_id;
+		ksort($taskIdArr);
+
+		$taskIdArr['Signature'] = $this->setSignature($taskIdArr);
+		$url = 'https://asr.tencentcloudapi.com/?'.http_build_query($taskIdArr);
+		
+		$result = $this->request($url);
+		// {"Response":{"RequestId":"8c80efc2-af86-4233-82c8-f16af214fc8e","Data":{"TaskId":802649585,"Status":0,"StatusStr":"waiting","Result":"","ResultDetail":null,"ErrorMsg":""}}} 
+		$resultArr = json_decode($result,true);
+		if($resultArr['Response']['Data']['StatusStr']!='success'){
+			$callback = array('errorMsg'=>$resultArr['Response']['Data']['StatusStr'],'errorNo'=>'19992');
+			exit(json_encode($callback));
+		}
+
+		$result =  array();
+		$result['word'] = $resultArr['Response']['Data']['Result'];
+		$result['taskId'] = $task_id;
+		
+		$callback = array('errorMsg'=>$resultArr['Response']['Data']['StatusStr'],'errorNo'=>'0','success'=>$result);
+		exit(json_encode($callback));
+	}
+
+	/**
+	* 获取腾讯录音文件上传任务ID
+	* @return 任务ID
+	*/
+	function getVoiceUploadTaskid($voiceFile){
+		
 		$params = array();
 		$params['Action'] = 'CreateRecTask';
 		$params['Version'] = '2019-06-14';
@@ -116,7 +176,7 @@ class Extendapp extends Home_Controller{
 		$params['EngineModelType'] = '16k_zh';
 		$params['ResTextFormat'] = 1;
 		$params['SourceType'] = 0;
-		$params['Url'] = 'https://blog.myfeiyou.com/public/public/voiceToWord/2020061516045033604.mp3';
+		$params['Url'] = $this->blogUrl.$voiceFile;
 		ksort($params);
 
 		# 生成签名
@@ -127,106 +187,15 @@ class Extendapp extends Home_Controller{
 		$getTaskId = $this->request($getTaskIdUrl);
 
 		$getTaskIdArr = json_decode($getTaskId,true);
-		var_dump($getTaskIdArr);
 
 		if(empty($getTaskIdArr['Response']['Data']['TaskId'])){
 			$callback = array('errorMsg'=>$getTaskIdArr['Response']['Error']['Message'],'errorNo'=>$getTaskIdArr['Response']['Error']['Code']);
-			exit(json_encode($callback));
+			return json_encode($callback);
 		}
 
-		$taskIdArr = array();
-		$taskIdArr['Action'] = 'DescribeTaskStatus';
-		$taskIdArr['Version'] = '2019-06-14';
-		$taskIdArr['Timestamp'] = time();
-		$taskIdArr['Nonce'] = rand(10000000,99999999);
-		$taskIdArr['SecretId'] = $this->secretId;
-		$taskIdArr['TaskId'] = $getTaskIdArr['Response']['Data']['TaskId'];
-		ksort($taskIdArr);
 
-		$taskIdArr['Signature'] = $this->setSignature($taskIdArr);
-		$url = 'https://asr.tencentcloudapi.com/?'.http_build_query($taskIdArr);
-
-		# 请求返回
-		$result = $this->request($url);
-		var_dump($result);
-		die;
-
-		if(!empty($word['err_no'])){
-			$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>$word['err_no']);
-			exit(json_encode($callback));
-		}
-
-		// @unlink($voiceFile);
-
-		$wordArr = array();
-		$wordArr['voicePath'] = $voiceFile;
-		$wordArr['word'] = $word['result'];
-
-		$callback = array('errorMsg'=>$word['err_msg'],'errorNo'=>'0','seccuss'=>$wordArr);
-    	exit(json_encode($callback));
-	}
-
-	function asasdasdqweq(){
-		$secretId = "AKIDz8krbsJ5yKBZQpn74WFkmLPx3EXAMPLE";
-		$secretKey = "Gu5t9xGARNpq86cd98joQYCN3EXAMPLE";
-		$host = "cvm.tencentcloudapi.com";
-		$service = "cvm";
-		$version = "2017-03-12";
-		$action = "DescribeInstances";
-		$region = "ap-guangzhou";
-		// $timestamp = time();
-		$timestamp = 1551113065;
-		$algorithm = "TC3-HMAC-SHA256";
-
-		// step 1: build canonical request string
-		$httpRequestMethod = "POST";
-		$canonicalUri = "/";
-		$canonicalQueryString = "";
-		$canonicalHeaders = "content-type:application/json; charset=utf-8\n"."host:".$host."\n";
-		$signedHeaders = "content-type;host";
-		$payload = '{"Limit": 1, "Filters": [{"Values": ["\u672a\u547d\u540d"], "Name": "instance-name"}]}';
-		$hashedRequestPayload = hash("SHA256", $payload);
-		$canonicalRequest = $httpRequestMethod."\n"
-		    .$canonicalUri."\n"
-		    .$canonicalQueryString."\n"
-		    .$canonicalHeaders."\n"
-		    .$signedHeaders."\n"
-		    .$hashedRequestPayload;
-		echo $canonicalRequest.PHP_EOL;
-
-		// step 2: build string to sign
-		$date = gmdate("Y-m-d", $timestamp);
-		$credentialScope = $date."/".$service."/tc3_request";
-		$hashedCanonicalRequest = hash("SHA256", $canonicalRequest);
-		$stringToSign = $algorithm."\n"
-		    .$timestamp."\n"
-		    .$credentialScope."\n"
-		    .$hashedCanonicalRequest;
-		echo $stringToSign.PHP_EOL;
-
-		// step 3: sign string
-		$secretDate = hash_hmac("SHA256", $date, "TC3".$secretKey, true);
-		$secretService = hash_hmac("SHA256", $service, $secretDate, true);
-		$secretSigning = hash_hmac("SHA256", "tc3_request", $secretService, true);
-		$signature = hash_hmac("SHA256", $stringToSign, $secretSigning);
-		echo $signature.PHP_EOL;
-
-		// step 4: build authorization
-		$authorization = $algorithm
-		    ." Credential=".$secretId."/".$credentialScope
-		    .", SignedHeaders=content-type;host, Signature=".$signature;
-		echo $authorization.PHP_EOL;
-
-		$curl = "curl -X POST https://".$host
-		    .' -H "Authorization: '.$authorization.'"'
-		    .' -H "Content-Type: application/json; charset=utf-8"'
-		    .' -H "Host: '.$host.'"'
-		    .' -H "X-TC-Action: '.$action.'"'
-		    .' -H "X-TC-Timestamp: '.$timestamp.'"'
-		    .' -H "X-TC-Version: '.$version.'"'
-		    .' -H "X-TC-Region: '.$region.'"'
-		    ." -d '".$payload."'";
-		echo $curl.PHP_EOL;
+		$callback = array('errorMsg'=>'','errorNo'=>'0','taskId'=>$getTaskIdArr['Response']['Data']['TaskId']);
+    	return json_encode($callback);
 	}
 
 	/**
