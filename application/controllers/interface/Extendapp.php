@@ -100,7 +100,7 @@ class Extendapp extends Home_Controller{
 		$result =  array();
 		$result['voiceFile'] = $voiceFile;
 
-		$taskIdJson = getVoiceUploadTaskid($voiceFile);
+		$taskIdJson = $this->getVoiceUploadTaskid($voiceFile);
 		$taskIdArr = json_decode($taskIdJson,true);
 		if(empty($taskIdArr['errorNo'])){
 			$result['taskId'] = $taskIdArr['taskId'];
@@ -119,7 +119,7 @@ class Extendapp extends Home_Controller{
 		$voiceFile = $_GET['voiceFile'];
 
 		if(!isset($task_id)||empty($task_id)){
-			$taskIdJson = getVoiceUploadTaskid($voiceFile);
+			$taskIdJson = $this->getVoiceUploadTaskid($voiceFile);
 			$taskIdArr = json_decode($taskIdJson,true);
 			if(!empty($taskIdArr['errorNo'])){
 		    	exit($taskIdJson);
@@ -155,7 +155,7 @@ class Extendapp extends Home_Controller{
 		$result =  array();
 		$result['word'] = $resultArr['Response']['Data']['Result'];
 		$result['taskId'] = $task_id;
-		
+
 		$callback = array('errorMsg'=>$resultArr['Response']['Data']['StatusStr'],'errorNo'=>'0','success'=>$result);
 		exit(json_encode($callback));
 	}
