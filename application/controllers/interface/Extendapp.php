@@ -14,6 +14,10 @@ class Extendapp extends Home_Controller{
 	public $voiceAppkey = '';
 	public $voiceSecretkey = '';
 
+	//腾讯
+	public $voiceAppkey = '';
+	public $voiceSecretkey = '';
+	
 	public function __construct(){
 		parent::__construct();
 
@@ -24,7 +28,7 @@ class Extendapp extends Home_Controller{
 		$this->load->model('zf_cate_model');
 		$this->load->model('zf_tag_model');
 		$this->load->model('zf_user_model');
-		$this->load->config('app');
+		$this->load->config('secretkey');
 
         $this->picToWordAppId = $this->config->item('picToWordAppId');
         $this->picToWordAppkey = $this->config->item('picToWordAppkey');
@@ -33,6 +37,9 @@ class Extendapp extends Home_Controller{
         $this->voiceAppId = $this->config->item('voiceAppId');
         $this->voiceAppkey = $this->config->item('voiceAppkey');
         $this->voiceSecretkey = $this->config->item('voiceSecretkey');
+
+        $this->secretId = $this->config->item('secretId');
+        $this->secretKey = $this->config->item('secretKey');
 
 
 		$voiceArr = array(

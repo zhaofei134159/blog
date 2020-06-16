@@ -23,19 +23,6 @@
 	$config['cliend_secret'] = 'ea9e3db091199805a5ea527e8e72368276a2607c';
 	$config['cliend_login'] = 'http://blog.myfeiyou.com/home/login/github_web';
 
-	//百度
-	# 图文识别的appKey
-	$config['picToWordAppId'] = '11521585';
-	$config['picToWordAppkey'] = '9PZah23T4Yaa1pePDzCdCzwR';
-	$config['picToWordSecretkey'] = 'ehvwNTa1Y3VbTjXEEfbEF57eeRX2s2uj';
-
-	# 语音处理
-	$config['voiceAppId'] = '20349172';
-	$config['voiceAppkey'] = 'GY3XkTZKNwElpcTknlWUSo0A';
-	$config['voiceSecretkey'] = 'N51MrcfuKMrhGhF3F9Du8EgMt4GZgmdn';
-
-
-
 	//代理的导航
  	$config['user_type'] = array(
  		2=>'博主',
