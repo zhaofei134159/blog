@@ -17,6 +17,11 @@ class Extendapp extends Home_Controller{
 	# 腾讯
 	public $secretId = '';
 	public $secretKey = '';
+
+	# 京东
+	public $refuseAppKey = '';
+	public $refuseSecretKey = '';
+
 	
 	# 请求地址	
 	public	$blogUrl = 'https://blog.myfeiyou.com/';
@@ -40,6 +45,9 @@ class Extendapp extends Home_Controller{
         $this->secretId = $this->config->item('secretId');
         $this->secretKey = $this->config->item('secretKey');
 
+        $this->refuseAppKey = $this->config->item('refuseAppKey');
+        $this->refuseSecretKey = $this->config->item('refuseSecretKey');
+
 
 		$voiceArr = array(
 			'appId'=>$this->voiceAppId,
@@ -48,6 +56,7 @@ class Extendapp extends Home_Controller{
 		);
         $this->load->library('voice/AipSpeech',$voiceArr,'my_speech');
 	}
+
 
 	// 图文转换文字
 	public function picToWord(){
