@@ -39,7 +39,7 @@ class Refuseapp extends Home_Controller{
 		$query['sign'] = MD5($this->refuseSecretKey.$timestamp);
 		$url .= http_build_query($query);
 
-		$a = base64_encode(BLOGURL.$picFile);
+		$a = $this->imgBase64(BLOGURL.$picFile);
 		var_dump($a);die;
 		$param = array();
 		$param['imgBase64'] = base64_encode(BLOGURL.$picFile);
@@ -96,6 +96,17 @@ class Refuseapp extends Home_Controller{
 	private function getMillisecond(){
 		list($t1, $t2) = explode(' ', microtime());
 		return (float)sprintf('%.0f', (floatval($t1) + floatval($t2)) * 1000);
+	}
+
+	private function imgBase64($file){
+		$base64 = '';
+	    if ($fp = fopen($file, "rb", 0)) {
+	        $gambar = fread($fp, filesize($file));
+	        fclose($fp);
+	        $base64 = chunk_split(base64_encode($gambar));//这个是不带逗号的前面的base64编码
+	    }
+
+	    return $base64;
 	}
 
 }
