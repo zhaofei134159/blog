@@ -39,6 +39,8 @@ class Refuseapp extends Home_Controller{
 		$query['sign'] = MD5($this->refuseSecretKey.$timestamp);
 		$url .= http_build_query($query);
 
+		$a = base64_encode(BLOGURL.$picFile);
+		var_dump($a);die;
 		$param = array();
 		$param['imgBase64'] = base64_encode(BLOGURL.$picFile);
 		$param['cityId'] = '110000';
