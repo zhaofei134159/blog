@@ -32,7 +32,7 @@ class Refuseapp extends Home_Controller{
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
 
-		$url = 'https://aiapi.jd.com/jdai/garbageImageSearch';
+		$url = 'https://aiapi.jd.com/jdai/garbageImageSearch?';
 		$query = array();
 		$query['appkey'] = $this->refuseAppKey;
 		$query['timestamp'] = $timestamp;
