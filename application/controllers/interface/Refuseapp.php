@@ -39,7 +39,7 @@ class Refuseapp extends Home_Controller{
 		$query['sign'] = MD5($this->refuseSecretKey.$timestamp);
 		$url .= http_build_query($query);
 
-		$a = $this->imgBase64(BLOGURL.$picFile);
+		$a = $this->imgBase64(BLOGURL.'/'.$picFile);
 		var_dump($a);die;
 		$param = array();
 		$param['imgBase64'] = base64_encode(BLOGURL.$picFile);
