@@ -37,7 +37,7 @@ class Refuseapp extends Home_Controller{
 		$query['appkey'] = $this->refuseAppKey;
 		$query['timestamp'] = $timestamp;
 		$query['sign'] = MD5($this->refuseSecretKey.$timestamp);
-		$url .= http_build_query($query, '', '&');
+		$url .= $this->getUrlString($query);
 
 		$param = array();
 		$param['imgBase64'] = $this->imgBase64(BLOGURL.'/'.$picFile);
@@ -107,6 +107,24 @@ class Refuseapp extends Home_Controller{
 	    }
 
 	    return $base64;
+	}
+
+	/**
+	 *数组 转化url参数
+	 * @auth xieyang
+	 * @date 2018年5月10日 13:51:31
+	 * @param string
+	 * @return mixed
+	 */
+	private function getUrlString($array_query)
+	{
+	    $tmp = array();
+	    foreach($array_query as $k=>$param)
+	    {
+	        $tmp[] = $k.'='.$param;
+	    }
+	    $params = implode('&',$tmp);
+	    return $params;
 	}
 
 }
