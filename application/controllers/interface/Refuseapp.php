@@ -26,8 +26,8 @@ class Refuseapp extends Home_Controller{
 	public function refuseEntityDiscern(){
 		$file = $_FILES['file'];
 		$picFile = upload_img($file,'refuseImg');
-		echo $picFile;
-		die;
+
+		$picFile = 'public/public/refuseImg/2020061818592092484.jpg';
 
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
@@ -40,13 +40,13 @@ class Refuseapp extends Home_Controller{
 		$url .= http_build_query($query);
 
 		$param = array();
-		$param['imgBase64'] = '';
+		$param['imgBase64'] = base64_encode(BLOGURL.$picFile);
 		$param['cityId'] = '110000';
 
 		$header = array('Content-Type:application/json;charset=UTF-8');
 
 		$result = request($url,$param,$header);
-
+		var_dump($result);die;
 		// @unlink($picFile);
 
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordResArr);
