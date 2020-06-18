@@ -37,6 +37,8 @@ class Refuseapp extends Home_Controller{
 		$query['appkey'] = $this->refuseAppKey;
 		$query['timestamp'] = $timestamp;
 		$query['sign'] = MD5($this->refuseSecretKey.$timestamp);
+		var_dump($url);
+		
 		$url .= $this->getUrlString($query);
 
 		$param = array();
@@ -45,7 +47,7 @@ class Refuseapp extends Home_Controller{
 
 		$header = array('Content-Type:application/json;charset=UTF-8');
 
-		$result = $this->request($url,$param,$header);
+		// $result = $this->request($url,$param,$header);
 		var_dump($url);
 		var_dump($param);
 		var_dump($result);die;
