@@ -24,8 +24,8 @@ class Refuseapp extends Home_Controller{
 	}
 
 	public function refuseEntityDiscern(){
-		$file = $_FILES['file'];
-		$picFile = upload_img($file,'refuseImg');
+		// $file = $_FILES['file'];
+		// $picFile = upload_img($file,'refuseImg');
 
 		$picFile = 'public/public/refuseImg/2020061818592092484.jpg';
 
