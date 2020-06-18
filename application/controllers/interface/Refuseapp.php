@@ -35,7 +35,7 @@ class Refuseapp extends Home_Controller{
 		$url = 'https://aiapi.jd.com/jdai/garbageImageSearch';
 		$query = array();
 		$query['appkey'] = $this->refuseAppKey;
-		$query['timestamp'] = $timestamp
+		$query['timestamp'] = $timestamp;
 		$query['sign'] = MD5($this->refuseSecretKey.$timestamp);
 		$url .= http_build_query($query);
 
