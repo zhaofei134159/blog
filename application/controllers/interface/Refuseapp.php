@@ -88,7 +88,7 @@ class Refuseapp extends Home_Controller{
 		$propertyArr['encode']['format'] = 'mp3';
 		$propertyArr['encode']['sample_rate'] = '16000';
 		$propertyArr['encode']['post_process'] = '1'; # 开启后 一千 = 1000 
-		$propertyArr['platform'] = 'Linux';
+		$propertyArr['platform'] = 'Linux&iPhone X&11.4.1';
 		$propertyArr['version'] = '0.0.0.1';
 
 		$header = array(
