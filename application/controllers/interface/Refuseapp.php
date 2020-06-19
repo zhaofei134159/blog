@@ -99,8 +99,6 @@ class Refuseapp extends Home_Controller{
 		$result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
 		// $result = $this->request($url,array('file'=>'@'.BLOGURL.'/'.$voiceFile),$header);
 		// @unlink($picFile);
-		var_dump(class_exists('CURLFile'));
-		var_dump(class_exists('\CURLFile'));
 		var_dump($result);die;
 
 		$resultArr = json_encode($result,true);
@@ -154,6 +152,7 @@ class Refuseapp extends Home_Controller{
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
 			$data = new \CURLFile($file);
+			var_dump($data);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 		}
 		// 运行curl
