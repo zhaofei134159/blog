@@ -144,7 +144,6 @@ class Refuseapp extends Home_Controller{
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
 		// post提交方式
 		if(!empty($curlPost)){
 			curl_setopt($curl, CURLOPT_POST, 1);
@@ -152,7 +151,8 @@ class Refuseapp extends Home_Controller{
 		}
 		if(!empty($file)){
 			curl_setopt($curl, CURLOPT_POST, 1);
-			$data = array('file' => new \CURLFile(realpath($file)));
+			curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
+			$data = new \CURLFile($file);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 		}
 		// 运行curl
