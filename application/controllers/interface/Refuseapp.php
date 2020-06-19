@@ -91,7 +91,7 @@ class Refuseapp extends Home_Controller{
 
 		$header = array(
 			'cityId:110000',
-			'property:'.json_encode($propertyArr);
+			'property:'.json_encode($propertyArr),
 		);
 
 		$result = $this->request($url,$param,$header);
