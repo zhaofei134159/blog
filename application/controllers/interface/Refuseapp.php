@@ -67,7 +67,16 @@ class Refuseapp extends Home_Controller{
 		// var_dump($voiceFile);die;
 
 		$voiceFile = 'public/public/refuseVoice/1592546147033.mp3';
-		$fileUpload = array("file"=>"@".BLOGURL.'/'.$voiceFile);
+
+		$varname = 'file';
+		$name = '1592546147033.mp3';
+		$type = 'text/plain';
+		$key = "$varname\"; filename=\"$name\r\nContent-Type: $type\r\nAccept: \"";
+
+		$fileUpload = array();
+		$fileUpload[$key] = file_get_contents(BLOGURL.'/'.$voiceFile);
+
+
 
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
