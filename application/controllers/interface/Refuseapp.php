@@ -78,9 +78,8 @@ class Refuseapp extends Home_Controller{
 		$query['sign'] = $this->sign($timestamp);
 		$url .= $this->getUrlString($query);
 
-
 		$param = array();
-		$param['file'] = $this->blogUrl.$voiceFile;
+		$param['file'] = $this->gambar($this->blogUrl.$voiceFile);
 
 		$propertyArr = array();
 		$propertyArr['autoend'] = false;
@@ -88,7 +87,7 @@ class Refuseapp extends Home_Controller{
 		$propertyArr['encode']['format'] = 'mp3';
 		$propertyArr['encode']['sample_rate'] = '16000';
 		$propertyArr['encode']['post_process'] = '1'; # 开启后 一千 = 1000 
-		$propertyArr['platform'] = 'Linux&iPhone X&11.4.1';
+		$propertyArr['platform'] = 'Linux';
 		$propertyArr['version'] = '0.0.0.1';
 
 		$header = array(
@@ -170,6 +169,15 @@ class Refuseapp extends Home_Controller{
 	    }
 
 	    return $base64;
+	}
+
+	public function voiceData($file){
+		$gambar = '';
+	    if ($fp = fopen($file, "rb", 0)) {
+	        $gambar = fread($fp, filesize($file));
+	        fclose($fp);
+	    }
+	    return $gambar;
 	}
 
 	public function sign($timestamp){
