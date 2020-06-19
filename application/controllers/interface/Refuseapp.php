@@ -79,8 +79,8 @@ class Refuseapp extends Home_Controller{
 		$url .= $this->getUrlString($query);
 
 		$param = array();
-		// $param['file'] = $this->voiceData(BLOGURL.'/'.$voiceFile);
-		$param['file'] =$this->blogUrl.$voiceFile;
+		$param['file'] = $this->voiceData(BLOGURL.'/'.$voiceFile);
+		// $param['file'] =$this->blogUrl.$voiceFile;
 
 		$propertyArr = array();
 		$propertyArr['autoend'] = false;
