@@ -36,7 +36,7 @@ class Refuseapp extends Home_Controller{
 		$query = array();
 		$query['appkey'] = $this->refuseAppKey;
 		$query['timestamp'] = $timestamp;
-		$query['sign'] = MD5($this->refuseSecretKey.$timestamp);
+		$query['sign'] = $this->sign(string($timestamp));
 
 		$url .= $this->getUrlString($query);
 
@@ -108,6 +108,16 @@ class Refuseapp extends Home_Controller{
 
 	    return $base64;
 	}
+
+	public function sign($timestamp){
+		$str = MD5($this->refuseSecretKey.string($timestamp));
+		$encode = mb_detect_encoding($str, array("ASCII",'UTF-8',"GB2312","GBK",'BIG5'));
+	    if($encode == 'UTF-8'){
+	        return $str;
+	    }else{
+	        return mb_convert_encoding($str, 'UTF-8', $encode);
+	    }
+	} 
 
 	/**
 	 *数组 转化url参数
