@@ -76,7 +76,6 @@ class Refuseapp extends Home_Controller{
 		$query['appkey'] = $this->refuseAppKey;
 		$query['timestamp'] = $timestamp;
 		$query['sign'] = $this->sign($timestamp);
-		$url .= $this->getUrlString($query);
 
 		$propertyArr = array();
 		$propertyArr['autoend'] = false;
@@ -87,10 +86,15 @@ class Refuseapp extends Home_Controller{
 		$propertyArr['platform'] = 'Linux';
 		$propertyArr['version'] = '0.0.0.1';
 
-		$header = array(
-			'cityId:110000',
-			'property:'.json_encode($propertyArr),
-		);
+		// $header = array(
+		// 	'cityId:110000',
+		// 	'property:'.json_encode($propertyArr),
+		// );
+
+		$query['cityId'] = '110000';
+		$query['property'] = json_encode($propertyArr);
+		$url .= $this->getUrlString($query);
+
 
 		// $result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
 		$result = $this->request($url,array('file'=>'@'.BLOGURL.'/'.$voiceFile),$header);
