@@ -151,7 +151,7 @@ class Refuseapp extends Home_Controller{
 		if(!empty($file)){
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
-			$fileData = new \CURLFile($file);
+			$fileData = ['file' => new \CURLFile($file)];
 			var_dump($fileData);
 			var_dump($file);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $fileData);
