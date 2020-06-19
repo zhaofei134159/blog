@@ -37,9 +37,6 @@ class Refuseapp extends Home_Controller{
 		$query['appkey'] = $this->refuseAppKey;
 		$query['timestamp'] = $timestamp;
 		$query['sign'] = MD5($this->refuseSecretKey.$timestamp);
-		var_dump($url);
-		$a = $this->getUrlString($query);
-		var_dump($a);die;
 
 		$url .= $this->getUrlString($query);
 
@@ -49,9 +46,8 @@ class Refuseapp extends Home_Controller{
 
 		$header = array('Content-Type:application/json;charset=UTF-8');
 
-		// $result = $this->request($url,$param,$header);
+		$result = $this->request($url,$param,$header);
 		var_dump($url);
-		var_dump($param);
 		var_dump($result);die;
 		// @unlink($picFile);
 
@@ -127,9 +123,7 @@ class Refuseapp extends Home_Controller{
 	    {
 	        $tmp[] = $k.'='.$param;
 	    }
-	    var_dump($tmp);
 	    $params = implode('&',$tmp);
-	    var_dump($params);
 	    return $params;
 	}
 
