@@ -61,7 +61,7 @@ class Refuseapp extends Home_Controller{
     	exit(json_encode($callback));
 	}
 
-	public function voiceToWord(){
+	public function refuseVoiceDiscern(){
 		// $file = $_FILES['file'];
 		// $voiceFile = upload_file($file,'refuseVoice');
 
