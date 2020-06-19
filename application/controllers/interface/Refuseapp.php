@@ -62,14 +62,15 @@ class Refuseapp extends Home_Controller{
 	}
 
 	public function voiceToWord(){
-		$file = $_FILES['file'];
-		$voiceFile = upload_file($file,'refuseVoice');
-		var_dump($voiceFile);die;
+		// $file = $_FILES['file'];
+		// $voiceFile = upload_file($file,'refuseVoice');
+
+		$voiceFile = 'public/public/refuseVoice/2020061911341675118.mp3';
 
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
 
-		$url = 'https://aiapi.jd.com/jdai/garbageImageSearch?';
+		$url = 'https://aiapi.jd.com/jdai/garbageVoiceSearch?';
 		$query = array();
 		$query['appkey'] = $this->refuseAppKey;
 		$query['timestamp'] = $timestamp;
@@ -78,7 +79,7 @@ class Refuseapp extends Home_Controller{
 
 
 		$param = array();
-		$param['file'] = $this->blogUrl.$voiceFile;;
+		$param['file'] = $this->blogUrl.$voiceFile;
 
 		$propertyArr = array();
 		$propertyArr['autoend'] = false;
