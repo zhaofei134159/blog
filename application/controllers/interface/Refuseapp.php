@@ -65,7 +65,7 @@ class Refuseapp extends Home_Controller{
 		// $file = $_FILES['file'];
 		// $voiceFile = upload_file($file,'refuseVoice');
 		// var_dump($voiceFile);die;
-		
+
 		$voiceFile = 'public/public/refuseVoice/1592546147033.mp3';
 
 		# 获取毫秒时间戳
@@ -89,7 +89,7 @@ class Refuseapp extends Home_Controller{
 		$propertyArr['encode']['sample_rate'] = '16000';
 		$propertyArr['encode']['post_process'] = '1'; # 开启后 一千 = 1000 
 		$propertyArr['platform'] = 'Linux';
-		$propertyArr['version'] = '4.10.4-1';
+		$propertyArr['version'] = '0.0.0.1';
 
 		$header = array(
 			'cityId:110000',
