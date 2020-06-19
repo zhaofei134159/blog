@@ -46,7 +46,7 @@ class Refuseapp extends Home_Controller{
 
 		$header = array('Content-Type:application/json;charset=UTF-8');
 
-		$result = $this->request($url,$param,$header);
+		$result = $this->request($url,json_encode($param),$header);
 		var_dump($url);
 		var_dump($result);die;
 		// @unlink($picFile);
