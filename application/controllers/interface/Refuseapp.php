@@ -38,7 +38,9 @@ class Refuseapp extends Home_Controller{
 		$query['timestamp'] = $timestamp;
 		$query['sign'] = MD5($this->refuseSecretKey.$timestamp);
 		var_dump($url);
-		
+		$a = $this->getUrlString($query);
+		var_dump($a);die;
+
 		$url .= $this->getUrlString($query);
 
 		$param = array();
