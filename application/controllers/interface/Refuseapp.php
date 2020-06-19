@@ -79,7 +79,8 @@ class Refuseapp extends Home_Controller{
 		$url .= $this->getUrlString($query);
 
 		$param = array();
-		$param['file'] = $this->voiceData(BLOGURL.'/'.$voiceFile);
+		// $param['file'] = $this->voiceData(BLOGURL.'/'.$voiceFile);
+		$param['file'] =$this->blogUrl.$voiceFile;
 
 		$propertyArr = array();
 		$propertyArr['autoend'] = false;
@@ -95,12 +96,9 @@ class Refuseapp extends Home_Controller{
 			'property:'.json_encode($propertyArr),
 		);
 
-		$result = $this->request($url,$param,$header);
+		$result = $this->request($url,json_encode($param),$header);
 		// @unlink($picFile);
 
-		var_dump($url);
-		var_dump($param);
-		var_dump($header);
 		var_dump($result);die;
 
 		$resultArr = json_encode($result,true);
