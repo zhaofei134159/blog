@@ -78,10 +78,6 @@ class Refuseapp extends Home_Controller{
 		$query['sign'] = $this->sign($timestamp);
 		$url .= $this->getUrlString($query);
 
-		$param = array();
-		$param['file'] = $this->voiceData(BLOGURL.'/'.$voiceFile);
-		// $param['file'] =$this->blogUrl.$voiceFile;
-
 		$propertyArr = array();
 		$propertyArr['autoend'] = false;
 		$propertyArr['encode']['channel'] = 1;
@@ -96,7 +92,7 @@ class Refuseapp extends Home_Controller{
 			'property:'.json_encode($propertyArr),
 		);
 
-		$result = $this->request($url,json_encode($param),$header);
+		$result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
 		// @unlink($picFile);
 
 		var_dump($result);die;
@@ -122,7 +118,7 @@ class Refuseapp extends Home_Controller{
 	* @param string $param
 	* @return - http response body if succeeds, else false.
 	*/
-	public function request($url = '', $param = array(), $header = array())
+	public function request($url = '', $param = array(), $header = array(), $filename)
 	{
 		if (empty($url)) {
 			return false;
@@ -145,6 +141,12 @@ class Refuseapp extends Home_Controller{
 		if(!empty($curlPost)){
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
+		}
+
+		if(!empty($filename)){
+		    curl_setopt($ch, CURLOPT_PUT, true); //设置为PUT请求
+		    curl_setopt($ch, CURLOPT_INFILE, fopen($filename, 'rb')); //设置资源句柄
+		    curl_setopt($ch, CURLOPT_INFILESIZE, filesize($filename));
 		}
 		// 运行curl
 		$data = curl_exec($curl);
