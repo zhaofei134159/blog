@@ -62,7 +62,7 @@ class Refuseapp extends Home_Controller{
 	* @param string $param
 	* @return - http response body if succeeds, else false.
 	*/
-	function request($url = '', $param = array(), $header = array())
+	public function request($url = '', $param = array(), $header = array())
 	{
 		if (empty($url)) {
 			return false;
@@ -93,12 +93,12 @@ class Refuseapp extends Home_Controller{
 		return $data;
 	}
 
-	private function getMillisecond(){
+	public function getMillisecond(){
 		list($t1, $t2) = explode(' ', microtime());
 		return (float)sprintf('%.0f', (floatval($t1) + floatval($t2)) * 1000);
 	}
 
-	private function imgBase64($file){
+	public function imgBase64($file){
 		$base64 = '';
 	    if ($fp = fopen($file, "rb", 0)) {
 	        $gambar = fread($fp, filesize($file));
@@ -111,12 +111,10 @@ class Refuseapp extends Home_Controller{
 
 	/**
 	 *数组 转化url参数
-	 * @auth xieyang
-	 * @date 2018年5月10日 13:51:31
 	 * @param string
 	 * @return mixed
 	 */
-	private function getUrlString($array_query)
+	public function getUrlString($array_query)
 	{
 	    $tmp = array();
 	    foreach($array_query as $k=>$param)
