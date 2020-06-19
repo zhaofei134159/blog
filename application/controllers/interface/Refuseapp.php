@@ -127,6 +127,7 @@ class Refuseapp extends Home_Controller{
 	    {
 	        $tmp[] = $k.'='.$param;
 	    }
+	    var_dump($tmp);
 	    $params = implode('&',$tmp);
 	    return $params;
 	}
