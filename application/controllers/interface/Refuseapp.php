@@ -94,7 +94,7 @@ class Refuseapp extends Home_Controller{
 		);
 
 		// $result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
-		$result = $this->request($url,array(),$header,$fileUpload);
+		$result = $this->request($url,$fileUpload,$header);
 		// @unlink($picFile);
 
 		var_dump($result);die;
@@ -120,7 +120,7 @@ class Refuseapp extends Home_Controller{
 	* @param string $param
 	* @return - http response body if succeeds, else false.
 	*/
-	public function request($url = '', $param = array(), $header = array(), $filename)
+	public function request($url = '', $param = array(), $header = array())
 	{
 		if (empty($url)) {
 			return false;
@@ -143,11 +143,6 @@ class Refuseapp extends Home_Controller{
 		if(!empty($curlPost)){
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
-		}
-
-		if(!empty($filename)){
-			curl_setopt($curl, CURLOPT_POST, 1);
-        	curl_setopt($curl, CURLOPT_POSTFIELDS, $filename);
 		}
 		// 运行curl
 		$data = curl_exec($curl);
