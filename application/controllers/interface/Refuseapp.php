@@ -68,16 +68,6 @@ class Refuseapp extends Home_Controller{
 
 		$voiceFile = 'public/public/refuseVoice/1592546147033.mp3';
 
-		$varname = 'file';
-		$name = '1592546147033.mp3';
-		$type = 'text/plain';
-		$key = "$varname\"; filename=\"$name\r\nContent-Type: $type\r\nAccept: \"";
-
-		$fileUpload = array();
-		$fileUpload[$key] = file_get_contents(BLOGURL.'/'.$voiceFile);
-
-
-
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
 
@@ -103,7 +93,7 @@ class Refuseapp extends Home_Controller{
 		);
 
 		// $result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
-		$result = $this->request($url,$fileUpload,$header);
+		$result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
 		// @unlink($picFile);
 
 		var_dump($result);die;
@@ -129,7 +119,7 @@ class Refuseapp extends Home_Controller{
 	* @param string $param
 	* @return - http response body if succeeds, else false.
 	*/
-	public function request($url = '', $param = array(), $header = array())
+	public function request($url = '', $param = array(), $header = array(), $file)
 	{
 		if (empty($url)) {
 			return false;
@@ -137,6 +127,7 @@ class Refuseapp extends Home_Controller{
 
 		$postUrl = $url;
 		$curlPost = $param;
+
 		// 初始化curl
 		$curl = curl_init();
 	    if(!empty($header)){
@@ -152,6 +143,12 @@ class Refuseapp extends Home_Controller{
 		if(!empty($curlPost)){
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
+		}
+		if($file){
+			curl_setopt($curl, CURLOPT_POST, 1);
+			curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
+			$data = array('file' => new \CURLFile(realpath($file)));
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 		}
 		// 运行curl
 		$data = curl_exec($curl);
