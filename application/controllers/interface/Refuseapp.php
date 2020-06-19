@@ -96,8 +96,8 @@ class Refuseapp extends Home_Controller{
 		$url .= $this->getUrlString($query);
 
 
-		// $result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
-		$result = $this->request($url,array('file'=>'@'.BLOGURL.'/'.$voiceFile),$header);
+		$result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
+		// $result = $this->request($url,array('file'=>'@'.BLOGURL.'/'.$voiceFile),$header);
 		// @unlink($picFile);
 
 		var_dump($result);die;
