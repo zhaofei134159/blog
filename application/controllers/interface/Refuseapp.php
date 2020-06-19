@@ -93,7 +93,7 @@ class Refuseapp extends Home_Controller{
 		);
 
 		// $result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
-		$result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
+		$result = $this->request($url,array('file'=>'@'.BLOGURL.'/'.$voiceFile),$header);
 		// @unlink($picFile);
 
 		var_dump($result);die;
