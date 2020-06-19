@@ -92,7 +92,8 @@ class Refuseapp extends Home_Controller{
 			'property:'.json_encode($propertyArr),
 		);
 
-		$result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
+		// $result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
+		$result = $this->request($url,array(),$header,$this->blogUrl.$voiceFile);
 		// @unlink($picFile);
 
 		var_dump($result);die;
