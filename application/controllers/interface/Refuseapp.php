@@ -97,7 +97,7 @@ class Refuseapp extends Home_Controller{
 
 
 		// $result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
-		$result = $this->request($url,array('file'=>$this->voiceData(BLOGURL.'/'.$voiceFile)),$header);
+		$result = $this->request($url,array('file'=>'@'.BLOGURL.'/'.$voiceFile),$header);
 		// @unlink($picFile);
 
 		var_dump($result);die;
@@ -143,6 +143,7 @@ class Refuseapp extends Home_Controller{
 		// 要求结果为字符串且输出到屏幕上
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
 		// post提交方式
 		if(!empty($curlPost)){
 			curl_setopt($curl, CURLOPT_POST, 1);
