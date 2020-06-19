@@ -88,7 +88,7 @@ class Refuseapp extends Home_Controller{
 		$propertyArr['encode']['sample_rate'] = '16000';
 		$propertyArr['encode']['post_process'] = '1'; # 开启后 一千 = 1000 
 		$propertyArr['platform'] = 'Linux';
-		$propertyArr['version'] = '0.0.0.1';
+		$propertyArr['version'] = '4.10.4-1';
 
 		$header = array(
 			'cityId:110000',
@@ -98,6 +98,9 @@ class Refuseapp extends Home_Controller{
 		$result = $this->request($url,$param,$header);
 		// @unlink($picFile);
 
+		var_dump($url);
+		var_dump($param);
+		var_dump($header);
 		var_dump($result);die;
 
 		$resultArr = json_encode($result,true);
