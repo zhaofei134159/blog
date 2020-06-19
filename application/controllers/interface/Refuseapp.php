@@ -110,7 +110,7 @@ class Refuseapp extends Home_Controller{
 	}
 
 	public function sign($timestamp){
-		$str = MD5($this->refuseSecretKey.string($timestamp));
+		$str = MD5($this->refuseSecretKey.$timestamp);
 		$encode = mb_detect_encoding($str, array("ASCII",'UTF-8',"GB2312","GBK",'BIG5'));
 	    if($encode == 'UTF-8'){
 	        return $str;
