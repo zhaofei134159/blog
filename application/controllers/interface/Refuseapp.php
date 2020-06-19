@@ -145,9 +145,7 @@ class Refuseapp extends Home_Controller{
 
 		if(!empty($filename)){
 			curl_setopt($curl, CURLOPT_POST, 1);
-		    curl_setopt($curl, CURLOPT_PUT, true); //设置为PUT请求
-		    curl_setopt($curl, CURLOPT_INFILE, fopen($filename, 'rb')); //设置资源句柄
-		    curl_setopt($curl, CURLOPT_INFILESIZE, filesize($filename));
+        	curl_setopt($curl, CURLOPT_POSTFIELDS, $filename);
 		}
 		// 运行curl
 		$data = curl_exec($curl);
