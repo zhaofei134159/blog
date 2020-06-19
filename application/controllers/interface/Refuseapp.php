@@ -24,10 +24,8 @@ class Refuseapp extends Home_Controller{
 	}
 
 	public function refuseEntityDiscern(){
-		// $file = $_FILES['file'];
-		// $picFile = upload_img($file,'refuseImg');
-
-		$picFile = 'public/public/refuseImg/2020061818592092484.jpg';
+		$file = $_FILES['file'];
+		$picFile = upload_img($file,'refuseImg');
 
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
@@ -47,11 +45,71 @@ class Refuseapp extends Home_Controller{
 		$header = array('Content-Type:application/json;charset=UTF-8');
 
 		$result = $this->request($url,json_encode($param),$header);
-		var_dump($url);
-		var_dump($result);die;
 		// @unlink($picFile);
 
-		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$wordResArr);
+		$resultArr = json_encode($result,true);
+		if($resultArr['result']['status']!=0){
+			$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>$resultArr['result']['status']);
+	    	exit(json_encode($callback));
+		}
+
+		$success = array();
+		$success['garbage_info'] = $resultArr['result']['garbage_info'];
+		$success['imgFile'] = $this->blogUrl.$picFile;
+
+		$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>'0','success'=>$success);
+    	exit(json_encode($callback));
+	}
+
+	public function voiceToWord(){
+		$file = $_FILES['file'];
+		$voiceFile = upload_file($file,'refuseVoice');
+		var_dump($voiceFile);die;
+
+		# 获取毫秒时间戳
+		$timestamp = $this->getMillisecond();
+
+		$url = 'https://aiapi.jd.com/jdai/garbageImageSearch?';
+		$query = array();
+		$query['appkey'] = $this->refuseAppKey;
+		$query['timestamp'] = $timestamp;
+		$query['sign'] = $this->sign($timestamp);
+		$url .= $this->getUrlString($query);
+
+
+		$param = array();
+		$param['file'] = $this->blogUrl.$voiceFile;;
+
+		$propertyArr = array();
+		$propertyArr['autoend'] = false;
+		$propertyArr['encode']['channel'] = 1;
+		$propertyArr['encode']['format'] = 'mp3';
+		$propertyArr['encode']['sample_rate'] = '16000';
+		$propertyArr['encode']['post_process'] = '1'; # 开启后 一千 = 1000 
+		$propertyArr['platform'] = 'Linux';
+		$propertyArr['version'] = '0.0.0.1';
+
+		$header = array(
+			'cityId:110000',
+			'property:'.json_encode($propertyArr);
+		);
+
+		$result = $this->request($url,$param,$header);
+		// @unlink($picFile);
+
+		var_dump($result);die;
+
+		$resultArr = json_encode($result,true);
+		if($resultArr['result']['status']!=0){
+			$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>$resultArr['result']['status']);
+	    	exit(json_encode($callback));
+		}
+
+		$success = array();
+		$success['garbage_info'] = $resultArr['result']['garbage_info'];
+		$success['imgFile'] = $this->blogUrl.$picFile;
+
+		$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>'0','success'=>$success);
     	exit(json_encode($callback));
 	}
 
