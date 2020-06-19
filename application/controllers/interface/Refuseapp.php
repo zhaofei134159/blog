@@ -119,7 +119,7 @@ class Refuseapp extends Home_Controller{
 	* @param string $param
 	* @return - http response body if succeeds, else false.
 	*/
-	public function request($url = '', $param = array(), $header = array(), $file)
+	public function request($url = '', $param = array(), $header = array(), $file = '')
 	{
 		if (empty($url)) {
 			return false;
@@ -144,9 +144,8 @@ class Refuseapp extends Home_Controller{
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
 		}
-		if($file){
+		if(!empty($file)){
 			curl_setopt($curl, CURLOPT_POST, 1);
-			curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
 			$data = array('file' => new \CURLFile(realpath($file)));
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 		}
