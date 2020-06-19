@@ -36,7 +36,7 @@ class Refuseapp extends Home_Controller{
 		$query = array();
 		$query['appkey'] = $this->refuseAppKey;
 		$query['timestamp'] = $timestamp;
-		$query['sign'] = $this->sign(string($timestamp));
+		$query['sign'] = $this->sign($timestamp);
 
 		$url .= $this->getUrlString($query);
 
