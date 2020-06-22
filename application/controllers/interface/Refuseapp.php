@@ -62,9 +62,9 @@ class Refuseapp extends Home_Controller{
 	}
 
 	public function refuseVoiceDiscern(){
-		// $file = $_FILES['file'];
-		// $voiceFile = upload_file($file,'refuseVoice');
-		// var_dump($voiceFile);die;
+		$file = $_FILES['file'];
+		$voiceFile = upload_file($file,'refuseVoice');
+		var_dump($voiceFile);die;
 
 		$voiceFile = 'public/public/refuseVoice/1592546147033.mp3';
 
