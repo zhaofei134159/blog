@@ -23,6 +23,10 @@ class Refuseapp extends Home_Controller{
         $this->refuseSecretKey = $this->config->item('refuseSecretKey');
 	}
 
+	public function refuseWordSearchDiscern(){
+		var_dump($_GET);
+	}
+
 	public function refuseEntityDiscern(){
 		$file = $_FILES['file'];
 		$picFile = upload_img($file,'refuseImg');
@@ -112,7 +116,6 @@ class Refuseapp extends Home_Controller{
 		$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>'0','success'=>$success);
     	exit(json_encode($callback));
 	}
-
 
 	/**
 	* 发起http post请求(REST API), 并获取REST请求的结果
