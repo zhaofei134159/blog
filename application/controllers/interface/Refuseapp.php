@@ -152,7 +152,7 @@ class Refuseapp extends Home_Controller{
 			// $fileData = ['file' => new CURLFile($file,mime_content_type($file),'refuseFile')];
 			$fileData = array(
 				'title' => '上传文件',
-				'file'  => curl_file_create($file, mime_content_type($file), 'refuseFile'),
+				'file'  => curl_file_create($file, mime_content_type($file), 'file'),
 			);
 			var_dump($fileData);
 			var_dump($file);
