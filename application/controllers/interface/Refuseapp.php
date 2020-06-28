@@ -174,7 +174,6 @@ class Refuseapp extends Home_Controller{
 		$log_insert['search'] = $search;
 		$log_insert['filePath'] = $filePath;
 		$log_insert['callback'] = $callback;
-		$log_insert['userid'] = '';
 		$log_insert['createdate'] = date('Y-m-d');
 		$this->zf_garbage_log_model->insert($log_insert);
 	}
