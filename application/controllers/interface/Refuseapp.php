@@ -16,11 +16,13 @@ class Refuseapp extends Home_Controller{
 
 		$this->load->helper('common');
 		$this->load->helper('htmlrepair');
-		$this->load->model('Zf_garbage_voice_model');
+		$this->load->model('zf_garbage_log_model');
 		$this->load->config('secretkey');
 
         $this->refuseAppKey = $this->config->item('refuseAppKey');
         $this->refuseSecretKey = $this->config->item('refuseSecretKey');
+
+
 	}
 
 	public function refuseWordSearchDiscern(){
@@ -65,6 +67,8 @@ class Refuseapp extends Home_Controller{
 		$success['garbage_info'] = $resultArr['result']['garbage_info'];
 		$success['textSearch'] = $search;
 
+		$this->refuseLog(1,$result,$search);
+
 		$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>'0','success'=>$success);
     	exit(json_encode($callback));
 	}
@@ -106,15 +110,17 @@ class Refuseapp extends Home_Controller{
 		$success['garbage_info'] = $resultArr['result']['garbage_info'];
 		$success['imgFile'] = $this->blogUrl.$picFile;
 
+		$this->refuseLog(2,$result,'',$picFile);
+
 		$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>'0','success'=>$success);
     	exit(json_encode($callback));
 	}
 
 	public function refuseVoiceDiscern(){
-		// $file = $_FILES['file'];
-		// $voiceFile = upload_file($file,'refuseVoice');
+		$file = $_FILES['file'];
+		$voiceFile = upload_file($file,'refuseVoice');
 
-		$voiceFile = 'public/public/refuseVoice/1592546147033.mp3';
+		// $voiceFile = 'public/public/refuseVoice/1592546147033.mp3';
 
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
@@ -155,8 +161,22 @@ class Refuseapp extends Home_Controller{
 		$success['garbage_info'] = $resultArr['result']['garbage_info'];
 		$success['voiceFile'] = $this->blogUrl.$voiceFile;
 
+		$this->refuseLog(3,$result,'',$voiceFile);
+
 		$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>'0','success'=>$success);
     	exit(json_encode($callback));
+	}
+
+
+	public function refuseLog($type,$callback,$search='',$filePath=''){
+		$log_insert = array();
+		$log_insert['type'] = $type;
+		$log_insert['search'] = $search;
+		$log_insert['filePath'] = $filePath;
+		$log_insert['callback'] = $callback;
+		$log_insert['userid'] = '';
+		$log_insert['createdate'] = date('Y-m-d');
+		$this->zf_garbage_log_model->insert($log_insert);
 	}
 
 	/**
