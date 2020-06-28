@@ -151,7 +151,7 @@ class Refuseapp extends Home_Controller{
 			curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
 			// $fileData = ['file' => new CURLFile($file,mime_content_type($file),'refuseFile')];
 			$fileData = array(
-				'file'  => curl_file_create($file, 'audio/mpeg', 'file'),
+				'file'  => curl_file_create($file, mime_content_type($file), 'file'),
 			);
 			var_dump($fileData);
 			var_dump($file);
