@@ -64,10 +64,8 @@ class Refuseapp extends Home_Controller{
 	public function refuseVoiceDiscern(){
 		// $file = $_FILES['file'];
 		// $voiceFile = upload_file($file,'refuseVoice');
-		// var_dump($voiceFile);die;
 
 		// $voiceFile = 'public/public/refuseVoice/1592546147033.mp3';
-		$voiceFile = 'public/public/refuseVoice/2020062811351561309.mp3';
 
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
@@ -77,6 +75,7 @@ class Refuseapp extends Home_Controller{
 		$query['appkey'] = $this->refuseAppKey;
 		$query['timestamp'] = $timestamp;
 		$query['sign'] = $this->sign($timestamp);
+		$url .= $this->getUrlString($query);
 
 		$propertyArr = array();
 		$propertyArr['autoend'] = false;
@@ -92,16 +91,7 @@ class Refuseapp extends Home_Controller{
 			'property:'.json_encode($propertyArr),
 		);
 
-		// $query['cityId'] = '110000';
-		// $query['property'] = json_encode($propertyArr);
-		$url .= $this->getUrlString($query);
-
-
-		// $result = $this->request($url,array(),$header,$this->blogUrl.$voiceFile);
 		$result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
-		// $result = $this->request($url,array('file'=>'@'.BLOGURL.'/'.$voiceFile),$header);
-		// @unlink($picFile);
-		var_dump($result);die;
 
 		$resultArr = json_encode($result,true);
 		if($resultArr['result']['status']!=0){
@@ -111,7 +101,7 @@ class Refuseapp extends Home_Controller{
 
 		$success = array();
 		$success['garbage_info'] = $resultArr['result']['garbage_info'];
-		$success['imgFile'] = $this->blogUrl.$picFile;
+		$success['voiceFile'] = $this->blogUrl.$voiceFile;
 
 		$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>'0','success'=>$success);
     	exit(json_encode($callback));
@@ -149,12 +139,9 @@ class Refuseapp extends Home_Controller{
 		if(!empty($file)){
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
-			// $fileData = ['file' => new CURLFile($file,mime_content_type($file),'refuseFile')];
 			$fileData = array(
 				'file'  => curl_file_create($file, mime_content_type($file), 'file'),
 			);
-			var_dump($fileData);
-			var_dump($file);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $fileData);
 		}
 		// 运行curl
