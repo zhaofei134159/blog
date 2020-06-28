@@ -62,12 +62,12 @@ class Refuseapp extends Home_Controller{
 	}
 
 	public function refuseVoiceDiscern(){
-		$file = $_FILES['file'];
-		$voiceFile = upload_file($file,'refuseVoice');
-		var_dump($voiceFile);die;
+		// $file = $_FILES['file'];
+		// $voiceFile = upload_file($file,'refuseVoice');
+		// var_dump($voiceFile);die;
 
 		// $voiceFile = 'public/public/refuseVoice/1592546147033.mp3';
-		// $voiceFile = 'public/public/refuseVoice/2020062217344433978.mp3';
+		$voiceFile = 'public/public/refuseVoice/2020062811351561309.mp3';
 
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
