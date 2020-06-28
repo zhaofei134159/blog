@@ -23,8 +23,8 @@ class Refuseapp extends Home_Controller{
         $this->refuseSecretKey = $this->config->item('refuseSecretKey');
 
 
-        $refuseApiCount  = $this->zf_garbage_log_model->count("createdate='".date('Y-m-d')."'");
-        var_dump($refuseApiCount);die;
+        $refuseApiCount = $this->zf_garbage_log_model->count("createdate='".date('Y-m-d')."'");
+        $refuseApiCount = 470;
         if($refuseApiCount>=450){
 			$callback = array('errorMsg'=>'对不起, 免费次数已使用完','errorNo'=>9999);
 	    	exit(json_encode($callback));
