@@ -45,6 +45,7 @@ class Refuseapp extends Home_Controller{
 		$header = array('Content-Type:application/json;charset=UTF-8');
 
 		$result = $this->request($url,json_encode($param),$header);
+		var_dump($result);die;
 		// @unlink($picFile);
 
 		$resultArr = json_encode($result,true);
@@ -91,7 +92,7 @@ class Refuseapp extends Home_Controller{
 			'property:'.json_encode($propertyArr),
 		);
 
-		$result = $this->request($url,array(),$header,BLOGURL.'/'.$voiceFile);
+		$result = $this->request($url,'',$header,BLOGURL.'/'.$voiceFile);
 
 		$resultArr = json_encode($result,true);
 		if($resultArr['result']['status']!=0){
@@ -114,7 +115,7 @@ class Refuseapp extends Home_Controller{
 	* @param string $param
 	* @return - http response body if succeeds, else false.
 	*/
-	public function request($url = '', $param = array(), $header = array(), $file = '')
+	public function request($url = '', $param = '', $header = array(), $file = '')
 	{
 		if (empty($url)) {
 			return false;
