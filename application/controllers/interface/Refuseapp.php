@@ -24,7 +24,49 @@ class Refuseapp extends Home_Controller{
 	}
 
 	public function refuseWordSearchDiscern(){
-		var_dump($_GET);
+		$search = $_GET['search'];
+		
+		if(empty($search)){
+			$callback = array('errorMsg'=>'输入文字不能为空','errorNo'=>2001);
+	    	exit(json_encode($callback));
+		}
+
+		# 获取毫秒时间戳
+		$timestamp = $this->getMillisecond();
+
+		$url = 'https://aiapi.jd.com/jdai/garbageTextSearch?';
+		$query = array();
+		$query['appkey'] = $this->refuseAppKey;
+		$query['timestamp'] = $timestamp;
+		$query['sign'] = $this->sign($timestamp);
+
+		$url .= $this->getUrlString($query);
+
+		$param = array();
+		$param['text'] = $search;
+		$param['cityId'] = '110000';
+
+		$header = array('Content-Type:application/json;charset=UTF-8');
+
+		$result = $this->request($url,json_encode($param),$header);
+		// @unlink($picFile);
+		var_dump($result);
+
+		$resultArr = json_decode($result,true);
+		if($resultArr['result']['status']!=0){
+			$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>$resultArr['result']['status']);
+	    	exit(json_encode($callback));
+		}
+
+		foreach($resultArr['result']['garbage_info'] as $key=>$val){
+			$resultArr['result']['garbage_info'][$key]['ps'] = str_replace('投放建议：','',$val['ps']); 
+		}
+		$success = array();
+		$success['garbage_info'] = $resultArr['result']['garbage_info'];
+		$success['textSearch'] = $search;
+
+		$callback = array('errorMsg'=>$resultArr['result']['message'],'errorNo'=>'0','success'=>$success);
+    	exit(json_encode($callback));
 	}
 
 	public function refuseEntityDiscern(){
