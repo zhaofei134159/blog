@@ -50,7 +50,7 @@ class Refuseapp extends Home_Controller{
 
 		$result = $this->request($url,json_encode($param),$header);
 		// @unlink($picFile);
-		var_dump($result);
+		// var_dump($result);
 
 		$resultArr = json_decode($result,true);
 		if($resultArr['result']['status']!=0){
