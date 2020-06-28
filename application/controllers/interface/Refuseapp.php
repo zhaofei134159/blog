@@ -81,6 +81,7 @@ class Refuseapp extends Home_Controller{
 
 	public function refuseEntityDiscern(){
 		$file = $_FILES['file'];
+		$cityId = $_POST['cityId'];
 		$picFile = upload_img($file,'refuseImg');
 
 		# 获取毫秒时间戳
@@ -96,7 +97,7 @@ class Refuseapp extends Home_Controller{
 
 		$param = array();
 		$param['imgBase64'] = $this->imgBase64(BLOGURL.'/'.$picFile);
-		$param['cityId'] = '110000';
+		$param['cityId'] = $cityId;
 
 		$header = array('Content-Type:application/json;charset=UTF-8');
 
@@ -124,6 +125,7 @@ class Refuseapp extends Home_Controller{
 
 	public function refuseVoiceDiscern(){
 		$file = $_FILES['file'];
+		$cityId = $_POST['cityId'];
 		$voiceFile = upload_file($file,'refuseVoice');
 
 		// $voiceFile = 'public/public/refuseVoice/1592546147033.mp3';
@@ -148,7 +150,7 @@ class Refuseapp extends Home_Controller{
 		$propertyArr['version'] = '0.0.0.1';
 
 		$header = array(
-			'cityId:110000',
+			'cityId:'.$cityId,
 			'property:'.json_encode($propertyArr),
 		);
 
