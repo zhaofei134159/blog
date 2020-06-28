@@ -88,12 +88,12 @@ class Refuseapp extends Home_Controller{
 		$propertyArr['version'] = '0.0.0.1';
 
 		$header = array(
-			// 'cityId:110000',
-			// 'property:'.json_encode($propertyArr),
+			'cityId:110000',
+			'property:'.json_encode($propertyArr),
 		);
 
-		$query['cityId'] = '110000';
-		$query['property'] = json_encode($propertyArr);
+		// $query['cityId'] = '110000';
+		// $query['property'] = json_encode($propertyArr);
 		$url .= $this->getUrlString($query);
 
 
@@ -130,25 +130,21 @@ class Refuseapp extends Home_Controller{
 			return false;
 		}
 
-		$postUrl = $url;
-		$curlPost = $param;
-
 		// 初始化curl
 		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_HEADER, 0);
 	    if(!empty($header)){
 	        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-	        curl_setopt($curl, CURLOPT_HEADER, 0);//返回response头部信息
 	    }
-		curl_setopt($curl, CURLOPT_URL, $postUrl);
-		curl_setopt($curl, CURLOPT_HEADER, 0);
 		// 要求结果为字符串且输出到屏幕上
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
 		// post提交方式
-		if(!empty($curlPost)){
+		if(!empty($param)){
 			curl_setopt($curl, CURLOPT_POST, 1);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $param);
 		}
 		if(!empty($file)){
 			curl_setopt($curl, CURLOPT_POST, 1);
