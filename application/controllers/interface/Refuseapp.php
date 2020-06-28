@@ -53,6 +53,9 @@ class Refuseapp extends Home_Controller{
 	    	exit(json_encode($callback));
 		}
 
+		foreach($resultArr['result']['garbage_info'] as $key=>$val){
+			$resultArr['result']['garbage_info'][$key]['ps'] = trim($val['ps'],'投放建议:'); 
+		}
 		$success = array();
 		$success['garbage_info'] = $resultArr['result']['garbage_info'];
 		$success['imgFile'] = $this->blogUrl.$picFile;
@@ -99,6 +102,9 @@ class Refuseapp extends Home_Controller{
 	    	exit(json_encode($callback));
 		}
 
+		foreach($resultArr['result']['garbage_info'] as $key=>$val){
+			$resultArr['result']['garbage_info'][$key]['ps'] = trim($val['ps'],'投放建议:'); 
+		}
 		$success = array();
 		$success['garbage_info'] = $resultArr['result']['garbage_info'];
 		$success['voiceFile'] = $this->blogUrl.$voiceFile;
