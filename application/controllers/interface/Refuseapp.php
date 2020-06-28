@@ -82,8 +82,8 @@ class Refuseapp extends Home_Controller{
 		$propertyArr['autoend'] = false;
 		$propertyArr['encode']['channel'] = 1;
 		$propertyArr['encode']['format'] = 'mp3';
-		$propertyArr['encode']['sample_rate'] = '16000';
-		$propertyArr['encode']['post_process'] = '0'; # 开启后 一千 = 1000 
+		$propertyArr['encode']['sample_rate'] = 16000;
+		$propertyArr['encode']['post_process'] = 0; # 开启后 一千 = 1000 
 		$propertyArr['platform'] = 'Linux';
 		$propertyArr['version'] = '0.0.0.1';
 
@@ -151,7 +151,6 @@ class Refuseapp extends Home_Controller{
 			curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
 			// $fileData = ['file' => new CURLFile($file,mime_content_type($file),'refuseFile')];
 			$fileData = array(
-				'title' => '上传文件',
 				'file'  => curl_file_create($file, 'audio/mpeg', 'file'),
 			);
 			var_dump($fileData);
