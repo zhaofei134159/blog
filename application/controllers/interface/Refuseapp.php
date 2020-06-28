@@ -32,6 +32,7 @@ class Refuseapp extends Home_Controller{
 
 	public function refuseWordSearchDiscern(){
 		$search = $_GET['search'];
+		$cityId = $_GET['cityId'];
 		
 		if(empty($search)){
 			$callback = array('errorMsg'=>'输入文字不能为空','errorNo'=>2001);
@@ -51,7 +52,7 @@ class Refuseapp extends Home_Controller{
 
 		$param = array();
 		$param['text'] = $search;
-		$param['cityId'] = '110000';
+		$param['cityId'] = $cityId;
 
 		$header = array('Content-Type:application/json;charset=UTF-8');
 
