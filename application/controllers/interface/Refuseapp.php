@@ -80,9 +80,11 @@ class Refuseapp extends Home_Controller{
 	}
 
 	public function refuseEntityDiscern(){
-		$file = $_FILES['file'];
+		// $file = $_FILES['file'];
 		$cityId = $_POST['cityId'];
-		$picFile = upload_img($file,'refuseImg');
+		// $picFile = upload_img($file,'refuseImg');
+
+		$voiceFile = 'public/public/refuseImg/2020062822013514658.jpg';
 
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
