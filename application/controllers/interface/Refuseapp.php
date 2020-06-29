@@ -84,7 +84,7 @@ class Refuseapp extends Home_Controller{
 		$cityId = $_POST['cityId'];
 		// $picFile = upload_img($file,'refuseImg');
 
-		$voiceFile = 'public/public/refuseImg/2020062822013514658.jpg';
+		$picFile = 'public/public/refuseImg/2020062822013514658.jpg';
 
 		# 获取毫秒时间戳
 		$timestamp = $this->getMillisecond();
