@@ -134,7 +134,7 @@
                                             <?php 
                                                 if(!empty($work['desc'])){
                                                     $desc = strip_tags($work['desc']);
-                                                    echo mb_substr($desc,0,20,'utf-8');
+                                                    echo mb_substr($desc,0,100,'utf-8');
                                                 }
                                             ?>
                                         </p>
