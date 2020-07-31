@@ -4,7 +4,8 @@ header("Content-type: text/html; charset=utf-8");
 define('S_PATH', dirname(__FILE__));
 error_reporting(E_ALL);
 
-include S_PATH.'/class/MySql.php';  # mysql
+include_once S_PATH.'/class/MySql.php';  # mysql
+include_once S_PATH.'/../application/config/database.php';  
 
 
 $num = exec("ps aux | grep 'serverInfoDesc.php' | grep -v grep | wc -l");
@@ -15,11 +16,11 @@ if($num>1){
 
 # 数据库配置
 $db_conf = array(
-    'host' => '104.243.18.161',
+    'host' => $db['default']['hostname'],
     'port' => '3306',
-    'user' => 'root',
-    'passwd' => 'zhaofei',
-    'dbname' => 'blog',
+    'user' => $db['default']['username'],
+    'passwd' => $db['default']['password'],
+    'dbname' => $db['default']['database'],
 );
 
 # mysql

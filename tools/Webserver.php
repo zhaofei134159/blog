@@ -4,9 +4,10 @@ header("Content-type: text/html; charset=utf-8");
 define('S_PATH', dirname(__FILE__));
 error_reporting(E_ALL);
 
-include S_PATH.'/class/WebSocket.php'; # socket
-include S_PATH.'/class/MySql.php';  # mysql
-include S_PATH.'/class/phpanalysis/phpanalysis.class.php'; # php分词
+include_once S_PATH.'/class/WebSocket.php'; # socket
+include_once S_PATH.'/class/MySql.php';  # mysql
+include_once S_PATH.'/class/phpanalysis/phpanalysis.class.php'; # php分词
+include_once S_PATH.'/../application/config/database.php';  
 
 // error_log(date('Y-m-d H:i:s')." 开始".PHP_EOL,3,S_PATH."/log/webServer.log");
 
@@ -21,14 +22,16 @@ if($num>1){
 # 敏感词
 $sensitiveWords = array('妈的','sb','我靠','傻逼','md','cnm','草你妈','nmb','你妈逼');
 
+
 # 数据库配置
 $db_conf = array(
-    'host' => '104.243.18.161',
+    'host' => $db['default']['hostname'],
     'port' => '3306',
-    'user' => 'root',
-    'passwd' => 'zhaofei',
-    'dbname' => 'blog',
+    'user' => $db['default']['username'],
+    'passwd' => $db['default']['password'],
+    'dbname' => $db['default']['database'],
 );
+
 
 # socket配置
 $addr = '104.243.18.161';
