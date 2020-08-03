@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 include_once S_PATH.'/class/database.php';  
 include_once S_PATH.'/class/MySql.php';  # mysql
 
-// exit(date('Y-m-d').' 先关闭了');
+exit(date('Y-m-d').' 先关闭了');
 
 $num = exec("ps aux | grep 'serverInfoDesc.php' | grep -v grep | wc -l");
 if($num>1){
