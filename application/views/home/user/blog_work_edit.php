@@ -9,7 +9,6 @@
 
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="<?=HOME_PUBLIC_URL?>editormd/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?=HOME_PUBLIC_URL?>editormd/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="<?=HOME_PUBLIC_URL?>editormd/css/editormd.css" />
 <script src="<?=HOME_PUBLIC_URL?>editormd/editormd.js"></script>
