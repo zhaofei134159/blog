@@ -54,7 +54,7 @@
                 sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
                 imageUpload : true,
                 imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                imageUploadURL : "../examples/php/upload.php",
+                imageUploadURL : "<?=HOME_PUBLIC_URL?>editormd/examples/php/upload.php",
                 onload : function() {
                     console.log('onload', this);
                 }
