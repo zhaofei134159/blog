@@ -24,11 +24,11 @@
 	// $savePath = realpath($path . '../uploads/') . DIRECTORY_SEPARATOR;
 	// $saveURL  = $url . '../uploads/';
 
-    $php_path = dirname(__FILE__) . '/';
+    $php_path = dirname(__FILE__) . DIRECTORY_SEPARATOR;
     $php_url = dirname($_SERVER['PHP_SELF']) . '/';
 
     //文件保存目录路径
-    $savePath = $php_path . '../attached/';
+    $savePath = realpath($php_path . '../attached/') . DIRECTORY_SEPARATOR;;
     //文件保存目录URL
     $saveURL = $php_url . '../attached/';
 
