@@ -40,7 +40,7 @@
             testEditor = editormd("test-editormd", {
                 width: "90%",
                 height: 740,
-                path : '../lib/',
+                path : '/public/home/editormd/lib/',
                 markdown : md,
                 codeFold : true,
                 saveHTMLToTextarea : true, 
