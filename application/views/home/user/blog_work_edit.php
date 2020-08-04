@@ -37,7 +37,7 @@
 
     $(function() {     
         
-        $.get("../examples/test.md", function(md){
+        $.get("<?=HOME_PUBLIC_URL?>editormd/examples/test.md", function(md){
             testEditor = editormd("test-editormd", {
                 width: "90%",
                 height: 740,
