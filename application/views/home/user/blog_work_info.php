@@ -24,12 +24,19 @@
                     </div>
                     <div class="panel-body">
                         <div class="tab-content">
+                            <form action="<?=HOME_URL?>user/blog_work_info" method="get" class="form-horizontal">
+                                标题: <input type="text" name="title">
+                                <input type="submit" value="搜索">
+                            </form>
+                        </div>
+                        <div class="tab-content">
                             <div class="tab-pane fade active in" id="profile">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>标题</th>
                                             <th>分类</th>
+                                            <th>图</th>
                                             <th>创建时间</th>
                                             <th>操作</th>
                                         </tr>
@@ -39,6 +46,13 @@
                                         <tr>
                                             <td><?=$work['title']?></td>
                                             <td><?=$work['cate']['title']?></td>
+                                            <td>
+                                                <?php if(!empty($work['img'])){?>
+                                                    <img src="<?=$work['img']?>" alt="<?=$work['title']?>"> 
+                                                <?php }else{?>
+                                                    无
+                                                <?php }?>
+                                            </td>
                                             <td><?=date('Y-m-d H:i',$work['ctime'])?></td>
                                             <td>
                                               <a href="<?=HOME_URL_HTTP?>user/blog_work_edit?id=<?=base64_encode($work['id'])?>"><button class="btn btn-primary btn-sm"><i class="fa fa-edit "></i>编辑</button></a>
