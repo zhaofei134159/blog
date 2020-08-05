@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="form-group  col-md-12">
                                     <label>文章内容：</label>
-                                    <textarea class="form-control col-md-12" name="desc" id="desc" style="min-height:100px;visibility:hidde" /><?=empty($work['desc'])?'':$work['desc']?></textarea>
+                                    <textarea class="form-control col-md-12" name="desc" id="desc" style="min-height:400px;visibility:hidde" /><?=empty($work['desc'])?'':$work['desc']?></textarea>
                                     <!-- <div id="test-editormd">
                                         <textarea style="display:none;"><?=empty($work['desc'])?'':$work['desc']?></textarea>
                                     </div> -->
