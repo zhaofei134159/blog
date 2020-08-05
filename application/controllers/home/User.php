@@ -177,6 +177,8 @@ class User extends Home_Controller{
 
 	public function blog_work_info(){
 		$post = $this->input->post();
+		$post['title'] = empty($post['title'])?'':$post['title'];
+		$post['cate'] = empty($post['cate'])?'all':$post['cate'];
 
 		$user = $this->zf_user_model->select_one('id='.$this->home['id']);
 		$offset = 0;
