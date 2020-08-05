@@ -219,7 +219,7 @@
         {
             if ($this->randomNameType == 1)        // 生成时间格式文件名
             {
-                date_default_timezone_set('PRC');  //设置时区
+                date_default_timezone_set('Asia/Shanghai');  //设置时区
                 
                 $date     = date($this->randomLength);
                 $fileName = $date . "_" . mt_rand(10000, 99999);
