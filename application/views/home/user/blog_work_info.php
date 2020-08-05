@@ -27,7 +27,7 @@
                             <form action="<?=HOME_URL?>user/blog_work_info" method="POST" class="form-horizontal">
                                 标题: <input type="text" name="title" value="<?=$post['title']?>">
                                 分类：
-                                <select name="cate" id="cate">
+                                <select name="cate" id="cate" style="height: 33px;min-width: 90px;">
                                     <option value="all">全部</option>
                                     <?php foreach($cates as $ck=>$cv){?>
                                     <option value="<?=$cv['id']?>"><?=$cv['title']?></option>
