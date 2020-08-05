@@ -30,7 +30,7 @@
                                 <select name="cate" id="cate" style="height: 33px;min-width: 90px;">
                                     <option value="all">全部</option>
                                     <?php foreach($cates as $ck=>$cv){?>
-                                    <option value="<?=$cv['id']?>" <?php if($cate==$cv['id']){?> selected <?php }?> ><?=$cv['title']?></option>
+                                    <option value="<?=$cv['id']?>" <?php if($post['cate']==$cv['id']){?> selected <?php }?> ><?=$cv['title']?></option>
                                     <?php }?>
                                 </select>
                                 <input type="submit" value="搜索">
