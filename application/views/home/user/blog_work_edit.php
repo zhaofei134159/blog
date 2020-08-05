@@ -36,7 +36,7 @@
 
     $(function() {     
         
-        $.get("<?=HOME_PUBLIC_URL?>editormd/examples/test.md", function(md){
+        $.get("<?=empty($work['desc'])?'':$work['desc']?>", function(md){
             testEditor = editormd("test-editormd", {
                 width: "90%",
                 height: 740,
