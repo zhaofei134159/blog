@@ -61,7 +61,7 @@
                             if(!empty($tags)){
                                 foreach($tags as $tag){
                         ?>
-                            <a href="<?=HOME_URL_HTTP?>blog/<?=$tag['blog_id']?>/art_list?tag=<?=$tag['id']?>," target="__black" class="btn btn-default btn-sm"><?=$tag['name']?></a>
+                            <a href="<?=HOME_URL_HTTP?>blog/<?=$tag['blog_id']?>/art_list?tag=<?=$tag['id']?>," target="__black" class="btn btn-default btn-sm" style="margin: 2px 0px;"><?=$tag['name']?></a>
                         <?php 
                                 }
                             }
