@@ -24,10 +24,11 @@
                     </div>
                     <div class="panel-body">
                         <div class="tab-content">
-                            <form action="<?=HOME_URL?>user/blog_work_info" method="get" class="form-horizontal">
+                            <form action="<?=HOME_URL?>user/blog_work_info" method="POST" class="form-horizontal">
                                 标题: <input type="text" name="title">
                                 <input type="submit" value="搜索">
                             </form>
+                            <br>
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade active in" id="profile">
@@ -48,7 +49,7 @@
                                             <td><?=$work['cate']['title']?></td>
                                             <td>
                                                 <?php if(!empty($work['img'])){?>
-                                                    <img src="<?=$work['img']?>" alt="<?=$work['title']?>"> 
+                                                    <img src="/<?=$work['img']?>" style="width:60px;" alt="<?=$work['title']?>"> 
                                                 <?php }else{?>
                                                     无
                                                 <?php }?>
