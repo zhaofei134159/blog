@@ -31,8 +31,6 @@
     $savePath = realpath($php_path . '../attached/') . DIRECTORY_SEPARATOR;;
     //文件保存目录URL
     $saveURL = $php_url . '../attached/';
-    var_dump($savePath);
-    var_dump($saveURL);
 
 	$formats  = array(
 		'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp')
