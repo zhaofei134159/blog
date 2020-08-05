@@ -206,7 +206,6 @@ class User extends Home_Controller{
 
 		$data = array(
 				'user'=>$user,
-				'cates'=>$cates,
 				'works'=>$works,
 				'work_htm'=>$work_htm,
 			);
