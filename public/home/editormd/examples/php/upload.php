@@ -24,7 +24,7 @@
 	// $savePath = realpath($path . '../uploads/') . DIRECTORY_SEPARATOR;
 	// $saveURL  = $url . '../uploads/';
 
-    $php_path = dirname(__FILE__) . DIRECTORY_SEPARATOR;
+    $php_path = __DIR__ . DIRECTORY_SEPARATOR;
     $php_url = dirname($_SERVER['PHP_SELF']) . '/';
 
     //文件保存目录路径
