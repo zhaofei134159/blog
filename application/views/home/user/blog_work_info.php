@@ -25,7 +25,7 @@
                     <div class="panel-body">
                         <div class="tab-content">
                             <form action="<?=HOME_URL?>user/blog_work_info" method="POST" class="form-horizontal">
-                                标题: <input type="text" name="title">
+                                标题: <input type="text" name="title" value="<?=$post['title']?>">
                                 <input type="submit" value="搜索">
                             </form>
                             <br>
