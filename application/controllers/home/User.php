@@ -183,17 +183,18 @@ class User extends Home_Controller{
 		$pagesize = 5;
 
 		//博客分类
-		// $cate_where = 'uid='.$this->home['id'];
-		// $cate_where .= ' and is_del=0';
-		// $cate_count = $this->zf_cate_model->count($cate_where);
-		// list($offset, $cate_htm) = $this->pager->pagestring($cate_count, $pagesize);
-		// $cates = $this->zf_cate_model->get_list($cate_where,'*','ctime desc',$pagesize, $offset);
+		$cate_where = 'uid='.$this->home['id'];
+		$cate_where .= ' and is_del=0';
+		$cates = $this->zf_cate_model->select($cate_where,'*','ctime desc');
 
 		//博客文章
 		$work_where = 'uid='.$this->home['id'];
 		$work_where .= ' and is_del=0';
 		if(!empty($post['title'])){
 			$work_where .= ' and title like "%'.$post['title'].'%"';
+		}
+		if(!empty($post['cate'])&&$post['cate']!='all'){
+			$work_where .= ' and cate_id='.$post['cate'];
 		}
         $work_count = $this->zf_work_model->count($work_where);
         list($offset, $work_htm) = $this->pager->pagestring($work_count, $pagesize);
@@ -206,6 +207,7 @@ class User extends Home_Controller{
 
 		$data = array(
 				'post'=>$post,
+				'cates'=>$cates,
 				'user'=>$user,
 				'works'=>$works,
 				'work_htm'=>$work_htm,

@@ -26,6 +26,13 @@
                         <div class="tab-content">
                             <form action="<?=HOME_URL?>user/blog_work_info" method="POST" class="form-horizontal">
                                 标题: <input type="text" name="title" value="<?=$post['title']?>">
+                                分类：
+                                <select name="cate" id="cate">
+                                    <option value="all">全部</option>
+                                    <?php foreach($cates as $ck=>$cv){?>
+                                    <option value="<?=$cv['id']?>"><?=$cv['title']?></option>
+                                    <?php }?>
+                                </select>
                                 <input type="submit" value="搜索">
                             </form>
                             <br>
