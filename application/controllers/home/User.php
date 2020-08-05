@@ -182,7 +182,7 @@ class User extends Home_Controller{
 
 		$user = $this->zf_user_model->select_one('id='.$this->home['id']);
 		$offset = 0;
-		$pagesize = 5;
+		$pagesize = 8;
 
 		//博客分类
 		$cate_where = 'uid='.$this->home['id'];
