@@ -312,10 +312,10 @@ class User extends Home_Controller{
 		}
 
 		$post['tags']='';
-		$post['desc']=$post['test-editormd-html-code'];
+		// $post['desc']=$post['test-editormd-html-code'];
 		unset($post['tags']);
-		unset($post['test-editormd-markdown-doc']);
-		unset($post['test-editormd-html-code']);
+		// unset($post['test-editormd-markdown-doc']);
+		// unset($post['test-editormd-html-code']);
 
 		$id = $post['id'];
 		unset($post['id']);
