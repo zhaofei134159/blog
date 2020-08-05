@@ -12,26 +12,27 @@
 <link rel="stylesheet" href="<?=HOME_PUBLIC_URL?>editormd/css/editormd.css" />
 <script src="<?=HOME_PUBLIC_URL?>editormd/editormd.js"></script>
 <script>
-    // KindEditor.ready(function(K) {
-    //     var editor1 = K.create('textarea[name="desc"]', {
-    //         cssPath : '<?=PUBLIC_URL?>kindeditor/plugins/code/prettify.css',
-    //         uploadJson : '<?=PUBLIC_URL?>kindeditor/php/upload_json.php',
-    //         fileManagerJson : '<?=PUBLIC_URL?>kindeditor/php/file_manager_json.php',
-    //         allowFileManager : true,
-    //         afterCreate : function() {
-    //             var self = this;
-    //             K.ctrl(document, 13, function() {
-    //                 self.sync();
-    //                 K('form[name=example]')[0].submit();
-    //             });
-    //             K.ctrl(self.edit.doc, 13, function() {
-    //                 self.sync();
-    //                 K('form[name=example]')[0].submit();
-    //             });
-    //         }
-    //     });
-    //     prettyPrint();
-    // });
+    KindEditor.ready(function(K) {
+        var editor1 = K.create('textarea[name="desc"]', {
+            cssPath : '<?=PUBLIC_URL?>kindeditor/plugins/code/prettify.css',
+            uploadJson : '<?=PUBLIC_URL?>kindeditor/php/upload_json.php',
+            fileManagerJson : '<?=PUBLIC_URL?>kindeditor/php/file_manager_json.php',
+            allowFileManager : true,
+            afterCreate : function() {
+                var self = this;
+                K.ctrl(document, 13, function() {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function() {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+            }
+        });
+        prettyPrint();
+    });
+    /*
     var testEditor;
 
     $(function() {     
@@ -61,6 +62,7 @@
             });
         });  
     });
+    */
 </script>
 <!-- MENU SECTION END-->
 <div class="content-wrapper" style="min-height:600px;">
@@ -156,10 +158,10 @@
                                 </div>
                                 <div class="form-group  col-md-12">
                                     <label>文章内容：</label>
-                                    <!-- <textarea class="form-control col-md-12" name="desc" id="desc" style="min-height:100px;visibility:hidde" /><?=empty($work['desc'])?'':$work['desc']?></textarea> -->
-                                    <div id="test-editormd">
+                                    <textarea class="form-control col-md-12" name="desc" id="desc" style="min-height:100px;visibility:hidde" /><?=empty($work['desc'])?'':$work['desc']?></textarea>
+                                    <!-- <div id="test-editormd">
                                         <textarea style="display:none;"><?=empty($work['desc'])?'':$work['desc']?></textarea>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="form-group  col-md-12">
                                     <label></label>
