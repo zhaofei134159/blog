@@ -40,7 +40,7 @@
 
     if (isset($_FILES[$name]))
     {        
-        $imageUploader = new EditorMdUploader($savePath, $saveURL, $formats['image'], false);  // Ymdhis表示按日期生成文件名，利用date()函数
+        $imageUploader = new EditorMdUploader($savePath, $saveURL, $formats['image']);  // Ymdhis表示按日期生成文件名，利用date()函数
         
         $imageUploader->config(array(
             'maxSize' => 1024,        // 允许上传的最大文件大小，以KB为单位，默认值为1024
