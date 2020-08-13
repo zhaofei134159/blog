@@ -35,7 +35,7 @@
         },
         tooltip: {
             formatter(params){
-                console.log(params)
+                return params.data[0]+': '+params.data[1];
             }
         },
         visualMap: {
