@@ -25,7 +25,7 @@
 </div>
 <script type="text/javascript" src="<?=HOME_PUBLIC_URL?>js/echarts.min.js"></script>
 <script type="text/javascript"> 
-    var myChart = echarts.init(document.getElementById('main'));
+    var myChart = echarts.init(document.getElementById('calendar-eachart'));
     // 模拟数据
     function getVirtulData(year) {
         year = year || '2017';
