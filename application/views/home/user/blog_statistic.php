@@ -57,6 +57,7 @@
             cellSize: [0, 15],
             range: ['<?=$startDate;?>','<?=$endDate;?>'],
             itemStyle: {
+                show:true,
                 borderWidth: 5.5,
                 borderColor: '#fff'
             },
