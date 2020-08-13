@@ -444,6 +444,8 @@ class User extends Home_Controller{
 
 		$data = array(
 				'user'=>$user,
+				'startDate'=>$createDate,
+				'endDate'=>date('Y-m-d'),
 				'json_data'=>json_encode($data),
 			);
 

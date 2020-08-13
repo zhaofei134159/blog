@@ -53,7 +53,7 @@
             left: 30,
             right: 30,
             cellSize: ['auto', 13],
-            range: '2016',
+            range: ['<?=$startDate;?>','<?=$endDate;?>'],
             itemStyle: {
                 borderWidth: 0.5
             },
