@@ -34,7 +34,15 @@
             text: '博客文章统计(近12个月)'
         },
         tooltip: {
-            formatter: '{c0}'
+            trigger: 'axis',
+            formatter(params){
+                for(x in params){
+                    console.log(params);
+                    console.log(x);
+                    return params[x] +":"+params[x];
+                }
+                 
+            }
         },
         visualMap: {
             min: 0,
