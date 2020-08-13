@@ -15,7 +15,7 @@
                         博客统计 
                     </div>
                     <div class="panel-body">
-                       <div id="calendar-eachart" style="width:100%;height:400px;"></div>
+                       <div id="calendar-eachart" style="width:100%;"></div>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             cellSize: [0, 15],
             range: ['<?=$startDate;?>','<?=$endDate;?>'],
             itemStyle: {
-                borderWidth: 2.5,
+                borderWidth: 5.5,
                 borderColor: '#fff'
             },
             dayLabel:{nameMap: 'cn'},
