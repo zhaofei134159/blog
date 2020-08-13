@@ -18,6 +18,11 @@
             <a href="<?=HOME_URL_HTTP?>user/blog_work_info">
               <h4><i class="fa fa-file-word-o"></i> 我的文章</h4>
             </a>
+            <!--
+            <a href="<?=HOME_URL_HTTP?>user/blog_work_info">
+              <h4><i class="fa fa-bars"></i> 我的文章</h4>
+            </a>
+            -->
             <?php }?>
           <?php }?>
       </div>
