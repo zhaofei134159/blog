@@ -437,14 +437,14 @@ class User extends Home_Controller{
 		foreach($dateList as $key=>$val){
 			$dateNum = 0;
 			if(!empty($workCount[$val])){
-				$dateNum = $workCount[$val]['num'];
+				$dateNum = intval($workCount[$val]['num']);
 			}
 			$data[$key] = array($val,$dateNum); 
 		}
-		var_dump($data);die;
 
 		$data = array(
 				'user'=>$user,
+				'json_data'=>json_encode($data),
 			);
 
 		$this->load->view(HOME_URL.'user/blog_statistic',$data);
