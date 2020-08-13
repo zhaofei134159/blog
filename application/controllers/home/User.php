@@ -423,7 +423,7 @@ class User extends Home_Controller{
 		$work_where = ' 1 ';
 		$work_where .= ' and uid='.$this->home['id'];
 		$work_where .= ' and is_del=0';
-		$query = $this->zf_work_model->query("SELECT FROM_UNIXTIME(ctime,'%Y-%m-%d') as create_date,count(1) as count FROM zf_work WHERE {$work_where} group by FROM_UNIXTIME(ctime,'%Y-%m-%d')",);
+		$query = $this->zf_work_model->query("SELECT FROM_UNIXTIME(ctime,'%Y-%m-%d') as create_date,count(1) as count FROM zf_work WHERE {$work_where} group by FROM_UNIXTIME(ctime,'%Y-%m-%d')");
 		$workNum = $query->result_array();
 		var_dump($workNum);die;
 
