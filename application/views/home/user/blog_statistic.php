@@ -15,7 +15,7 @@
                         博客统计 
                     </div>
                     <div class="panel-body">
-                       <div id="calendar-eachart" style="width:100%;"></div>
+                       <div id="calendar-eachart" style="width:100%;height:230px;"></div>
                     </div>
                 </div>
             </div>
