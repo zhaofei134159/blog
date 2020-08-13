@@ -35,7 +35,7 @@
         },
         tooltip: {
             formatter(params){
-                return params.data[0]+': '+params.data[1];
+                return params.data[0]+' : '+params.data[1];
             }
         },
         visualMap: {
@@ -54,10 +54,10 @@
             top: 65,
             left: 30,
             right: 30,
-            cellSize: [13, 15],
+            cellSize: [0, 15],
             range: ['<?=$startDate;?>','<?=$endDate;?>'],
             itemStyle: {
-                borderWidth: 1.5,
+                borderWidth: 2.5,
                 borderColor: '#fff'
             },
             dayLabel:{nameMap: 'cn'},
