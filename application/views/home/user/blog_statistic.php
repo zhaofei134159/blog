@@ -55,11 +55,11 @@
             left: 30,
             right: 30,
             cellSize: [0, 15],
-            range: ['<?=$startDate;?>','<?=$endDate;?>'],
+            range: ['2019-08-13','2020-08-13'],
             itemStyle: {
-                show:true,
-                borderWidth: 5.5,
-                borderColor: '#fff'
+                show:false,
+                borderWidth: 2.5,
+                borderColor: '#fff',
             },
             dayLabel:{nameMap: 'cn'},
             monthLabel:{nameMap: 'cn'},
