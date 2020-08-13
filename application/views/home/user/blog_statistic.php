@@ -58,7 +58,7 @@
             range: ['<?=$startDate;?>','<?=$endDate;?>'],
             itemStyle: {
                 borderWidth: 2.5,
-                borderColor: 'rgba(255, 255, 255, 0)'
+                borderColor: 'rgb(255, 255, 255)'
             },
             dayLabel:{nameMap: 'cn'},
             monthLabel:{nameMap: 'cn'},
