@@ -36,12 +36,7 @@
         tooltip: {
             trigger: 'axis',
             formatter(params){
-                for(x in params){
-                    console.log(params);
-                    console.log(x);
-                    return params[x] +":"+params[x];
-                }
-                 
+                console.log(params);
             }
         },
         visualMap: {
