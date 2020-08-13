@@ -62,7 +62,7 @@
         series: {
             type: 'heatmap',
             coordinateSystem: 'calendar',
-            data: '<?=$json_data;?>'
+            data: JSON.parse('<?=$json_data;?>');
         }
     };
 
