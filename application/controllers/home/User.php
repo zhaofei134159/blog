@@ -398,7 +398,7 @@ class User extends Home_Controller{
 	*/
 	function statistic(){
 
-		$user = $this->zf_user_model->select_one('id='.$this->home['id']);
+		/*$user = $this->zf_user_model->select_one('id='.$this->home['id']);
 
 		//博客文章
 		$work_where = 'uid='.$this->home['id'];
@@ -415,16 +415,10 @@ class User extends Home_Controller{
 
 		foreach($works as $key=>$work){
 			$works[$key]['cate']=$this->zf_cate_model->select_one('id='.$work['cate_id'].' and is_del=0');
-		}
+		}*/
 
 
-		$data = array(
-				'post'=>$post,
-				'cates'=>$cates,
-				'user'=>$user,
-				'works'=>$works,
-				'work_htm'=>$work_htm,
-			);
+		$data = array();
 
 		$this->load->view(HOME_URL.'user/blog_statistic',$data);
 	}
