@@ -146,7 +146,7 @@ class User extends Home_Controller{
 
 		$user = $this->zf_user_model->select_one('id='.$this->home['id']);
 		$offset = 0;
-		$pagesize = 5;
+		$pagesize = 8;
 
 		//博客分类
 		$cate_where = 'uid='.$this->home['id'];
@@ -392,5 +392,41 @@ class User extends Home_Controller{
 
 		return trim($tag_ids,',');
 	} 
+
+	/*
+	* 博客统计
+	*/
+	function statistic(){
+
+		$user = $this->zf_user_model->select_one('id='.$this->home['id']);
+
+		//博客文章
+		$work_where = 'uid='.$this->home['id'];
+		$work_where .= ' and is_del=0';
+		if(!empty($post['title'])){
+			$work_where .= ' and title like "%'.$post['title'].'%"';
+		}
+		if(!empty($post['cate'])&&$post['cate']!='all'){
+			$work_where .= ' and cate_id='.$post['cate'];
+		}
+        $work_count = $this->zf_work_model->count($work_where);
+        list($offset, $work_htm) = $this->pager->pagestring($work_count, $pagesize);
+		$works = $this->zf_work_model->get_list($work_where,'*','ctime desc',$pagesize, $offset);
+
+		foreach($works as $key=>$work){
+			$works[$key]['cate']=$this->zf_cate_model->select_one('id='.$work['cate_id'].' and is_del=0');
+		}
+
+
+		$data = array(
+				'post'=>$post,
+				'cates'=>$cates,
+				'user'=>$user,
+				'works'=>$works,
+				'work_htm'=>$work_htm,
+			);
+
+		$this->load->view(HOME_URL.'user/blog_statistic',$data);
+	}
 
 }
