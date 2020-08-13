@@ -426,9 +426,22 @@ class User extends Home_Controller{
 		$work_where .= ' and ctime>='.$createTime;
 		$query = $this->zf_work_model->query("SELECT FROM_UNIXTIME(ctime,'%Y-%m-%d') as create_date,count(1) as count FROM zf_work WHERE {$work_where} group by FROM_UNIXTIME(ctime,'%Y-%m-%d')");
 		$workNum = $query->result_array();
+		$workCount = array();
+		foreach($workNum as $key=>$val){
+			$workCount[$val['create_date']]['create_date'] = $val['create_date'];
+			$workCount[$val['create_date']]['num'] = $val['count'];
+		}
 
 		$dateList = getDateList($createDate,date('Y-m-d'));
-		var_dump($dateList);die;
+		$data = array();
+		foreach($dateList as $key=>$val){
+			$dateNum = 0;
+			if(!empty($workCount[$val])){
+				$dateNum = $workCount[$val]['num'];
+			}
+			$data[$key] = array($val,$dateNum); 
+		}
+		var_dump($data);die;
 
 		$data = array(
 				'user'=>$user,

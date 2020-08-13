@@ -116,8 +116,6 @@ function voiceFormatConversion($url,$format,$address){
 }
 
 function getDateList($startDate,$endDate){
-    //本月最后一天日期
-    $end_date = date('Y-m-d', strtotime("$start_date +1 month -2 day"));
     //获得该时间段内所有日期列表
     $dateList = array();
     for($i = strtotime($startDate); $i <= strtotime($endDate); $i += 86400)
