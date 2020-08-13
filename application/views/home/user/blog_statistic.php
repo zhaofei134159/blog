@@ -38,11 +38,11 @@
         },
         visualMap: {
             min: 0,
-            max: 10000,
+            max: 3,
             type: 'piecewise',
             orient: 'horizontal',
             left: 'center',
-            color:['#006230','#009B46','#BEE58D'],
+            color:['#006230','#009B46','#BEE58D','#EBEEF1'],
             textStyle: {
                 color: '#000'
             },
@@ -52,12 +52,15 @@
             top: 65,
             left: 30,
             right: 30,
-            cellSize: ['auto', 13],
+            cellSize: [13, 15],
             range: ['<?=$startDate;?>','<?=$endDate;?>'],
             itemStyle: {
-                borderWidth: 0.5
+                borderWidth: 1.5,
+                borderColor: '#fff'
             },
-            yearLabel: {show: true}
+            dayLabel:{nameMap: 'cn'},
+            monthLabel:{nameMap: 'cn'},
+            yearLabel: {show: false}
         },
         series: {
             type: 'heatmap',
