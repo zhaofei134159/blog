@@ -400,23 +400,6 @@ class User extends Home_Controller{
 
 		$user = $this->zf_user_model->select_one('id='.$this->home['id']);
 
-		/*//博客文章
-		$work_where = 'uid='.$this->home['id'];
-		$work_where .= ' and is_del=0';
-		if(!empty($post['title'])){
-			$work_where .= ' and title like "%'.$post['title'].'%"';
-		}
-		if(!empty($post['cate'])&&$post['cate']!='all'){
-			$work_where .= ' and cate_id='.$post['cate'];
-		}
-        $work_count = $this->zf_work_model->count($work_where);
-        list($offset, $work_htm) = $this->pager->pagestring($work_count, $pagesize);
-		$works = $this->zf_work_model->get_list($work_where,'*','ctime desc',$pagesize, $offset);
-
-		foreach($works as $key=>$work){
-			$works[$key]['cate']=$this->zf_cate_model->select_one('id='.$work['cate_id'].' and is_del=0');
-		}
-		*/
 		$createTime = strtotime('-1 year');
 		$createDate = date('Y-m-d',$createTime);
 
@@ -426,6 +409,10 @@ class User extends Home_Controller{
 		$work_where .= ' and ctime>='.$createTime;
 		$query = $this->zf_work_model->query("SELECT FROM_UNIXTIME(ctime,'%Y-%m-%d') as create_date,count(1) as count FROM zf_work WHERE {$work_where} group by FROM_UNIXTIME(ctime,'%Y-%m-%d')");
 		$workNum = $query->result_array();
+		# 添加博客创建日期
+		$workNum[count($workNum)]['create_date'] = $user['ctime'];
+		$workNum[count($workNum)]['num'] = '-1';
+
 		$workCount = array();
 		foreach($workNum as $key=>$val){
 			$workCount[$val['create_date']]['create_date'] = $val['create_date'];
