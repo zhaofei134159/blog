@@ -40,11 +40,11 @@
         },
         visualMap: {
             min: 0,
-            max: 3,
+            max: 4,
             type: 'piecewise',
             orient: 'horizontal',
             left: 'center',
-            color:['#006230','#009B46','#BEE58D','#EBEEF1'],
+            color:['#006230','#009B46','#59CB74','#BEE58D','#EBEEF1'],
             textStyle: {
                 color: '#000'
             },
