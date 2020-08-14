@@ -412,7 +412,7 @@ class User extends Home_Controller{
 		$workTotalNum  = count($workNum);
 
 		# 添加博客创建日期
-		$workNum[$workTotalNum]['create_date'] = $user['ctime'];
+		$workNum[$workTotalNum]['create_date'] = date('Y-m-d',$user['ctime']);
 		$workNum[$workTotalNum]['count'] = '-1';
 
 		$workCount = array();
