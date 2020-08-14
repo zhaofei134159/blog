@@ -58,7 +58,7 @@
             range: ['<?=$startDate;?>','<?=$endDate;?>'],
             itemStyle: {
                 normal : {
-                    color :'rgb(255, 255, 255)',
+                    color :'black',
                     borderWidth: 2.5,
                     borderColor: 'rgb(255, 255, 255)'
                 },
