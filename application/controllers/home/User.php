@@ -409,9 +409,11 @@ class User extends Home_Controller{
 		$work_where .= ' and ctime>='.$createTime;
 		$query = $this->zf_work_model->query("SELECT FROM_UNIXTIME(ctime,'%Y-%m-%d') as create_date,count(1) as count FROM zf_work WHERE {$work_where} group by FROM_UNIXTIME(ctime,'%Y-%m-%d')");
 		$workNum = $query->result_array();
+		$workTotalNum  = count($workNum);
+
 		# 添加博客创建日期
-		$workNum[count($workNum)]['create_date'] = $user['ctime'];
-		$workNum[count($workNum)]['num'] = '-1';
+		$workNum[$workTotalNum]['create_date'] = $user['ctime'];
+		$workNum[$workTotalNum]['num'] = '-1';
 
 		$workCount = array();
 		foreach($workNum as $key=>$val){
