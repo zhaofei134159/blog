@@ -57,8 +57,11 @@
             cellSize: [0, 15],
             range: ['<?=$startDate;?>','<?=$endDate;?>'],
             itemStyle: {
-                borderWidth: 2.5,
-                borderColor: 'rgb(255, 255, 255)'
+                normal : {
+                    color :'red',
+                    borderWidth: 2.5,
+                    borderColor: 'rgb(255, 255, 255)'
+                },
             },
             dayLabel:{nameMap: 'cn'},
             monthLabel:{nameMap: 'cn'},
