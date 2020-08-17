@@ -54,6 +54,14 @@
                 
         </div>
     </div>
+    <div  class="row">
+        <div class="col-md-12">
+            <div class="alert alert-dismissable" id="alert" style="display:none;">
+                <span class="close" onclick="abandon()">×</span>
+                <p> qwewqewqewqeq</p>
+            </div>
+        </div>
+    </div>
     <!-- LOGO HEADER END-->
     <section class="menu-section">
         <div class="container">
