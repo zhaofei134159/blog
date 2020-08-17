@@ -57,9 +57,8 @@
         <div class="container">
             <div  class="row">
                 <div class="col-md-12">
-                    <div class="alert alert-dismissable">
-                        <span class="close" onclick="abandon()">×</span>
-                        <p> qwewqewqewqeq </p>
+                    <div class="alert alert-success alert-dismissable">
+                        <p> 【宝塔服务器面板】<a href="https://www.bt.cn/?invite_code=MV95c2Vxa3c=" target="__black">点我领取</a>, 属于你的3188元礼包 </p>
                     </div>
                 </div>
             </div>
