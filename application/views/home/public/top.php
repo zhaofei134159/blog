@@ -53,6 +53,7 @@
 
         </div>
     </div>
+    <!--
     <section class="menu-section">
         <div class="container">
             <div  class="row">
@@ -66,6 +67,7 @@
             </div>
         </div>
     </div>
+    -->
     <!-- LOGO HEADER END-->
     <section class="menu-section">
         <div class="container">
