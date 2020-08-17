@@ -20,6 +20,7 @@ class Homeapp extends Home_Controller{
 
 	public function index()
 	{
+		$blogId = $this->blogId;
 		if(!isset($_GET['workIndex'])||empty($_GET['workIndex'])){
 			$workIndex = 1;
 		}else{
