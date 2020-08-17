@@ -49,16 +49,15 @@
                 <a class="navbar-brand" href="/home">
 					blogfamily
                 </a>
-                
             </div>
-                
-        </div>
-    </div>
-    <div  class="row">
-        <div class="col-md-12">
-            <div class="alert alert-dismissable" id="alert" style="display:none;">
-                <span class="close" onclick="abandon()">×</span>
-                <p> qwewqewqewqeq</p>
+                    
+            <div  class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-dismissable" id="alert" style="display:none;">
+                        <span class="close" onclick="abandon()">×</span>
+                        <p> qwewqewqewqeq</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
