@@ -50,12 +50,12 @@
 					blogfamily
                 </a>
             </div>
-                    
+
             <div  class="row">
                 <div class="col-md-12">
-                    <div class="alert alert-dismissable" id="alert" style="display:none;">
+                    <div class="alert alert-dismissable">
                         <span class="close" onclick="abandon()">×</span>
-                        <p> qwewqewqewqeq</p>
+                        <p> qwewqewqewqeq </p>
                     </div>
                 </div>
             </div>
