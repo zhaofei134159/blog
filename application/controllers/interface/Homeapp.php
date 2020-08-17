@@ -35,11 +35,11 @@ class Homeapp extends Home_Controller{
 
 
 		//标签
-		$tags = $this->zf_tag_model->get_list('is_del=0','*','',40,0);
+		$tags = $this->zf_tag_model->get_list('blog_id='.$blogId.' and is_del=0','*','',40,0);
 
 		//热门的文章 点击量多的
 		$offset = $this->workPageNum*((int)$workIndex-1);
-		$works = $this->zf_work_model->get_list('is_del=0','*','ctime desc',$this->workPageNum,$offset);
+		$works = $this->zf_work_model->get_list('blog_id='.$blogId.' and is_del=0','*','ctime desc',$this->workPageNum,$offset);
 		if(!empty($works)){
 			foreach($works as $wk=>$work){
 				$works[$wk]['user'] = $this->zf_user_model->select_one('id='.$work['uid']);
@@ -47,7 +47,7 @@ class Homeapp extends Home_Controller{
 		}
 
 		// 轮播
-		$lun_ad = $this->zf_work_model->get_list('is_del=0 and img!=""','*','browse_num desc',4,0);
+		$lun_ad = $this->zf_work_model->get_list('blog_id='.$blogId.' and is_del=0 and img!=""','*','browse_num desc',4,0);
 
 		$data = array(
 				'tags'=>$tags,
