@@ -16,7 +16,7 @@ if($num>1){
 }
 
 # 路径
-$path = '/usr/local/nginx/html/python/';
+$path = '../../python/';
 
 # 百度api
 $picToWordAppkey = $config['picToWordAppkey']; 
