@@ -29,7 +29,7 @@ $mysql = new MMysql($db_conf);
 
 $sql = "SELECT * FROM zf_bladesoul";
 $res = $mysql->doSql($sql);
-var_dump($doSql);die;
+var_dump($res);die;
 
 $file =
 
