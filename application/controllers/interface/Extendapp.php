@@ -68,7 +68,7 @@ class Extendapp extends Home_Controller{
 		$result = $this->getBdAccessToken();
 		$resultArr = json_decode($result,true);
 	    if(!isset($resultArr['access_token']) || empty($resultArr['access_token'])){
-	    	$callback = array('errorMsg'=>'百度token获取错误','errorNo'=>'101');
+	    	$callback = array('errorMsg'=>'token获取错误','errorNo'=>'101');
 	    	exit(json_encode($callback));
 	    }
 
