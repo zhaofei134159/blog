@@ -17,7 +17,7 @@ class Work extends Home_Controller{
 		$pagesize = 20;
 		$offset = 0;
 		
-		$where = '1';
+		$where = '1 and is_del=0';
 
         $leave_count = $this->zf_famou_work_model->count($where);
         list($offset, $leave_htm) = $this->pager->pagestring($leave_count, $pagesize);
