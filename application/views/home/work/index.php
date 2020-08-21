@@ -27,9 +27,9 @@
             <div class="col-md-1 col-sm-12 col-xs-12">
                 <div class="panel panel-success">
                   <div class="panel-body" style="width:100%;text-align:center;">
-                        <h4><i class="fa fa-angle-left fa-2x"></i></h4>
-                        <h4><i class="fa fa-angle-right fa-2x"></i></h4>
-                        <h4><i class="fa fa-angle-up fa-2x"></i></h4>
+                        <h4><i class="fa fa-angle-left fa-3x"></i></h4>
+                        <h4><i class="fa fa-angle-right fa-3x"></i></h4>
+                        <h4><i class="fa fa-angle-up fa-3x"></i></h4>
                   </div>
                 </div>
             </div>
