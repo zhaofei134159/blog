@@ -18,10 +18,7 @@
             <div class="col-md-10 col-sm-12 col-xs-12">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        分类列表 
-                        <a href="<?=HOME_URL_HTTP?>user/blog_info_edit">
-                            <span style="float:right;padding-bottom:3px;" class="btn btn-success btn-sm">添加</span>
-                        </a>
+                         
                     </div>
                     <div class="panel-body">
                     </div>
@@ -30,9 +27,9 @@
             <div class="col-md-1 col-sm-12 col-xs-12">
                 <div class="panel panel-success">
                   <div class="panel-body" style="width:100%;text-align:center;">
-                      <a href="<?=HOME_URL_HTTP?>user">
-                        <h4><i class="fa fa-user"></i></h4>
-                      </a>
+                        <h4><i class="fa fa-chevron-left"></i></h4>
+                        <h4><i class="fa fa-chevron-right"></i></h4>
+                        <h4><i class="fa fa-chevron-up"></i></h4>
                   </div>
                 </div>
             </div>
