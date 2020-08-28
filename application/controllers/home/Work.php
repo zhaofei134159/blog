@@ -10,8 +10,9 @@ class Work extends Home_Controller{
         $this->load->library('pager');
 		$this->load->helper('common');
 		$this->load->config('app');
- 
-		if(empty($_SERVER['HTTP_REFERER'])||$_SERVER['HTTP_REFERER']!='http://books.myfeiyou.com/'){
+ 		
+ 		var_dump($_SERVER['HTTP_REFERER']);
+		if(empty($_SERVER['HTTP_REFERER'])||!in_array($_SERVER['HTTP_REFERER'],array('http://104.243.18.161','http://books.myfeiyou.com/'))){
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'404');
 	    	exit(json_encode($callback));
 		} 
