@@ -14,10 +14,19 @@ class Work extends Home_Controller{
 
 	public function index()
 	{
-		$where = '1 and is_del=0';
-		$works = $this->zf_famou_work_model->select($where,'*','ctime desc');
+		$offset = 0;
+		$pagesize = 12;
 
-		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$works);
+		$where = '1 and is_del=0';
+		$worksCount = $this->zf_famou_work_model->count($where);
+
+		$works = $this->zf_famou_work_model->select($where,'*','ctime desc',$offset,$pagesize);
+
+		$data = array();
+		$data['worksCount'] = $worksCount;
+		$data['works'] = $works;
+
+		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
     	exit(json_encode($callback));
 	}
 }
