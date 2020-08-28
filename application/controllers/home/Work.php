@@ -11,7 +11,7 @@ class Work extends Home_Controller{
 		$this->load->helper('common');
 		$this->load->config('app');
  
-		if($_SERVER['REFERER']!='http://books.myfeiyou.com/'){
+		if($_SERVER['HTTP_REFERER']!='http://books.myfeiyou.com/'){
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'404');
 	    	exit(json_encode($callback));
 		} 
