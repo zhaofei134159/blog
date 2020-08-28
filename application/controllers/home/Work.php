@@ -11,8 +11,8 @@ class Work extends Home_Controller{
 		$this->load->helper('common');
 		$this->load->config('app');
  		
- 		var_dump($_SERVER['HTTP_REFERER']);
-		if(empty($_SERVER['HTTP_REFERER'])||!in_array($_SERVER['HTTP_REFERER'],array('http://104.243.18.161','http://books.myfeiyou.com/'))){
+ 		$referer = array('http://104.243.18.161:8080','http://104.243.18.161:8081','http://104.243.18.161:8082','http://books.myfeiyou.com/');
+		if(empty($_SERVER['HTTP_REFERER'])||!in_array($_SERVER['HTTP_REFERER'],$referer)){
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'404');
 	    	exit(json_encode($callback));
 		} 
