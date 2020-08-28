@@ -40,7 +40,6 @@
 <script type="text/javascript"> 
     var myModal = $('#alert');
     var myModalBody = $('#myModalBody');
-
 </script>
 <?php
     $this->load->view('home/public/footer');
