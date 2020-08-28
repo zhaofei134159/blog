@@ -10,6 +10,15 @@ class Work extends Home_Controller{
         $this->load->library('pager');
 		$this->load->helper('common');
 		$this->load->config('app');
+
+		$headers = array();
+		foreach ($_SERVER as $key => $value) {
+		    if ('HTTP_' == substr($key, 0, 5)) {
+		        $headers[str_replace('_', '-', substr($key, 5))] = $value;
+		    }
+		}    
+		echo '<pre>';
+		print_r($headers);  
 	}
 
 	public function index()
