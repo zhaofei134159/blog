@@ -28,7 +28,7 @@ class Work extends Home_Controller{
 	public function index()
 	{
 		$offset = 0;
-		$pagesize = 1;
+		$pagesize = 12;
 
 		$where = '1 and is_del=0';
 		$worksCount = $this->zf_famou_work_model->count($where);
