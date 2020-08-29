@@ -28,7 +28,7 @@ class Work extends Home_Controller{
 	public function index()
 	{
 		$get = $this->input->get();
-		$page = ($get['page'])?$get['page']:1;
+		$page = !empty($get['page'])?$get['page']:1;
 
 		$pagesize = 1;
 		$offset = ($page-1)*$pagesize;
