@@ -33,7 +33,7 @@ class Work extends Home_Controller{
 		$where = '1 and is_del=0';
 		$worksCount = $this->zf_famou_work_model->count($where);
 
-		$works = $this->zf_famou_work_model->get_list($where,'*','ctime desc',$offset,$pagesize);
+		$works = $this->zf_famou_work_model->get_list($where,'*','ctime desc',$pagesize,$offset);
 
 		$data = array();
 		$data['worksCount'] = $worksCount;
