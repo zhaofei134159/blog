@@ -30,7 +30,7 @@ class Work extends Home_Controller{
 		$get = $this->input->get();
 		$page = !empty($get['page'])?$get['page']:1;
 
-		$pagesize = 1;
+		$pagesize = 12;
 		$offset = ($page-1)*$pagesize;
 
 		$where = '1 and is_del=0';
