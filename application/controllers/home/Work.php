@@ -18,6 +18,7 @@ class Work extends Home_Controller{
 
  		$HTTP_REFERER = trim($_SERVER['HTTP_REFERER'],'http://');
  		$HTTP_REFERER = trim($HTTP_REFERER,'https://');
+ 		var_dump($HTTP_REFERER);
  		$referer = array('104.243.18.161:8080','104.243.18.161:8081','104.243.18.161:8082','books.myfeiyou.com');
 		if(!in_array($HTTP_REFERER,$referer)){
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'1004');
