@@ -48,8 +48,8 @@ class Work extends Home_Controller{
 	}
 
 	public function getFamouWorkInfo(){
-		$post = $this->input->post();
-		$workId = $post['workId'];
+		$get = $this->input->get();
+		$workId = $get['workId'];
 		if(empty($workId)){
 			$callback = array('errorMsg'=>'参数错误','errorNo'=>'1010');
 			exit(json_encode($callback));	
