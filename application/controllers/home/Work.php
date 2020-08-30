@@ -71,4 +71,32 @@ class Work extends Home_Controller{
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
 		exit(json_encode($callback));
 	}
+
+	public function getFamouWorkCont(){
+		$get = $this->input->get();
+		$workId = $get['workId'];
+		$chapterId = $get['chapterId'];
+		if(empty($workId)||empty($chapterId)){
+			$callback = array('errorMsg'=>'参数错误','errorNo'=>'1010');
+			exit(json_encode($callback));	
+		}
+
+		# workInfo
+		$where = '1 and is_del=0';
+		$where .= ' and id='.$workId;
+		$work = $this->zf_famou_work_model->select_one($where);
+
+		# workChapter
+		$info_where = '1';
+		$info_where .= ' and work_id='.$workId;
+		$info_where .= ' and id='.$chapterId;
+		$workInfo = $this->zf_famou_work_info_model->select($info_where);
+
+		$data = array();
+		$data['work'] = $work;
+		$data['workInfo'] = $workInfo;
+
+		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
+		exit(json_encode($callback));
+	}
 }
