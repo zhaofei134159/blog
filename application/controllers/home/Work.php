@@ -62,7 +62,7 @@ class Work extends Home_Controller{
 
 		# workChapter
 		$info_where = '1 and work_id='.$workId;
-		$workInfo = $this->zf_famou_work_info_model->select($info_where,'*','index asc');
+		$workInfo = $this->zf_famou_work_info_model->select($info_where,'id,work_id,index,title','index asc');
 
 		$data = array();
 		$data['work'] = $work;
