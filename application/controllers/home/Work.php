@@ -90,7 +90,7 @@ class Work extends Home_Controller{
 		$info_where = '1';
 		$info_where .= ' and work_id='.$workId;
 		$info_where .= ' and id='.$chapterId;
-		$workInfo = $this->zf_famou_work_info_model->select($info_where);
+		$workInfo = $this->zf_famou_work_info_model->select_one($info_where);
 
 		$data = array();
 		$data['work'] = $work;
