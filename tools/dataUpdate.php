@@ -28,18 +28,3 @@ $db_conf = array(
 $mysql = new MMysql($db_conf);
 
 
-# 修改数据
-$sql = "SELECT * from zf_famou_work_info where work_id=9 and id>=361";
-$res = $mysql->doSql($sql);
-
-foreach($res as $key=>$val){
-	var_dump($val['id']);
-
-	$content = explode(' <br> ',$val['content']);
-	unset($content[0]);
-	$contentStr = implode(' <br> ',$content);
-	$contentStr = str_replace('"',"'",$contentStr);
-
-	$updateSql = 'update zf_famou_work_info set content="'.$contentStr.'" where id='.$val['id'];
-	$mysql->doSql($updateSql);
-}
