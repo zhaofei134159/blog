@@ -29,16 +29,16 @@ $mysql = new MMysql($db_conf);
 
 
 # 修改数据
-$sql = "SELECT * from zf_famou_work_info where work_id=9";
+$sql = "SELECT * from zf_famou_work_info where work_id=9 and id!=341";
 $res = $mysql->doSql($sql);
 
 foreach($res as $key=>$val){
+	var_dump($val['id']);
+
 	$content = explode(' <br> ',$val['content']);
-	var_dump($content);
 	unset($content[0]);
 	$contentStr = implode(' <br> ',$content);
 
 	$updateSql = "update zf_famou_work_info set content='".$contentStr."' where id=".$val['id'];
 	$mysql->doSql($updateSql);
-	die;
 }
