@@ -39,8 +39,7 @@ foreach($res as $key=>$val){
 	unset($content[0]);
 	$contentStr = implode(' <br> ',$content);
 	$contentStr = str_replace('"',"'",$contentStr);
-	var_dump($contentStr);die;
 
-	$updateSql = "update zf_famou_work_info set content='".$contentStr."' where id=".$val['id'];
+	$updateSql = 'update zf_famou_work_info set content="'.$contentStr.'" where id='.$val['id'];
 	$mysql->doSql($updateSql);
 }
