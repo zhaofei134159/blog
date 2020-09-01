@@ -7,6 +7,7 @@ class Work extends Home_Controller{
 
 		$this->load->model('zf_famou_work_model');
 		$this->load->model('zf_famou_work_info_model');
+		$this->load->model('zf_famou_work_node_model');
         $this->load->library('pager');
 		$this->load->helper('common');
 		$this->load->config('app');
@@ -93,9 +94,16 @@ class Work extends Home_Controller{
 		$info_where .= ' and id='.$chapterId;
 		$workInfo = $this->zf_famou_work_info_model->select_one($info_where);
 
+		# 
+		$node_where = '1';
+		$node_where .= ' and work_id='.$workId;
+		$node_where .= ' and work_info_id='.$chapterId;
+		$workNode = $this->zf_famou_work_node_model->select_one($node_where);
+
 		$data = array();
 		$data['work'] = $work;
 		$data['workInfo'] = $workInfo;
+		$data['workNode'] = $workNode;
 
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
 		exit(json_encode($callback));
