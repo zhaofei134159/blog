@@ -99,6 +99,10 @@ class Work extends Home_Controller{
 		$node_where .= ' and work_id='.$workId;
 		$node_where .= ' and work_info_id='.$chapterId;
 		$workNode = $this->zf_famou_work_node_model->select_one($node_where);
+		if(empty($workNode)){
+			$workNode['translate'] = '';
+			$workNode['node'] = '';
+		}
 
 		$data = array();
 		$data['work'] = $work;
