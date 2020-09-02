@@ -102,6 +102,17 @@ class Work extends Home_Controller{
 		if(empty($workNode)){
 			$workNode['translate'] = '';
 			$workNode['node'] = '';
+			$workNode['annotate'] = '';
+		}else{
+			if(empty($workNode['translate'])){
+				$workNode['translate'] = '';
+			}
+			if(empty($workNode['node'])){
+				$workNode['node'] = '';
+			}
+			if(empty($workNode['annotate'])){
+				$workNode['annotate'] = '';
+			}
 		}
 
 		$data = array();
