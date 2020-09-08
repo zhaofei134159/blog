@@ -68,7 +68,7 @@ class Work extends Home_Controller{
 		$workInfo = $this->zf_famou_work_info_model->select($info_where,'id,work_id,index,title,extract','index asc');
 		foreach($workInfo as $key=>$val){
 			if(empty($val['extract'])){
-				$val['extract'] = '';
+				$workInfo[$key]['extract'] = '';
 			}
 		}
 
