@@ -66,20 +66,10 @@ class Work extends Home_Controller{
 		# workChapter
 		$info_where = '1 and work_id='.$workId;
 		$workInfo = $this->zf_famou_work_info_model->select($info_where,'id,work_id,index,title,extract','index asc');
-
-		# 每个小章节排序
-		$chapterStr = '';
-		$i = 0;
 		foreach($workInfo as $key=>$val){
 			if(empty($val['extract'])){
 				$val['extract'] = '';
 			}
-			if($chapterStr!=$val['extract']){
-				$chapterStr = $val['extract'];
-				$i = 0;
-			}
-			$workInfo[$key]['chapterIndex'] = $i;
-			$i++;
 		}
 
 		$data = array();
