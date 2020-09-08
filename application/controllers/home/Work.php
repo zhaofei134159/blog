@@ -8,6 +8,7 @@ class Work extends Home_Controller{
 		$this->load->model('zf_famou_work_model');
 		$this->load->model('zf_famou_work_info_model');
 		$this->load->model('zf_famou_work_node_model');
+		$this->load->model('zf_famou_work_tag_model');
         $this->load->library('pager');
 		$this->load->helper('common');
 		$this->load->config('app');
@@ -64,7 +65,22 @@ class Work extends Home_Controller{
 
 		# workChapter
 		$info_where = '1 and work_id='.$workId;
-		$workInfo = $this->zf_famou_work_info_model->select($info_where,'id,work_id,index,title','index asc');
+		$workInfo = $this->zf_famou_work_info_model->select($info_where,'id,work_id,index,title,extract','index asc');
+
+		# 每个小章节排序
+		$chapterStr = '';
+		$i = 0;
+		foreach($workInfo as $key=>$val){
+			if(empty($val['extract'])){
+				$val['extract'] = '';
+			}
+			if($chapterStr!=$val['extract']){
+				$chapterStr = $val['extract'];
+				$i = 0;
+			}
+			$workInfo[$key]['chapterIndex'] = $i;
+			$i++;
+		}
 
 		$data = array();
 		$data['work'] = $work;
@@ -95,6 +111,14 @@ class Work extends Home_Controller{
 		$workInfo = $this->zf_famou_work_info_model->select_one($info_where);
 
 		# 
+		$workTag = array('id'=>'');
+		if(!empty($work['tag_id'])){
+			$tag_where = '1';
+			$tag_where .= ' and id='.$work['tag_id'];
+			$workTag = $this->zf_famou_work_tag_model->select_one($tag_where);
+		}
+
+		# 
 		$node_where = '1';
 		$node_where .= ' and work_id='.$workId;
 		$node_where .= ' and work_info_id='.$chapterId;
@@ -119,6 +143,7 @@ class Work extends Home_Controller{
 		$data['work'] = $work;
 		$data['workInfo'] = $workInfo;
 		$data['workNode'] = $workNode;
+		$data['workTag'] = $workTag;
 
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
 		exit(json_encode($callback));
