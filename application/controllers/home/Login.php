@@ -17,7 +17,6 @@ class Login extends Home_Controller{
 		$this->load->helper('email');
 		$this->load->config('app');
 
-	    print_r($_SERVER);die;
 	}
 
 	public function index()
