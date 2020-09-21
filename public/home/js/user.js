@@ -37,8 +37,13 @@ function do_login(){
 		  		myModalBody.html(res.msg);
 				myModal.addClass('alert-success');
 				myModal.css('display','block');
+				
+				var hrefUrl = '/home/index/index';
+				if(res.data.httpReferer!=undefined){
+					hrefUrl = res.data.httpReferer;
+				}
 	           	setTimeout(function(){
-                    window.location.href = '/home/index/index';
+                    window.location.href = hrefUrl;
                 },2000)
 		  	}
          }
@@ -123,8 +128,13 @@ function do_register(){
 		  		myModalBody.html(res.msg);
 				myModal.addClass('alert-success');
 				myModal.css('display','block');
+	           	
+	           	var hrefUrl = '/home/index/index';
+				if(res.data.httpReferer!=undefined){
+					hrefUrl = res.data.httpReferer;
+				}
 	           	setTimeout(function(){
-                    window.location.href = '/home/index/index';
+                    window.location.href = hrefUrl;
                 },2000)
 		  	}
          }
