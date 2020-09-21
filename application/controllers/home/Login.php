@@ -52,7 +52,7 @@ class Login extends Home_Controller{
 
 		$data['flog']=1; 
 		$data['msg']='登录成功'; 
-		$data['data']=array('httpReferer'=>$this->httpReferer); 
+		$data['data']=array(); 
 		return_json($data);
 	}
 
@@ -133,7 +133,7 @@ class Login extends Home_Controller{
 
 		$data['flog']=1; 
 		$data['msg']='注册成功!';
-        $data['data']=array('httpReferer'=>$this->httpReferer); 
+        $data['data']=array(); 
 		return_json($data);	
 	}
 
