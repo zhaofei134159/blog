@@ -25,7 +25,10 @@ class Work extends Home_Controller{
 		if(!in_array($HTTP_REFERER,$referer)){
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'1004');
 	    	exit(json_encode($callback));
-		} 
+		}
+
+		var_dump($this->homeid);
+		var_dump($this->home);
 	}
 
 	public function index()
