@@ -44,9 +44,9 @@ function do_login(){
 				}
 				console.log(hrefUrl)
 				return false;
-	           	setTimeout(function(){
-                    window.location.href = hrefUrl;
-                },2000)
+	           	// setTimeout(function(){
+             //        window.location.href = hrefUrl;
+             //    },2000)
 		  	}
          }
     });
