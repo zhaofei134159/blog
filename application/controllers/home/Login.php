@@ -36,7 +36,7 @@ class Login extends Home_Controller{
 		$post = $this->input->post();
 		$data = array();
 
-		$where = '(phone='.$post['account'].' or email='.$post['account'].') and is_del=0';
+		$where = '(phone="'.$post['account'].'" or email="'.$post['account'].'") and is_del=0';
 		$user = $this->zf_user_model->select_one($where);
 
 		$new_password = md5(md5($post['password']).$user['login_stat']); 
