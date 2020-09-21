@@ -133,8 +133,10 @@ function do_register(){
 				if(res.data.httpReferer!=undefined){
 					hrefUrl = res.data.httpReferer;
 				}
+				console.log(hrefUrl)
+				return false;
 	           	setTimeout(function(){
-                    window.location.href = hrefUrl;
+                    // window.location.href = hrefUrl;
                 },2000)
 		  	}
          }
