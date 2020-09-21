@@ -26,7 +26,8 @@ class Work extends Home_Controller{
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'1004');
 	    	exit(json_encode($callback));
 		}
-
+		
+		var_dump($_SESSION['home_user_key']);
 		var_dump($this->homeid);
 		var_dump($this->home);
 	}
