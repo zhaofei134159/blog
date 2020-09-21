@@ -8,7 +8,7 @@ class Login extends Home_Controller{
                 'qq'=>'qq_openid',
                 'github'=>'github_id',
             );
-    public $httpReferer = '';
+    public $httpReferer = '/home/index/index';
 
 	public function __construct(){
 		parent::__construct();
@@ -18,7 +18,9 @@ class Login extends Home_Controller{
 		$this->load->helper('email');
 		$this->load->config('app');
 
-        $this->httpReferer = $_SERVER['HTTP_REFERER'];
+        if(!empty($_SERVER['HTTP_REFERER'])){
+            $this->httpReferer = $_SERVER['HTTP_REFERER'];
+        }
 	}
 
 	public function index()
