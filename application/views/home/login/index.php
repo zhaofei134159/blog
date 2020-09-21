@@ -13,34 +13,6 @@
 		<div class="row">
 
             <div class="col-md-6 col-sm-12 col-xs-12">
-	            <div class="panel panel-info">
-	                <div class="panel-heading">
-	                   	注册
-	                </div>
-	                <div class="panel-body">
-                        <div class="form-group">
-                            <label>手机号：</label>
-                            <input class="form-control" name="phone" type="text" />
-                        </div>
-                    	<div class="form-group">
-                            <label>邮箱：</label>
-                            <input class="form-control" name="email" type="text" />
-                        </div>
-                        <div class="form-group">
-                            <label>密码：</label>
-                            <input class="form-control" type="password" name="password" />
-                        </div>
-						<div class="form-group">
-                            <label>确认密码：</label>
-                            <input class="form-control" type="password" name="repassword" />
-                        </div>
-                                                       
-                        <input type="submit" onclick="do_register()" class="btn btn-success" value="登录" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-12 col-xs-12">
 	            <div class="panel panel-success">
 	                <div class="panel-heading">
 	                    登录
@@ -70,6 +42,35 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        注册
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>手机号：</label>
+                            <input class="form-control" name="phone" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label>邮箱：</label>
+                            <input class="form-control" name="email" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label>密码：</label>
+                            <input class="form-control" type="password" name="password" />
+                        </div>
+                        <div class="form-group">
+                            <label>确认密码：</label>
+                            <input class="form-control" type="password" name="repassword" />
+                        </div>
+                                                       
+                        <input type="submit" onclick="do_register()" class="btn btn-success" value="登录" />
+                    </div>
+                </div>
+            </div>
+
 		</div>
 
     </div>
