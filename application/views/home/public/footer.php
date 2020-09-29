@@ -22,7 +22,7 @@
     </script>
 
 
-<!-- CONTENT-WRAPPER SECTION END-->
+    <!-- CONTENT-WRAPPER SECTION END-->
     <section class="footer-section">
          <div class="widewrapper copyright">
                 &copy; 2015 blogfamily 更多的博客来自 <a href="http://zf.blogfamily.ren/" target="_blank" title="博客之家">blogfamily</a> 
@@ -30,6 +30,18 @@
                 <a href="http://www.beian.miit.gov.cn" target="__black">京ICP备16026346号-1</a>
         </div>
     </section>
+    
+    <!-- baidu -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?8d3b80d7e903f894ecf86db2cb9f3890";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 
   
 </body>
