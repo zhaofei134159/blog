@@ -36,6 +36,18 @@
 
 	<link rel="shortcut icon" href="<?=PUBLIC_URL?>/images/favicon.ico" />
 
+    
+    <!-- baidu -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?8d3b80d7e903f894ecf86db2cb9f3890";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse set-radius-zero" >
