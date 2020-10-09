@@ -18,7 +18,7 @@
         <hr>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12" style="height:80px;">
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;如有宝贵的建议,欢迎发送邮件到 blogfamily@163.com 或 微信公众账号, 如若采用,我们会赠上精美礼物!</h5>
+                <h5>&nbsp;&nbsp;&nbsp;&nbsp;如有宝贵的建议,欢迎<a href="/home/leave">留言</a>, 如若采用,我们会赠上精美礼物!</h5>
                 
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
@@ -28,12 +28,12 @@
                       <span style"font-size:17px;">微信小程序</span>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12 col-xs-12" >
+                <!-- <div class="col-md-6 col-sm-12 col-xs-12" >
                     <img src="<?=PUBLIC_URL?>images/weixin_qrcode.jpg" alt="微信公众账号">
                     <div>
                       <span style"font-size:17px;">微信公众号</span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 		    <hr>
