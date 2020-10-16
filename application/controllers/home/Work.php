@@ -146,8 +146,7 @@ class Work extends Home_Controller{
 		$get = $this->input->get();
 		$page = !empty($get['page'])?$get['page']:1;
 
-		$imgTag = $this->zf_image_tag_model->select('1');
-		var_dump($imgTag);
+		$imgTag = $this->zf_image_tag_model->select('name!=""');
 		foreach($imgTag as $key=>$val){
 			$imgTag[$key]['count'] = $this->zf_images_model->count('tag='.$val['id'].'');
 		}
