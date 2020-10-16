@@ -147,7 +147,7 @@ class Work extends Home_Controller{
 		$page = !empty($get['page'])?$get['page']:1;
 		$tag = !empty($get['tag'])?$get['tag']:'';
 
-		$imgTag = $this->zf_image_tag_model->get_list('name!=""','*','count desc','10',0);
+		$imgTag = $this->zf_image_tag_model->get_list('name!=""','*','count desc','15',0);
 		
 
 		$pagesize = 52;
