@@ -150,7 +150,7 @@ class Work extends Home_Controller{
 		$imgTag = $this->zf_image_tag_model->get_list('name!=""','*','count desc','10',0);
 		
 
-		$pagesize = 50;
+		$pagesize = 52;
 		$offset = ($page-1)*$pagesize;
 
 		$where = 'name!=""';
