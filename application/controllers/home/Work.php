@@ -9,7 +9,7 @@ class Work extends Home_Controller{
 		$this->load->model('zf_famou_work_info_model');
 		$this->load->model('zf_famou_work_node_model');
 		$this->load->model('zf_famou_work_tag_model');
-		$this->load->model('Zf_images_model');
+		$this->load->model('zf_images_model');
 		$this->load->model('zf_image_tag_model');
 
         $this->load->library('pager');
