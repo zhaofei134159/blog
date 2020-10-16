@@ -161,10 +161,10 @@ class Work extends Home_Controller{
 		$images = $this->zf_images_model->get_list($where,'*','id desc',$pagesize,$offset);
 		foreach($images as $key=>$val){
 			$wide_src = explode('/',$val['wide_path']);
-			$images[$key]['wide_src'] = 'http://blog.myfeiyou.com/public/public/netImage/'.$wide_src[count($wide_src)-1];
+			$images[$key]['wide_src'] = 'https://blog.myfeiyou.com/public/public/netImage/'.$wide_src[count($wide_src)-1];
 
 			$narrow_src = explode('/',$val['narrow_path']);
-			$images[$key]['narrow_src'] = 'http://blog.myfeiyou.com/public/public/netImage/'.$narrow_src[count($narrow_src)-1];
+			$images[$key]['narrow_src'] = 'https://blog.myfeiyou.com/public/public/netImage/'.$narrow_src[count($narrow_src)-1];
 		}
 
 		$data = array();
