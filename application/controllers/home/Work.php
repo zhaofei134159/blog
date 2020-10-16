@@ -145,21 +145,30 @@ class Work extends Home_Controller{
 	public function getPictureList(){
 		$get = $this->input->get();
 		$page = !empty($get['page'])?$get['page']:1;
+		$tag = !empty($get['tag'])?$get['tag']:'';
 
 		$imgTag = $this->zf_image_tag_model->get_list('name!=""','*','count desc','10',0);
 		
 
-		// $pagesize = 12;
-		// $offset = ($page-1)*$pagesize;
+		$pagesize = 50;
+		$offset = ($page-1)*$pagesize;
 
-		// $where = '1 and is_del=0';
-		// $worksCount = $this->zf_image_tag_model->count($where);
+		$where = 'name!=""';
+		if(!empty($tag)){
+			$where .= ' and tag='.$tag;
+		}
 
-		// $works = $this->zf_famou_work_model->get_list($where,'*','ctime desc',$pagesize,$offset);
+		$images = $this->zf_images_model->get_list($where,'*','id desc',$pagesize,$offset);
+		foreach($images as $key=>$val){
+			$wide_src = explode('/',$val['wide_path']);
+			$images['wide_src'] = 'http://blog.myfeiyou.com/public/public/netImage/'.$wide_src[count($wide_src)-1];
+			
+			$narrow_src = explode('/',$val['narrow_path']);
+			$images['narrow_src'] = 'http://blog.myfeiyou.com/public/public/netImage/'.$narrow_src[count($narrow_src)-1];
+		}
 
 		$data = array();
-		// $data['worksCount'] = $worksCount;
-		// $data['pagesize'] = $pagesize;
+		$data['images'] = $images;
 		$data['imgTag'] = $imgTag;
 
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
