@@ -9,6 +9,9 @@ class Work extends Home_Controller{
 		$this->load->model('zf_famou_work_info_model');
 		$this->load->model('zf_famou_work_node_model');
 		$this->load->model('zf_famou_work_tag_model');
+		$this->load->model('Zf_images_model');
+		$this->load->model('zf_image_tag_model');
+
         $this->load->library('pager');
 		$this->load->helper('common');
 		$this->load->config('app');
@@ -137,5 +140,31 @@ class Work extends Home_Controller{
 
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
 		exit(json_encode($callback));
+	}
+
+	public function getPictureList(){
+		$get = $this->input->get();
+		$page = !empty($get['page'])?$get['page']:1;
+
+		$imgTag = $this->zf_image_tag_model->select('1');
+		foreach($imgTag as $key=>$val){
+			$imgTag[$key]['count'] = $this->zf_images_model->count('tag='.$val['id'].'');
+		}
+
+		// $pagesize = 12;
+		// $offset = ($page-1)*$pagesize;
+
+		// $where = '1 and is_del=0';
+		// $worksCount = $this->zf_image_tag_model->count($where);
+
+		// $works = $this->zf_famou_work_model->get_list($where,'*','ctime desc',$pagesize,$offset);
+
+		$data = array();
+		// $data['worksCount'] = $worksCount;
+		// $data['pagesize'] = $pagesize;
+		$data['imgTag'] = $imgTag;
+
+		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
+    	exit(json_encode($callback));
 	}
 }
