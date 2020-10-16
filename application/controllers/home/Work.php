@@ -153,7 +153,7 @@ class Work extends Home_Controller{
 		$pagesize = 52;
 		$offset = ($page-1)*$pagesize;
 
-		$where = 'name!=""';
+		$where = 'name!="" and wide_path!=""';
 		if(!empty($tag)){
 			$where .= ' and tag='.$tag;
 		}
