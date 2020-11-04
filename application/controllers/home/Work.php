@@ -32,8 +32,14 @@ class Work extends Home_Controller{
 	}
 
 	public function getClientIp(){
-		var_dump($_SERVER);die;
-		$clientIp = $_SERVER['REMOVE_ADDR'];
+		if (getenv("HTTP_CLIENT_IP"))
+			$clientIp = getenv("HTTP_CLIENT_IP");
+		else if(getenv("HTTP_X_FORWARDED_FOR"))
+			$clientIp = getenv("HTTP_X_FORWARDED_FOR");
+		else if(getenv("REMOTE_ADDR"))
+			$clientIp = getenv("REMOTE_ADDR");
+		else 
+			$clientIp = "Unknow";
 
 		$data = array();
 		$data['clientIp'] = $clientIp;
