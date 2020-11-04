@@ -31,23 +31,6 @@ class Work extends Home_Controller{
 		}
 	}
 
-	public function getClientIp(){
-		if (getenv("HTTP_CLIENT_IP"))
-			$clientIp = getenv("HTTP_CLIENT_IP");
-		else if(getenv("HTTP_X_FORWARDED_FOR"))
-			$clientIp = getenv("HTTP_X_FORWARDED_FOR");
-		else if(getenv("REMOTE_ADDR"))
-			$clientIp = getenv("REMOTE_ADDR");
-		else 
-			$clientIp = "Unknow";
-
-		$data = array();
-		$data['clientIp'] = $clientIp;
-
-		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
-    	exit(json_encode($callback));
-	}
-
 	public function index()
 	{
 		$get = $this->input->get();
