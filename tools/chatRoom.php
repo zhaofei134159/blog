@@ -10,7 +10,7 @@ include_once S_PATH.'/class/MySql.php';  # mysql
 include_once S_PATH.'/class/phpanalysis/phpanalysis.class.php'; # php分词
 
 # 有几个脚本执行
-$num = exec("ps aux | grep 'Webserver.php' | grep -v grep | wc -l");
+$num = exec("ps aux | grep 'chatRoom.php' | grep -v grep | wc -l");
 if($num>1){
   exit(date('Y-m-d').' 已经有脚本了');
 }
@@ -54,11 +54,15 @@ function WSevent($type,$usermsg){
     global $socket;
     if('in'==$type){
       $socket->log('客户进入id:'.$usermsg['userid']);
+      error_log(date('Y-m-d H:i:s')."\t  客户进入id:".$usermsg['userid'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
 
     }elseif('out'==$type){
       $socket->log('客户退出id:'.$usermsg['userid']);
+      error_log(date('Y-m-d H:i:s')."\t  客户退出id:".$usermsg['userid'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
 
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
+      error_log(date('Y-m-d H:i:s')."\t  ".$usermsg['userid']."消息:".$usermsg['msg'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
+
     }
 }
