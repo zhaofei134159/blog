@@ -32,6 +32,7 @@ class Work extends Home_Controller{
 	}
 
 	public function getClientIp(){
+		var_dump($_SERVER);die;
 		$clientIp = $_SERVER['REMOVE_ADDR'];
 
 		$data = array();
