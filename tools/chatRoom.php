@@ -52,7 +52,8 @@ $socket->start();
 
 function WSevent($type,$usermsg){
     global $socket;
-    socket_getpeername($socket, $connectip,$connectport);
+    $spawn = socket_accept($socket);
+    socket_getpeername($spawn, $connectip,$connectport);
     echo $connectip;
     echo $connectport;
 
