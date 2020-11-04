@@ -52,17 +52,19 @@ $socket->start();
 
 function WSevent($type,$usermsg){
     global $socket;
+    $ip = $_SERVER['REMOTE_ADDR'];
+    
     if('in'==$type){
       $socket->log('客户进入id:'.$usermsg['userid']);
-      error_log(date('Y-m-d H:i:s')."\t  客户进入id:".$usermsg['userid'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
+      error_log(date('Y-m-d H:i:s')."\t ip:".$ip." 客户进入id:".$usermsg['userid'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
 
     }elseif('out'==$type){
       $socket->log('客户退出id:'.$usermsg['userid']);
-      error_log(date('Y-m-d H:i:s')."\t  客户退出id:".$usermsg['userid'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
+      error_log(date('Y-m-d H:i:s')."\t ip:".$ip." 客户退出id:".$usermsg['userid'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
 
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
-      error_log(date('Y-m-d H:i:s')."\t  ".$usermsg['userid']."消息:".$usermsg['msg'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
+      error_log(date('Y-m-d H:i:s')."\t ip:".$ip." ".$usermsg['userid']."消息:".$usermsg['msg'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
 
     }
 }
