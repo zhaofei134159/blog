@@ -31,6 +31,16 @@ class Work extends Home_Controller{
 		}
 	}
 
+	public function getClientIp(){
+		$clientIp = $_SERVER['REMOVE_ADDR'];
+
+		$data = array();
+		$data['clientIp'] = $clientIp;
+
+		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
+    	exit(json_encode($callback));
+	}
+
 	public function index()
 	{
 		$get = $this->input->get();
