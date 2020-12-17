@@ -12,10 +12,12 @@ if($num>1){
   exit(date('Y-m-d').' 已经有脚本了');
 }
 
-  $fp = exec('ps -aux');
-  var_dump($fp);
-  $rs = "";
-  while(!feof($fp)){
-    $rs .= fread($fp,1024);
-  }
-  pclose($fp);
+$fp = exec('ps -aux');
+$res = array();
+while($fp){
+	$res[] = $fp;
+}
+pclose($fp);
+
+var_dump($res);
+
