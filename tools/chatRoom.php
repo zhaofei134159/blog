@@ -67,6 +67,7 @@ function WSevent($type,$usermsg){
     }
 
     # 存放数据库
+    var_dump($usermsg);
     message_analysis($usermsg['userid'],$usermsg['msg'],$type,$usermsg['sign']);
 }
 
@@ -92,6 +93,7 @@ function message_analysis($userid,$usermsg,$type,$sign){
           return '0';
       }
 
+      /*
       $usermsgJson = json_decode($usermsg,true);
 
       # 退出
@@ -185,6 +187,7 @@ function message_analysis($userid,$usermsg,$type,$sign){
         $socket->allweite(json_encode($resultData));
         return '5';
       }
+      */
   } 
   
 }
