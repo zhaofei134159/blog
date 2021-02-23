@@ -82,10 +82,6 @@ function message_analysis($userid,$usermsg,$type,$sign){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 发送数据为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           return '0';
       }
-      var_dump($userid);
-      var_dump($usermsg);
-      var_dump($type);
-      var_dump($sign);
       if($usermsg=='ping'){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  心跳验证".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           $resultData['flog'] = 0;
@@ -94,9 +90,29 @@ function message_analysis($userid,$usermsg,$type,$sign){
           $socket->allweite(json_encode($resultData));
           return '0';
       }
-
-      /*
+      
+      # 
       $usermsgJson = json_decode($usermsg,true);
+
+      if(empty($usermsgJson)){
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userId']." json数据为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
+          $resultData['flog'] = 1;
+          $resultData['msg'] = 'json数据为空';
+          $resultData['result'] = array();
+          $socket->allweite(json_encode($resultData));
+          return '1';
+      }
+      
+      # 用户信息
+      $userinfo = getUserInfo($usermsgJson['userId']);
+      if(empty($userinfo)){
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." 用户信息为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
+          $resultData['flog'] = 2;
+          $resultData['msg'] = '用户信息为空';
+          $resultData['result'] = array();
+          $socket->allweite(json_encode($resultData));
+          return '2';
+      }
 
       # 退出
       if($usermsgJson['type']=='out'){
@@ -111,26 +127,9 @@ function message_analysis($userid,$usermsg,$type,$sign){
           $socket->close($sign);
           return '1';
       }
-      
-      if(empty($usermsgJson)){
-          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userId']." json数据为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
-          $resultData['flog'] = 1;
-          $resultData['msg'] = 'json数据为空';
-          $resultData['result'] = array();
-          $socket->allweite(json_encode($resultData));
-          return '1';
-      }
 
-      # 用户信息
-      $userinfo = getUserInfo($usermsgJson['userId']);
-      if(empty($userinfo)){
-          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." 用户信息为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
-          $resultData['flog'] = 2;
-          $resultData['msg'] = '用户信息为空';
-          $resultData['result'] = array();
-          $socket->allweite(json_encode($resultData));
-          return '2';
-      }
+      /*
+
 
       # 是否有交流关联记录 若无 则新增
       $relationId = userRelation($userinfo['id'],$usermsgJson['toUserId']);
