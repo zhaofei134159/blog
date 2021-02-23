@@ -67,7 +67,6 @@ function WSevent($type,$usermsg){
     }
 
     # 存放数据库
-    var_dump($usermsg);
     message_analysis($usermsg['userid'],$usermsg['msg'],$type,$usermsg['sign']);
 }
 
@@ -83,7 +82,10 @@ function message_analysis($userid,$usermsg,$type,$sign){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 发送数据为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           return '0';
       }
-
+      var_dump($userid);
+      var_dump($usermsg);
+      var_dump($type);
+      var_dump($sign);
       if($usermsg=='ping'){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  心跳验证".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           $resultData['flog'] = 0;
