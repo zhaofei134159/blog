@@ -174,4 +174,9 @@ class Work extends Home_Controller{
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
     	exit(json_encode($callback));
 	}
+
+	# 获取登录人
+	case 'getLoginUserInfo':
+
+	break;
 }
