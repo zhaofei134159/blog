@@ -4,9 +4,8 @@
 
 <style type="text/css">
     #chatroom{width:100%;height:450px;background:red;}
-    #chatroominput{width:100%;height:200px;background:green;}
+    #chatroominput{width:100%;height:50px;background:green;}
 </style>
-<link href="<?=HOME_PUBLIC_URL?>css/leave.css" rel="stylesheet" />
 <!-- MENU SECTION END-->
 <div class="content-wrapper" style="min-height:600px;">
     <div class="container">
@@ -26,26 +25,14 @@
                             请先 <a href="<?=HOME_URL_HTTP?>login">登录</a> (建议使用github登录), 在留言
                         </div>
                         <?php }else{?>
-                        <div class="Input_Box" style="border-color: rgb(204, 204, 204); box-shadow: none;">
-                            <textarea class="Input_text"></textarea>
-                            <div class="faceDiv" style="margin-top: 0px;"> 
-                            </div>
-                            <div class="Input_Foot">
-                                <a class="imgBtn" href="javascript:void(0);"></a>
-                                <a class="postBtn">确定</a> 
-                            </div>
-                        </div>
+                            <input type="text" name="cont" > 
                         <?php }?>
                     </div>
      			</div>
             </div>
         </div>   
-
     </div>
 </div>
-<br>
-<br>
-<script src="<?=HOME_PUBLIC_URL?>js/leave.js"></script>
 
 <?php
 	$this->load->view('home/public/footer');
