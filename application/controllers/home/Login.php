@@ -17,7 +17,8 @@ class Login extends Home_Controller{
 		$this->load->helper('common');
 		$this->load->helper('email');
 		$this->load->config('app');
-
+        $this->load->library('session');
+        
         if(!empty($_SERVER['HTTP_REFERER'])){
             $this->httpReferer = $_SERVER['HTTP_REFERER'];
         }
