@@ -7,7 +7,7 @@
     #chatroominput{width:100%;text-align:left;}
     #contInput{width: 90%;height: 45px;border: 1px #ccc solid; border-radius: 5px;}
     #contButton{width: 60px;height: 45px;margin-left: 15px;background: #fff;border: solid 1px #ccc;color: black;border-radius: 5px;}
-    #contButton:hover {width: 60px;height: 45px;margin-left: 15px;background: #fff;border: solid 1px #ccc;color: black;border-radius: 5px;}
+    #contButton:hover {background: #9EEA6A;color: #fff;}
 </style>
 <!-- MENU SECTION END-->
 <div class="content-wrapper" style="min-height:600px;">
