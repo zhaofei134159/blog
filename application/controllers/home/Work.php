@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 header('content-type:application:json;charset=utf8');
 header('Access-Control-Allow-Origin:https://books.myfeiyou.com'); // 指定允许其他域名访问，一定要指明是那个域名，用*号好像是不行的！
-
+header("Access-Control-Allow-Credentials: true ");
+header('Access-Control-Allow-Headers:x-requested-with,content-type');// 响应头设置
 class Work extends Home_Controller{
 
 	public function __construct(){
