@@ -177,6 +177,8 @@ class Work extends Home_Controller{
 
 	# 获取登录人
 	case 'getLoginUserInfo':
-
+		// $_SESSION['home_user_key'];
+  //   	$_SESSION['home_user_info'];
+		var_dump($_SESSION);
 	break;
 }
