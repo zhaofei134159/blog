@@ -179,6 +179,8 @@ class Work extends Home_Controller{
 	public function getLoginUserInfo(){
 		// $_SESSION['home_user_key'];
 		// $_SESSION['home_user_info'];
+		// echo $this->input->cookie();
+		var_dump($_COOKIE);
 		var_dump($_SESSION);
 	}
 }
