@@ -6,6 +6,7 @@
     #chatroom{width:100%;height:450px;background:red;}
     #chatroominput{width:100%;height:200px;background:green;}
 </style>
+<link href="<?=HOME_PUBLIC_URL?>css/leave.css" rel="stylesheet" />
 <!-- MENU SECTION END-->
 <div class="content-wrapper" style="min-height:600px;">
     <div class="container">
@@ -42,6 +43,9 @@
 
     </div>
 </div>
+<br>
+<br>
+<script src="<?=HOME_PUBLIC_URL?>js/leave.js"></script>
 
 <?php
 	$this->load->view('home/public/footer');
