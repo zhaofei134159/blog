@@ -19,6 +19,9 @@
                     <div class="panel-body text-center recent-users-sec" id="chatroom">
                         
                     </div>
+                    <div class="panel-body text-center recent-users-sec" id="chatroominput">
+                        
+                    </div>
      			</div>
             </div>
         </div>   
