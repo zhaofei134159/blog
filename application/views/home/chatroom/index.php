@@ -28,15 +28,86 @@
                             请先 <a href="<?=HOME_URL_HTTP?>login">登录</a> (建议使用github登录), 在留言
                         </div>
                         <?php }else{?>
-                            <input type="text" name="cont" id="contInput"> 
-                            <button id="contButton">发送</button>
+                            <input type="text" name="message" id="contInput"> 
+                            <button id="contButton" onclick="sendCont()">发送</button>
                         <?php }?>
                     </div>
      			</div>
             </div>
         </div>   
     </div>
-</div>
+</div>>
+<script type="text/javascript">
+    $(function(){
+        socket_link();
+        $(document).keyup(function (evnet) {
+            if (evnet.keyCode == '13') {
+                sendCont();
+            }
+        });
+    })
+    var socket;
+    function socket_link(){
+        var url='ws://104.243.18.161:8000';
+        socket=new WebSocket(url);
+        socket.onopen=function(){
+            console.log('连接成功');
+        }
+        socket.onmessage=function(msg){
+            // log(msg);
+            console.log(msg);
+        }
+        socket.onclose=function(){
+            console.log('断开连接');
+        }
+    }
+    function dis(){
+        socket.close();
+        socket=null;
+    }
+    function log(res){
+        var user = $('input[name="user"]').val();
+        var data = res.data;
+        var index = JSON.parse(data);
+        var weizhi = 'left';
+        var yonghuclass = 'from_user'
+        if(index.user==user){
+            weizhi = 'right';
+            yonghuclass = 'by_myself';
+        }
+        var html = '';
+        html += '<li class="span10 '+weizhi+' '+yonghuclass+'"> <a href="#" class="avatar"><img src="/resource/website/img/message_avatar1.png"/></a>';
+        html += '<div class="message_wrap"  style="float:'+weizhi+';"> <span class="arrow"></span>';
+        html += '<div class="info"> <a class="name"> 用户 '+index.user+' </a>';
+        html += '</div>';
+        html += '<div class="text">';
+        html += index.msg;
+        html += '</div>'
+        html += '</div>'
+        html += '</li>';
+
+        $('.log').append(html);
+        document.getElementById("content").scrollTop = document.getElementById("content").scrollHeight;
+        // $('.log').html(html);
+    }
+
+    function sendCont(){
+        var message = $('#contInput').val();
+        if(message==''){
+            alert('内容不能为空！');
+            return false;
+        }
+        if(message.length>=24){
+            alert('内容不能超过24个字符！');
+            return false;
+        }
+        var jsonobj = {'type':'msg','user':user,'msg':message};
+        var json = JSON.stringify(jsonobj);
+        socket.send(json);
+        
+        $('#message').val('');
+    }
+</script>
 
 <?php
 	$this->load->view('home/public/footer');
