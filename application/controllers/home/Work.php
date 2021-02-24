@@ -15,7 +15,6 @@ class Work extends Home_Controller{
         $this->load->library('pager');
 		$this->load->helper('common');
 		$this->load->config('app');
-		$this->load->library('session');
  		
  		if(empty($_SERVER['HTTP_REFERER'])){
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'1003');
@@ -182,7 +181,6 @@ class Work extends Home_Controller{
 		// $_SESSION['home_user_info'];
 		// echo $this->input->cookie();
 		var_dump($_COOKIE);
-		var_dump($this->session->all_userdata());
 		session_id($_COOKIE['PHPSESSID']);
 		session_start();
 		var_dump($_SESSION);
