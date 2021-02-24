@@ -1,8 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-header('content-type:application:json;charset=utf8');
-header('Access-Control-Allow-Origin:https://books.myfeiyou.com'); // 指定允许其他域名访问，一定要指明是那个域名，用*号好像是不行的！
-header("Access-Control-Allow-Credentials: true ");
-header('Access-Control-Allow-Headers:x-requested-with,content-type');// 响应头设置
+
 class Work extends Home_Controller{
 
 	public function __construct(){
@@ -18,9 +15,7 @@ class Work extends Home_Controller{
         $this->load->library('pager');
 		$this->load->helper('common');
 		$this->load->config('app');
-		var_dump($_SESSION);
-
-
+ 		
  		if(empty($_SERVER['HTTP_REFERER'])){
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'1003');
 	    	exit(json_encode($callback));
@@ -178,14 +173,5 @@ class Work extends Home_Controller{
 
 		$callback = array('errorMsg'=>'','errorNo'=>'0','seccuss'=>$data);
     	exit(json_encode($callback));
-	}
-
-	# 获取登录人
-	public function getLoginUserInfo(){
-		// $_SESSION['home_user_key'];
-		// $_SESSION['home_user_info'];
-		// echo $this->input->cookie();
-		var_dump($_COOKIE);
-		var_dump($_SESSION);
 	}
 }
