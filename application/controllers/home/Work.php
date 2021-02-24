@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+header('P3P: CP="CAO PSA OUR"');
 class Work extends Home_Controller{
 
 	public function __construct(){
@@ -16,7 +16,7 @@ class Work extends Home_Controller{
 		$this->load->helper('common');
 		$this->load->config('app');
 		var_dump($_SESSION);
-		
+
 
  		if(empty($_SERVER['HTTP_REFERER'])){
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'1003');
