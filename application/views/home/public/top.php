@@ -100,9 +100,11 @@
                                 </li>
                             <?php }?>
                             <li><a href="<?=HOME_URL_HTTP?>friend" class="menu-top-active">友链</a></li>
-                            <!-- <li><a href="<?=HOME_URL_HTTP?>statistic" class="menu-top-active">统计</a></li> -->
-                            <li><a href="<?=HOME_URL_HTTP?>leave" class="menu-top-active">留言板</a></li>
+                            <?php if(!empty($home['id'])&&$home['id']==122){?>
+                            <li><a href="https://books.myfeiyou.com" class="menu-top-active">聊天室</a></li>
+                            <?php }?>
                             <li><a href="https://books.myfeiyou.com" class="menu-top-active">图书馆</a></li>
+                            <li><a href="<?=HOME_URL_HTTP?>leave" class="menu-top-active">留言板</a></li>
                             <li><a href="<?=HOME_URL_HTTP?>about" class="menu-top-active">关于我们</a></li>
                         </ul>
                     </div>
