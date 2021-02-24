@@ -4,7 +4,8 @@
 
 <style type="text/css">
     #chatroom{width:100%;height:450px;background:red;}
-    #chatroominput{width:100%;height:50px;background:green;}
+    #chatroominput{width:100%;height:50px;text-align:left;}
+    #contInput{width: 90%;height: 45px;border: 1px #ccc solid; border-radius: 5px;}
 </style>
 <!-- MENU SECTION END-->
 <div class="content-wrapper" style="min-height:600px;">
@@ -25,7 +26,8 @@
                             请先 <a href="<?=HOME_URL_HTTP?>login">登录</a> (建议使用github登录), 在留言
                         </div>
                         <?php }else{?>
-                            <input type="text" name="cont" > 
+                            <input type="text" name="cont" id="contInput"> 
+                            <button>发送</button>
                         <?php }?>
                     </div>
      			</div>
