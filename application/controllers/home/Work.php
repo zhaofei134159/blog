@@ -15,6 +15,7 @@ class Work extends Home_Controller{
         $this->load->library('pager');
 		$this->load->helper('common');
 		$this->load->config('app');
+		$this->load->library('session');
  		
  		if(empty($_SERVER['HTTP_REFERER'])){
 			$callback = array('errorMsg'=>'go to home','errorNo'=>'1003');
