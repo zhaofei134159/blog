@@ -181,6 +181,8 @@ class Work extends Home_Controller{
 		// $_SESSION['home_user_info'];
 		// echo $this->input->cookie();
 		var_dump($_COOKIE);
+		session_id($_COOKIE['PHPSESSID']);
+		session_start();
 		var_dump($_SESSION);
 	}
 }
