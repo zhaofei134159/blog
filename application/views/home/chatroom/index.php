@@ -5,7 +5,8 @@
 <style type="text/css">
     #chatroom{width:100%;height:450px;background:red;}
     #chatroominput{width:100%;height:50px;text-align:left;}
-    #contInput{width: 90%;height: 45px;border: 1px #ccc solid; border-radius: 5px;}
+    #contInput{width: 90%;border: 1px #ccc solid; border-radius: 5px;}
+    #contButton{width: 60px;height: 45px;margin-left: 15px;background: #fff;border: solid 1px #ccc;color: black;border-radius: 5px;}
 </style>
 <!-- MENU SECTION END-->
 <div class="content-wrapper" style="min-height:600px;">
@@ -27,7 +28,7 @@
                         </div>
                         <?php }else{?>
                             <input type="text" name="cont" id="contInput"> 
-                            <button>发送</button>
+                            <button id="contButton">发送</button>
                         <?php }?>
                     </div>
      			</div>
