@@ -64,8 +64,9 @@ function WSevent($type,$usermsg){
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
       error_log(date('Y-m-d H:i:s')."\t ".$usermsg['userid']."消息:".$usermsg['msg'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
-        
+
       # 存放数据库
+      var_dump($usermsg['msg']);
       message_analysis($usermsg['userid'],$usermsg['msg'],$type,$usermsg['sign']);
     }
 
@@ -79,6 +80,7 @@ function message_analysis($userid,$usermsg,$type,$sign){
   # 返回数据
   $resultData = array();
   if($type=='msg'){
+      var_dump($usermsg);
       if(empty($usermsg)||$usermsg==false){
           error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 发送数据为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           return '0';
@@ -91,7 +93,6 @@ function message_analysis($userid,$usermsg,$type,$sign){
           $socket->allweite(json_encode($resultData));
           return '0';
       }
-      
       # 
       $usermsgJson = json_decode($usermsg,true);
 
