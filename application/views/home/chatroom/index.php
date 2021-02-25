@@ -110,7 +110,7 @@
     }
 
     function sendCont(msg_type,msg=''){
-        if(msg=''){
+        if(msg==''){
             var type = 'msg';
             var message = $('#contInput').val();
             if(message==''){
