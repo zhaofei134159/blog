@@ -95,7 +95,7 @@ function message_analysis($userid,$usermsg,$type,$sign){
       $usermsgJson = json_decode($usermsg,true);
 
       if(empty($usermsgJson)){
-          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userId']." json数据为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userid']." json数据为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           $resultData['flog'] = 1;
           $resultData['msg'] = 'json数据为空';
           $resultData['result'] = array();
@@ -104,9 +104,9 @@ function message_analysis($userid,$usermsg,$type,$sign){
       }
       
       # 用户信息
-      $userinfo = getUserInfo($usermsgJson['userId']);
+      $userinfo = getUserInfo($usermsgJson['userid']);
       if(empty($userinfo)){
-          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userId']." 用户信息为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
+          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userid']." 用户信息为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           $resultData['flog'] = 2;
           $resultData['msg'] = '用户信息为空';
           $resultData['result'] = array();
