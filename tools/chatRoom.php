@@ -115,6 +115,7 @@ function message_analysis($userid,$usermsg,$type,$sign){
       }
 
       # 记录聊天内容内容
+      var_dump($usermsgJson);
       if(!empty($usermsgJson['msg'])){
           # 进入聊天室
           if($usermsgJson['type']=='in'){
@@ -134,6 +135,7 @@ function message_analysis($userid,$usermsg,$type,$sign){
           # 查询历史聊天记录
           if($usermsgJson['type']=='record'){
               $result = userMessage($userinfo['id'],'','record');
+              var_dump($result);
 
               $resultData['flog'] = 2;
               $resultData['msg'] = '用户信息为空';
