@@ -66,6 +66,8 @@
         socket=new WebSocket(socketUrl);
         socket.onopen=function(){
             console.log('连接成功');
+            // 进入聊天室  发送消息
+            sendCont('in','进入聊天室');
         }
         socket.onmessage=function(msg){
             // log(msg);
@@ -75,8 +77,6 @@
             console.log('断开连接');
         }
 
-        // 进入聊天室  发送消息
-        sendCont('in','进入聊天室');
     }
     function dis(){
         socket.close();
