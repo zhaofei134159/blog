@@ -32,7 +32,7 @@ $db_conf = array(
 
 # socket配置
 $addr = '104.243.18.161';
-$port = '9501';
+$port = '8000';
 $callback = 'WSevent';//回调函数的函数名
 $log = true;
 
