@@ -47,6 +47,7 @@
         });
     })
     var socket;
+    var userid = "{$this->home['id']}";
     function socket_link(){
         console.log("WebSocket" in window)
         var url='wss://blog.myfeiyou.com/wss';
@@ -102,7 +103,7 @@
             alert('内容不能超过24个字符！');
             return false;
         }
-        var jsonobj = {'type':'msg','user':user,'msg':message};
+        var jsonobj = {'type':'msg','userid':userid,'msg':message};
         var json = JSON.stringify(jsonobj);
         socket.send(json);
         
