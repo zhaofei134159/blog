@@ -110,12 +110,12 @@ function message_analysis($userid,$usermsg,$type,$sign){
       # 记录聊天内容内容
       if(!empty($usermsgJson['msg'])){
           # 进入聊天室
-          if($usermsgJson['type']=='in'){
+          if($usermsgJson['type']=='start'){
               $result = userMessage($userinfo['id'],'进入聊天室','in');
           } 
           
           # 退出聊天室
-          if($usermsgJson['type']=='out'){
+          if($usermsgJson['type']=='end'){
               $result = userMessage($userinfo['id'],'退出聊天室','out');
           }
 
@@ -135,7 +135,7 @@ function message_analysis($userid,$usermsg,$type,$sign){
           $socket->allweite(json_encode($resultData));
       }
 
-      
+
   }
 }
 
