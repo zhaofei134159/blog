@@ -49,7 +49,7 @@
     var socket;
     function socket_link(){
         console.log("WebSocket" in window)
-        var url='wss://blog.myfeiyou.com:8000';
+        var url='wss://blog.myfeiyou.com/wss';
         socket=new WebSocket(url);
         socket.onopen=function(){
             console.log('连接成功');
