@@ -48,7 +48,7 @@
     })
     var socket;
     function socket_link(){
-        var url='wss://104.243.18.161:8000';
+        var url='wss://blog.myfeiyou.com:8000';
         socket=new WebSocket(url);
         socket.onopen=function(){
             console.log('连接成功');
