@@ -59,7 +59,6 @@
         // 关闭网页 断开连接
         window.onbeforeunload=function (){
             dis();
-            alert(123213213);
         }
     })
     function socket_link(){
@@ -89,7 +88,7 @@
     function dis(){
         sendCont('out','退出聊天室');
         socket.close();
-        socket=null;
+        socket = null;
     }
     function log(res){
         var user = $('input[name="user"]').val();
@@ -135,7 +134,6 @@
         }
         var jsonobj = {'type':type,'userid':userid,'msg':message};
         var json = JSON.stringify(jsonobj);
-        console.log(json);
         socket.send(json);
         
         $('#contInput').val('');
