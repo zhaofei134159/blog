@@ -49,9 +49,13 @@
     var socket;
     var userid = "<?=$this->home['id']?>";
     function socket_link(){
-        console.log("WebSocket" in window)
-        var url='wss://blog.myfeiyou.com/wss';
-        socket=new WebSocket(url);
+        var url = window.location.href;
+        if(url.substr(0,7).toLowerCase() == "https://"){
+            var socketUrl='wss://blog.myfeiyou.com/wss';
+        }else{
+            var socketUrl='ws://104.243.18.161:8000';
+        }
+        socket=new WebSocket(socketUrl);
         socket.onopen=function(){
             console.log('连接成功');
         }
@@ -107,7 +111,7 @@
         var json = JSON.stringify(jsonobj);
         socket.send(json);
         
-        $('#message').val('');
+        $('#contInput').val('');
     }
 </script>
 
