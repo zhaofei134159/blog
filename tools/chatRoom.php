@@ -55,15 +55,12 @@ function WSevent($type,$usermsg){
  
     if('in'==$type){
       $socket->log('客户进入id:'.$usermsg['userid']);
-      error_log(date('Y-m-d H:i:s')."\t 客户进入id:".$usermsg['userid'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
 
     }elseif('out'==$type){
       $socket->log('客户退出id:'.$usermsg['userid']);
-      error_log(date('Y-m-d H:i:s')."\t 客户退出id:".$usermsg['userid'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
 
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
-      error_log(date('Y-m-d H:i:s')."\t ".$usermsg['userid']."消息:".$usermsg['msg'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
 
       # 存放数据库
       message_analysis($usermsg['userid'],$usermsg['msg'],$type,$usermsg['sign']);
@@ -80,11 +77,9 @@ function message_analysis($userid,$usermsg,$type,$sign){
   $resultData = array();
   if($type=='msg'){
       if(empty($usermsg)||$usermsg==false){
-          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 发送数据为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           return '0';
       }
       if($usermsg=='ping'){
-          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  心跳验证".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           $resultData['flog'] = 0;
           $resultData['msg'] =  '心跳验证';
           $resultData['result'] = array();
@@ -95,7 +90,6 @@ function message_analysis($userid,$usermsg,$type,$sign){
       $usermsgJson = json_decode($usermsg,true);
 
       if(empty($usermsgJson)){
-          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid." 真实用户".$usermsgJson['userid']." json数据为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           $resultData['flog'] = 1;
           $resultData['msg'] = 'json数据为空';
           $resultData['result'] = array();
@@ -106,7 +100,6 @@ function message_analysis($userid,$usermsg,$type,$sign){
       # 用户信息
       $userinfo = getUserInfo($usermsgJson['userid']);
       if(empty($userinfo)){
-          error_log(date('Y-m-d H:i:s')."\t 消息用户：".$userid."  真实用户".$usermsgJson['userid']." 用户信息为空".PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
           $resultData['flog'] = 2;
           $resultData['msg'] = '用户信息为空';
           $resultData['result'] = array();
@@ -118,31 +111,32 @@ function message_analysis($userid,$usermsg,$type,$sign){
       if(!empty($usermsgJson['msg'])){
           # 进入聊天室
           if($usermsgJson['type']=='in'){
-              $userMessage = userMessage($userinfo['id'],'进入聊天室','in');
+              $result = userMessage($userinfo['id'],'进入聊天室','in');
           } 
           
           # 退出聊天室
           if($usermsgJson['type']=='out'){
-              $userMessage = userMessage($userinfo['id'],'退出聊天室','out');
+              $result = userMessage($userinfo['id'],'退出聊天室','out');
           }
 
           # 聊天内容记录
           if($usermsgJson['type']=='msg'){
-              $userMessage = userMessage($userinfo['id'],$usermsgJson['msg'],'text');
+              $result = userMessage($userinfo['id'],$usermsgJson['msg'],'text');
           }
 
           # 查询历史聊天记录
           if($usermsgJson['type']=='record'){
               $result = userMessage($userinfo['id'],'','record');
-
-              $resultData['flog'] = 2;
-              $resultData['msg'] = '用户信息为空';
-              $resultData['result'] = $result;
-              $socket->allweite(json_encode($resultData));
           }
+
+          $resultData['flog'] = 3;
+          $resultData['msg'] = '聊天记录';
+          $resultData['result'] = $result;
+          $socket->allweite(json_encode($resultData));
       }
-  } 
-  
+
+      
+  }
 }
 
 # 获取用户信息
@@ -218,7 +212,6 @@ function userMessageList($limit){
     global $mysql;
 
     $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_chatroom_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.id WHERE 1  and m.msg_status != 2 order by id desc {$limit}";
-    echo $sql;
     $result = $mysql->doSql($sql);
 
     return $result;

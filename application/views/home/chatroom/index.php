@@ -49,12 +49,17 @@
             }
         });
 
-        // 心跳测试
-        // setInterval(function(){
-        //     if(socket!=null){
-        //         socket.send('ping'); 
-        //     }
-        // },10000)
+        setInterval(function(){
+            // 心跳测试
+            if(socket!=null){
+                socket.send('ping'); 
+            }
+            // 关闭网页 断开连接
+            if(event.clientX>document.body.clientWidth && event.clientY < 0 || event.altKey){
+                dis();
+            }
+        },10000)
+
     })
     function socket_link(){
         var url = window.location.href;
@@ -81,6 +86,7 @@
 
     }
     function dis(){
+        sendCont('out','退出聊天室');
         socket.close();
         socket=null;
     }
