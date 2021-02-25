@@ -49,17 +49,19 @@
             }
         });
 
+        // 心跳测试
         setInterval(function(){
-            // 心跳测试
             if(socket!=null){
                 socket.send('ping'); 
             }
-            // 关闭网页 断开连接
+        },10000)
+
+        // 关闭网页 断开连接
+        window.onbeforeunload=function (){
             if(event.clientX>document.body.clientWidth && event.clientY < 0 || event.altKey){
                 dis();
             }
-        },10000)
-
+        }
     })
     function socket_link(){
         var url = window.location.href;
