@@ -50,11 +50,11 @@
         });
 
         // 心跳测试
-        setInterval(function(){
-            if(socket!=null){
-                socket.send('ping'); 
-            }
-        },10000)
+        // setInterval(function(){
+        //     if(socket!=null){
+        //         socket.send('ping'); 
+        //     }
+        // },10000)
     })
     function socket_link(){
         var url = window.location.href;
@@ -68,6 +68,7 @@
             console.log('连接成功');
             // 进入聊天室  发送消息
             sendCont('in','进入聊天室');
+            sendCont('record','查询聊天记录');
         }
         socket.onmessage=function(msg){
             // log(msg);

@@ -176,7 +176,7 @@ function userMessage($userid,$content,$type){
           $insert['content'] = $content;
           $insert['msg_type'] = $type;
           $insert['msg_time'] = time();
-          $mysql->insert('zf_chatRoom_message',$insert);
+          $mysql->insert('zf_chatroom_message',$insert);
 
         }else if($type=='text'){
           # 是否存在，敏感词
@@ -189,7 +189,7 @@ function userMessage($userid,$content,$type){
           $insert['content'] = $typeContent;
           $insert['msg_type'] = $type;
           $insert['msg_time'] = time();
-          $mysql->insert('zf_chatRoom_message',$insert);
+          $mysql->insert('zf_chatroom_message',$insert);
         }
     }
 
@@ -218,7 +218,7 @@ function userMessageList($limit){
     global $mysql;
 
     // $sql = "SELECT * from zf_message where rela_id={$ralaId} and msg_status!=2 order by id desc limit 1";
-    $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_chatRoom_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.id WHERE 1  and m.msg_status != 2 order by id desc {$limit}";
+    $sql = "SELECT m.*, us.headimg AS usHeadimg, us.nikename as usNikename, us.name as usName, tous.headimg AS tousHeadimg, tous.nikename as tousNikename, tous.name as tousName FROM zf_chatroom_message m LEFT JOIN zf_user us ON m.userid = us.id LEFT JOIN zf_user tous ON m.touserid = tous.id WHERE 1  and m.msg_status != 2 order by id desc {$limit}";
     $result = $mysql->doSql($sql);
 
     return $result;
