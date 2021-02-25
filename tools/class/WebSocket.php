@@ -140,9 +140,12 @@ class WebSocket{
   	//
   	public function uncode($str){
 	    $mask = array();  
-	    $data = '';  
+	    $data = '';
+	    var_dump($str);
 	    $msg = unpack('H*',$str);  
 	    $head = substr($msg[1],0,2);  
+	    var_dump($head);
+	    
 	    if (hexdec($head{1}) === 8) {  
 	      	$data = false;  
 	    }else if (hexdec($head{1}) === 1){  

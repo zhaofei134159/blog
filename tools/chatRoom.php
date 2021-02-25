@@ -63,7 +63,6 @@ function WSevent($type,$usermsg){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
 
       # 存放数据库
-      var_dump($usermsg);
       message_analysis($usermsg['userid'],$usermsg['msg'],$type,$usermsg['sign']);
     }
 
