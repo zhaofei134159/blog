@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="“blogfamily”，创建一个属于自己的博客，在这里你可以分享自己的知识，记录的生活，为自己加油" />
     <meta name="keywords"  content="blogfamily, 博客, 博客之家, zf, blog" />
