@@ -64,10 +64,11 @@ function WSevent($type,$usermsg){
     }elseif('msg'==$type){
       $socket->log($usermsg['userid'].'消息:'.$usermsg['msg']);
       error_log(date('Y-m-d H:i:s')."\t ".$usermsg['userid']."消息:".$usermsg['msg'].PHP_EOL,3,S_PATH."/log/chatRoomLog.log");
+        
+      # 存放数据库
+      message_analysis($usermsg['userid'],$usermsg['msg'],$type,$usermsg['sign']);
     }
 
-    # 存放数据库
-    message_analysis($usermsg['userid'],$usermsg['msg'],$type,$usermsg['sign']);
 }
 
 

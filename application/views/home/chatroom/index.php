@@ -38,6 +38,9 @@
     </div>
 </div>>
 <script type="text/javascript">
+    var socket;
+    var userid = "<?=$this->home['id']?>";
+
     $(function(){
         socket_link();
         $(document).keyup(function (evnet) {
@@ -45,9 +48,14 @@
                 sendCont();
             }
         });
+
+        // 心跳测试
+        setInterval(function(){
+            if(socket!=null){
+                socket.send('ping'); 
+            }
+        },10000)
     })
-    var socket;
-    var userid = "<?=$this->home['id']?>";
     function socket_link(){
         var url = window.location.href;
         if(url.substr(0,7).toLowerCase() == "http://"){
