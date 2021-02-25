@@ -50,10 +50,10 @@
     var userid = "<?=$this->home['id']?>";
     function socket_link(){
         var url = window.location.href;
-        if(url.substr(0,7).toLowerCase() == "https://"){
-            var socketUrl='wss://blog.myfeiyou.com/wss';
+        if(url.substr(0,7).toLowerCase() == "http://"){
+            var socketUrl = 'ws://104.243.18.161:8000';
         }else{
-            var socketUrl='ws://104.243.18.161:8000';
+            var socketUrl = 'wss://blog.myfeiyou.com/wss';
         }
         socket=new WebSocket(socketUrl);
         socket.onopen=function(){
