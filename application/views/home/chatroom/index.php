@@ -74,6 +74,9 @@
         socket.onclose=function(){
             console.log('断开连接');
         }
+
+        // 进入聊天室  发送消息
+        sendCont('in','进入聊天室');
     }
     function dis(){
         socket.close();
@@ -105,17 +108,23 @@
         // $('.log').html(html);
     }
 
-    function sendCont(){
-        var message = $('#contInput').val();
-        if(message==''){
-            alert('内容不能为空！');
-            return false;
+    function sendCont(msg_type,msg=''){
+        if(msg=''){
+            var type = 'msg';
+            var message = $('#contInput').val();
+            if(message==''){
+                alert('内容不能为空！');
+                return false;
+            }
+        }else{
+            var type = msg_type;
+            var message = msg;
         }
         if(message.length>=24){
             alert('内容不能超过24个字符！');
             return false;
         }
-        var jsonobj = {'type':'msg','userid':userid,'msg':message};
+        var jsonobj = {'type':type,'userid':userid,'msg':message};
         var json = JSON.stringify(jsonobj);
         socket.send(json);
         
