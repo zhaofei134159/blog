@@ -48,6 +48,7 @@
     })
     var socket;
     function socket_link(){
+        console.log("WebSocket" in window)
         var url='wss://blog.myfeiyou.com:8000';
         socket=new WebSocket(url);
         socket.onopen=function(){
