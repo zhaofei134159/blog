@@ -75,6 +75,8 @@
             // 进入聊天室  发送消息
             sendCont('in','进入聊天室');
             sendCont('record','查询聊天记录');
+            sendCont('out','退出聊天室');
+
         }
         socket.onmessage=function(msg){
             // log(msg);
