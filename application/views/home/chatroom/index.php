@@ -59,8 +59,8 @@
         // 关闭网页 断开连接
         window.onbeforeunload=function (){
             if(event.clientX > document.body.clientWidth || event.clientY < 0 ||event.altKey || event.ctrlKey){
-                alert(123213213);
                 dis();
+                alert(123213213);
             }
         }
     })
