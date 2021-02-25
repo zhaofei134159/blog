@@ -47,7 +47,7 @@
         });
     })
     var socket;
-    var userid = "{$this->home['id']}";
+    var userid = "<?=$this->home['id']?>";
     function socket_link(){
         console.log("WebSocket" in window)
         var url='wss://blog.myfeiyou.com/wss';
