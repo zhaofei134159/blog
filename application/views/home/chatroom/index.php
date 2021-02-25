@@ -66,6 +66,7 @@
         socket=new WebSocket(socketUrl);
         socket.onopen=function(){
             console.log('连接成功');
+
             // 进入聊天室  发送消息
             sendCont('in','进入聊天室');
             sendCont('record','查询聊天记录');
@@ -127,6 +128,7 @@
         }
         var jsonobj = {'type':type,'userid':userid,'msg':message};
         var json = JSON.stringify(jsonobj);
+        console.log(json);
         socket.send(json);
         
         $('#contInput').val('');
