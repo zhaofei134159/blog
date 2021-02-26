@@ -36,8 +36,8 @@
                     </div>
                     <div class="panel-body text-center recent-users-sec" id="chatroominput">
                         <?php if(empty($this->homeid)||empty($this->home['id'])){?>
-                        <div class="Input_Box" style="border-color: rgb(204, 204, 204); box-shadow: none;text-align:center;line-height:204px;font-size:15px;">
-                            请先 <a href="<?=HOME_URL_HTTP?>login">登录</a> (建议使用github登录), 在留言
+                        <div class="Input_Box" style="border-color: rgb(204, 204, 204); box-shadow: none;text-align:center;font-size:15px;">
+                            请先 <a href="<?=HOME_URL_HTTP?>login">登录</a> (建议使用github登录),才可以聊天
                         </div>
                         <?php }else{?>
                             <input type="text" name="message" id="contInput"> 
@@ -48,7 +48,7 @@
             </div>
         </div>   
     </div>
-</div>>
+</div>
 <script type="text/javascript">
     var socket;
     var userid = "<?=$this->home['id']?>";
