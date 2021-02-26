@@ -8,6 +8,63 @@
     #contInput{width: 90%;height: 45px;border: 1px #ccc solid; border-radius: 5px;}
     #contButton{width: 60px;height: 45px;margin-left: 15px;background: #fff;border: solid 1px #ccc;color: black;border-radius: 5px;}
     #contButton:hover {background: #9EEA6A;color: #fff;}
+
+    /* bubble style */
+    .sender{
+      clear:both;
+    }
+    .sender div:nth-of-type(1){
+      float: left;
+    }
+    .sender div:nth-of-type(2){
+      background-color: aquamarine;
+      float: left;
+      margin: 0 20px 10px 15px;
+      padding: 10px 10px 10px 0px;
+      border-radius:7px;
+    }
+
+    .receiver div:first-child img,
+    .sender div:first-child img{
+      width:50px;
+      height: 50px;
+    }
+
+    .receiver{
+      clear:both;
+    }
+    .receiver div:nth-child(1){
+      float: right;
+    }
+    .receiver div:nth-of-type(2){
+      float:right;
+      background-color: gold;
+      margin: 0 10px 10px 20px;
+      padding: 10px 0px 10px 10px;
+      border-radius:7px;
+    }
+
+    .left_triangle{
+      height:0px;  
+      width:0px;  
+      border-width:8px;  
+      border-style:solid;  
+      border-color:transparent aquamarine transparent transparent;  
+      position: relative;
+      left:-16px;
+      top:3px;
+    }
+
+    .right_triangle{
+      height:0px;  
+      width:0px;  
+      border-width:8px;  
+      border-style:solid;  
+      border-color:transparent transparent transparent gold;  
+      position: relative;
+      right:-16px;
+      top:3px;
+    }
 </style>
 <!-- MENU SECTION END-->
 <div class="content-wrapper" style="min-height:600px;">
@@ -20,7 +77,26 @@
                        聊天室
                     </div>
                     <div class="panel-body text-center recent-users-sec" id="chatroom">
-                        
+                        <!-- Left -->
+                        <div class="sender">
+                            <div>
+                                <img src="https://static.runoob.com/images/mix/img_avatar.png">
+                            </div>
+                            <div>
+                                <div class="left_triangle"></div>
+                                <span> hello, man! </span>
+                            </div>
+                        </div>
+                        <!-- Right -->
+                        <div class="receiver">
+                            <div>
+                                <img src="https://static.runoob.com/images/mix/img_avatar.png">
+                            </div>
+                            <div>
+                                <div class="right_triangle"></div>
+                                <span> hello world </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body text-center recent-users-sec" id="chatroominput">
                         <?php if(empty($this->homeid)||empty($this->home['id'])){?>
@@ -73,12 +149,13 @@
             console.log('连接成功');
 
             // 进入聊天室  发送消息
-            sendCont('start','进入聊天室');
+            sendCont('record','进入聊天室');
+            // sendCont('start','进入聊天室');
 
         }
         socket.onmessage=function(msg){
-            // log(msg);
-            console.log(msg);
+            console.log(msg.data);
+            log(msg);
         }
         socket.onclose=function(){
             console.log('断开连接');
