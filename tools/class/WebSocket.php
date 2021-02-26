@@ -178,6 +178,9 @@ class WebSocket{
             $masks = substr($buffer, 2, 4);
             $data = substr($buffer, 6);
         }
+        var_dump($len);
+        var_dump($masks);
+        var_dump($data);
         for ($index = 0; $index < strlen($data); $index++) {
             $decoded .= $data[$index] ^ $masks[$index % 4];
         }
