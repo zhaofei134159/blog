@@ -66,7 +66,7 @@
                             <input class="form-control" type="password" name="repassword" />
                         </div>
                                                        
-                        <input type="submit" onclick="do_register()" class="btn btn-success" value="登录" />
+                        <input type="submit" onclick="do_register()" class="btn btn-success" value="注册" />
                     </div>
                 </div>
             </div>

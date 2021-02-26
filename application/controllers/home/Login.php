@@ -116,7 +116,8 @@ class Login extends Home_Controller{
 		$res['password'] = md5(md5($post['password']).$login_stat);
 		$res['email'] = $post['email'];
 		$res['phone'] = $post['phone'];
-		$res['name'] =  $post['phone'];
+        $res['name'] =  $post['phone'];
+		$res['nikename'] =  $post['phone'];
 		$res['user_type'] = 1;
 		$res['ctime'] = time();
 		$res['utime'] = time();
