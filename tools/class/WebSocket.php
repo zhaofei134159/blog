@@ -145,7 +145,7 @@ class WebSocket{
 	    $msg = unpack('H*',$str);  
 	    $head = substr($msg[1],0,2);  
 	    var_dump($head);
-	    
+
 	    if (hexdec($head{1}) === 8) {  
 	      	$data = false;  
 	    }else if (hexdec($head{1}) === 1){  
@@ -165,7 +165,8 @@ class WebSocket{
 	        	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
 	        	$n++;  
 	      	}  
-	    }  
+	    } 
+	    var_dump($data);
 	    return $data;
   	}
 
