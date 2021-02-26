@@ -147,7 +147,7 @@
             $('#chatroom').append(html);
         })
 
-        // document.getElementById("content").scrollTop = document.getElementById("content").scrollHeight;
+        document.getElementById("chatroom").scrollTop = document.getElementById("chatroom").scrollHeight;
     }
 
     function sendCont(msg_type,msg=''){
