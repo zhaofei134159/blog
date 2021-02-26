@@ -73,7 +73,7 @@ class WebSocket{
 		          	$this->userreturn('in',$usermsg);
 		        }else{
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
-		          	$len = socket_recv($sign,$buffer,8192,0);
+		          	$len = socket_recv($sign,$buffer,2048,MSG_WAITALL);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
 		          	if($len<7){
@@ -140,14 +140,9 @@ class WebSocket{
   	//
   	public function uncode($str){
 	    $mask = array();  
-	    $data = '';
-	    var_dump($str);
+	    $data = '';  
 	    $msg = unpack('H*',$str);  
 	    $head = substr($msg[1],0,2);  
-	    var_dump('规则0: '.$msg);
-	    var_dump('规则1: '.$msg[1]);
-	    var_dump('规则1.1: '.substr($msg[1],2,2));
-
 	    if (hexdec($head{1}) === 8) {  
 	      	$data = false;  
 	    }else if (hexdec($head{1}) === 1){  
@@ -155,24 +150,19 @@ class WebSocket{
                 $msg[1]=substr($msg[1],4);
             }else if(substr($msg[1],2,2)=='ff'){
                 $msg[1]=substr($msg[1],16);
-            }else if(substr($msg[1],2,2)=='b7'){
-                $msg[1]=substr($msg[1],16);
             }
 	      	$mask[] = hexdec(substr($msg[1],4,2));
 	      	$mask[] = hexdec(substr($msg[1],6,2));
 	      	$mask[] = hexdec(substr($msg[1],8,2));
 	      	$mask[] = hexdec(substr($msg[1],10,2));
-	    	var_dump($mask);
-
-	      	$s = 120;  
+	      	$s = 12;  
 	      	$e = strlen($msg[1])-2;  
 	      	$n = 0;
 	      	for ($i=$s; $i<= $e; $i+= 2) {  
 	        	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
 	        	$n++;  
 	      	}  
-	    } 
-	    var_dump('规则2: '.$data);
+	    }  
 	    return $data;
   	}
 
