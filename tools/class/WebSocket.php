@@ -144,8 +144,9 @@ class WebSocket{
 	    var_dump($str);
 	    $msg = unpack('H*',$str);  
 	    $head = substr($msg[1],0,2);  
-	    var_dump('规则0: '.$head);
-	    var_dump('规则1: '.hexdec($head{1}));
+	    var_dump('规则0: '.$msg);
+	    var_dump('规则1: '.$msg[1]);
+	    var_dump('规则1.1: '.substr($msg[1],2,2));
 
 	    if (hexdec($head{1}) === 8) {  
 	      	$data = false;  
