@@ -113,9 +113,12 @@
 
         }
         socket.onmessage=function(msg){
-            console.log(msg.data.result);
-            if(msg.data.result.length!=0){
-                log(msg);
+            console.log(msg);
+            var data = JSON.parse(msg.data); 
+            console.log(data);
+            console.log(data.result);
+            if(data.result.length!=0){
+                log(data);
             }
         }
         socket.onclose=function(){
@@ -129,7 +132,7 @@
         socket = null;
     }
     function log(res){
-        var result = res.data.result;
+        var result = res.result;
         console.log(result)
         var html = '';
         $.each(result,function(i,index){
