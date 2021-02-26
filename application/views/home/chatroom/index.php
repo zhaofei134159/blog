@@ -113,8 +113,9 @@
 
         }
         socket.onmessage=function(msg){
-            console.log(msg.data);
-            log(msg);
+            if(msg.data.result!=[]){
+                log(msg);
+            }
         }
         socket.onclose=function(){
             console.log('断开连接');
@@ -127,7 +128,7 @@
         socket = null;
     }
     function log(res){
-        var result = JSON.parse(res).result;
+        var result = res.data.result;
         console.log(result)
         var html = '';
         $.each(result,function(i,index){
