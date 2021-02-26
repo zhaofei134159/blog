@@ -155,11 +155,15 @@ class WebSocket{
                 $msg[1]=substr($msg[1],4);
             }else if(substr($msg[1],2,2)=='ff'){
                 $msg[1]=substr($msg[1],16);
+            }else if(substr($msg[1],2,2)=='b7'){
+                $msg[1]=substr($msg[1],16);
             }
 	      	$mask[] = hexdec(substr($msg[1],4,2));
 	      	$mask[] = hexdec(substr($msg[1],6,2));
 	      	$mask[] = hexdec(substr($msg[1],8,2));
 	      	$mask[] = hexdec(substr($msg[1],10,2));
+	    	var_dump($mask);
+
 	      	$s = 12;  
 	      	$e = strlen($msg[1])-2;  
 	      	$n = 0;
