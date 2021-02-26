@@ -86,7 +86,9 @@
             console.log('连接成功');
 
             // 进入聊天室  发送消息
-            // sendCont('record','进入聊天室');
+            if(userid==''){
+                sendCont('record','进入聊天室');
+            }
             sendCont('start','进入聊天室');
 
         }
@@ -162,7 +164,7 @@
             alert('内容不能超过24个字符！');
             return false;
         }
-        if(userid==''){
+        if(userid=='' && type!='record'){
             console.log('用户没有登录');
             return false;
         }
