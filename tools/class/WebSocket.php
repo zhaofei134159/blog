@@ -76,7 +76,7 @@ class WebSocket{
 		          	// $len = socket_recv($sign,$buffer,4096, 0);
 		          	$buffer = '';
 		          	while($len != socket_recv($socket, $out, 1024, 0)){
-					    if($out != null)
+					    if($out != null){
 					        $buffer .= $out;
 					    }
 					}
