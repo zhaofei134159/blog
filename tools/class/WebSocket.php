@@ -76,8 +76,6 @@ class WebSocket{
 		          	$len = socket_recv($sign, $buffer, 16384, 0);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
-		          	var_dump($len);
-		          	
 		          	if($len<7){
 		            	$this->close($sign);
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign);
@@ -140,32 +138,50 @@ class WebSocket{
   	}
 
   	//
-  	public function uncode($str){
-	    $mask = array();  
-	    $data = '';  
-	    $msg = unpack('H*',$str);  
-	    $head = substr($msg[1],0,2);  
-	    if (hexdec($head{1}) === 8) {  
-	      	$data = false;  
-	    }else if (hexdec($head{1}) === 1){  
-	    	if(substr($msg[1],2,2)=='fe'){
-                $msg[1]=substr($msg[1],4);
-            }else if(substr($msg[1],2,2)=='ff'){
-                $msg[1]=substr($msg[1],16);
-            }
-	      	$mask[] = hexdec(substr($msg[1],4,2));
-	      	$mask[] = hexdec(substr($msg[1],6,2));
-	      	$mask[] = hexdec(substr($msg[1],8,2));
-	      	$mask[] = hexdec(substr($msg[1],10,2));
-	      	$s = 12;  
-	      	$e = strlen($msg[1])-2;  
-	      	$n = 0;
-	      	for ($i=$s; $i<= $e; $i+= 2) {  
-	        	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
-	        	$n++;  
-	      	}  
-	    }  
-	    return $data;
+  	public function uncode($buffer){
+	    // $mask = array();  
+	    // $data = '';  
+	    // $msg = unpack('H*',$str);  
+	    // $head = substr($msg[1],0,2);  
+	    // if (hexdec($head{1}) === 8) {  
+	    //   	$data = false;  
+	    // }else if (hexdec($head{1}) === 1){  
+	    // 	if(substr($msg[1],2,2)=='fe'){
+     //            $msg[1]=substr($msg[1],4);
+     //        }else if(substr($msg[1],2,2)=='ff'){
+     //            $msg[1]=substr($msg[1],16);
+     //        }
+	    //   	$mask[] = hexdec(substr($msg[1],4,2));
+	    //   	$mask[] = hexdec(substr($msg[1],6,2));
+	    //   	$mask[] = hexdec(substr($msg[1],8,2));
+	    //   	$mask[] = hexdec(substr($msg[1],10,2));
+	    //   	$s = 12;  
+	    //   	$e = strlen($msg[1])-2;  
+	    //   	$n = 0;
+	    //   	for ($i=$s; $i<= $e; $i+= 2) {  
+	    //     	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
+	    //     	$n++;  
+	    //   	}  
+	    // }  
+	    // return $data;
+	    $len = $masks = $data = $decoded = null;
+        $len = ord($buffer[1]) & 127;
+        if ($len === 126) {
+            $masks = substr($buffer, 4, 4);
+            $data = substr($buffer, 8);
+        }
+        else if ($len === 127) {
+            $masks = substr($buffer, 10, 4);
+            $data = substr($buffer, 14);
+        }
+        else {
+            $masks = substr($buffer, 2, 4);
+            $data = substr($buffer, 6);
+        }
+        for ($index = 0; $index < strlen($data); $index++) {
+            $decoded .= $data[$index] ^ $masks[$index % 4];
+        }
+        return $decoded;
   	}
 
   	public function code_old($msg){
