@@ -31,6 +31,10 @@
                        聊天室
                     </div>
                     <div class="panel-body text-center recent-users-sec" id="chatroom">
+                        <!-- centre -->
+                        <div class="core">
+                            
+                        </div>
                         <!-- Left -->
                         <div class="sender">
                             <div>
