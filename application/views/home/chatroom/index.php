@@ -86,8 +86,8 @@
             console.log('连接成功');
 
             // 进入聊天室  发送消息
-            sendCont('record','进入聊天室');
-            // sendCont('start','进入聊天室');
+            // sendCont('record','进入聊天室');
+            sendCont('start','进入聊天室');
 
         }
         socket.onmessage=function(msg){
