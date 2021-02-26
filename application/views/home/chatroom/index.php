@@ -10,6 +10,7 @@
     #contButton:hover {background: #9EEA6A;color: #fff;}
 
     /* bubble style */
+    .core{border: solid 1px #ccc;height: 24px;width: 34%;margin: 10px auto;border-radius: 4px;background: #ccc;color: #fff;font-size: 12px;font-weight: bold;}
     .sender{clear:both;}
     .sender div:nth-of-type(1){float: left;}
     .sender div:nth-of-type(2){background-color: #F8ECDD;color:black;float: left;margin: 0 20px 10px 15px;padding: 10px 10px 10px 0px;border-radius:7px;line-height: 30px;}
@@ -126,29 +127,10 @@
         socket = null;
     }
     function log(res){
-        var user = $('input[name="user"]').val();
-        var data = res.data;
-        var index = JSON.parse(data);
-        var weizhi = 'left';
-        var yonghuclass = 'from_user'
-        if(index.user==user){
-            weizhi = 'right';
-            yonghuclass = 'by_myself';
-        }
-        var html = '';
-        html += '<li class="span10 '+weizhi+' '+yonghuclass+'"> <a href="#" class="avatar"><img src="/resource/website/img/message_avatar1.png"/></a>';
-        html += '<div class="message_wrap"  style="float:'+weizhi+';"> <span class="arrow"></span>';
-        html += '<div class="info"> <a class="name"> 用户 '+index.user+' </a>';
-        html += '</div>';
-        html += '<div class="text">';
-        html += index.msg;
-        html += '</div>'
-        html += '</div>'
-        html += '</li>';
+        console.log(res)
 
-        $('.log').append(html);
-        document.getElementById("content").scrollTop = document.getElementById("content").scrollHeight;
-        // $('.log').html(html);
+        // $('#chatroom').append(html);
+        // document.getElementById("content").scrollTop = document.getElementById("content").scrollHeight;
     }
 
     function sendCont(msg_type,msg=''){
