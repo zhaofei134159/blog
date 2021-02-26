@@ -33,9 +33,7 @@
                     </div>
                     <div class="panel-body text-center recent-users-sec" id="chatroom">
                         <!-- centre -->
-                        <div class="core">
-                            
-                        </div>
+                        
                         <!-- Left -->
                         <div class="sender">
                             <div>
@@ -75,6 +73,7 @@
 <script type="text/javascript">
     var socket;
     var userid = "<?=$this->home['id']?>";
+    var url = 'http://blog.myfeiyou.com/';
 
     $(function(){
         socket_link();
@@ -113,10 +112,7 @@
 
         }
         socket.onmessage=function(msg){
-            console.log(msg);
             var data = JSON.parse(msg.data); 
-            console.log(data);
-            console.log(data.result);
             if(data.result.length!=0){
                 log(data);
             }
@@ -133,14 +129,42 @@
     }
     function log(res){
         var result = res.result;
-        console.log(result)
         var html = '';
         $.each(result,function(i,index){
-            console.log(i)
-            console.log(index)
+            if(index.msg_type=='in'){
+                html += '<div class="core">';
+                html +=  index.usNikename + ' 进入聊天室';
+                html += '</div>';
+            }else if(index.msg_type=='out'){
+                html += '<div class="core">';
+                html +=  index.usNikename + ' 退出聊天室';
+                html += '</div>';
+            }else if(index.msg_type=='text'){
+                if(userid == index.userid){
+                    html += '<div class="receiver">';
+                    html += '<div>';
+                    html += '<img src="'+url+index.usHeadimg+'">';
+                    html += '</div>';
+                    html += '<div>';
+                    html += '<div class="right_triangle"></div>';
+                    html += '<span>'+index.content+'</span>';
+                    html += '</div>';
+                    html += '</div>';
+                }else{
+                    html += '<div class="sender">';
+                    html += '<div>';
+                    html += '<img src="'+url+index.usHeadimg+'">';
+                    html += '</div>';
+                    html += '<div>';
+                    html += '<div class="left_triangle"></div>';
+                    html += '<span>'+index.content+'</span>';
+                    html += '</div>';
+                    html += '</div>';
+                }
+            }
+            $('#chatroom').append(html);
         })
 
-        // $('#chatroom').append(html);
         // document.getElementById("content").scrollTop = document.getElementById("content").scrollHeight;
     }
 
