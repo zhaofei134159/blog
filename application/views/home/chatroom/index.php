@@ -55,9 +55,7 @@
     var url = 'http://blog.myfeiyou.com/';
 
     $(function(){
-        if(userid!=''){
-            socket_link();
-        }
+        socket_link();
 
         $(document).keyup(function (evnet) {
             if (evnet.keyCode == '13' && userid!='') {
@@ -162,6 +160,10 @@
         }
         if(message.length>=24){
             alert('内容不能超过24个字符！');
+            return false;
+        }
+        if(userid==''){
+            console.log('用户没有登录');
             return false;
         }
         var jsonobj = {'type':type,'userid':userid,'msg':message};
