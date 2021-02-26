@@ -113,6 +113,7 @@
 
         }
         socket.onmessage=function(msg){
+            console.log(msg.data.result);
             if(msg.data.result.length!=0){
                 log(msg);
             }
