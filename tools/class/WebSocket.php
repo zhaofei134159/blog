@@ -85,9 +85,8 @@ class WebSocket{
 		          	if(!$this->users[$userid]['hand']){//没有握手进行握手
 		            	$this->handshake($userid,$buffer);
 		          	}else{
-		          		$buffer = $this->doEncoding($buffer);
 						$buffer = $this->uncode($buffer);
-						echo  mb_detect_encoding(socket_last_error($sign));
+						var_dump($this->doEncoding(mb_detect_encoding(socket_last_error($sign))));
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
 	            		$this->userreturn('msg',$usermsg);
 		          	}
