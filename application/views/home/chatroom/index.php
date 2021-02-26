@@ -3,68 +3,22 @@
 ?>
 
 <style type="text/css">
-    #chatroom{width:100%;height:450px;background:red;}
+    #chatroom{width:100%;height:450px;padding:20px 30px;}
     #chatroominput{width:100%;text-align:left;}
     #contInput{width: 90%;height: 45px;border: 1px #ccc solid; border-radius: 5px;}
     #contButton{width: 60px;height: 45px;margin-left: 15px;background: #fff;border: solid 1px #ccc;color: black;border-radius: 5px;}
     #contButton:hover {background: #9EEA6A;color: #fff;}
 
     /* bubble style */
-    .sender{
-      clear:both;
-    }
-    .sender div:nth-of-type(1){
-      float: left;
-    }
-    .sender div:nth-of-type(2){
-      background-color: aquamarine;
-      float: left;
-      margin: 0 20px 10px 15px;
-      padding: 10px 10px 10px 0px;
-      border-radius:7px;
-    }
-
-    .receiver div:first-child img,
-    .sender div:first-child img{
-      width:50px;
-      height: 50px;
-    }
-
-    .receiver{
-      clear:both;
-    }
-    .receiver div:nth-child(1){
-      float: right;
-    }
-    .receiver div:nth-of-type(2){
-      float:right;
-      background-color: gold;
-      margin: 0 10px 10px 20px;
-      padding: 10px 0px 10px 10px;
-      border-radius:7px;
-    }
-
-    .left_triangle{
-      height:0px;  
-      width:0px;  
-      border-width:8px;  
-      border-style:solid;  
-      border-color:transparent aquamarine transparent transparent;  
-      position: relative;
-      left:-16px;
-      top:3px;
-    }
-
-    .right_triangle{
-      height:0px;  
-      width:0px;  
-      border-width:8px;  
-      border-style:solid;  
-      border-color:transparent transparent transparent gold;  
-      position: relative;
-      right:-16px;
-      top:3px;
-    }
+    .sender{clear:both;}
+    .sender div:nth-of-type(1){float: left;}
+    .sender div:nth-of-type(2){background-color: #fff;color:black;float: left;margin: 0 20px 10px 15px;padding: 10px 10px 10px 0px;border-radius:7px;line-height: 30px;}
+    .receiver div:first-child img, .sender div:first-child img{width:50px;height: 50px;border-radius:7px;}
+    .receiver{clear:both;}
+    .receiver div:nth-child(1){float: right;}
+    .receiver div:nth-of-type(2){float:right;background-color:#9EEA6A;color:black;margin: 0 10px 10px 20px;padding: 10px 0px 10px 10px;border-radius:7px;line-height: 30px;}
+    .left_triangle{height:0px;width:0px;border-width:8px;border-style:solid;border-color:transparent aquamarine transparent transparent;position: relative;left:-16px;top:3px;}
+    .right_triangle{height:0px;width:0px;border-width:8px;border-style:solid;border-color:transparent transparent transparent gold;position: relative;right:-16px;top:3px;}
 </style>
 <!-- MENU SECTION END-->
 <div class="content-wrapper" style="min-height:600px;">
