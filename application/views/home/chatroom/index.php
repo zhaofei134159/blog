@@ -17,8 +17,8 @@
     .receiver{clear:both;}
     .receiver div:nth-child(1){float: right;}
     .receiver div:nth-of-type(2){float:right;background-color:#9EEA6A;color:black;margin: 0 10px 10px 20px;padding: 10px 0px 10px 10px;border-radius:7px;line-height: 30px;}
-    .left_triangle{height:0px;width:0px;border-width:8px;border-style:solid;border-color:transparent aquamarine transparent transparent;position: relative;left:-16px;top:3px;}
-    .right_triangle{height:0px;width:0px;border-width:8px;border-style:solid;border-color:transparent transparent transparent gold;position: relative;right:-16px;top:3px;}
+    .left_triangle{height:0px;width:0px;border-width:8px;border-style:solid;border-color:transparent #fff transparent transparent;position: relative;left:-16px;top:3px;}
+    .right_triangle{height:0px;width:0px;border-width:8px;border-style:solid;border-color:transparent transparent transparent #9EEA6A;position: relative;right:-16px;top:3px;}
 </style>
 <!-- MENU SECTION END-->
 <div class="content-wrapper" style="min-height:600px;">
