@@ -73,7 +73,7 @@ class WebSocket{
 		          	$this->userreturn('in',$usermsg);
 		        }else{
 		        	// $len = 0 为正常退出 -1 为已经执行了，只不过失败了
-		          	$len = socket_recv($sign, $buffer, 16384, 0);
+		          	$len = socket_recv($sign, $buffer, 2048, 0);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
 		          	if($len<7){
@@ -178,12 +178,6 @@ class WebSocket{
             $masks = substr($buffer, 2, 4);
             $data = substr($buffer, 6);
         }
-        var_dump('设置1：'.$len);
-        var_dump('设置2：'.$masks);
-        var_dump('设置2.1：'.$masks[0]);
-        var_dump('设置2.2：'.$masks[1]);
-        var_dump('设置3：'.$data);
-        var_dump('设置4：'.strlen($data));
         for ($index = 0; $index < strlen($data); $index++) {
             $decoded .= $data[$index] ^ $masks[$index % 4];
         }
