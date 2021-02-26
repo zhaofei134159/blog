@@ -100,9 +100,11 @@ function message_analysis($userid,$usermsg,$type,$sign){
       # 用户信息
       $userinfo = getUserInfo($usermsgJson['userid']);
       if(empty($userinfo)){
+          $result = userMessage($userinfo['id'],'','record');
+          
           $resultData['flog'] = 2;
           $resultData['msg'] = '用户信息为空';
-          $resultData['result'] = array();
+          $resultData['result'] = $result;
           $socket->allweite(json_encode($resultData));
           return '2';
       }
@@ -127,10 +129,6 @@ function message_analysis($userid,$usermsg,$type,$sign){
               $result = userMessage($userinfo['id'],$usermsgJson['msg'],'text');
           }
 
-          #  
-          if($usermsgJson['type']=='record'){
-              $result = userMessage($userinfo['id'],'','record');
-          }
 
           $resultData['flog'] = 3;
           $resultData['msg'] = '聊天记录';
