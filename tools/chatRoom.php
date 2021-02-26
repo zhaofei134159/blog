@@ -205,7 +205,7 @@ function userMessage($userid,$content,$type){
       $result = userMessageList('limit 1');
       $result = array_reverse($result);
 
-      return $result['0'];
+      return $result;
     }
 
 }
