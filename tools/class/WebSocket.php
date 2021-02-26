@@ -86,6 +86,8 @@ class WebSocket{
 		            	$this->handshake($userid,$buffer);
 		          	}else{
 						$buffer = $this->uncode($buffer);
+						// iconv('', 'utf8', $buffer);
+						echo mb_detect_encoding($buffer);
 						var_dump($this->doEncoding(socket_last_error($sign)));
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
 	            		$this->userreturn('msg',$usermsg);
