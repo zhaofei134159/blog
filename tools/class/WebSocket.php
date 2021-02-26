@@ -79,6 +79,7 @@ class WebSocket{
 					{
 					    $buffer .= $buf;
 					}
+					var_dump($buffer);
 		          	$userid = $this->search($sign);
 		          	$user = $this->users[$userid];
 		          	if($len<7){
