@@ -110,6 +110,9 @@
         var result = res.result;
         var html = '';
         $.each(result,function(i,index){
+            console.log(i);
+            console.log(index);
+            console.log(index.msg_type);
             if(index.msg_type=='in'){
                 html += '<div class="core">';
                 html +=  index.usNikename + ' 进入聊天室';
