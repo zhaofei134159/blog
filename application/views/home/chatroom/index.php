@@ -51,7 +51,7 @@
 </div>
 <script type="text/javascript">
     var socket;
-    var userid = "<?=($this->home['id'])?$this->home['id']:'';?>";
+    var userid = "<?php echo (isset($this->home['id'])&&!empty($this->home['id']))?$this->home['id']:''; ?>";
     var url = 'http://blog.myfeiyou.com/';
 
     $(function(){
