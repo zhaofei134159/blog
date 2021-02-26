@@ -10,7 +10,7 @@
     #contButton:hover {background: #9EEA6A;color: #fff;}
 
     /* bubble style */
-    .core{border: solid 1px #ccc;height: 24px;width: 34%;margin: 10px auto;border-radius: 4px;background: #ccc;color: #fff;font-size: 12px;font-weight: bold;}
+    .core{border: solid 1px #ccc;height: 24px;width: 34%;margin: 10px auto;border-radius: 4px;background: #ccc;color: #fff;font-size: 12px;font-weight: bold;clear:both;}
     .sender{clear:both;}
     .sender div:nth-of-type(1){float: left;}
     .sender div:nth-of-type(2){background-color: #F8ECDD;color:black;float: left;margin: 0 20px 10px 15px;padding: 10px 10px 10px 0px;border-radius:7px;line-height: 30px;}
