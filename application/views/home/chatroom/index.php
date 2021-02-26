@@ -51,20 +51,22 @@
 </div>
 <script type="text/javascript">
     var socket;
-    var userid = "<?=$this->home['id']?>";
+    var userid = "<?=($this->home['id'])?$this->home['id']:'';?>";
     var url = 'http://blog.myfeiyou.com/';
 
     $(function(){
-        socket_link();
+        if(userid!=''){
+            socket_link();
+        }
+
         $(document).keyup(function (evnet) {
-            if (evnet.keyCode == '13') {
+            if (evnet.keyCode == '13' && userid!='') {
                 sendCont();
             }
         });
-
         // 心跳测试
         setInterval(function(){
-            if(socket!=null){
+            if(socket!=null && userid!=''){
                 socket.send('ping'); 
             }
         },10000)
