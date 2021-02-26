@@ -127,7 +127,13 @@
         socket = null;
     }
     function log(res){
-        console.log(res)
+        var result = JSON.parse(res).result;
+        console.log(result)
+        var html = '';
+        $.each(result,function(i,index){
+            console.log(i)
+            console.log(index)
+        })
 
         // $('#chatroom').append(html);
         // document.getElementById("content").scrollTop = document.getElementById("content").scrollHeight;
