@@ -32,28 +32,7 @@
                        聊天室
                     </div>
                     <div class="panel-body text-center recent-users-sec" id="chatroom">
-                        <!-- centre -->
                         
-                        <!-- Left -->
-                        <div class="sender">
-                            <div>
-                                <img src="https://static.runoob.com/images/mix/img_avatar.png">
-                            </div>
-                            <div>
-                                <div class="left_triangle"></div>
-                                <span> hello, man! </span>
-                            </div>
-                        </div>
-                        <!-- Right -->
-                        <div class="receiver">
-                            <div>
-                                <img src="https://static.runoob.com/images/mix/img_avatar.png">
-                            </div>
-                            <div>
-                                <div class="right_triangle"></div>
-                                <span> hello world </span>
-                            </div>
-                        </div>
                     </div>
                     <div class="panel-body text-center recent-users-sec" id="chatroominput">
                         <?php if(empty($this->homeid)||empty($this->home['id'])){?>
