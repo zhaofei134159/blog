@@ -85,6 +85,7 @@ class WebSocket{
 		          	if(!$this->users[$userid]['hand']){//没有握手进行握手
 		            	$this->handshake($userid,$buffer);
 		          	}else{
+		          		$buffer = $this->doEncoding($buffer);
 						$buffer = $this->uncode($buffer);
 						echo  mb_detect_encoding(socket_last_error($sign));
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
@@ -137,6 +138,15 @@ class WebSocket{
 	    $this->users[$userid]['hand']=true;
 	    return true;
   	}
+
+  	# ASCII 转 utf8
+  	public function doEncoding($str){
+       $encode = strtoupper(mb_detect_encoding($str, ["ASCII",'UTF-8',"GB2312","GBK",'BIG5']));
+       if($encode!='UTF-8'){
+           $str = mb_convert_encoding($str, 'UTF-8', $encode);
+       }
+       return $str;
+   }
 
   	//
   	public function uncode($buffer){
