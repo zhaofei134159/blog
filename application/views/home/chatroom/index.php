@@ -59,7 +59,7 @@
 
         $(document).keyup(function (evnet) {
             if (evnet.keyCode == '13' && userid!='') {
-                sendCont();
+                sendCont('msg');
             }
         });
         // 心跳测试
