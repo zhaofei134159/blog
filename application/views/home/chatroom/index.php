@@ -108,11 +108,8 @@
     }
     function log(res){
         var result = res.result;
-        var html = '';
         $.each(result,function(i,index){
-            console.log(i);
-            console.log(index);
-            console.log(index.msg_type);
+            var html = '';
             if(index.msg_type=='in'){
                 html += '<div class="core">';
                 html +=  index.usNikename + ' 进入聊天室';
@@ -145,9 +142,8 @@
                 }
             }
             $('#chatroom').append(html);
+            document.getElementById("chatroom").scrollTop = document.getElementById("chatroom").scrollHeight;
         })
-
-        document.getElementById("chatroom").scrollTop = document.getElementById("chatroom").scrollHeight;
     }
 
     function sendCont(msg_type,msg=''){
