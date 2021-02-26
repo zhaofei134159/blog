@@ -12,12 +12,12 @@
     /* bubble style */
     .sender{clear:both;}
     .sender div:nth-of-type(1){float: left;}
-    .sender div:nth-of-type(2){background-color: #fff;color:black;float: left;margin: 0 20px 10px 15px;padding: 10px 10px 10px 0px;border-radius:7px;line-height: 30px;}
+    .sender div:nth-of-type(2){background-color: #F8ECDD;color:black;float: left;margin: 0 20px 10px 15px;padding: 10px 10px 10px 0px;border-radius:7px;line-height: 30px;}
     .receiver div:first-child img, .sender div:first-child img{width:50px;height: 50px;border-radius:7px;}
     .receiver{clear:both;}
     .receiver div:nth-child(1){float: right;}
     .receiver div:nth-of-type(2){float:right;background-color:#9EEA6A;color:black;margin: 0 10px 10px 20px;padding: 10px 0px 10px 10px;border-radius:7px;line-height: 30px;}
-    .left_triangle{height:0px;width:0px;border-width:8px;border-style:solid;border-color:transparent #fff transparent transparent;position: relative;left:-16px;top:3px;}
+    .left_triangle{height:0px;width:0px;border-width:8px;border-style:solid;border-color:transparent #F8ECDD transparent transparent;position: relative;left:-16px;top:3px;}
     .right_triangle{height:0px;width:0px;border-width:8px;border-style:solid;border-color:transparent transparent transparent #9EEA6A;position: relative;right:-16px;top:3px;}
 </style>
 <!-- MENU SECTION END-->
