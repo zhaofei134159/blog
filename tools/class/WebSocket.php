@@ -86,9 +86,6 @@ class WebSocket{
 		            	$this->handshake($userid,$buffer);
 		          	}else{
 						$buffer = $this->uncode($buffer);
-						// iconv('', 'utf8', $buffer);
-						echo mb_detect_encoding($buffer);
-						var_dump($this->doEncoding(socket_last_error($sign)));
 		            	$usermsg = array('userid'=>$userid,'sign'=>$sign,'msg'=>$buffer);
 	            		$this->userreturn('msg',$usermsg);
 		          	}
@@ -151,31 +148,33 @@ class WebSocket{
 
   	//
   	public function uncode($buffer){
-	    // $mask = array();  
-	    // $data = '';  
-	    // $msg = unpack('H*',$str);  
-	    // $head = substr($msg[1],0,2);  
-	    // if (hexdec($head{1}) === 8) {  
-	    //   	$data = false;  
-	    // }else if (hexdec($head{1}) === 1){  
-	    // 	if(substr($msg[1],2,2)=='fe'){
-     //            $msg[1]=substr($msg[1],4);
-     //        }else if(substr($msg[1],2,2)=='ff'){
-     //            $msg[1]=substr($msg[1],16);
-     //        }
-	    //   	$mask[] = hexdec(substr($msg[1],4,2));
-	    //   	$mask[] = hexdec(substr($msg[1],6,2));
-	    //   	$mask[] = hexdec(substr($msg[1],8,2));
-	    //   	$mask[] = hexdec(substr($msg[1],10,2));
-	    //   	$s = 12;  
-	    //   	$e = strlen($msg[1])-2;  
-	    //   	$n = 0;
-	    //   	for ($i=$s; $i<= $e; $i+= 2) {  
-	    //     	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
-	    //     	$n++;  
-	    //   	}  
-	    // }  
-	    // return $data;
+	    /*
+	    $mask = array();  
+	    $data = '';  
+	    $msg = unpack('H*',$str);  
+	    $head = substr($msg[1],0,2);  
+	    if (hexdec($head{1}) === 8) {  
+	      	$data = false;  
+	    }else if (hexdec($head{1}) === 1){  
+	    	if(substr($msg[1],2,2)=='fe'){
+                $msg[1]=substr($msg[1],4);
+            }else if(substr($msg[1],2,2)=='ff'){
+                $msg[1]=substr($msg[1],16);
+            }
+	      	$mask[] = hexdec(substr($msg[1],4,2));
+	      	$mask[] = hexdec(substr($msg[1],6,2));
+	      	$mask[] = hexdec(substr($msg[1],8,2));
+	      	$mask[] = hexdec(substr($msg[1],10,2));
+	      	$s = 12;  
+	      	$e = strlen($msg[1])-2;  
+	      	$n = 0;
+	      	for ($i=$s; $i<= $e; $i+= 2) {  
+	        	$data .= chr($mask[$n%4]^hexdec(substr($msg[1],$i,2)));  
+	        	$n++;  
+	      	}  
+	    }  
+	    return $data;
+	    */
 	    $len = $masks = $data = $decoded = null;
         $len = ord($buffer[1]) & 127;
         if ($len === 126) {

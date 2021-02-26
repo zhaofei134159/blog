@@ -111,7 +111,8 @@ function message_analysis($userid,$usermsg,$type,$sign){
       if(!empty($usermsgJson['msg'])){
           # 进入聊天室
           if($usermsgJson['type']=='start'){
-              $result = userMessage($userinfo['id'],'进入聊天室','in');
+              userMessage($userinfo['id'],'进入聊天室','in');
+              $result = userMessage($userinfo['id'],'','record');
           } 
           
           # 退出聊天室
@@ -122,11 +123,6 @@ function message_analysis($userid,$usermsg,$type,$sign){
           # 聊天内容记录
           if($usermsgJson['type']=='msg'){
               $result = userMessage($userinfo['id'],$usermsgJson['msg'],'text');
-          }
-
-          # 查询历史聊天记录
-          if($usermsgJson['type']=='record'){
-              $result = userMessage($userinfo['id'],'','record');
           }
 
           $resultData['flog'] = 3;
