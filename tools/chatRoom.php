@@ -109,6 +109,8 @@ function message_analysis($userid,$usermsg,$type,$sign){
 
       # 记录聊天内容内容
       if(!empty($usermsgJson['msg'])){
+          $result = array();
+
           # 进入聊天室
           if($usermsgJson['type']=='start'){
               userMessage($userinfo['id'],'进入聊天室','in');
@@ -123,6 +125,11 @@ function message_analysis($userid,$usermsg,$type,$sign){
           # 聊天内容记录
           if($usermsgJson['type']=='msg'){
               $result = userMessage($userinfo['id'],$usermsgJson['msg'],'text');
+          }
+
+          #  
+          if($usermsgJson['type']=='record'){
+              $result = userMessage($userinfo['id'],'','record');
           }
 
           $resultData['flog'] = 3;
