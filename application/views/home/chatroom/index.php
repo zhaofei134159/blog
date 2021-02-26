@@ -50,11 +50,11 @@
         });
 
         // 心跳测试
-        setInterval(function(){
-            if(socket!=null){
-                socket.send('ping'); 
-            }
-        },10000)
+        // setInterval(function(){
+        //     if(socket!=null){
+        //         socket.send('ping'); 
+        //     }
+        // },10000)
 
         // 关闭网页 断开连接
         window.onbeforeunload=function (){
