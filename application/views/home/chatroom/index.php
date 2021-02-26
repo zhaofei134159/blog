@@ -73,9 +73,9 @@
             console.log('连接成功');
 
             // 进入聊天室  发送消息
-            sendCont('start','i');
-            sendCont('record','s');
-            sendCont('end','o');
+            sendCont('start','进入聊天室');
+            sendCont('record','查询聊天记录');
+            sendCont('end','退出聊天室');
 
         }
         socket.onmessage=function(msg){
