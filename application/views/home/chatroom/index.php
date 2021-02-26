@@ -41,7 +41,7 @@
                         </div>
                         <?php }else{?>
                             <input type="text" name="message" id="contInput"> 
-                            <button id="contButton" onclick="sendCont()">发送</button>
+                            <button id="contButton" onclick="sendCont('msg')">发送</button>
                         <?php }?>
                     </div>
      			</div>
@@ -149,7 +149,7 @@
     }
 
     function sendCont(msg_type,msg=''){
-        if(msg==''){
+        if(msg_type=='msg'){
             var type = 'msg';
             var message = $('#contInput').val();
             if(message==''){
