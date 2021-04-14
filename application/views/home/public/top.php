@@ -34,7 +34,7 @@
     <!-- 看板娘 -->
     <link rel="stylesheet" type="text/css" href="<?=HOME_PUBLIC_URL?>assets/waifu.css"/>
 
-	<link rel="shortcut icon" href="<?=PUBLIC_URL?>/images/favicon.ico" />
+	<link rel="shortcut icon" href="<?=PUBLIC_URL?>images/favicon.ico" />
 
     
     <!-- baidu -->
