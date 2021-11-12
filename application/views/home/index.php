@@ -121,12 +121,12 @@
         	</div>
 
             <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="panel panel-primary ">
+                <div class="panel panel-success ">
                     <div class="panel-heading">
                         广告
                     </div>
                     <div class="panel-body chat-widget-main">
-                        <a href="https://jet163.com?inviterCode=a6cfce794" target="__black" class="btn btn-default btn-sm" style="margin: 2px 0px;">JetStream 加速最穩妥</a> 
+                        <a href="https://jet163.com?inviterCode=a6cfce794" target="__black" class="btn btn-default btn-sm" style="margin: 2px 0px;">使用 JetStreamVPN 加速最穩妥</a> 
                     </div>
                 </div>
             </div>
