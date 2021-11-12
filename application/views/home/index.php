@@ -126,7 +126,8 @@
                         广告
                     </div>
                     <div class="panel-body chat-widget-main" style="margin: auto 0;">
-                        <a href="https://jet163.com?inviterCode=a6cfce794" target="__black" class="btn btn-default btn-sm" style="display: block;margin: 2px 0px;">使用 <img src="<?=HOME_PUBLIC_URL?>img/JetStream.png" alt="JetStreamVPN" style="width: 20px;height: 20px;padding-left: 2px;padding-bottom: 3px;"> JetStreamVPN 加速最穩妥</a> 
+                        暂无
+                        <!-- <a href="https://jet163.com?inviterCode=a6cfce794" target="__black" class="btn btn-default btn-sm" style="display: block;margin: 2px 0px;">使用 <img src="<?=HOME_PUBLIC_URL?>img/JetStream.png" alt="JetStreamVPN" style="width: 20px;height: 20px;padding-left: 2px;padding-bottom: 3px;"> JetStreamVPN 加速最穩妥</a>  -->
                         <hr>
                     </div>
                 </div>
