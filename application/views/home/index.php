@@ -74,37 +74,7 @@
 		<hr>
 		
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
- 				<div class="panel panel-default">
-                    <div class="panel-heading">
-                       博主
-                    </div>
-                    <div class="panel-body text-center recent-users-sec">
-                        <?php 
-                            if(!empty($blogs)){
-                                foreach($blogs as $blog){
-                                $headimg = PUBLIC_URL.'headimg/timg.jpg';
-                                if(!empty($blog['user']['headimg'])){
-                                    $headimg = '/'.$blog['user']['headimg'];
-                                }
-                        ?>
-                                <a href="<?=HOME_URL_HTTP?>blog/<?=$blog['id']?>" target="__black">
-                                    <img class="img-thumbnail" src="<?=$headimg?>" width="70"/>
-                                </a>
-                        <?php 
-                                }
-                            }
-                        ?>
-                    </div>
-     			</div>
-            </div>
-			  
-
-        </div>
-		
-		<div class="row">
-  
-           	<div class="col-md-12 col-sm-12 col-xs-12">
+           	<div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
                      	文章
@@ -149,6 +119,17 @@
                 	</div>
             	</div>
         	</div>
+
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="panel panel-primary ">
+                    <div class="panel-heading">
+                        广告
+                    </div>
+                    <div class="panel-body chat-widget-main">
+                        <a href="https://jet163.com?inviterCode=a6cfce794" target="__black" class="btn btn-default btn-sm" style="margin: 2px 0px;">JetStream 加速最穩妥</a> 
+                    </div>
+                </div>
+            </div>
 
 		 <!--    <div class="col-md-4 col-sm-12 col-xs-12">
 	            <div class="panel panel-info">
