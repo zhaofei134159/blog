@@ -123,15 +123,16 @@
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="panel panel-default ">
                     <div class="panel-heading">
-                        广告
+                        我的游戏
                     </div>
                     <div class="panel-body chat-widget-main" style="margin: auto 0;">
                         暂无
-                        <!-- <a href="https://jet163.com?inviterCode=a6cfce794" target="__black" class="btn btn-default btn-sm" style="display: block;margin: 2px 0px;">使用 <img src="<?=HOME_PUBLIC_URL?>img/JetStream.png" alt="JetStreamVPN" style="width: 20px;height: 20px;padding-left: 2px;padding-bottom: 3px;"> JetStreamVPN 加速最穩妥</a>  -->
+                        <a href="https://jet163.com?inviterCode=a6cfce794" target="__black" class="btn btn-default btn-sm" style="display: block;margin: 2px 0px;"> 打砖块 </a>
                         <hr>
                     </div>
                 </div>
             </div>
+
 
 		 <!--    <div class="col-md-4 col-sm-12 col-xs-12">
 	            <div class="panel panel-info">
