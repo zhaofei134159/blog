@@ -12,7 +12,7 @@
 		.ball{width: 17px;height: 17px;border-radius: 10px;background: white;position:absolute;bottom:50px;left:49%;}
 		#trolley{width: 120px;height: 20px;border-radius: 10px;background: #343939;position:absolute;bottom:30px;left:45%;}
 	</style>
-	<script src="./js/jquery-1.11.2.min.js"></script>
+	<script src="<?=PUBLIC_URL?>js/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 	<div class="outer">
