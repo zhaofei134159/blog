@@ -139,11 +139,11 @@
 				if(ballLeft >= trolleyLeft && ballRight <= trolleyRight && ballBottom >= trolleyTop){
 					// 如果在板子的左侧 则向左侧飞 (板子左侧 + 75 是否 小于等于 球的左侧)
 					if(trolleyLeft + trolleyWidth / 2 <= ball_cur_Left){
-						ball_cur_Left -= speed;
-						abeam = '-';
-					}else{
 						ball_cur_Left += speed;
 						abeam = '+';
+					}else{
+						ball_cur_Left -= speed;
+						abeam = '-';
 					}
 					ball_cur_Top -= speed;
 					vertical = '-';
