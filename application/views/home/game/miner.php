@@ -54,8 +54,6 @@
 		$(function(){
 			// 动态生成底层物品
 			goldInit(1);
-			// 拉住物品后人物切换
-			// grabObject();
 		})
 
 		// 外边框
@@ -81,8 +79,6 @@
 		var ropeElongationInterval = null;
 		// 绳子缩短 
 		var ropeShortenInterval = null;
-		// 物品被抓
-		var goldInterval = null;
 
 
 		// 动态生成底层物品
@@ -142,7 +138,7 @@
 		// 伸出爪子
 		function reachClaw(){
 			// 已经伸爪了 
-			if(hook_rope.attr('data-type') == '2' && ropeElongationInterval != null) {
+			if(hook_rope.attr('data-type') == '2' && (ropeElongationInterval != null || grabInterval!=null || ropeShortenInterval!=null)) {
 				return false;
 			}
 			var gold = $('.gold');
@@ -209,8 +205,6 @@
 						grabInterval = setInterval("grabObject()",200);
 						// 绳子动画
 						ropeShortenInterval = setInterval("ropeShortenFun()",200);
-						// 物品动画
-						// goldInterval = setInterval("goldFun("+g+")",200);
 
 						break;
 					}
@@ -289,30 +283,7 @@
 			}
 		}
 
-		// 物品被抓
-		function goldFun(g){
-			var i = 10;
-
-			var gold = $('.gold').eq(g);
-			var goldTop = parseInt(gold.css('top'));
-			var goldTop = goldTop - 6;
-
-			var goldLeft = parseInt(gold.css('left'));
-			var goldLeft = goldLeft - 8;
-
-			gold.css('top', goldTop+'px').css('left', goldLeft+'px');
-
-			var ropeHeight = parseInt(rope.css('height'));
-
-			// 回到初始位置 继续动画
-			if(ropeHeight <= 54 && ropeElongationInterval == null){
-				// 绳子动画
-				clearInterval(goldInterval);
-				goldInterval = null;
-
-				gold.remove();
-			}
-		}
+		
 	</script>
 </body>
 </html>
