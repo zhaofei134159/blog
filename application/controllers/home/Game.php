@@ -13,4 +13,10 @@ class Game extends Home_Controller{
 		$data = array();
 		$this->load->view(HOME_URL.'game/hitbricks',$data);
 	}
+
+	public function miner()
+	{
+		$data = array();
+		$this->load->view(HOME_URL.'game/miner',$data);
+	}
 }
