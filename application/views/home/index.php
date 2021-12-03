@@ -127,6 +127,7 @@
                     </div>
                     <div class="panel-body chat-widget-main" style="margin: auto 0;">
                         <a href="<?=HOME_URL_HTTP?>game/hitbricks" target="__black" class="btn btn-default btn-sm" style="display: block;margin: 2px 0px;"> 打砖块 </a>
+                        <a href="<?=HOME_URL_HTTP?>game/miner" target="__black" class="btn btn-default btn-sm" style="display: block;margin: 2px 0px;"> 黄金矿工 </a>
                         <hr>
                     </div>
                 </div>
