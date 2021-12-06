@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>娓告垙</title>
+	<title>打砖块小游戏</title>
 	<style type="text/css">
 		body{overflow:-Scroll;overflow-x:hidden;}
 		.outer{margin:0 auto;width:90%;height:700px;background:#8BB9E5;position:relative;}
@@ -12,6 +12,10 @@
 		.ball{width: 17px;height: 17px;border-radius: 10px;background: white;position:absolute;bottom:50px;left:49%;}
 		#trolley{width: 120px;height: 20px;border-radius: 10px;background: #343939;position:absolute;bottom:30px;left:45%;}
 	</style>
+
+	<meta name="keywords" content="打砖块 小游戏">
+    <meta name="description" content="使用js、css、html实现 打砖块小游戏">
+    
 	<link rel="shortcut icon" href="<?=PUBLIC_URL?>images/favicon.ico" />
 	<script src="<?=PUBLIC_URL?>js/jquery-1.9.1.min.js"></script>
 </head>
