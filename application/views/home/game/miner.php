@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>黄金矿工</title>
+	<title>黄金矿工小游戏</title>
 	<style type="text/css">
 		body{overflow:-Scroll;overflow-x:hidden;}
 		.outer{margin:0 auto;width:90%;height:700px;}
@@ -27,6 +27,11 @@
 		.cennter{background-image:url('<?=HOME_PUBLIC_URL?>/img/pictures/brick.png');height:10px;position:relative;z-index:100;}
 		.lower{width:100%;height:600px;background-image:url('<?=HOME_PUBLIC_URL?>/img/pictures/level-background-0.jpg');background-size: 100% 100%;position:relative;}
 	</style>
+
+	<meta name="keywords" content="黄金矿工 小游戏">
+    <meta name="description" content="使用js、css、html实现 黄金矿工小游戏">
+    
+	<link rel="shortcut icon" href="<?=PUBLIC_URL?>images/favicon.ico" />
 	<script src="<?=PUBLIC_URL?>js/jquery-1.9.1.min.js"></script>
 </head>
 <body>
