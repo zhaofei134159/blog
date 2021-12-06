@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>´ò×©¿éĞ¡ÓÎÏ·</title>
+	<title>æ‰“ç –å—å°æ¸¸æˆ</title>
 	<style type="text/css">
 		body{overflow:-Scroll;overflow-x:hidden;}
 		.outer{margin:0 auto;width:90%;height:700px;background:#8BB9E5;position:relative;}
@@ -13,8 +13,8 @@
 		#trolley{width: 120px;height: 20px;border-radius: 10px;background: #343939;position:absolute;bottom:30px;left:45%;}
 	</style>
 
-	<meta name="keywords" content="´ò×©¿é Ğ¡ÓÎÏ·">
-    <meta name="description" content="Ê¹ÓÃjs¡¢css¡¢htmlÊµÏÖ ´ò×©¿éĞ¡ÓÎÏ·">
+	<meta name="keywords" content="æ‰“ç –å— å°æ¸¸æˆ">
+    <meta name="description" content="ä½¿ç”¨jsã€cssã€htmlå®ç° æ‰“ç –å—å°æ¸¸æˆ">
     
 	<link rel="shortcut icon" href="<?=PUBLIC_URL?>images/favicon.ico" />
 	<script src="<?=PUBLIC_URL?>js/jquery-1.9.1.min.js"></script>
