@@ -37,18 +37,18 @@ function goldInit(shut){
 			// if(j==1){
 			// 	var width = 100;
 			// 	var height = 80;
-			// 	var src = '<?=HOME_PUBLIC_URL?>/img/pictures/small_gold.png';
+			// 	var src = '/public/home/img/pictures/small_gold.png';
 			// 	var rows = 3;
 			// }else if(j==2){
 			// 	var width = 200;
 			// 	var height = 150;
-			// 	var src = '<?=HOME_PUBLIC_URL?>/img/pictures/big_gold.png';
+			// 	var src = '/public/home/img/pictures/big_gold.png';
 			// 	var rows = 5;
 			// }else 
 			if(j==3){
 				var width = 30;
 				var height = 20;
-				var src = '<?=HOME_PUBLIC_URL?>/img/pictures/diamond.png';
+				var src = '/public/home/img/pictures/diamond.png';
 				var rows = 10;
 			}
 			for(i=1;i<=rows;i++){
@@ -208,11 +208,11 @@ function ropeShortenFun(){
 function grabObject(soc){
 	var chart = $('.chart');
 	if(chart.attr('data-str') == 1){
-		chart.attr('src','<?=HOME_PUBLIC_URL?>/img/pictures/char2.jpg');
+		chart.attr('src','/public/home/img/pictures/char2.jpg');
 		$('.charDiv').css('bottom','68px');
 		chart.attr('data-str','2');
 	}else{
-		chart.attr('src','<?=HOME_PUBLIC_URL?>/img/pictures/char1.jpg');
+		chart.attr('src','/public/home/img/pictures/char1.jpg');
 		$('.charDiv').css('bottom','68px');
 		chart.attr('data-str','1');
 	}
@@ -224,7 +224,7 @@ function grabObject(soc){
 		clearInterval(grabInterval);
 		grabInterval = null;
 
-		$('.chart').attr('src','<?=HOME_PUBLIC_URL?>/img/pictures/char1.jpg');
+		$('.chart').attr('src','/public/home/img/pictures/char1.jpg');
 		$('.charDiv').css('bottom','68px');
 		$('.chart').attr('data-str','1');
 	}
