@@ -50,7 +50,7 @@
 		<div class="lower">
 		</div>
 	</div>
-	<script src="<?=HOME_PUBLIC_URL?>js/game/miner.js"></script>
-	<script src="<?=HOME_PUBLIC_URL?>js/game/gameWelcome.js"></script>
+	<script src="<?=HOME_PUBLIC_URL?>js/game/miner.js?<?=HOME_CACHE_TIME?>"></script>
+	<script src="<?=HOME_PUBLIC_URL?>js/game/gameWelcome.js?<?=HOME_CACHE_TIME?>"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@
 			<div id="trolley"></div>
 		</div>
 	</div>
-	<script src="<?=HOME_PUBLIC_URL?>js/game/hitbricks.js"></script>
-	<script src="<?=HOME_PUBLIC_URL?>js/game/gameWelcome.js"></script>
+	<script src="<?=HOME_PUBLIC_URL?>js/game/hitbricks.js?<?=HOME_CACHE_TIME?>"></script>
+	<script src="<?=HOME_PUBLIC_URL?>js/game/gameWelcome.js?<?=HOME_CACHE_TIME?>"></script>
 </body>
 </html>
