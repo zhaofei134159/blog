@@ -113,7 +113,7 @@
                 <div class="col-md-12">
                     <div class="alert alert-dismissable" id="alert" style="display:none;">
                         <span class="close" onclick="abandon()">×</span>
-                        <p id="myModalBody"> </p>
+                        <p id="myModalBody">  </p>
                     </div>
                 </div>
                 <script type="text/javascript">

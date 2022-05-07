@@ -74,37 +74,7 @@
 		<hr>
 		
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
- 				<div class="panel panel-default">
-                    <div class="panel-heading">
-                       博主
-                    </div>
-                    <div class="panel-body text-center recent-users-sec">
-                        <?php 
-                            if(!empty($blogs)){
-                                foreach($blogs as $blog){
-                                $headimg = PUBLIC_URL.'headimg/timg.jpg';
-                                if(!empty($blog['user']['headimg'])){
-                                    $headimg = '/'.$blog['user']['headimg'];
-                                }
-                        ?>
-                                <a href="<?=HOME_URL_HTTP?>blog/<?=$blog['id']?>" target="__black">
-                                    <img class="img-thumbnail" src="<?=$headimg?>" width="70"/>
-                                </a>
-                        <?php 
-                                }
-                            }
-                        ?>
-                    </div>
-     			</div>
-            </div>
-			  
-
-        </div>
-		
-		<div class="row">
-  
-           	<div class="col-md-12 col-sm-12 col-xs-12">
+           	<div class="col-md-9 col-sm-12 col-xs-12">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
                      	文章
@@ -149,6 +119,19 @@
                 	</div>
             	</div>
         	</div>
+
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-success ">
+                    <div class="panel-heading">
+                        我的游戏 <a href="https://github.com/zhaofei134159/game" target="__black">源码</a>
+                    </div>
+                    <div class="panel-body chat-widget-main" style="margin: auto 0;">
+                        <a href="<?=HOME_URL_HTTP?>game/hitbricks" target="__black" class="btn btn-default btn-sm" style="display: block;margin: 2px 0px;text-align: left;color: #337ab7;"> 游戏一: 打砖块 </a>
+                        <a href="<?=HOME_URL_HTTP?>game/miner" target="__black" class="btn btn-default btn-sm" style="display: block;margin: 2px 0px;text-align: left;color: #337ab7;"> 游戏二: 黄金矿工 </a>
+                    </div>
+                </div>
+            </div>
+
 
 		 <!--    <div class="col-md-4 col-sm-12 col-xs-12">
 	            <div class="panel panel-info">

@@ -62,6 +62,7 @@ header('Content-type: text/html; charset=utf-8');
 define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 // define('ENVIRONMENT', 'development');
 
+define('HOME_CACHE_TIME', time());
 define('HOME_PUBLIC_URL', '/public/home/');
 define('ADMIN_PUBLIC_URL', '/public/backstage/');
 define('PUBLIC_URL', '/public/public/');

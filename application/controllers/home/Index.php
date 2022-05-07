@@ -20,11 +20,11 @@ class Index extends Home_Controller{
 			}
 		}
 
-				//标签
+		//标签
 		$tags = $this->zf_tag_model->get_list('is_del=0','*','',40,0);
 
 		//热门的文章 点击量多的
-		$works = $this->zf_work_model->get_list('is_del=0','*','browse_num desc',4,0);
+		$works = $this->zf_work_model->get_list('is_del=0','*','browse_num desc',6,0);
 		if(!empty($works)){
 			foreach($works as $wk=>$work){
 				$works[$wk]['user'] = $this->zf_user_model->select_one('id='.$work['uid']);
