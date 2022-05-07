@@ -63,10 +63,10 @@ function parse_digest($digest, $realm, $users) {
     }
 
     $A1 = $digest_info['username'].':'.$realm.':'.$users[$digest_info['username']];
-    //var_dump($A1);
+    var_dump($A1);
     //string '你输入的用户名:My Website:' (length=15)
     $A2 = $_SERVER['REQUEST_METHOD'].':'.$digest_info['uri'];
-    //var_dump($A2);
+    var_dump($A2);
     //string 'GET:/php/phpcookbook/web/digest.php' (length=35)
     $request_digest = md5(implode(':', [
             md5($A1),
