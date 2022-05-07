@@ -20,10 +20,10 @@ function validate_digest($realm, $users) {
     //如果摘要无法解析，则会失败
     //string 'username="你输入的用户名", realm="My Website", nonce="403b875881c55e60a6addd42b904a19c", uri="/php/phpcookbook/web/digest.php", response="080da94742f55682242e9c024529c298", opaque="49918e38b4734f44ffa587368a9e3e1a", qop=auth, nc=00000001, cnonce="d48ffb5a6cd062fc"' (length=253)
     $username = parse_digest($_SERVER['PHP_AUTH_DIGEST'], $realm, $users);
-    if($username === false) {
-        send_digest($realm);
-    }
-    return $username;
+    // if($username === false) {
+    //     send_digest($realm);
+    // }
+    // return $username;
 }
 
 function send_digest($realm) {
