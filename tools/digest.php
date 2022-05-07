@@ -11,7 +11,7 @@ $realm = 'Restricted area';
 $users = array('admin' => 'mypass', 'guest' => 'guest');
  
 // 指定 Digest 验证方式
-if (empty($_SERVER['PHP_AUTH_DIGEST']) || !$_COOKIE['login']) {
+if (empty($_SERVER['PHP_AUTH_DIGEST'])) {
     setcookie('login', 1);  // 退出登录条件判断
     header('HTTP/1.1 401 Unauthorized');
     header('WWW-Authenticate: Digest username="admin", realm="' . $realm . '",qop="auth",nonce="' . uniqid() . '",opaque="' . md5($realm) . '"');
@@ -23,7 +23,7 @@ if (empty($_SERVER['PHP_AUTH_DIGEST']) || !$_COOKIE['login']) {
  
 // 验证用户登录信息
 if (!($data = http_digest_parse($_SERVER['PHP_AUTH_DIGEST'])) || !isset($users[$data['username']])) {
-    die('Wrong Credentials!');
+    die('Wrong Credentials2!');
 }
  
 // 验证登录信息
@@ -31,13 +31,13 @@ $A1 = md5($data['username'] . ':' . $realm . ':' . $users[$data['username']]);
 $A2 = md5($_SERVER['REQUEST_METHOD'] . ':' . $data['uri']);
 $valid_response = md5($A1 . ':' . $data['nonce'] . ':' . $data['nc'] . ':' . $data['cnonce'] . ':' . $data['qop'] . ':' . $A2);
 // $data['response'] 是浏览器客户端的加密内容
+
 if ($data['response'] != $valid_response) {
-    die('Wrong Credentials!');
+    die('Wrong Credentials1!');
 }
  
 // 用户名密码验证成功
 echo '您的登录用户为: ' . $data['username'];
-setcookie("login", 2);
  
 // 获取登录信息
 function http_digest_parse($txt)
@@ -58,9 +58,6 @@ function http_digest_parse($txt)
     return $needed_parts ? false : $data;
 }
  
-if($_GET['logout']){
-    setcookie("login", 0);
-}
 /**
  * Desc: 下载文件
  * @param $url 文件url
