@@ -31,7 +31,7 @@ function send_digest($realm) {
     // header('HTTP/1.1 Unauthorized');
     $nonce = md5(uniqid()); //随机数
     $opaque = md5($realm);
-    header('WWW-Authenticate:Digest realm="'.$realm.'", qop="auth", nonce="'.$nonce.'", opaque="'.$opaque.'"');
+    header('WWW-Authenticate:Digest realm="'.$realm.'", username="test", qop="auth", nonce="'.$nonce.'", opaque="'.$opaque.'"');
     //响应头 WWW-Authenticate:Digest realm="My Website", qop="auth", nonce="e0e5319efa00f94b815dbb4b34f88bb0", opaque="49918e38b4734f44ffa587368a9e3e1a"
     echo '需要用户名和密码才能继续访问';
     exit;
