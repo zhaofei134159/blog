@@ -3,6 +3,7 @@
 header("Content-type: text/html; charset=utf-8");
 
 /*php摘要认证*/
+unset($_SERVER['PHP_AUTH_DIGEST']);
 
 $users = ['dee'=>'123456', 'admin'=>'admin'];
 $realm = 'My Website';
