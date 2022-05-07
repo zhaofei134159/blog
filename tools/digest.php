@@ -3,61 +3,89 @@
 header("Content-type: text/html; charset=utf-8");
 
 /*php摘要认证*/
-// unset($_SERVER['PHP_AUTH_DIGEST']);
+unset($_SERVER['PHP_AUTH_DIGEST']);
 
-$realm = 'Restricted area';
- 
-//user => password
-$users = array('admin' => 'mypass', 'guest' => 'guest');
- 
-// 指定 Digest 验证方式
-if (empty($_SERVER['PHP_AUTH_DIGEST'])) {
-    setcookie('login', 1);  // 退出登录条件判断
-    header('HTTP/1.1 401 Unauthorized');
-    header('WWW-Authenticate: Digest username="admin", realm="' . $realm . '",qop="auth",nonce="' . uniqid() . '",opaque="' . md5($realm) . '"');
-     
-    // 如果用户不输入密码点了取消
-    die('您点了取消，无法登录');
-     
-}
- 
-// 验证用户登录信息
-if (!($data = http_digest_parse($_SERVER['PHP_AUTH_DIGEST'])) || !isset($users[$data['username']])) {
-    die('Wrong Credentials2!');
-}
- 
-// 验证登录信息
-$A1 = md5($data['username'] . ':' . $realm . ':' . $users[$data['username']]);
-$A2 = md5($_SERVER['REQUEST_METHOD'] . ':' . $data['uri']);
-$valid_response = md5($A1 . ':' . $data['nonce'] . ':' . $data['nc'] . ':' . $data['cnonce'] . ':' . $data['qop'] . ':' . $A2);
-// $data['response'] 是浏览器客户端的加密内容
+$users = ['dee'=>'123456', 'admin'=>'admin'];
+$realm = 'My Website';
+$username = validate_digest($realm, $users);
 
-if ($data['response'] != $valid_response) {
-    die('Wrong Credentials1!');
-}
- 
-// 用户名密码验证成功
-echo '您的登录用户为: ' . $data['username'];
- 
-// 获取登录信息
-function http_digest_parse($txt)
-{
-    // echo $txt;
-    // protect against missing data
-    $needed_parts = array('nonce' => 1, 'nc' => 1, 'cnonce' => 1, 'qop' => 1, 'username' => 1, 'uri' => 1, 'response' => 1);
-    $data = array();
-    $keys = implode('|', array_keys($needed_parts));
- 
-    preg_match_all('@(' . $keys . ')=(?:([\'"])([^\2]+?)\2|([^\s,]+))@', $txt, $matches, PREG_SET_ORDER);
- 
-    foreach ($matches as $m) {
-        $data[$m[1]] = $m[3] ? $m[3] : $m[4];
-        unset($needed_parts[$m[1]]);
+print 'Hello, '.htmlentities($username);
+
+function validate_digest($realm, $users) {
+
+    if(! isset($_SERVER['PHP_AUTH_DIGEST'])) {
+        send_digest($realm);
     }
- 
-    return $needed_parts ? false : $data;
+
+    //如果摘要无法解析，则会失败
+    //string 'username="你输入的用户名", realm="My Website", nonce="403b875881c55e60a6addd42b904a19c", uri="/php/phpcookbook/web/digest.php", response="080da94742f55682242e9c024529c298", opaque="49918e38b4734f44ffa587368a9e3e1a", qop=auth, nc=00000001, cnonce="d48ffb5a6cd062fc"' (length=253)
+    $username = parse_digest($_SERVER['PHP_AUTH_DIGEST'], $realm, $users);
+    if($username === false) {
+        send_digest($realm);
+    }
+    return $username;
 }
- 
+
+function send_digest($realm) {
+    http_response_code(401);
+    // header('HTTP/1.1 Unauthorized');
+    $nonce = md5(uniqid()); //随机数
+    $opaque = md5($realm);
+    header('WWW-Authenticate:Digest username="admin", realm="'.$realm.'", qop="auth", nonce="'.$nonce.'", opaque="'.$opaque.'"');
+    //响应头 WWW-Authenticate:Digest realm="My Website", qop="auth", nonce="e0e5319efa00f94b815dbb4b34f88bb0", opaque="49918e38b4734f44ffa587368a9e3e1a"
+    echo '需要用户名和密码才能继续访问';
+    exit;
+}
+
+function parse_digest($digest, $realm, $users) {
+
+    $digest_info = array();
+    foreach(array('username', 'uri', 'nonce', 'cnonce', 'response') as $part) {
+        if(preg_match('/'.$part.'=([\'"]?)(.*?)\1/', $digest, $match)) {
+            $digest_info[$part] = $match[2];
+        } else {
+            return false;
+        }
+    }
+    
+    //确保提供了正确的qop
+    if(preg_match('/qop=auth(,|$)/', $digest)) {
+        $digest_info['qop'] = 'auth';
+    } else {
+        return false;
+    }
+
+    //确保提供了合法的nonce数
+    if(preg_match('/nc=([0-9a-f]{8})(,|$)/', $digest, $match)) {
+        $digest_info['nc'] = $match[1];
+    } else{
+        return false;
+    }
+
+    $A1 = $digest_info['username'].':'.$realm.':'.$users[$digest_info['username']];
+    //var_dump($A1);
+    //string '你输入的用户名:My Website:' (length=15)
+    $A2 = $_SERVER['REQUEST_METHOD'].':'.$digest_info['uri'];
+    //var_dump($A2);
+    //string 'GET:/php/phpcookbook/web/digest.php' (length=35)
+    $request_digest = md5(implode(':', [
+            md5($A1),
+            $digest_info['nonce'],
+            $digest_info['nc'],
+            $digest_info['cnonce'],
+            $digest_info['qop'],
+            md5($A2)
+        ]));
+
+    //比较发送的摘要与我们计算的摘要是否一致
+    if($request_digest != $digest_info['response']) {
+        return false;
+    }
+
+    //一切正常，返回用户名
+    return $digest_info['username'];
+}
+
 /**
  * Desc: 下载文件
  * @param $url 文件url
