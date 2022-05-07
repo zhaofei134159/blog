@@ -3,7 +3,7 @@
 header("Content-type: text/html; charset=utf-8");
 
 /*php摘要认证*/
-unset($_SERVER['PHP_AUTH_DIGEST']);
+// unset($_SERVER['PHP_AUTH_DIGEST']);
 
 $users = ['dee'=>'123456', 'admin'=>'admin'];
 $realm = 'My Website';
@@ -14,10 +14,8 @@ print 'Hello, '.htmlentities($username);
 function validate_digest($realm, $users) {
 
     if(! isset($_SERVER['PHP_AUTH_DIGEST'])) {
-        echo 1111111111;
         send_digest($realm);
     }
-    echo 22222222;
 
     //如果摘要无法解析，则会失败
     var_dump($_SERVER['PHP_AUTH_DIGEST']);
