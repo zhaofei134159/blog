@@ -213,6 +213,23 @@ class MMysql {
         $sql = "update ".trim($tbName)." set ".trim($valStr)." ".trim($this->_where);
         return $this->_doExec($sql);
     }
+
+    //修改
+    function updateSql($tablename, $update_arr, $where)
+    {
+        $sql = $comma = '';
+        foreach($update_arr as $update_key => $update_value)
+        {
+            $sql .= $comma.'`'.$update_key.'`'.'=\''.addslashes(trim($update_value)).'\'';
+            $comma = ', ';
+        }
+        if(!$where)
+        {
+            exit('no_where');
+        }
+        $sql = "UPDATE `$tablename` SET $sql WHERE $where";
+        $this->_doExec($sql);
+    }
   
     /**
      * 查询函数

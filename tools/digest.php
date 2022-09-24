@@ -3,13 +3,19 @@
 header("Content-type: text/html; charset=utf-8");
 
 /*php摘要认证*/
-// unset($_SERVER['PHP_AUTH_DIGEST']);
-
-$users = ['dee'=>'123456', 'admin'=>'admin'];
-$realm = 'My Website';
+$users = ['dee'=>time(), 'letsfly'=>'pull hotel list'];
+$realm = 'letsfly_limited';
 $username = validate_digest($realm, $users);
 
-print 'Hello, '.htmlentities($username);
+if($username === false) {
+    send_digest($realm);
+}else{
+    print 'Hello, '.htmlentities($username);
+
+    # 下载xml文件
+    
+}
+
 
 function validate_digest($realm, $users) {
 
@@ -20,10 +26,9 @@ function validate_digest($realm, $users) {
     //如果摘要无法解析，则会失败
     //string 'username="你输入的用户名", realm="My Website", nonce="403b875881c55e60a6addd42b904a19c", uri="/php/phpcookbook/web/digest.php", response="080da94742f55682242e9c024529c298", opaque="49918e38b4734f44ffa587368a9e3e1a", qop=auth, nc=00000001, cnonce="d48ffb5a6cd062fc"' (length=253)
     $username = parse_digest($_SERVER['PHP_AUTH_DIGEST'], $realm, $users);
-    // if($username === false) {
-    //     send_digest($realm);
-    // }
-    // return $username;
+    // unset($_SERVER['PHP_AUTH_DIGEST']);
+   
+    return $username;
 }
 
 function send_digest($realm) {
@@ -31,7 +36,7 @@ function send_digest($realm) {
     // header('HTTP/1.1 Unauthorized');
     $nonce = md5(uniqid()); //随机数
     $opaque = md5($realm);
-    header('WWW-Authenticate:Digest username="admin", realm="'.$realm.'", qop="auth", nonce="'.$nonce.'", opaque="'.$opaque.'"');
+    header('WWW-Authenticate:Digest realm="'.$realm.'", qop="auth", nonce="'.$nonce.'", opaque="'.$opaque.'"');
     //响应头 WWW-Authenticate:Digest realm="My Website", qop="auth", nonce="e0e5319efa00f94b815dbb4b34f88bb0", opaque="49918e38b4734f44ffa587368a9e3e1a"
     echo '需要用户名和密码才能继续访问';
     exit;
@@ -47,7 +52,7 @@ function parse_digest($digest, $realm, $users) {
             return false;
         }
     }
-    
+
     //确保提供了正确的qop
     if(preg_match('/qop=auth(,|$)/', $digest)) {
         $digest_info['qop'] = 'auth';
@@ -63,10 +68,8 @@ function parse_digest($digest, $realm, $users) {
     }
 
     $A1 = $digest_info['username'].':'.$realm.':'.$users[$digest_info['username']];
-    var_dump($A1);
     //string '你输入的用户名:My Website:' (length=15)
     $A2 = $_SERVER['REQUEST_METHOD'].':'.$digest_info['uri'];
-    var_dump($A2);
     //string 'GET:/php/phpcookbook/web/digest.php' (length=35)
     $request_digest = md5(implode(':', [
             md5($A1),
