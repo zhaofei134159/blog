@@ -67,8 +67,8 @@ foreach($allCity as $id=>$district){
 	foreach($cityLongLat as $key=>$val){
 		if(strpos($val['city'], $district) !== false || strpos($district, $val['city']) !== false){
 			var_dump($id);
-			
-			$updatesql = 'update ziwei_city_district set `longitude`="'.$val['longitude'].'",`latitude`="'.$val['latitude'].' where id='.$id;
+
+			$updatesql = 'update ziwei_city_district set `longitude`="'.$val['longitude'].'",`latitude`="'.$val['latitude'].'" where id='.$id;
 			$mysql->doSql($updatesql);
 		}
 	}
