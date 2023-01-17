@@ -8,7 +8,7 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>blogfamily</title>
+    <title>点缀梦想</title>
 
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?=HOME_PUBLIC_URL?>css/bootstrap.css" rel="stylesheet" />
