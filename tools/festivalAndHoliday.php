@@ -9,6 +9,7 @@ error_reporting(E_ALL);
 
 include_once S_PATH.'/class/database.php';  
 include_once S_PATH.'/class/MySql.php';  # mysql
+include_once S_PATH.'/conf/core.fun.php';
 
 # 有几个脚本执行
 $num = exec("ps aux | grep 'festivalAndHoliday.php' | grep -v grep | wc -l");
