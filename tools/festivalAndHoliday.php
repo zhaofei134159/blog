@@ -95,10 +95,11 @@ foreach($pHandel[0] as $key=>$val){
 if (!empty($holidayData)) {
 	foreach($holidayData as $key=>$val){
 		$insert = array();
-		$insert['year'] = date('Y', $val['date']);
+		$insert['year'] = date('Y', strtotime($val['date']));
 		$insert['date'] = $val['date'];
 		$insert['type'] = ($val['type']=='休假')?2:1;
 		$insert['holiday'] = $val['holidayName'];
+		$insert['createtime'] = date('Y-m-d H:i:s');
 		$mysql->insert('zf_festival_and_holiday',$insert);
 	}
 }
