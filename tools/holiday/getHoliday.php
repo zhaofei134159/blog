@@ -29,10 +29,17 @@ class getHoliday extends common{
     		$search_date = date('Y-m-d');
     	}
     	$holidayls = $this->mysqlLink->doSql("SELECT * FROM zf_festival_and_holiday WHERE `date`='{$search_date}'");
-    	vaR_dump($search_date);
-    	vaR_dump($holidayls);
+
+    	$result = array();
+    	if(!empty($holidayls)){
+    		$result['date'] = $holidayls['0']['date'];
+    		$result['type'] = ($holidayls['0']['type']==1)?'上班':'休假';
+    		$result['msg'] = $holidayls['0']['holiday'];
+    	}
+    	return json_encode($result);
     }
 }
 
 $holiday = new getHoliday();
-$html = $holiday->getToday($param['date']);
+$json = $holiday->getToday($param['date']);
+echo $json;
