@@ -9,7 +9,6 @@ ini_set("display_errors", "On");//打开错误提示
 ini_set("error_reporting",E_ALL);//显示所有错误
 
 include_once './../login.php';
-var_dump(S_PATH);
 include_once S_PATH.'/tools/class/database.php';
 include_once S_PATH.'/tools/class/MySql.php';  # mysql
 include_once S_PATH.'/tools/holiday/conf/day.fun.php';
@@ -31,7 +30,7 @@ class common{
 	public function __construct(){
 		global $db_conf;
 		$this->dbConf = $db_conf;
-		// $this->DB_link();
+		$this->DB_link();
 	}
 
 	public function DB_link(){

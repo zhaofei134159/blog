@@ -4,6 +4,9 @@
 */
 include_once './common.php';
 
+# 常量数据
+const LOG_FILE_NAME = 'getHolidayLog';
+
 $param = $_REQUEST;
 if (empty($param)) {
     $data = file_get_contents("php://input");
