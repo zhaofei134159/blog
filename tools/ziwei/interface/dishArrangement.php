@@ -311,7 +311,7 @@ class purpleStarAstrology extends common{
 
 	# 起五行局
 	public function five_branches_bureau() {
-        var_dump($this->dateTimeData);
+        // var_dump($this->dateTimeData);
 
 	}
 

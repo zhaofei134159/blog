@@ -9,6 +9,7 @@ error_reporting(E_ALL);
 
 include_once S_PATH.'/class/database.php';  
 include_once S_PATH.'/class/MySql.php';  # mysql
+include_once S_PATH.'/conf/core.fun.php';
 
 # 有几个脚本执行
 $num = exec("ps aux | grep 'festivalAndHoliday.php' | grep -v grep | wc -l");
@@ -93,11 +94,11 @@ foreach($pHandel[0] as $key=>$val){
 
 if (!empty($holidayData)) {
 	foreach($holidayData as $key=>$val){
-		$insert = array();
-		$insert['year'] = date('Y', $val['date']);
+		$insert['year'] = date('Y', strtotime($val['date']));
 		$insert['date'] = $val['date'];
 		$insert['type'] = ($val['type']=='休假')?2:1;
 		$insert['holiday'] = $val['holidayName'];
+		$insert['createtime'] = date('Y-m-d H:i:s');
 		$mysql->insert('zf_festival_and_holiday',$insert);
 	}
 }
