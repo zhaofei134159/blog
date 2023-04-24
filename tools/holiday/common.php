@@ -15,11 +15,11 @@ include_once S_PATH.'/tools/holiday/conf/day.fun.php';
 
 # 数据库配置
 $db_conf = array(
-    'host' => $db['fortune']['hostname'],
+    'host' => $db['default']['hostname'],
     'port' => '3306',
-    'user' => $db['fortune']['username'],
-    'passwd' => $db['fortune']['password'],
-    'dbname' => $db['fortune']['database'],
+    'user' => $db['default']['username'],
+    'passwd' => $db['default']['password'],
+    'dbname' => $db['default']['database'],
 );
 
 # mysql
