@@ -3,7 +3,6 @@
 * 获取传递当天是否是节假日
 */
 include_once './common.php';
-include_once './conf/day.fun.php';
 
 $param = $_REQUEST;
 if (empty($param)) {
