@@ -26,8 +26,9 @@ class getHoliday extends common{
     	if(empty($search_date)){
     		$search_date = date('Y-m-d');
     	}
-    	$holiday = $this->mysqlLink->doSql("SELECT * FROM zf_festival_and_holiday WHERE `date`='{$search_date}'");
+    	$holidayls = $this->mysqlLink->doSql("SELECT * FROM zf_festival_and_holiday WHERE `date`='{$search_date}'");
     	vaR_dump($search_date);
+    	vaR_dump($holidayls);
     }
 }
 

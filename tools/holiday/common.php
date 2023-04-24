@@ -5,11 +5,14 @@
 */
 date_default_timezone_set("PRC");
 header("Content-type: text/html; charset=utf-8");
-error_reporting(E_ALL);
+ini_set("display_errors", "On");//打开错误提示
+ini_set("error_reporting",E_ALL);//显示所有错误
 
 include_once './../login.php';
+var_dump(S_PATH);
 include_once S_PATH.'/tools/class/database.php';
 include_once S_PATH.'/tools/class/MySql.php';  # mysql
+include_once S_PATH.'/tools/holiday/conf/day.fun.php';
 
 # 数据库配置
 $db_conf = array(
