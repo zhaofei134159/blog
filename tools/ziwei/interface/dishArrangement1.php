@@ -359,7 +359,6 @@ class purpleStarAstrology extends common{
 	* 方法二： 掌法心算
 	*/
 	public function five_branches_bureau() {
-<<<<<<< HEAD
 		# 获取命宫的干支
 		$lifePalaceGanZhiStr = '';
 		foreach($this->dateTimeData['palace'] as $pkey=>$pval){
@@ -368,9 +367,6 @@ class purpleStarAstrology extends common{
 				break;
 			}
 		}
-=======
-        // var_dump($this->dateTimeData);
->>>>>>> 85ff791317511cc11c604158366d0f08e97e99c9
 
 		// 方法一：
 		$sixtyArr = array('甲子、乙丑海中金','丙寅、丁卯炉中火','戊辰、己巳大林木','庚午、辛未路旁土','壬申、癸酉剑锋金','甲戌、乙亥山头火','丙子、丁亥涧下水','戊寅、己卯城头土','庚辰、辛巳白腊金','壬午、癸未扬柳木','甲申、乙酉泉中水','丙戌、丁亥屋上土','戊子、己丑霹雳火','庚寅、辛卯松柏木','壬辰、癸巳长流水','甲午、乙未沙中金','丙申、丁酉山下火','戊戌、己亥平地木','庚子、辛丑壁上土','壬寅、癸卯金箔金','甲辰、乙巳佛灯火','丙午、丁未天河水','戊申、己酉大驿土','庚戌、辛亥钗钏金','壬子、癸丑桑柘木','甲寅、乙卯大溪水','丙辰、丁巳沙中土','戊午、己未天上火','庚申、辛酉石榴木','壬戌、癸亥大海水');
