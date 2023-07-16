@@ -6,10 +6,10 @@ error_reporting(E_ALL^E_NOTICE);
 * 4 5 6 7 8 9 0 1 2 3
 * 甲乙丙丁戊己庚辛壬癸
 */
-include_once '../common.php';
-include_once './conf/ziwei.conf.php';
-include_once './conf/ziwei.fun.php';
-include_once '../class/lunar/vendor/autoload.php';
+require_once '../common.php';
+require_once './conf/ziwei.conf.php';
+require_once './conf/ziwei.fun.php';
+require_once '../class/lunar/vendor/autoload.php';
 use com\nlf\calendar\util\LunarUtil;
 use com\nlf\calendar\Lunar;
 use com\nlf\calendar\Solar;
