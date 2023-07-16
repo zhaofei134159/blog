@@ -9,7 +9,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 require_once '../common.php';
 require_once './conf/ziwei.conf.php';
 require_once './conf/ziwei.fun.php';
-require_once S_PATH.'/class/lunar/vendor/autoload.php';
+require_once '../class/lunar/vendor/autoload.php';
 use com\nlf\calendar\util\LunarUtil;
 use com\nlf\calendar\Lunar;
 use com\nlf\calendar\Solar;
