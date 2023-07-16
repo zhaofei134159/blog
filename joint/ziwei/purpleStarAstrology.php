@@ -774,7 +774,7 @@ class purpleStarAstrology extends common{
 
 		foreach($this->dateTimeData['palace'] as $key=>$val){
 			foreach($this->foreTurn[$yearGan] as $forestar=>$turn){
-				if(!empty($val['starMain']) && in_array($forestar.'星', $val['starMain'])){
+				if(!empty($val['star']) && in_array($forestar.'星', $val['star'])){
 					$this->dateTimeData['palace'][$key]['foreTurn'][$forestar.'星'] = $turn;
 				}
 			}
