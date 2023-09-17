@@ -34,7 +34,7 @@ if($num>1){
 
 $date = date('Y-m-d', strtotime('-1 day'));
 $listData = DYLiveDataList($date);
-echo $DY_live_data_list;die;
+echo $listData;die;
 
 function DYLiveDataList($date){
 unlink('./DY_live_data_list.txt');
