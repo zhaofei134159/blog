@@ -18,6 +18,8 @@ if($num>1){
 
 # 用户名称
 $nickname1Ls = array('霖雨弹幕小机器人欢迎提问', 'S的苏打水MmMm', 'LIUJINWEN');
+$nickname2Ls = array('棋牌小九', '小辣椒', '木木酱');
+
 
 # 数据库配置
 $db_conf = array(
@@ -115,7 +117,7 @@ foreach($listArr['data']['series'] as $lsKey=>$lsVal){
 
   foreach($interactArr['data']['series'] as $intKey=>$intVal){
     $nickname = match_chinese($intVal['nickname']);
-    if(in_array($intVal['order'], array('1', '2'))){
+    if(in_array($intVal['order'], array('1', '2')) && in_array($nickname, $nickname2Ls)){
       $insert = array();
       $insert['accound_title'] = '斗地主';
       $insert['room_title'] = $roomTitle;
