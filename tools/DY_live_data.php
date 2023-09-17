@@ -4,7 +4,8 @@ header("Content-type: text/html; charset=utf-8");
 define('S_PATH', dirname(__FILE__));
 error_reporting(E_ALL);
 
-include_once S_PATH.'/class/database.php';  
+include_once S_PATH.'/conf/core.fun.php';
+include_once S_PATH.'/class/database.php';
 include_once S_PATH.'/class/secretkey.php';  
 include_once S_PATH.'/class/MySql.php';  # mysql
 

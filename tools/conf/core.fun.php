@@ -20,3 +20,9 @@ function httpRequest($url, $post_data='', $header=0, $timeout=30)
 
 	return $output;
 }
+
+
+function getMicrotime(){
+    list($usec, $sec) = explode(" ", microtime());
+    return ((float)$usec + (float)$sec);
+}
