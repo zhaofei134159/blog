@@ -37,8 +37,16 @@ $listDataJson = DYLiveDataList($date);
 echo $listDataJson;
 
 $listData = json_decode($listDataJson, true);
+$listJson = $listData['data']['data_string'];
 
-var_dump($listData);die;
+$listArr = array();
+if(!empty($listJson)){
+	$listArr = json_decode($listJson, true);
+}
+if(empty($listArr)){
+	exit('未找到直播场次，需要查看接口token是否失效');
+}
+var_dump($listArr);die;
 
 
 function DYLiveDataList($date){
