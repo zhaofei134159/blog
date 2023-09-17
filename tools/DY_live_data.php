@@ -69,10 +69,11 @@ foreach($listArr['data']['series'] as $lsKey=>$lsVal){
 
 	foreach($interactArr['data']['series'] as $intKey=>$intVal){
 		if(in_array($intVal['order'], array('1', '2'))){
+			$nickname = match_chinese($intVal['nickname']);
 			$insert = array();
 			$insert['room_title'] = $roomTitle;
 			$insert['live_start_time'] = $liveStartTime;
-			$insert['username'] = $intVal['nickname'];
+			$insert['username'] = $nickname;
 			$insert['user_cnt'] = $intVal['cnt'];
 			var_dump($insert);
 
