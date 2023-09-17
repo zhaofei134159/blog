@@ -16,8 +16,8 @@ if($num>1){
   exit(date('Y-m-d').' 已经有脚本了');
 }
 
-# 路径
-// $path = '../../python/';
+# 用户名称
+$nicknameLs = array('霖雨弹幕小机器人欢迎提问', 'S的苏打水MmMm', 'LIUJINWEN');
 
 # 数据库配置
 $db_conf = array(
@@ -68,8 +68,8 @@ foreach($listArr['data']['series'] as $lsKey=>$lsVal){
 
 
 	foreach($interactArr['data']['series'] as $intKey=>$intVal){
-		if(in_array($intVal['order'], array('1', '2'))){
-			$nickname = match_chinese($intVal['nickname']);
+    $nickname = match_chinese($intVal['nickname']);
+		if(in_array($intVal['order'], array('1', '2')) && in_array($nickname, $nicknameLs)){
 			$insert = array();
 			$insert['room_title'] = $roomTitle;
 			$insert['live_start_time'] = $liveStartTime;
