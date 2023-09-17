@@ -34,7 +34,6 @@ $mysql = new MMysql($db_conf);
 
 $date = date('Y-m-d', strtotime('-1 day'));
 $listDataJson = DYLiveDataList($date);
-echo $listDataJson;
 
 $listData = json_decode($listDataJson, true);
 $listJson = $listData['data']['data_string'];
@@ -75,6 +74,8 @@ foreach($listArr['data']['series'] as $lsKey=>$lsVal){
 			$insert['live_start_time'] = $liveStartTime;
 			$insert['username'] = $intVal['nickname'];
 			$insert['user_cnt'] = $intVal['cnt'];
+			var_dump($insert);
+
 			$mysql->insert('dy_live_data', $insert);
 		}
 	}
