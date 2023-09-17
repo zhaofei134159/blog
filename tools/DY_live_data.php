@@ -196,7 +196,7 @@ EOF;
 
 
 
-function DYLiveDataInteract($roomid){
+function DYLiveDataInteract1($roomid){
 unlink('./DY_live_data_interact1.txt');
 // 1.拉取DY数据.
 $curlRequest = <<<EOF
@@ -229,7 +229,7 @@ EOF;
   return $dataString;
 }
 
-function DYLiveDataInteract($roomid){
+function DYLiveDataInteract2($roomid){
 unlink('./DY_live_data_interact2.txt');
 // 1.拉取DY数据.
 $curlRequest = <<<EOF
