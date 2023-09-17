@@ -124,7 +124,7 @@ foreach($listArr['data']['series'] as $lsKey=>$lsVal){
       $insert['live_start_time'] = $liveStartTime;
       $insert['username'] = $nickname;
       $insert['user_cnt'] = $intVal['cnt'];
-      var_dump($insert);
+      // var_dump($insert);
 
       $mysql->insert('dy_live_data', $insert);
     }
