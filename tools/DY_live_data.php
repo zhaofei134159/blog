@@ -19,17 +19,17 @@ if($num>1){
 # 路径
 // $path = '../../python/';
 
-// # 数据库配置
-// $db_conf = array(
-//     'host' => $db['default']['hostname'],
-//     'port' => '3306',
-//     'user' => $db['default']['username'],
-//     'passwd' => $db['default']['password'],
-//     'dbname' => $db['default']['database'],
-// );
+# 数据库配置
+$db_conf = array(
+    'host' => $db['default']['hostname'],
+    'port' => '3306',
+    'user' => $db['default']['username'],
+    'passwd' => $db['default']['password'],
+    'dbname' => $db['default']['database'],
+);
 
-// # mysql
-// $mysql = new MMysql($db_conf);
+# mysql
+$mysql = new MMysql($db_conf);
 
 
 $date = date('Y-m-d', strtotime('-1 day'));
@@ -52,9 +52,32 @@ foreach($listArr['data']['series'] as $lsKey=>$lsVal){
 
 	$roomid = $lsVal['roomID'];
 	$roomTitle = $lsVal['roomTitle'];
+	$liveStartTime = $lsVal['liveStartTime'];
 
-	$interact = DYLiveDataInteract($roomid);
-	var_dump($interact);die;
+	$interactJson = DYLiveDataInteract($roomid);
+
+	$interactData = json_decode($interactJson, true);
+	$interactDataJson = $interactData['data']['data_string'];
+
+	$interactArr = array();
+	if(!empty($interactDataJson)){
+		$interactArr = json_decode($interactDataJson, true);
+	}
+	if(empty($interactArr)){
+		exit('未找到直播场次中互动数据，需要查看接口token是否失效');
+	}
+
+
+	foreach($interactArr['data']['series'] as $intKey=>$intVal){
+		if(in_array($intVal['order'], array('1', '2'))){
+			$insert = array();
+			$insert['room_title'] = $roomTitle;
+			$insert['live_start_time'] = $liveStartTime;
+			$insert['username'] = $intVal['nickname'];
+			$insert['user_cnt'] = $intVal['cnt'];
+			$mysql->insert('dy_live_data', $insert);
+		}
+	}
 }
 
 
