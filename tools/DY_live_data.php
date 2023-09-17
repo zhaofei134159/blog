@@ -33,8 +33,13 @@ if($num>1){
 
 
 $date = date('Y-m-d', strtotime('-1 day'));
-$listData = DYLiveDataList($date);
-echo $listData;die;
+$listDataJson = DYLiveDataList($date);
+echo $listDataJson;
+
+$listData = json_decode($listDataJson, true);
+
+var_dump($listData);die;
+
 
 function DYLiveDataList($date){
 unlink('./DY_live_data_list.txt');
