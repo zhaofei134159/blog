@@ -2,7 +2,8 @@
 date_default_timezone_set("PRC");
 header("Content-type: text/html; charset=utf-8");
 define('S_PATH', dirname(__FILE__));
-error_reporting(E_ALL);
+ini_set("display_errors", "On");//打开错误提示
+ini_set("error_reporting",E_ALL);//显示所有错误
 
 include_once S_PATH.'/conf/core.fun.php';
 include_once S_PATH.'/class/database.php';
@@ -37,10 +38,8 @@ $db_conf = array(
 # mysql
 $mysql = new MMysql($db_conf);
 
-echo "SELECT accound_title, room_title, live_start_time, username, user_cnt FROM dy_live_data WHERE live_start_time>='{$startDateTime}'";
-$sql = "SELECT accound_title, room_title, live_start_time, username, user_cnt FROM dy_live_data WHERE live_start_time>='{$startDateTime}'";
+$sql = "SELECT accound_title, room_title, live_start_time, username, user_cnt FROM dy_live_data WHERE live_start_time>='{$startDateTime}' order by live_start_time";
 $contentarr = $mysql->doSql($sql);
-var_dump($contentarr);
 
 $titlearr = array('账号', '场次', '开播时间', '用户', '用户评论数');
 export_csv($contentarr, $titlearr, 'liveCsv');
