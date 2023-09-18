@@ -37,10 +37,10 @@ $db_conf = array(
 # mysql
 $mysql = new MMysql($db_conf);
 
-
+echo "SELECT accound_title, room_title, live_start_time, username, user_cnt FROM dy_live_data WHERE live_start_time>='{$startDateTime}'";
 $sql = "SELECT accound_title, room_title, live_start_time, username, user_cnt FROM dy_live_data WHERE live_start_time>='{$startDateTime}'";
 $contentarr = $mysql->doSql($sql);
-
+var_dump($contentarr);
 
 $titlearr = array('账号', '场次', '开播时间', '用户', '用户评论数');
 export_csv($contentarr, $titlearr, 'liveCsv');
