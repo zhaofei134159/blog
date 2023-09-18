@@ -167,24 +167,24 @@ function DYLiveDataList2($date){
 unlink('./DY_live_data_list2.txt');
 // 1.拉取DY数据.
 $curlRequest = <<<EOF
-  curl 'https://union.bytedance.com/ark/api/data/pugna_component/data/v2/faction/anchor_detail/room_list_with_tag?anchorID=4213790313556647&liveID=1&beginDate={$date}&endDate={$date}&page=1&size=5&msToken=wLHNqEFxW7X31Q78Uf6SOdrQyDDTzKmAgQMXHE7pwcLUHRfogWoD_yENSPc-tAT63sAZ3xjWA5oL1hU0CJGbjS8nyUrZErAFFtnCYbTVcfeXe7g37rPo&X-Bogus=DFSzswVufIYdU6sBtPsr-cppgimt&_signature=_02B4Z6wo00001mcKYowAAIDDknWIECtPAspnCmYAAPzTQecDTF9r8VWMsDHdrh1CtlYfIJQXNPAUz7vfa7RTJVIgQ1.OMdbgFwMLy2iJcHMTau9I.2UyuPG71n7CzJkz5DFuyjtdxZ6Kekssd6' \
+  curl 'https://union.bytedance.com/ark/api/data/pugna_component/data/v2/faction/anchor_detail/room_list_with_tag?anchorID=4213790313556647&liveID=1&beginDate={$date}&endDate={$date}&page=1&size=5&msToken=whHx0-xK2MmE44QA0jbMZVYE0u7oQiztzf8MIK_4iAZL4vIt0TVV6rVbCWM9wXVHWj0ZBv_iu956BzThjIjGNHrYaP7C3aUCnVMXEnqantpjNzLX5aCQ&X-Bogus=DFSzswVu3vfdUWkdtPn0VF9WX7JK&_signature=_02B4Z6wo00001HYemqgAAIDA9hxg6jisa6B2Hp4AAHiX3TmJxMSuiz0c62O6xZDwqMD5b7mS1WEj2QQJfFM0G6VP1uP5Z0zrLUr206Vm7eHP6jOYqplNkCGZ76okHvkXBtWYdYUrmgy571Sj81' \
   -H 'authority: union.bytedance.com' \
-  -H 'accept: application/json, text/plain, */*' \
-  -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6' \
-  -H 'content-type: application/json;charset=utf-8' \
-  -H 'cookie: passport_csrf_token=23be172c4f439eadff8b16514c7b1776; passport_csrf_token_default=23be172c4f439eadff8b16514c7b1776; s_v_web_id=verify_lmn3o6p1_nWZb20Cz_i0YD_4gAD_B19D_Tw6BTKb2tXHY; csrf_session_id=9e28417361f560b3257178824864fc2a; msToken=j5f4xKQU6CDIrEUg5qYiIDJLo_p26FqJhnPpgqUDTfa42vT5U1kf5lv80CAt7dTJ1ASDlHhjOGZRvhvuI6AEb8y3zLjheKDfJPGHou2J4ju9Y3HgkJ-1; ttcid=2edc221727a04119afe8f7bcdaa27bc650; store-region=cn-bj; store-region-src=uid; node_sid=9724e82790919d0eee8ef283eb8af5d9; passport_csrf_token_wap_state=c9ae33aa3gASoVCgoVPZIDhhMTlhNzhiNzMxMGE4OGMxODBkZmYxYTVjNmQ4NTBjoU6goVYBoUkAoUQAoUHRBvqhTQChSLN1bmlvbi5ieXRlZGFuY2UuY29toVIColBM0QTcpkFDVElPTqChTNl2aHR0cHM6Ly91bmlvbi5ieXRlZGFuY2UuY29tL29wZW4vP2NvZGU9NWFjZjdmNzUzMmU5MDg1Yk5KNVUwQWcyc2pjU0tlY3FpSmN0JnN0YXRlPTI0MDk0NTRmLWFmYTctNGRjZS04OGM4LTczYmQwMmNkMDA4YqFU2SAzZjkzY2ZiNWI3OTI4MmVjZDQxNmNhNzcyMTljMzA2MKFXAKFGAKJTQQChVcI%253D; odin_tt=af0fcd664b226f732eea19867dcf0c639f5825d11fe291967ae345b491ddc665e182fdf9b498e21803bd4ffd5b59a9bbd0bf4502a30fd93befa935ebccbdca3c; n_mh=vcEaS7AMXidzvkifDt83PW243ktCyJ7qJ7RqIjQZIn4; passport_auth_status=2b351346069a32907b3204293c0fe09d%2Ce6e654947cd2c291090e20e13db2ad90; passport_auth_status_ss=2b351346069a32907b3204293c0fe09d%2Ce6e654947cd2c291090e20e13db2ad90; sid_guard=935f10d66660f8f49eab85d4f6737eda%7C1694938808%7C2592000%7CTue%2C+17-Oct-2023+08%3A20%3A08+GMT; uid_tt=90dfe0f67c5b525938e498f3ca718acd; uid_tt_ss=90dfe0f67c5b525938e498f3ca718acd; sid_tt=935f10d66660f8f49eab85d4f6737eda; sessionid=935f10d66660f8f49eab85d4f6737eda; sessionid_ss=935f10d66660f8f49eab85d4f6737eda; sid_ucp_v1=1.0.0-KDllYzUwNGU1OGRmMWY2MTQxYTdjZjc0NDFiNDI0ZWQ4OWIyYWYwNzIKHgjL-tDj643OBRC47ZqoBhj6DSAMMNmQr48GOAhAJhoCaGwiIDkzNWYxMGQ2NjY2MGY4ZjQ5ZWFiODVkNGY2NzM3ZWRh; ssid_ucp_v1=1.0.0-KDllYzUwNGU1OGRmMWY2MTQxYTdjZjc0NDFiNDI0ZWQ4OWIyYWYwNzIKHgjL-tDj643OBRC47ZqoBhj6DSAMMNmQr48GOAhAJhoCaGwiIDkzNWYxMGQ2NjY2MGY4ZjQ5ZWFiODVkNGY2NzM3ZWRh; msToken=wLHNqEFxW7X31Q78Uf6SOdrQyDDTzKmAgQMXHE7pwcLUHRfogWoD_yENSPc-tAT63sAZ3xjWA5oL1hU0CJGbjS8nyUrZErAFFtnCYbTVcfeXe7g37rPo; ttwid=1%7C14elGxHRaK_8zO4Ji78lfNmtqyb1zZxM79XEQ7gnvVM%7C1694938813%7Cc74c49ba64b8ebbdbe1061d2d7018c784027e62459184ae20e17e46fe6c63130; tt_scid=6UBdmBDSvHAW9yKGzqi8In0k88tdG8GfBtK-HkOiBupLxduaUOw7u3-xmywHRufq22c3' \
-  -H 'referer: https://union.bytedance.com/open/portal/anchor/list/anchorDetail?anchorID=4213790313556647&appId=3000&tab=live_record' \
-  -H 'sec-ch-ua: "Chromium";v="116", "Not)A;Brand";v="24", "Microsoft Edge";v="116"' \
-  -H 'sec-ch-ua-mobile: ?0' \
-  -H 'sec-ch-ua-platform: "Windows"' \
-  -H 'sec-fetch-dest: empty' \
-  -H 'sec-fetch-mode: cors' \
-  -H 'sec-fetch-site: same-origin' \
-  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.81' \
-  -H 'x-appid: 3000' \
-  -H 'x-csrf-token: undefined' \
+  -H 'sec-ch-ua: ";Not A Brand";v="99", "Chromium";v="94"' \
   -H 'x-language: zh' \
-  -H 'x-secsdk-csrf-token: 0001000000013123638cb0b728e64dcbac4ab174e7ca80652a4e4233edf305b332a3f709ee4a1785a1de45017005' \
+  -H 'x-csrf-token: undefined' \
+  -H 'x-secsdk-csrf-token: 0001000000016f63066b501f1b21015fb034fd55f6314b5c18004ab742cbe6c99ee7ba10adaf1785ff41ed707c81' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Core/1.94.200.400 QQBrowser/11.8.5310.400' \
+  -H 'content-type: application/json;charset=utf-8' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-appid: 3000' \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://union.bytedance.com/open/portal/anchor/list/anchorDetail?anchorID=4213790313556647&appId=3000&tab=live_record' \
+  -H 'accept-language: zh-CN,zh;q=0.9' \
+  -H 'cookie: store-region-src=uid; passport_csrf_token=273394d19beee2abdc4b39e93beb8cbd; passport_csrf_token_default=273394d19beee2abdc4b39e93beb8cbd; s_v_web_id=verify_lmovwiry_lvMoaX0v_w7T0_4sPh_Bzra_PvAFCeB3E7bb; csrf_session_id=9e28417361f560b3257178824864fc2a; x-jupiter-uuid=16950414318842516; passport_csrf_token_wap_state=c4b07af63gASoVCgoVPZIDEwYWY2NDA2ZDNhNDBiYjZjNTFkOTEwMDI3ZTBkMzJjoU6goVYBoUkAoUQAoUHRBvqhTQChSLN1bmlvbi5ieXRlZGFuY2UuY29toVIColBM0QTcpkFDVElPTqChTNl1aHR0cHM6Ly91bmlvbi5ieXRlZGFuY2UuY29tL29wZW4_Y29kZT01YWNmN2Y3NTMyZTkwODVibFY5TTRNbEpsMnRNMVExTzhMaEgmc3RhdGU9OGY0Mjg4NDUtZTNhZC00ZGRmLWJlN2ItZTIyYWJlNDFmMDg5oVTZIDM4ZTM4MDAwYzdiOTQxNDAzZTE2OTZkNTA2YmYwYzBioVcAoUYAolNBAKFVwg%253D%253D; odin_tt=45b5689085e09ac22d0b9b3a73545d317d5346a2be63529c797ec32c0916523de8023c4a9c8a9dd37599c4a63772bb3f9bec1dcecfc450567908d5a5eb178507; n_mh=vcEaS7AMXidzvkifDt83PW243ktCyJ7qJ7RqIjQZIn4; passport_auth_status=550bc854aab0245dd01e919294ba0cb5%2C; passport_auth_status_ss=550bc854aab0245dd01e919294ba0cb5%2C; sid_guard=acc3e8aaa9789bea6dffe38a6e7192b8%7C1695041491%7C2592000%7CWed%2C+18-Oct-2023+12%3A51%3A31+GMT; uid_tt=f9ed4cc639349ead303cdb2719b2114f; uid_tt_ss=f9ed4cc639349ead303cdb2719b2114f; sid_tt=acc3e8aaa9789bea6dffe38a6e7192b8; sessionid=acc3e8aaa9789bea6dffe38a6e7192b8; sessionid_ss=acc3e8aaa9789bea6dffe38a6e7192b8; sid_ucp_v1=1.0.0-KDgzNWJlZjFjZTc0M2I3YzU1NTk5YTJhNGIxODFlZjRjZjE3NmM5MDcKHgjL-tDj643OBRDTj6GoBhj6DSAMMNmQr48GOAhAJhoCaGwiIGFjYzNlOGFhYTk3ODliZWE2ZGZmZTM4YTZlNzE5MmI4; ssid_ucp_v1=1.0.0-KDgzNWJlZjFjZTc0M2I3YzU1NTk5YTJhNGIxODFlZjRjZjE3NmM5MDcKHgjL-tDj643OBRDTj6GoBhj6DSAMMNmQr48GOAhAJhoCaGwiIGFjYzNlOGFhYTk3ODliZWE2ZGZmZTM4YTZlNzE5MmI4; store-region=cn-bj; ttwid=1%7CGPDn279159WKRmyxT_M6nusZoNMMAtPG95kCfViW7hI%7C1695041493%7Ca0fe7a628ff66a9941e033191942b1f8bfc3f5199bcbb7fac899d1b3d7a81f96; msToken=whHx0-xK2MmE44QA0jbMZVYE0u7oQiztzf8MIK_4iAZL4vIt0TVV6rVbCWM9wXVHWj0ZBv_iu956BzThjIjGNHrYaP7C3aUCnVMXEnqantpjNzLX5aCQ; node_sid=3e08d7f69a2f2152de4235975d040d12; tt_scid=rwo8KN0BYLaPk.cfskZactm8DyXLjMf4EtgfeBuNWdLTjlSW7YMh4umszHAggIDwce62' \
   --compressed >> DY_live_data_list2.txt
 EOF;
   $startTime = getMicrotime();
@@ -236,24 +236,24 @@ function DYLiveDataInteract2($roomid){
 unlink('./DY_live_data_interact2.txt');
 // 1.拉取DY数据.
 $curlRequest = <<<EOF
-  curl 'https://union.bytedance.com/ark/api/data/pugna_component/data/v2/anchor/live/room_stats_top_list?roomID={$roomid}&top=50&rankType=4&offset=0&limit=5&msToken=wLHNqEFxW7X31Q78Uf6SOdrQyDDTzKmAgQMXHE7pwcLUHRfogWoD_yENSPc-tAT63sAZ3xjWA5oL1hU0CJGbjS8nyUrZErAFFtnCYbTVcfeXe7g37rPo&X-Bogus=DFSzswVul36dU6sBtPstAOppgiFh&_signature=_02B4Z6wo00001NnKi.AAAIDBLLVhbA-AeHzZyo9AAFN5QecDTF9r8VWMsDHdrh1CtlYfIJQXNPAUz7vfa7RTJVIgQ1.OMdbgFwMLy2iJcHMTau9I.2UyuPG71n7CzJkz5DFuyjtdxZ6Kekss87' \
+  curl 'https://union.bytedance.com/ark/api/data/pugna_component/data/v2/anchor/live/room_stats_top_list?roomID={$roomid}&top=50&rankType=4&offset=0&limit=5&msToken=whHx0-xK2MmE44QA0jbMZVYE0u7oQiztzf8MIK_4iAZL4vIt0TVV6rVbCWM9wXVHWj0ZBv_iu956BzThjIjGNHrYaP7C3aUCnVMXEnqantpjNzLX5aCQ&X-Bogus=DFSzswVuleEdUWkdtPn/8F9WX7Jh&_signature=_02B4Z6wo00001aQ8B1QAAIDBJD79FURBuJmkPAPAAAwI3TmJxMSuiz0c62O6xZDwqMD5b7mS1WEj2QQJfFM0G6VP1uP5Z0zrLUr206Vm7eHP6jOYqplNkCGZ76okHvkXBtWYdYUrmgy571Sjed' \
   -H 'authority: union.bytedance.com' \
-  -H 'accept: application/json, text/plain, */*' \
-  -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6' \
-  -H 'content-type: application/json;charset=utf-8' \
-  -H 'cookie: passport_csrf_token=23be172c4f439eadff8b16514c7b1776; passport_csrf_token_default=23be172c4f439eadff8b16514c7b1776; s_v_web_id=verify_lmn3o6p1_nWZb20Cz_i0YD_4gAD_B19D_Tw6BTKb2tXHY; csrf_session_id=9e28417361f560b3257178824864fc2a; msToken=j5f4xKQU6CDIrEUg5qYiIDJLo_p26FqJhnPpgqUDTfa42vT5U1kf5lv80CAt7dTJ1ASDlHhjOGZRvhvuI6AEb8y3zLjheKDfJPGHou2J4ju9Y3HgkJ-1; ttcid=2edc221727a04119afe8f7bcdaa27bc650; store-region=cn-bj; store-region-src=uid; node_sid=9724e82790919d0eee8ef283eb8af5d9; passport_csrf_token_wap_state=c9ae33aa3gASoVCgoVPZIDhhMTlhNzhiNzMxMGE4OGMxODBkZmYxYTVjNmQ4NTBjoU6goVYBoUkAoUQAoUHRBvqhTQChSLN1bmlvbi5ieXRlZGFuY2UuY29toVIColBM0QTcpkFDVElPTqChTNl2aHR0cHM6Ly91bmlvbi5ieXRlZGFuY2UuY29tL29wZW4vP2NvZGU9NWFjZjdmNzUzMmU5MDg1Yk5KNVUwQWcyc2pjU0tlY3FpSmN0JnN0YXRlPTI0MDk0NTRmLWFmYTctNGRjZS04OGM4LTczYmQwMmNkMDA4YqFU2SAzZjkzY2ZiNWI3OTI4MmVjZDQxNmNhNzcyMTljMzA2MKFXAKFGAKJTQQChVcI%253D; odin_tt=af0fcd664b226f732eea19867dcf0c639f5825d11fe291967ae345b491ddc665e182fdf9b498e21803bd4ffd5b59a9bbd0bf4502a30fd93befa935ebccbdca3c; n_mh=vcEaS7AMXidzvkifDt83PW243ktCyJ7qJ7RqIjQZIn4; passport_auth_status=2b351346069a32907b3204293c0fe09d%2Ce6e654947cd2c291090e20e13db2ad90; passport_auth_status_ss=2b351346069a32907b3204293c0fe09d%2Ce6e654947cd2c291090e20e13db2ad90; sid_guard=935f10d66660f8f49eab85d4f6737eda%7C1694938808%7C2592000%7CTue%2C+17-Oct-2023+08%3A20%3A08+GMT; uid_tt=90dfe0f67c5b525938e498f3ca718acd; uid_tt_ss=90dfe0f67c5b525938e498f3ca718acd; sid_tt=935f10d66660f8f49eab85d4f6737eda; sessionid=935f10d66660f8f49eab85d4f6737eda; sessionid_ss=935f10d66660f8f49eab85d4f6737eda; sid_ucp_v1=1.0.0-KDllYzUwNGU1OGRmMWY2MTQxYTdjZjc0NDFiNDI0ZWQ4OWIyYWYwNzIKHgjL-tDj643OBRC47ZqoBhj6DSAMMNmQr48GOAhAJhoCaGwiIDkzNWYxMGQ2NjY2MGY4ZjQ5ZWFiODVkNGY2NzM3ZWRh; ssid_ucp_v1=1.0.0-KDllYzUwNGU1OGRmMWY2MTQxYTdjZjc0NDFiNDI0ZWQ4OWIyYWYwNzIKHgjL-tDj643OBRC47ZqoBhj6DSAMMNmQr48GOAhAJhoCaGwiIDkzNWYxMGQ2NjY2MGY4ZjQ5ZWFiODVkNGY2NzM3ZWRh; msToken=wLHNqEFxW7X31Q78Uf6SOdrQyDDTzKmAgQMXHE7pwcLUHRfogWoD_yENSPc-tAT63sAZ3xjWA5oL1hU0CJGbjS8nyUrZErAFFtnCYbTVcfeXe7g37rPo; ttwid=1%7C14elGxHRaK_8zO4Ji78lfNmtqyb1zZxM79XEQ7gnvVM%7C1694938813%7Cc74c49ba64b8ebbdbe1061d2d7018c784027e62459184ae20e17e46fe6c63130; tt_scid=6UBdmBDSvHAW9yKGzqi8In0k88tdG8GfBtK-HkOiBupLxduaUOw7u3-xmywHRufq22c3' \
-  -H 'referer: https://union.bytedance.com/open/portal/anchor/list/liveRecordDetail?appId=3000&anchorID=4213790313556647&roomID={$roomid}&enterFrom=liveRecord' \
-  -H 'sec-ch-ua: "Chromium";v="116", "Not)A;Brand";v="24", "Microsoft Edge";v="116"' \
-  -H 'sec-ch-ua-mobile: ?0' \
-  -H 'sec-ch-ua-platform: "Windows"' \
-  -H 'sec-fetch-dest: empty' \
-  -H 'sec-fetch-mode: cors' \
-  -H 'sec-fetch-site: same-origin' \
-  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.81' \
-  -H 'x-appid: 3000' \
-  -H 'x-csrf-token: undefined' \
+  -H 'sec-ch-ua: ";Not A Brand";v="99", "Chromium";v="94"' \
   -H 'x-language: zh' \
-  -H 'x-secsdk-csrf-token: 0001000000013123638cb0b728e64dcbac4ab174e7ca80652a4e4233edf305b332a3f709ee4a1785a1de45017005' \
+  -H 'x-csrf-token: undefined' \
+  -H 'x-secsdk-csrf-token: 0001000000016f63066b501f1b21015fb034fd55f6314b5c18004ab742cbe6c99ee7ba10adaf1785ff41ed707c81' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Core/1.94.200.400 QQBrowser/11.8.5310.400' \
+  -H 'content-type: application/json;charset=utf-8' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'x-appid: 3000' \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://union.bytedance.com/open/portal/anchor/list/liveRecordDetail?appId=3000&anchorID=4213790313556647&roomID={$roomid}&enterFrom=liveRecord' \
+  -H 'accept-language: zh-CN,zh;q=0.9' \
+  -H 'cookie: store-region-src=uid; passport_csrf_token=273394d19beee2abdc4b39e93beb8cbd; passport_csrf_token_default=273394d19beee2abdc4b39e93beb8cbd; s_v_web_id=verify_lmovwiry_lvMoaX0v_w7T0_4sPh_Bzra_PvAFCeB3E7bb; csrf_session_id=9e28417361f560b3257178824864fc2a; x-jupiter-uuid=16950414318842516; passport_csrf_token_wap_state=c4b07af63gASoVCgoVPZIDEwYWY2NDA2ZDNhNDBiYjZjNTFkOTEwMDI3ZTBkMzJjoU6goVYBoUkAoUQAoUHRBvqhTQChSLN1bmlvbi5ieXRlZGFuY2UuY29toVIColBM0QTcpkFDVElPTqChTNl1aHR0cHM6Ly91bmlvbi5ieXRlZGFuY2UuY29tL29wZW4_Y29kZT01YWNmN2Y3NTMyZTkwODVibFY5TTRNbEpsMnRNMVExTzhMaEgmc3RhdGU9OGY0Mjg4NDUtZTNhZC00ZGRmLWJlN2ItZTIyYWJlNDFmMDg5oVTZIDM4ZTM4MDAwYzdiOTQxNDAzZTE2OTZkNTA2YmYwYzBioVcAoUYAolNBAKFVwg%253D%253D; odin_tt=45b5689085e09ac22d0b9b3a73545d317d5346a2be63529c797ec32c0916523de8023c4a9c8a9dd37599c4a63772bb3f9bec1dcecfc450567908d5a5eb178507; n_mh=vcEaS7AMXidzvkifDt83PW243ktCyJ7qJ7RqIjQZIn4; passport_auth_status=550bc854aab0245dd01e919294ba0cb5%2C; passport_auth_status_ss=550bc854aab0245dd01e919294ba0cb5%2C; sid_guard=acc3e8aaa9789bea6dffe38a6e7192b8%7C1695041491%7C2592000%7CWed%2C+18-Oct-2023+12%3A51%3A31+GMT; uid_tt=f9ed4cc639349ead303cdb2719b2114f; uid_tt_ss=f9ed4cc639349ead303cdb2719b2114f; sid_tt=acc3e8aaa9789bea6dffe38a6e7192b8; sessionid=acc3e8aaa9789bea6dffe38a6e7192b8; sessionid_ss=acc3e8aaa9789bea6dffe38a6e7192b8; sid_ucp_v1=1.0.0-KDgzNWJlZjFjZTc0M2I3YzU1NTk5YTJhNGIxODFlZjRjZjE3NmM5MDcKHgjL-tDj643OBRDTj6GoBhj6DSAMMNmQr48GOAhAJhoCaGwiIGFjYzNlOGFhYTk3ODliZWE2ZGZmZTM4YTZlNzE5MmI4; ssid_ucp_v1=1.0.0-KDgzNWJlZjFjZTc0M2I3YzU1NTk5YTJhNGIxODFlZjRjZjE3NmM5MDcKHgjL-tDj643OBRDTj6GoBhj6DSAMMNmQr48GOAhAJhoCaGwiIGFjYzNlOGFhYTk3ODliZWE2ZGZmZTM4YTZlNzE5MmI4; store-region=cn-bj; ttwid=1%7CGPDn279159WKRmyxT_M6nusZoNMMAtPG95kCfViW7hI%7C1695041493%7Ca0fe7a628ff66a9941e033191942b1f8bfc3f5199bcbb7fac899d1b3d7a81f96; msToken=whHx0-xK2MmE44QA0jbMZVYE0u7oQiztzf8MIK_4iAZL4vIt0TVV6rVbCWM9wXVHWj0ZBv_iu956BzThjIjGNHrYaP7C3aUCnVMXEnqantpjNzLX5aCQ; node_sid=3e08d7f69a2f2152de4235975d040d12; tt_scid=rwo8KN0BYLaPk.cfskZactm8DyXLjMf4EtgfeBuNWdLTjlSW7YMh4umszHAggIDwce62' \
   --compressed >> DY_live_data_interact2.txt
 EOF;
 
