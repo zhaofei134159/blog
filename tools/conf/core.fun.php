@@ -45,7 +45,7 @@ function match_chinese($chars, $encoding='utf8')
  */
 function export_csv(&$data, $title_arr, $file_name = 'csv',$extMod = '') {
     if($extMod == ''){
-        $file_name = urlencode($file_name).'_'.sgmdate('Y-m-dHis');
+        $file_name = urlencode($file_name).'_'.date('Y-m-dHis');
     }
    
     ini_set("max_execution_time", "3600");
