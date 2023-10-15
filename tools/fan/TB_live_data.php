@@ -2,19 +2,19 @@
 date_default_timezone_set("PRC");
 header("Content-type: text/html; charset=utf-8");
 define('S_PATH', dirname(__FILE__));
-error_reporting(E_ALL);
+ini_set("display_errors", "On");//打开错误提示
+ini_set("error_reporting",E_ALL);//显示所有错误
 
 include_once S_PATH.'/../conf/core.fun.php';
 include_once S_PATH.'/../class/database.php';
 include_once S_PATH.'/../class/secretkey.php';  
 include_once S_PATH.'/../class/MySql.php';  # mysql
 
-
-# 有几个脚本执行
-$num = exec("ps aux | grep 'TB_live_data.php' | grep -v grep | wc -l");
-if($num>1){
-  exit(date('Y-m-d').' 已经有脚本了');
-}
+// # 有几个脚本执行
+// $num = exec("ps aux | grep 'TB_live_data.php' | grep -v grep | wc -l");
+// if($num>1){
+//   exit(date('Y-m-d').' 已经有脚本了');
+// }
 
 $TBdata = array();
 for ($i=1; $i<=4; $i++) {
