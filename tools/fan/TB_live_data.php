@@ -27,8 +27,8 @@ for ($i=1; $i<=4; $i++) {
     exit('page: '.$i.', 抓取失败 json: '.$json);
   }
 
-  foreach($data['data']['object']['data'] as $key=>$val){
-    $TBdata[] = $val;
+  foreach($data['data']['object']['data'][''] as $key=>$val){
+    $TBdata[] = $val['fieldValues'];
   }
 }
 
