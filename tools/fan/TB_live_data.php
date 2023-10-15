@@ -18,6 +18,7 @@ include_once S_PATH.'/../class/MySql.php';  # mysql
 
 $TBdata = array();
 for ($i=1; $i<=4; $i++) {
+  echo $i;die;
   $json = TBLiveDataList($i);
   $json = str_replace(' mtopjsonp5(', '', $json);
   $json = str_replace(')', '', $json);
