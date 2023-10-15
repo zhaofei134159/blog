@@ -4,14 +4,14 @@ header("Content-type: text/html; charset=utf-8");
 define('S_PATH', dirname(__FILE__));
 error_reporting(E_ALL);
 
-include_once S_PATH.'/conf/core.fun.php';
-include_once S_PATH.'/class/database.php';
-include_once S_PATH.'/class/secretkey.php';  
-include_once S_PATH.'/class/MySql.php';  # mysql
+include_once S_PATH.'/../conf/core.fun.php';
+include_once S_PATH.'/../class/database.php';
+include_once S_PATH.'/../class/secretkey.php';  
+include_once S_PATH.'/../class/MySql.php';  # mysql
 
 
 # 有几个脚本执行
-$num = exec("ps aux | grep 'DY_live_data.php' | grep -v grep | wc -l");
+$num = exec("ps aux | grep 'TB_live_data.php' | grep -v grep | wc -l");
 if($num>1){
   exit(date('Y-m-d').' 已经有脚本了');
 }
@@ -21,7 +21,7 @@ if($num>1){
 echo TBLiveDataList1(1);
 
 function TBLiveDataList1($page){
-unlink('./DB_live_data_list1.txt');
+unlink('./TB_live_data_list1.txt');
 // 1.拉取DY数据.
 $curlRequest = <<<EOF
   curl 'https://h5api.m.taobao.com/h5/mtop.taobao.daren.agency.anchordata.anchordetail/1.0/?jsv=2.6.1&appKey=12574478&t=1697382931043&sign=472553c7e0765b27396c8341581c6f73&api=mtop.taobao.daren.agency.anchorData.anchorDetail&v=1.0&preventFallback=true&type=jsonp&dataType=jsonp&callback=mtopjsonp5&data=%7B%22page%22%3A{$page}%2C%22anchorId%22%3A%22JXUp1uxL0qway0Oy%2FmAaSg%3D%3D%22%2C%22period%22%3A%2215%22%2C%22queryDate%22%3A%222023-10-14%22%2C%22pageSize%22%3A10%2C%22roleId%22%3A163%7D' \
@@ -37,12 +37,12 @@ $curlRequest = <<<EOF
   -H 'sec-fetch-mode: no-cors' \
   -H 'sec-fetch-site: same-site' \
   -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.36' \
-  --compressed >> DB_live_data_list1.txt
+  --compressed >> TB_live_data_list1.txt
 EOF;
   $startTime = getMicrotime();
   exec($curlRequest);
   $endTime_1 = getMicrotime();
-  $dataString = file_get_contents('./DB_live_data_list1.txt');
+  $dataString = file_get_contents('./TB_live_data_list1.txt');
 
   return $dataString;
 }
