@@ -21,7 +21,7 @@ for ($i=1; $i<=4; $i++) {
   $json = TBLiveDataList($i);
   $json = str_replace(' mtopjsonp5(', '', $json);
   $json = str_replace(')', '', $json);
-  $data = json_decode($json);
+  $data = json_decode($json, true);
 
   if(empty($data) || !isset($data['ret']['0']) || $data['ret']['0'] != "SUCCESS::调用成功"){
     exit('page: '.$i.', 抓取失败 json: '.$json);
