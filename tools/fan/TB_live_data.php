@@ -17,8 +17,10 @@ include_once S_PATH.'/../class/MySql.php';  # mysql
 // }
 
 $TBdata = array();
+$num = 18;
 for ($i=1; $i<=4; $i++) {
-  $json = TBLiveDataList($i);
+  $num += $i;
+  $json = TBLiveDataList($i, $num);
   echo $json.'<br>';
   // $json = str_replace(' mtopjsonp5(', '', $json);
   // $json = str_replace(')', '', $json);
@@ -36,11 +38,11 @@ echo 12312;die;
 $titlearr = array('开播时间','场次标题','开播时长(分钟)','直播间浏览人数','直播间浏览次数','封面图点击率','人均停留时长(秒)','互动率','新增粉丝量','种草成交金额(元)','引导进店次数');
 export_csv($TBdata, $titlearr, 'liveCsv');
 
-function TBLiveDataList($page){
+function TBLiveDataList($page, $num){
 unlink('./TB_live_data_list1.txt');
 // 1.拉取DY数据.
 $curlRequest = <<<EOF
-  curl 'https://h5api.m.taobao.com/h5/mtop.taobao.daren.agency.anchordata.anchordetail/1.0/?jsv=2.6.1&appKey=12574478&t=1697382931043&sign=472553c7e0765b27396c8341581c6f73&api=mtop.taobao.daren.agency.anchorData.anchorDetail&v=1.0&preventFallback=true&type=jsonp&dataType=jsonp&callback=mtopjsonp5&data=%7B%22page%22%3A{$page}%2C%22anchorId%22%3A%22JXUp1uxL0qway0Oy%2FmAaSg%3D%3D%22%2C%22period%22%3A%2215%22%2C%22queryDate%22%3A%222023-10-14%22%2C%22pageSize%22%3A10%2C%22roleId%22%3A163%7D' \
+  curl 'https://h5api.m.taobao.com/h5/mtop.taobao.daren.agency.anchordata.anchordetail/1.0/?jsv=2.6.1&appKey=12574478&t=1697382931043&sign=472553c7e0765b27396c8341581c6f73&api=mtop.taobao.daren.agency.anchorData.anchorDetail&v=1.0&preventFallback=true&type=jsonp&dataType=jsonp&callback=mtopjsonp{$num}&data=%7B%22page%22%3A{$page}%2C%22anchorId%22%3A%22JXUp1uxL0qway0Oy%2FmAaSg%3D%3D%22%2C%22period%22%3A%2215%22%2C%22queryDate%22%3A%222023-10-14%22%2C%22pageSize%22%3A10%2C%22roleId%22%3A163%7D' \
   -H 'authority: h5api.m.taobao.com' \
   -H 'accept: */*' \
   -H 'accept-language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6' \
