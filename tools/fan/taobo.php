@@ -1,9 +1,27 @@
 <?php
+date_default_timezone_set("PRC");
+header("Content-type: text/html; charset=utf-8");
+define('S_PATH', dirname(__FILE__));
+error_reporting(E_ALL);
+
+include_once S_PATH.'/conf/core.fun.php';
+include_once S_PATH.'/class/database.php';
+include_once S_PATH.'/class/secretkey.php';  
+include_once S_PATH.'/class/MySql.php';  # mysql
+
+
+# 有几个脚本执行
+$num = exec("ps aux | grep 'DY_live_data.php' | grep -v grep | wc -l");
+if($num>1){
+  exit(date('Y-m-d').' 已经有脚本了');
+}
+
+
 
 echo TBLiveDataList1(1);
 
 function TBLiveDataList1($page){
-unlink('./DY_live_data_list1.txt');
+unlink('./DB_live_data_list1.txt');
 // 1.拉取DY数据.
 $curlRequest = <<<EOF
   curl 'https://h5api.m.taobao.com/h5/mtop.taobao.daren.agency.anchordata.anchordetail/1.0/?jsv=2.6.1&appKey=12574478&t=1697382931043&sign=472553c7e0765b27396c8341581c6f73&api=mtop.taobao.daren.agency.anchorData.anchorDetail&v=1.0&preventFallback=true&type=jsonp&dataType=jsonp&callback=mtopjsonp5&data=%7B%22page%22%3A{$page}%2C%22anchorId%22%3A%22JXUp1uxL0qway0Oy%2FmAaSg%3D%3D%22%2C%22period%22%3A%2215%22%2C%22queryDate%22%3A%222023-10-14%22%2C%22pageSize%22%3A10%2C%22roleId%22%3A163%7D' \
