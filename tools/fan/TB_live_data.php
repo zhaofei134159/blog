@@ -16,11 +16,26 @@ if($num>1){
   exit(date('Y-m-d').' 已经有脚本了');
 }
 
+$TBdata = array();
+for ($i=1; $i<=4; $i++) {
+  $json = TBLiveDataList($i);
+  $json = str_replace(' mtopjsonp5(', '', $json);
+  $json = str_replace(')', '', $json);
+  $data = json_decode($json);
 
+  if(empty($data) || !isset($data['ret']['0']) || $data['ret']['0'] != "SUCCESS::调用成功"){
+    exit('page: '.$i.', 抓取失败 json: '.$json);
+  }
 
-echo TBLiveDataList1(1);
+  foreach($data['data']['object']['data'] as $key=>$val){
+    $TBdata[] = $val;
+  }
+}
 
-function TBLiveDataList1($page){
+$titlearr = array('开播时间','场次标题','开播时长(分钟)','直播间浏览人数','直播间浏览次数','封面图点击率','人均停留时长(秒)','互动率','新增粉丝量','种草成交金额(元)','引导进店次数');
+export_csv($TBdata, $titlearr, 'liveCsv');
+
+function TBLiveDataList($page){
 unlink('./TB_live_data_list1.txt');
 // 1.拉取DY数据.
 $curlRequest = <<<EOF
