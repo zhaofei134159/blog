@@ -18,21 +18,21 @@ include_once S_PATH.'/../class/MySql.php';  # mysql
 
 $TBdata = array();
 for ($i=1; $i<=4; $i++) {
-  echo $i;die;
-  $json = TBLiveDataList($i);
-  $json = str_replace(' mtopjsonp5(', '', $json);
-  $json = str_replace(')', '', $json);
-  $data = json_decode($json, true);
+  echo $i;
+  // $json = TBLiveDataList($i);
+  // $json = str_replace(' mtopjsonp5(', '', $json);
+  // $json = str_replace(')', '', $json);
+  // $data = json_decode($json, true);
 
-  if(empty($data) || !isset($data['ret']['0']) || $data['ret']['0'] != "SUCCESS::调用成功"){
-    exit('page: '.$i.', 抓取失败 json: '.$json);
-  }
+  // if(empty($data) || !isset($data['ret']['0']) || $data['ret']['0'] != "SUCCESS::调用成功"){
+  //   exit('page: '.$i.', 抓取失败 json: '.$json);
+  // }
 
-  foreach($data['data']['object']['data'] as $key=>$val){
-    $TBdata[] = $val['fieldValues'];
-  }
+  // foreach($data['data']['object']['data'] as $key=>$val){
+  //   $TBdata[] = $val['fieldValues'];
+  // }
 }
-
+echo 12312;die;
 $titlearr = array('开播时间','场次标题','开播时长(分钟)','直播间浏览人数','直播间浏览次数','封面图点击率','人均停留时长(秒)','互动率','新增粉丝量','种草成交金额(元)','引导进店次数');
 export_csv($TBdata, $titlearr, 'liveCsv');
 
