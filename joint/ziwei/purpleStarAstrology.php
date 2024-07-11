@@ -1371,12 +1371,15 @@ class purpleStarAstrology extends common{
 			.star-D{color: #5389BA;}
 			.fore-turn{display: inline-block;background: red;padding: 2px 4px;color: white;margin-left: 2px;}
 			.palace-year{position: absolute;bottom: 6px;font-size: 12px;left: 44%;bottom:30px;padding: 2px 3px;}
+
+			// 这个是线段
+    		.main .gong-line {}
 		</style>';
 
 		$html = 
 		'<div class="main">
 			<div class="line">
-				<div class="palace">
+				<div class="palace" id="si-div">
 
 					<div class="star-main-div">'.$palaceStarMain['巳'].'</div>
 					<div class="star-B-div">'.$palaceStarB['巳'].'</div>
@@ -1391,7 +1394,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">巳</div>
 					</div>
 				</div>
-				<div class="palace">
+				<div class="palace" id="wu-div">
 
 					<div class="star-main-div">'.$palaceStarMain['午'].'</div>
 					<div class="star-B-div">'.$palaceStarB['午'].'</div>
@@ -1406,7 +1409,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">午</div>
 					</div>
 				</div>
-				<div class="palace">
+				<div class="palace" id="wei-div">
 
 					<div class="star-main-div">'.$palaceStarMain['未'].'</div>
 					<div class="star-B-div">'.$palaceStarB['未'].'</div>
@@ -1421,7 +1424,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">未</div>
 					</div>
 				</div>
-				<div class="palace">
+				<div class="palace" id="shen-div">
 
 					<div class="star-main-div">'.$palaceStarMain['申'].'</div>
 					<div class="star-B-div">'.$palaceStarB['申'].'</div>
@@ -1438,7 +1441,7 @@ class purpleStarAstrology extends common{
 				</div>
 			</div>
 			<div class="line">
-				<div class="palace">
+				<div class="palace" id="chen-div">
 
 					<div class="star-main-div">'.$palaceStarMain['辰'].'</div>
 					<div class="star-B-div">'.$palaceStarB['辰'].'</div>
@@ -1455,6 +1458,7 @@ class purpleStarAstrology extends common{
 				</div>
 				<div class="empress-top">
 					<div class="empress-top-main">
+						<div id="line-container"></div>
 						<div>公历生日: '.$this->dateTimeData['solar']['year'].'年 '.$this->dateTimeData['solar']['month'].'月 '.$this->dateTimeData['solar']['day'].'日 '.$this->dateTimeData['solar']['hour'].':'.$this->dateTimeData['solar']['minute'].'</div>
 						<div>农历生日: '.$this->dateTimeData['lunar']['year'].'年 '.$this->dateTimeData['lunar']['month'].'月 '.$this->dateTimeData['lunar']['day'].' '.$this->dateTimeData['lunar']['hourZhi'].'时</div>
 						<div>四柱: </div>
@@ -1462,7 +1466,7 @@ class purpleStarAstrology extends common{
 						<div class="empress-top-sizhu">'.$this->dateTimeData['lunar']['yearZhi'].' '.$this->dateTimeData['lunar']['monthZhi'].' '.$this->dateTimeData['lunar']['dayZhi'].' '.$this->dateTimeData['lunar']['hourZhi'].'</div>
 					</div>
 				</div>
-				<div class="palace">
+				<div class="palace" id="you-div">
 
 					<div class="star-main-div">'.$palaceStarMain['酉'].'</div>
 					<div class="star-B-div">'.$palaceStarB['酉'].'</div>
@@ -1479,7 +1483,7 @@ class purpleStarAstrology extends common{
 				</div>
 			</div>
 			<div class="line">
-				<div class="palace">
+				<div class="palace" id="mao-div">
 
 					<div class="star-main-div">'.$palaceStarMain['卯'].'</div>
 					<div class="star-B-div">'.$palaceStarB['卯'].'</div>
@@ -1512,7 +1516,7 @@ class purpleStarAstrology extends common{
 					</div>
 					<div class="empress-footer-ju">'.$this->dateTimeData['fiveBranchesBureau']['chinese'].'</div>
 				</div>
-				<div class="palace">
+				<div class="palace" id="xu-div">
 
 					<div class="star-main-div">'.$palaceStarMain['戌'].'</div>
 					<div class="star-B-div">'.$palaceStarB['戌'].'</div>
@@ -1529,7 +1533,7 @@ class purpleStarAstrology extends common{
 				</div>
 			</div>
 			<div class="line">
-				<div class="palace">
+				<div class="palace" id="yin-div">
 
 					<div class="star-main-div">'.$palaceStarMain['寅'].'</div>
 					<div class="star-B-div">'.$palaceStarB['寅'].'</div>
@@ -1544,7 +1548,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">寅</div>
 					</div>
 				</div>
-				<div class="palace">
+				<div class="palace" id="chou-div">
 
 					<div class="star-main-div">'.$palaceStarMain['丑'].'</div>
 					<div class="star-B-div">'.$palaceStarB['丑'].'</div>
@@ -1559,7 +1563,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">丑</div>
 					</div>
 				</div>
-				<div class="palace">
+				<div class="palace" id="zi-div">
 
 					<div class="star-main-div">'.$palaceStarMain['子'].'</div>
 					<div class="star-B-div">'.$palaceStarB['子'].'</div>
@@ -1574,7 +1578,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">子</div>
 					</div>
 				</div>
-				<div class="palace">
+				<div class="palace" id="hai-div">
 
 					<div class="star-main-div">'.$palaceStarMain['亥'].'</div>
 					<div class="star-B-div">'.$palaceStarB['亥'].'</div>
@@ -1592,7 +1596,75 @@ class purpleStarAstrology extends common{
 			</div>
 		</div>';
 
-		return $style.$html;
+		$script = "
+		<script>
+			function drawLine(x1, y1, x2, y2) {
+				const container = document.getElementById('line-container');
+				const line = document.createElement('div');
+				line.setAttribute('class', 'gong-line');
+
+				// 计算线段的长度和角度
+				const dx = x2 - x1;
+				const dy = y2 - y1;
+				const length = Math.sqrt(dx * dx + dy * dy);
+				const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+				// 设置线段的位置和大小
+				line.style.left = x1 + 'px';
+				line.style.top = y1 + 'px';
+				line.style.width = length + 'px';
+				line.style.height = '2px'; // 设置线段的高度为 2 像素
+      			line.style.transform = 'rotate(' + angle + 'deg)';
+				line.style.position = 'absolute';
+				line.style.backgroundColor = 'red';
+				line.style.transformOrigin = '0 0';
+
+				container.appendChild(line);
+			}
+
+			document.addEventListener('DOMContentLoaded', function() {
+				// 示例用法
+				drawLine(100, 200, 300, 300);
+				drawLine(200, 100, 400, 400);
+			})
+
+			function getDivCorners(divId) {
+				// 获取div元素
+				var div = document.getElementById(divId);
+
+				// 使用getBoundingClientRect获取元素的边界框
+				var rect = div.getBoundingClientRect();
+
+				// 获取左上角（top-left）的x和y坐标
+				var topLeftX = rect.left;
+				var topLeftY = rect.top;
+
+				// 计算右上角（top-right）的x和y坐标
+				var topRightX = rect.left + rect.width;
+				var topRightY = rect.top;
+
+				// 计算右下角（bottom-right）的x和y坐标
+				var bottomRightX = rect.left + rect.width;
+				var bottomRightY = rect.top + rect.height;
+
+				// 计算左下角（bottom-left）的x和y坐标
+				var bottomLeftX = rect.left;
+				var bottomLeftY = rect.top + rect.height;
+
+				// 返回角的坐标数组
+				return [
+					{ x: topLeftX, y: topLeftY },
+					{ x: topRightX, y: topRightY },
+					{ x: bottomRightX, y: bottomRightY },
+					{ x: bottomLeftX, y: bottomLeftY }
+				];
+			}
+			var jiao = getDivCorners('siDiv');
+			console.log(jiao)
+		</script>
+		";
+
+		return $style.$html.$script;
 	}
 }
 
