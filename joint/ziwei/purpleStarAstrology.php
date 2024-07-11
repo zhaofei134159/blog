@@ -1622,12 +1622,6 @@ class purpleStarAstrology extends common{
 				container.appendChild(line);
 			}
 
-			document.addEventListener('DOMContentLoaded', function() {
-				// 示例用法
-				drawLine(100, 200, 300, 300);
-				drawLine(200, 100, 400, 400);
-			})
-
 			function getDivCorners(divId) {
 				// 获取div元素
 				var div = document.getElementById(divId);
@@ -1659,8 +1653,22 @@ class purpleStarAstrology extends common{
 					{ x: bottomLeftX, y: bottomLeftY }
 				];
 			}
-			var jiao = getDivCorners('siDiv');
-			console.log(jiao)
+			var siDian = getDivCorners('si-div')['2'];
+			var wuDian = getDivCorners('wu-div')['2'];
+			var weiDian = getDivCorners('wei-div')['2'];
+			var shenDian = getDivCorners('shen-div')['2'];
+			var chenDian = getDivCorners('chen-div')['2'];
+			var youDian = getDivCorners('you-div')['1'];
+			var maoDian = getDivCorners('mao-div')['2'];
+			var xuDian = getDivCorners('xu-div')['2'];
+			var yinDian = getDivCorners('yin-div')['3'];
+			var chouDian = getDivCorners('chou-div')['3'];
+			var ziDian = getDivCorners('zi-div')['3'];
+			var haiDian = getDivCorners('hai-div')['3'];
+
+			drawLine(maoDian['x'], maoDian['y'], wuDian['x'], wuDian['y']);
+			drawLine(200, 100, 400, 400);
+
 		</script>
 		";
 
