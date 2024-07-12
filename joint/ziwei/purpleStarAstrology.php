@@ -417,7 +417,8 @@ class purpleStarAstrology extends common{
 		$fiveBranches = '';
 		foreach($this->sixtyArr as $key=>$val){
 			if(strpos($val, $lifePalaceGanZhiStr) !== false){
-				$fiveBranches = mb_substr($val, -1);
+				// 截取最后一位字符 中文
+				$fiveBranches = mb_substr($val, -1, 1, "UTF-8");
 				break;
 			}
 		}
@@ -425,7 +426,6 @@ class purpleStarAstrology extends common{
 		# 方法二 暂时不写了
 
 		# 归入数组中
-
 		$this->dateTimeData['fiveBranchesBureau'] = $this->fiveBranchesBureau[$fiveBranches];
 		$this->dateTimeData['fiveBranchesBureau']['info'] = $this->fiveBureauInfo[$lifeGan][$lifeZhi];
 	}
@@ -1379,7 +1379,7 @@ class purpleStarAstrology extends common{
 		$html = 
 		'<div class="main">
 			<div class="line">
-				<div class="palace" id="si-div">
+				<div class="palace" id="si-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['巳'].'</div>
 					<div class="star-B-div">'.$palaceStarB['巳'].'</div>
@@ -1394,7 +1394,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">巳</div>
 					</div>
 				</div>
-				<div class="palace" id="wu-div">
+				<div class="palace" id="wu-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['午'].'</div>
 					<div class="star-B-div">'.$palaceStarB['午'].'</div>
@@ -1409,7 +1409,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">午</div>
 					</div>
 				</div>
-				<div class="palace" id="wei-div">
+				<div class="palace" id="wei-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['未'].'</div>
 					<div class="star-B-div">'.$palaceStarB['未'].'</div>
@@ -1424,7 +1424,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">未</div>
 					</div>
 				</div>
-				<div class="palace" id="shen-div">
+				<div class="palace" id="shen-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['申'].'</div>
 					<div class="star-B-div">'.$palaceStarB['申'].'</div>
@@ -1441,7 +1441,7 @@ class purpleStarAstrology extends common{
 				</div>
 			</div>
 			<div class="line">
-				<div class="palace" id="chen-div">
+				<div class="palace" id="chen-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['辰'].'</div>
 					<div class="star-B-div">'.$palaceStarB['辰'].'</div>
@@ -1466,7 +1466,7 @@ class purpleStarAstrology extends common{
 						<div class="empress-top-sizhu">'.$this->dateTimeData['lunar']['yearZhi'].' '.$this->dateTimeData['lunar']['monthZhi'].' '.$this->dateTimeData['lunar']['dayZhi'].' '.$this->dateTimeData['lunar']['hourZhi'].'</div>
 					</div>
 				</div>
-				<div class="palace" id="you-div">
+				<div class="palace" id="you-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['酉'].'</div>
 					<div class="star-B-div">'.$palaceStarB['酉'].'</div>
@@ -1483,7 +1483,7 @@ class purpleStarAstrology extends common{
 				</div>
 			</div>
 			<div class="line">
-				<div class="palace" id="mao-div">
+				<div class="palace" id="mao-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['卯'].'</div>
 					<div class="star-B-div">'.$palaceStarB['卯'].'</div>
@@ -1516,7 +1516,7 @@ class purpleStarAstrology extends common{
 					</div>
 					<div class="empress-footer-ju">'.$this->dateTimeData['fiveBranchesBureau']['chinese'].'</div>
 				</div>
-				<div class="palace" id="xu-div">
+				<div class="palace" id="xu-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['戌'].'</div>
 					<div class="star-B-div">'.$palaceStarB['戌'].'</div>
@@ -1533,7 +1533,7 @@ class purpleStarAstrology extends common{
 				</div>
 			</div>
 			<div class="line">
-				<div class="palace" id="yin-div">
+				<div class="palace" id="yin-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['寅'].'</div>
 					<div class="star-B-div">'.$palaceStarB['寅'].'</div>
@@ -1548,7 +1548,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">寅</div>
 					</div>
 				</div>
-				<div class="palace" id="chou-div">
+				<div class="palace" id="chou-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['丑'].'</div>
 					<div class="star-B-div">'.$palaceStarB['丑'].'</div>
@@ -1563,7 +1563,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">丑</div>
 					</div>
 				</div>
-				<div class="palace" id="zi-div">
+				<div class="palace" id="zi-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['子'].'</div>
 					<div class="star-B-div">'.$palaceStarB['子'].'</div>
@@ -1578,7 +1578,7 @@ class purpleStarAstrology extends common{
 						<div class="palace-zhi">子</div>
 					</div>
 				</div>
-				<div class="palace" id="hai-div">
+				<div class="palace" id="hai-div" onclick="lineShow(this)">
 
 					<div class="star-main-div">'.$palaceStarMain['亥'].'</div>
 					<div class="star-B-div">'.$palaceStarB['亥'].'</div>
@@ -1598,8 +1598,24 @@ class purpleStarAstrology extends common{
 
 		$script = "
 		<script>
+			var sanfangsizheng = [
+					{'zi': [['you', 'mao'], ['wu']]},
+					{'chou': [['chen', 'xu'], ['wei']]},
+					{'yin': [['si', 'hai'], ['shen']]},
+					{'mao': [['zi', 'wu'], ['you']]},
+					{'chen': [['chou', 'wei'], ['xu']]},
+					{'si': [['shen', 'yin'], ['hai']]},
+					{'wu': [['mao', 'you'], ['zi']]},
+					{'wei': [['chen', 'xu'], ['chou']]},
+					{'shen': [['si', 'hai'], ['yin']]},
+					{'you': [['wu', 'zi'], ['mao']]},
+					{'xu': [['wei', 'chou'], ['chen']]},
+					{'hai': [['yin', 'shen'], ['si']]},
+				]
+
 			function drawLine(x1, y1, x2, y2) {
 				const container = document.getElementById('line-container');
+
 				const line = document.createElement('div');
 				line.setAttribute('class', 'gong-line');
 
@@ -1618,6 +1634,7 @@ class purpleStarAstrology extends common{
 				line.style.position = 'absolute';
 				line.style.backgroundColor = 'red';
 				line.style.transformOrigin = '0 0';
+				line.style.zIndex = '2';
 
 				container.appendChild(line);
 			}
@@ -1629,21 +1646,39 @@ class purpleStarAstrology extends common{
 				// 使用getBoundingClientRect获取元素的边界框
 				var rect = div.getBoundingClientRect();
 
+				var top = rect.top - 6
+
+				var rectWidth = rect.width
+				var rectHeight = rect.height
+
+				if (divId == 'wu-div' || divId == 'wei-div') {
+					rectWidth = rectWidth / 2;
+				}else if (divId == 'chen-div' || divId == 'mao-div') {
+					rectHeight = rectHeight / 2;
+				}
+
+
 				// 获取左上角（top-left）的x和y坐标
 				var topLeftX = rect.left;
-				var topLeftY = rect.top;
+				var topLeftY = top;
 
 				// 计算右上角（top-right）的x和y坐标
-				var topRightX = rect.left + rect.width;
-				var topRightY = rect.top;
+				var topRightX = rect.left + rectWidth;
+				var topRightY = top;
 
 				// 计算右下角（bottom-right）的x和y坐标
-				var bottomRightX = rect.left + rect.width;
-				var bottomRightY = rect.top + rect.height;
+				var bottomRightX = rect.left + rectWidth;
+				var bottomRightY = top + rectHeight;
 
 				// 计算左下角（bottom-left）的x和y坐标
 				var bottomLeftX = rect.left;
-				var bottomLeftY = rect.top + rect.height;
+				var bottomLeftY = top + rectHeight;
+
+				if (divId == 'you-div' || divId == 'xu-div') {
+					bottomLeftY = bottomLeftY - rectHeight / 2;
+				}else if (divId == 'chou-div' || divId == 'zi-div') {
+					topRightX = topRightX - rectWidth / 2;
+				}
 
 				// 返回角的坐标数组
 				return [
@@ -1653,22 +1688,50 @@ class purpleStarAstrology extends common{
 					{ x: bottomLeftX, y: bottomLeftY }
 				];
 			}
-			var siDian = getDivCorners('si-div')['2'];
-			var wuDian = getDivCorners('wu-div')['2'];
-			var weiDian = getDivCorners('wei-div')['2'];
-			var shenDian = getDivCorners('shen-div')['2'];
-			var chenDian = getDivCorners('chen-div')['2'];
-			var youDian = getDivCorners('you-div')['1'];
-			var maoDian = getDivCorners('mao-div')['2'];
-			var xuDian = getDivCorners('xu-div')['2'];
-			var yinDian = getDivCorners('yin-div')['3'];
-			var chouDian = getDivCorners('chou-div')['3'];
-			var ziDian = getDivCorners('zi-div')['3'];
-			var haiDian = getDivCorners('hai-div')['3'];
+			var dian = []
+			dian['si'] = getDivCorners('si-div')['2'];
+			dian['wu'] = getDivCorners('wu-div')['2'];
+			dian['wei'] = getDivCorners('wei-div')['2'];
+			dian['shen'] = getDivCorners('shen-div')['3'];
+			dian['chen'] = getDivCorners('chen-div')['2'];
+			dian['you'] = getDivCorners('you-div')['3'];
+			dian['mao'] = getDivCorners('mao-div')['2'];
+			dian['xu'] = getDivCorners('xu-div')['3'];
+			dian['yin'] = getDivCorners('yin-div')['1'];
+			dian['chou'] = getDivCorners('chou-div')['1'];
+			dian['zi'] = getDivCorners('zi-div')['1'];
+			dian['hai'] = getDivCorners('hai-div')['0'];
+			// console.log(youDian)
 
-			drawLine(maoDian['x'], maoDian['y'], wuDian['x'], wuDian['y']);
-			drawLine(200, 100, 400, 400);
+			drawLine(dian['mao']['x'], dian['mao']['y'], dian['wu']['x'], dian['wu']['y']);
+			drawLine(dian['mao']['x'], dian['mao']['y'], dian['zi']['x'], dian['zi']['y']);
+			drawLine(dian['wu']['x'], dian['wu']['y'], dian['zi']['x'], dian['zi']['y']);
+			drawLine(dian['mao']['x'], dian['mao']['y'], dian['you']['x'], dian['you']['y']);
 
+			function lineShow(res){
+				const container = document.getElementById('line-container');
+				container.innerHTML = '';
+
+				var divId = res.getAttribute('id');
+				var type = divId.split('-')['0']
+				console.log(type)
+
+				for (const key in sanfangsizheng) {
+					console.log(key)
+					console.log(sanfangsizheng[key])
+					console.log(sanfangsizheng[key][type])
+					if (sanfangsizheng[key][type] != undefined) {
+						var san1 = sanfangsizheng[key][type][0][0]
+						var san2 = sanfangsizheng[key][type][0][1]
+						var si = sanfangsizheng[key][type][1][0]
+
+						drawLine(dian[type]['x'], dian[type]['y'], dian[san1]['x'], dian[san1]['y'])
+						drawLine(dian[type]['x'], dian[type]['y'], dian[san2]['x'], dian[san2]['y'])
+						drawLine(dian[san1]['x'], dian[san1]['y'], dian[san2]['x'], dian[san2]['y'])
+						drawLine(dian[type]['x'], dian[type]['y'], dian[si]['x'], dian[si]['y'])
+					}
+				}
+			}
 		</script>
 		";
 
