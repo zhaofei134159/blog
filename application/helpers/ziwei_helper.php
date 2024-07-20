@@ -16,7 +16,7 @@ function mbStrSplit ($string, $len=1) {
 // 公共json 输出方法
 function outputJson ($data, $type = true) {
  	// 设置响应头为JSON类型  
-    // header('Content-Type: application/json');  
+    header('Content-Type: application/json');  
     // 将数据编码为JSON字符串  
     $jsonData = json_encode($data);  
 

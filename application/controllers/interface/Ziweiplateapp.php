@@ -77,10 +77,11 @@ class Ziweiplateapp extends Home_Controller{
 		$time = $_POST['time'];
 		$lunar = $_POST['lunar'];
 		$Hour = $_POST['Hour'];
+		$second = ':00';
 
 		# 确定农历的生辰
 		// $date = '1994-07-02 05:30:00';
-		$paramDate = $date . ' ' . $time;
+		$paramDate = $date . ' ' . $time.$second;
 		if ($dateType == 2) {
 			// $date = '一九九四年十一月二十四 19:30:00';
 			$lunarLs = explode('/', $lunar);
@@ -99,7 +100,7 @@ class Ziweiplateapp extends Home_Controller{
 			}  
 
 			$lunarStr = $lunarYear.$lunarMonth.$lunarDay;
-			$paramDate = $lunarStr . ' ' . $this->hourLs[$Hour];
+			$paramDate = $lunarStr . ' ' . $this->hourLs[$Hour].$second;
 		}
 
 		# 整理参数
@@ -107,7 +108,6 @@ class Ziweiplateapp extends Home_Controller{
 		$params['date'] = $paramDate;
 		$params['dateType'] = $dateType;
 		$params['sex'] = $gender;
-    	var_dump($params);
 
         # 参数赋值
         $this->params = $params;
@@ -115,9 +115,7 @@ class Ziweiplateapp extends Home_Controller{
     	$this->solarDate = $this->solarDateSearch();
         # 计算真太阳时
         $this->solarDateTime = $this->true_solar_time();
-    	var_dump($this->solarDate);
-    	var_dump($this->solarDateTime);die;
-        
+
         # 查询阳历数据
         $this->lunar_calendar();
         # 区分阴男、阳男、阴女、阳女
@@ -202,6 +200,22 @@ class Ziweiplateapp extends Home_Controller{
 	*/
 	public function true_solar_time () {
 		$cityArea = array();
+		/*foreach($this->params['place'] as $key=>$val){
+			$level = $key + 1;
+
+			$where = "1 and level={$level} and district='{$val}'";
+			if(empty($cityArea)){
+				$where .= " and pid=1";
+			}else if(isset($cityArea[$key-1]['id']) && !empty($cityArea[$key-1]['id'])){
+				$where .= " and pid=".$cityArea[$key-1]['id'];
+			}
+
+			$this->mysqlLink->where($where);
+			$this->mysqlLink->limit(1);
+			$city = $this->mysqlLink->select('ziwei_city_district');
+
+			$cityArea[$key] = !empty($city) ? $city[0] : array('id'=>0);
+		}*/
 
 		$mylongitude = 120;
 		foreach($cityArea as $city){
