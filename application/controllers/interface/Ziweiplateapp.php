@@ -102,7 +102,7 @@ class Ziweiplateapp extends Home_Controller{
 		$data['date'] = $paramDate;
 		$data['dateType'] = $dateType;
 		$data['sex'] = $gender;
-		var_dump($_POST);die;
+		var_dump($data);die;
 
         # 参数赋值
         $this->params = $data;
