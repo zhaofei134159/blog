@@ -1,18 +1,22 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+require_once S_C_PATH.'/../class/lunar/vendor/autoload.php';
+use com\nlf\calendar\util\LunarUtil;
+use com\nlf\calendar\Lunar;
+use com\nlf\calendar\Solar;
+
+
 class Ziweiplateapp extends Home_Controller{
 
 	public function __construct(){
 		parent::__construct();
 
-		$this->load->helper('htmlrepair');
-		$this->load->model('zf_blog_model');
-		$this->load->model('zf_work_model');
-		$this->load->model('zf_cate_model');
-		$this->load->model('zf_tag_model');
-		$this->load->model('zf_user_model');
-        $this->load->library('pager');
+		$this->load->helper('ziwei');
+		$this->load->config('ziwei');
+
+
+		var_dump($this->config);
 	}
 
 	public function index()
