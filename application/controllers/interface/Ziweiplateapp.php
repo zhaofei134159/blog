@@ -107,12 +107,13 @@ class Ziweiplateapp extends Home_Controller{
 		$params['date'] = $paramDate;
 		$params['dateType'] = $dateType;
 		$params['sex'] = $gender;
-		var_dump($params);
+    	var_dump($params);
 
         # 参数赋值
         $this->params = $params;
 		# 计算阳历日期
     	$this->solarDate = $this->solarDateSearch();
+    	var_dump($this->solarDate);die;
         # 计算真太阳时
         $this->solarDateTime = $this->true_solar_time();
         # 查询阳历数据
@@ -163,7 +164,7 @@ class Ziweiplateapp extends Home_Controller{
 		outputJson($data);
 	}
 
-	 # 计算阳历日期
+	# 计算阳历日期
     public function solarDateSearch () {
         if ($this->params['dateType'] == 2) {
 			$dateArr = explode(' ', str_replace(':',' ',str_replace('日',' ',str_replace('月',' ',str_replace('年',' ',$this->params['date'])))));
