@@ -112,11 +112,23 @@ class Ziweiplateapp extends Home_Controller{
 
         # 参数赋值
         $this->params = $params;
+
+		# 进行紫薇排盘
+        $this->ziweiPaiPan();
+
+		// 使用json 输出
+		$data = array(
+			'dateTimeData'=>$this->dateTimeData,
+		);
+		outputJson($data);
+	}
+
+	# 进行紫薇排盘
+	public function ziweiPaiPan(){
 		# 计算阳历日期
     	$this->solarDate = $this->solarDateSearch();
         # 计算真太阳时
         $this->solarDateTime = $this->true_solar_time();
-
         # 查询阳历数据
         $this->lunar_calendar();
         # 区分阴男、阳男、阴女、阳女
@@ -157,12 +169,6 @@ class Ziweiplateapp extends Home_Controller{
 		$this->small_deadline();
 		# 安命身主
 		$this->lifeBodyHost();
-
-		// 使用json 输出
-		$data = array(
-			'dateTimeData'=>$this->dateTimeData,
-		);
-		outputJson($data);
 	}
 
 	# 计算阳历日期
