@@ -157,7 +157,7 @@ class Ziweiplateapp extends Home_Controller{
 
 		// 使用json 输出
 		$data = array(
-			'dateTimeData'=>$dateTimeData,
+			'dateTimeData'=>$this->dateTimeData,
 		);
 		outputJson($data);
 	}
