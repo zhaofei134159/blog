@@ -38,12 +38,19 @@ class Ziweiplateapp extends Home_Controller{
 	public $solarDateTime = '';
 	public $longitude = 120; # 默认经度
 
+	# 前端参数转化
+	public $hourLs = ['请选择','23:30', '01:30', '03:30', '05:30', '07:30', '09:30', '11:30', '13:30', '15:30', '17:30', '19:30', '21:30'],
+
+
 	public function __construct(){
 		parent::__construct();
 
 		# 引入数据
 		$this->load->helper('ziwei');
 		$this->load->config('ziwei');
+
+		# 准备操作
+        $this->chineseToNum = array_flip($this->numToChinese);
 
         # 所有基础数据
         $this->starAll = $this->config->item('starAll');
@@ -63,8 +70,43 @@ class Ziweiplateapp extends Home_Controller{
 
 	public function index()
 	{
-		var_dump($this->starAll);
+		// 参数校验
+		$dateType = $_POST['dateType'];
+		$gender = $_POST['gender'];
+		$date = $_POST['date'];
+		$time = $_POST['time'];
+		$lunar = $_POST['lunar'];
+		$Hour = $_POST['Hour'];
+
+		# 确定农历的生辰
+		// $date = '1994-07-02 05:30:00';
+		$paramDate = $date . ' ' . $time;
+		if ($dateType == 2) {
+			// $date = '一九九四年十一月二十四 19:30:00';
+			$lunarLs = explode('/', $lunar);
+			$lunarYearLower = str_replace('年', '', $lunarLs['0']);
+			$lunarMonth = $lunarLs['1'];
+			$lunarDay = str_replace('廿', '二十', $lunarLs['2']);
+
+			# 数字 转 汉字
+			$lunarYear = '';
+			foreach (str_split($lunarYearLower) as $num) {
+				$lunarYear .= $this->numToChinese[$num];
+			}  
+
+			$lunarStr = $lunarYear.$lunarMonth.$lunarDay;
+			$paramDate = $lunarStr . ' ' . $this->hourLs[$Hour];
+		}
+
+		$data = array();
+		$data['date'] = $paramDate;
+		$data['dateType'] = $dateType;
+		$data['sex'] = $gender;
 		var_dump($_POST);die;
+
+        # 参数赋值
+        $this->params = $data;
+
 		# 计算阳历日期
     	$this->solarDate = $this->solarDateSearch();
 
