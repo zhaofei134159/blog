@@ -1,7 +1,7 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require_once S_C_PATH.'/../class/lunar/vendor/autoload.php';
+require_once APPPATH.'/../class/lunar/vendor/autoload.php';
 use com\nlf\calendar\util\LunarUtil;
 use com\nlf\calendar\Lunar;
 use com\nlf\calendar\Solar;
