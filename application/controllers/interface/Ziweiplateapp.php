@@ -84,14 +84,18 @@ class Ziweiplateapp extends Home_Controller{
 		if ($dateType == 2) {
 			// $date = '一九九四年十一月二十四 19:30:00';
 			$lunarLs = explode('/', $lunar);
-			$lunarYearLower = str_replace('年', '', $lunarLs['0']);
+			$lunarYearLower = $lunarLs['0'];
 			$lunarMonth = $lunarLs['1'];
-			$lunarDay = str_replace('廿', '二十', $lunarLs['2']);
+			$lunarDay = str_replace('初', '', str_replace('廿', '二十',$lunarLs['2']));
 
 			# 数字 转 汉字
 			$lunarYear = '';
 			foreach (str_split($lunarYearLower) as $num) {
-				$lunarYear .= $this->numToChinese[$num];
+				if(isset($this->numToChinese[$num])){
+					$lunarYear .= $this->numToChinese[$num];
+				}else{
+					$lunarYear .= $num;
+				}
 			}  
 
 			$lunarStr = $lunarYear.$lunarMonth.$lunarDay;
