@@ -1,10 +1,7 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Homeapp extends Home_Controller{
-
-	public $blogId = 1; 
-	public $workPageNum = 4; 
+class Ziweiplateapp extends Home_Controller{
 
 	public function __construct(){
 		parent::__construct();
