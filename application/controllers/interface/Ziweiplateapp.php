@@ -633,7 +633,7 @@ class Ziweiplateapp extends Home_Controller{
 		# 从戌宫开始
 		$diZhiTwo = array_merge($this->diZhi, $this->diZhi);
 		$diZhiTwo = array_splice($diZhiTwo,10);
-		array_splice($diZhiTwo,-2);
+		// array_splice($diZhiTwo,-2);
 		$xuDiZhiTwo = array_merge($diZhiTwo);
 
 		# 口诀
@@ -646,10 +646,6 @@ class Ziweiplateapp extends Home_Controller{
 		$this->dateTimeData['zuofuStar'] = $zuofuStarZhi;
 		# 右弼
 		$youbiStarNum = 12 - ($this->dateTimeData['lunar']['monthNum'] - 1);
-		
-		var_dump('右弼');
-		var_dump($youbiStarNum);
-		var_dump($xuDiZhiTwo);
 		$youbiStarZhi = $xuDiZhiTwo[$youbiStarNum];
 		$this->dateTimeData['palace'][$youbiStarZhi]['star'][] = '右弼星';
 		$this->dateTimeData['youbiStar'] = $youbiStarZhi;
