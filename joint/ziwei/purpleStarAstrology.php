@@ -1599,18 +1599,18 @@ class purpleStarAstrology extends common{
 		$script = "
 		<script>
 			var sanfangsizheng = [
-					{'zi': [['you', 'mao'], ['wu']]},
-					{'chou': [['chen', 'xu'], ['wei']]},
-					{'yin': [['si', 'hai'], ['shen']]},
-					{'mao': [['zi', 'wu'], ['you']]},
-					{'chen': [['chou', 'wei'], ['xu']]},
-					{'si': [['shen', 'yin'], ['hai']]},
-					{'wu': [['mao', 'you'], ['zi']]},
-					{'wei': [['chen', 'xu'], ['chou']]},
-					{'shen': [['si', 'hai'], ['yin']]},
-					{'you': [['wu', 'zi'], ['mao']]},
-					{'xu': [['wei', 'chou'], ['chen']]},
-					{'hai': [['yin', 'shen'], ['si']]},
+					{'zi': [['chen', 'shen'], ['wu']]},
+					{'chou': [['si', 'you'], ['wei']]},
+					{'yin': [['wu', 'xu'], ['shen']]},
+					{'mao': [['wei', 'hai'], ['you']]},
+					{'chen': [['zi', 'shen'], ['xu']]},
+					{'si': [['chou', 'you'], ['hai']]},
+					{'wu': [['yin', 'xu'], ['zi']]},
+					{'wei': [['mao', 'hai'], ['chou']]},
+					{'shen': [['zi', 'chen'], ['yin']]},
+					{'you': [['chou', 'si'], ['mao']]},
+					{'xu': [['yin', 'wu'], ['chen']]},
+					{'hai': [['mao', 'wei'], ['si']]},
 				]
 
 			function drawLine(x1, y1, x2, y2) {
@@ -1703,10 +1703,12 @@ class purpleStarAstrology extends common{
 			dian['hai'] = getDivCorners('hai-div')['0'];
 			// console.log(youDian)
 
-			drawLine(dian['mao']['x'], dian['mao']['y'], dian['wu']['x'], dian['wu']['y']);
-			drawLine(dian['mao']['x'], dian['mao']['y'], dian['zi']['x'], dian['zi']['y']);
-			drawLine(dian['wu']['x'], dian['wu']['y'], dian['zi']['x'], dian['zi']['y']);
-			drawLine(dian['mao']['x'], dian['mao']['y'], dian['you']['x'], dian['you']['y']);
+			// drawLine(dian['mao']['x'], dian['mao']['y'], dian['wu']['x'], dian['wu']['y']);
+			// drawLine(dian['mao']['x'], dian['mao']['y'], dian['zi']['x'], dian['zi']['y']);
+			// drawLine(dian['wu']['x'], dian['wu']['y'], dian['zi']['x'], dian['zi']['y']);
+			// drawLine(dian['mao']['x'], dian['mao']['y'], dian['you']['x'], dian['you']['y']);
+
+			document.getElementById('mao-div').click()
 
 			function lineShow(res){
 				const container = document.getElementById('line-container');
