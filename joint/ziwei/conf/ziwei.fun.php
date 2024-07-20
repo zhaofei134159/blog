@@ -12,3 +12,18 @@ function mbStrSplit ($string, $len=1) {
 	}
 	return $array;
 }
+
+// 公共json 输出方法
+function outputJson ($data, $type = true) {
+ 	// 设置响应头为JSON类型  
+    header('Content-Type: application/json');  
+    // 将数据编码为JSON字符串  
+    $jsonData = json_encode($data);  
+
+    if($type){
+    	exit($jsonData);
+    }
+
+    // 输出JSON数据  
+    return $jsonData;  
+}

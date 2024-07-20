@@ -102,80 +102,64 @@ class Ziweiplateapp extends Home_Controller{
 			$paramDate = $lunarStr . ' ' . $this->hourLs[$Hour];
 		}
 
+		# 整理参数
 		$data = array();
 		$data['date'] = $paramDate;
 		$data['dateType'] = $dateType;
 		$data['sex'] = $gender;
-		var_dump($data);die;
 
         # 参数赋值
         $this->params = $data;
-
 		# 计算阳历日期
     	$this->solarDate = $this->solarDateSearch();
-
         # 计算真太阳时
         $this->solarDateTime = $this->true_solar_time();
-
         # 查询阳历数据
         $this->lunar_calendar();
-
         # 区分阴男、阳男、阴女、阳女
         $this->sexYinYang();
-
         # 查询每宫的天干
         $this->palace_Gan();
-
         # 定命身宫
         $this->set_life_body_palace();
-
         # 排十二人事宫
         $this->put_in_order_palace();
-
         # 起五行局
         $this->five_branches_bureau();
-
         # 定紫微星宫位
         $this->ziwei_star_palace();
-
         # 排紫微系其他甲级星耀
         $this->ziwei_other_star();
-
         # 定天府星宫位
         $this->tianfu_star_palace();
-
-		# 安天府星其他甲级星耀
+        # 安天府星其他甲级星耀
 		$this->tianfu_other_star();
-
 		# 安六级星
 		$this->six_lucky_stars();
-
 		# 安禄存 和 天马
 		$this->anlucun_and_tianma();
-
 		# 安六煞星
 		$this->six_brake_stars();
-
 		# 定四化
 		$this->set_fore_turn();
-
 		# 丙丁级星耀
 		$this->little_star_shine();
-
 		# 丙丁级其他星耀
 		$this->little_star_other();
-
 		# 其他星耀
 		$this->other_star_book();
-
 		# 起大限
 		$this->rise_deadline();
-
 		# 起小限
 		$this->small_deadline();
-
 		# 安命身主
 		$this->lifeBodyHost();
+
+		// 使用json 输出
+		$data = array(
+			'dateTimeData'=>$dateTimeData,
+		);
+		outputJson($data);
 	}
 
 	 # 计算阳历日期
