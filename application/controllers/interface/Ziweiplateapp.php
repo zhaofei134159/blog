@@ -41,6 +41,7 @@ class Ziweiplateapp extends Home_Controller{
 	public function __construct(){
 		parent::__construct();
 
+		# 引入数据
 		$this->load->helper('ziwei');
 		$this->load->config('ziwei');
 
@@ -58,13 +59,11 @@ class Ziweiplateapp extends Home_Controller{
         $this->foreTurn = $this->config['foreTurn'];
         $this->fiveLongevity = $this->config['fiveLongevity'];
         $this->smallDeadline = $this->config['smallDeadline'];
-
-        # 校验数据
-        $this->params = $data;
 	}
 
 	public function index()
 	{
+		var_dump($this->starAll);
 		var_dump($_POST);die;
 		# 计算阳历日期
     	$this->solarDate = $this->solarDateSearch();
