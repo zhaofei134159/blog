@@ -113,9 +113,11 @@ class Ziweiplateapp extends Home_Controller{
         $this->params = $params;
 		# 计算阳历日期
     	$this->solarDate = $this->solarDateSearch();
-    	var_dump($this->solarDate);die;
         # 计算真太阳时
         $this->solarDateTime = $this->true_solar_time();
+    	var_dump($this->solarDate);
+    	var_dump($this->solarDateTime);die;
+        
         # 查询阳历数据
         $this->lunar_calendar();
         # 区分阴男、阳男、阴女、阳女
