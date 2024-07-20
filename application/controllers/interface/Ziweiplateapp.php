@@ -103,13 +103,14 @@ class Ziweiplateapp extends Home_Controller{
 		}
 
 		# 整理参数
-		$data = array();
-		$data['date'] = $paramDate;
-		$data['dateType'] = $dateType;
-		$data['sex'] = $gender;
+		$params = array();
+		$params['date'] = $paramDate;
+		$params['dateType'] = $dateType;
+		$params['sex'] = $gender;
+		var_dump($params);
 
         # 参数赋值
-        $this->params = $data;
+        $this->params = $params;
 		# 计算阳历日期
     	$this->solarDate = $this->solarDateSearch();
         # 计算真太阳时
