@@ -45,6 +45,7 @@ class Ziweiplateapp extends Home_Controller{
 		$this->load->helper('ziwei');
 		$this->load->config('ziwei');
 
+		var_dump($this->config);
         # 所有基础数据
         $this->starAll = $this->config['starAll'];
         $this->tianGan = $this->config['tianGan'];
