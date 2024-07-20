@@ -45,21 +45,20 @@ class Ziweiplateapp extends Home_Controller{
 		$this->load->helper('ziwei');
 		$this->load->config('ziwei');
 
-		var_dump($this->config->item('starAll'));
         # 所有基础数据
-        $this->starAll = $this->config['starAll'];
-        $this->tianGan = $this->config['tianGan'];
-        $this->diZhi = $this->config['diZhi'];
-        $this->palaceLs = $this->config['palaceLs'];
-        $this->fiveBranchesBureau = $this->config['fiveBranchesBureau'];
-        $this->dateTimeframe = $this->config['dateTimeframe'];
-        $this->hourGanRule = $this->config['hourGanRule'];
-        $this->sixtyArr = $this->config['sixtyArr'];
-        $this->fiveBureauInfo = $this->config['fiveBureauInfo'];
-        $this->ziweiTianfuPalace = $this->config['ziweiTianfuPalace'];
-        $this->foreTurn = $this->config['foreTurn'];
-        $this->fiveLongevity = $this->config['fiveLongevity'];
-        $this->smallDeadline = $this->config['smallDeadline'];
+        $this->starAll = $this->config->item('starAll');
+        $this->tianGan = $this->config->item('tianGan');
+        $this->diZhi = $this->config->item('diZhi');
+        $this->palaceLs = $this->config->item('palaceLs');
+        $this->fiveBranchesBureau = $this->config->item('fiveBranchesBureau');
+        $this->dateTimeframe = $this->config->item('dateTimeframe');
+        $this->hourGanRule = $this->config->item('hourGanRule');
+        $this->sixtyArr = $this->config->item('sixtyArr');
+        $this->fiveBureauInfo = $this->config->item('fiveBureauInfo');
+        $this->ziweiTianfuPalace = $this->config->item('ziweiTianfuPalace');
+        $this->foreTurn = $this->config->item('foreTurn');
+        $this->fiveLongevity = $this->config->item('fiveLongevity');
+        $this->smallDeadline = $this->config->item('smallDeadline');
 	}
 
 	public function index()
