@@ -116,10 +116,28 @@ class Ziweiplateapp extends Home_Controller{
 		# 进行紫薇排盘
         $this->ziweiPaiPan();
 
+		# 星星分等级 --- 这儿需要优化, 循环太多了  之后再说吧
+		$diffStar = array();
+		foreach($this->starAll as $starLevel=>$starArr){
+			foreach($starArr as $star){
+				foreach($this->dateTimeData['palace'] as $pkey=>$pval){
+					if(empty($pval['star'])){
+						continue;
+					}
+
+					$diffStar = array_unique(array_merge($diffStar, $pval['star']));
+					foreach($pval['star'] as $sval){
+						if(str_replace('星','',$sval) == str_replace('星','',$star)){
+							$this->dateTimeData['palace'][$pkey][$starLevel][] = $sval;
+						}
+					}
+				}
+			}
+		}
+
 		// 使用json 输出
 		$data = array(
 			'dateTimeData'=>$this->dateTimeData,
-			'starAll'=>$this->starAll,
 		);
 		outputJson($data);
 	}
