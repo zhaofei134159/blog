@@ -119,6 +119,7 @@ class Ziweiplateapp extends Home_Controller{
 		// 使用json 输出
 		$data = array(
 			'dateTimeData'=>$this->dateTimeData,
+			'starAll'=>$this->starAll,
 		);
 		outputJson($data);
 	}
@@ -1061,10 +1062,10 @@ class Ziweiplateapp extends Home_Controller{
 	*/
 	public function other_star_book(){
 		// 解神、阴煞、天巫、天月 按照生月安星
-		$jieshenStarRule = array('1'=>'申', '2'=>'申', '3'=>'戍', '4'=>'戍', '5'=>'子', '6'=>'子', '7'=>'寅', '8'=>'寅', '9'=>'辰', '10'=>'辰', '11'=>'午', '12'=>'午');
-		$yinshaStarRule = array('1'=>'寅', '2'=>'子', '3'=>'戍', '4'=>'申', '5'=>'午', '6'=>'辰', '7'=>'寅', '8'=>'子', '9'=>'戍', '10'=>'申', '11'=>'午', '12'=>'辰');
+		$jieshenStarRule = array('1'=>'申', '2'=>'申', '3'=>'戌', '4'=>'戌', '5'=>'子', '6'=>'子', '7'=>'寅', '8'=>'寅', '9'=>'辰', '10'=>'辰', '11'=>'午', '12'=>'午');
+		$yinshaStarRule = array('1'=>'寅', '2'=>'子', '3'=>'戌', '4'=>'申', '5'=>'午', '6'=>'辰', '7'=>'寅', '8'=>'子', '9'=>'戌', '10'=>'申', '11'=>'午', '12'=>'辰');
 		$tianwuStarRule = array('1'=>'巳', '2'=>'申', '3'=>'寅', '4'=>'亥', '5'=>'巳', '6'=>'申', '7'=>'寅', '8'=>'亥', '9'=>'巳', '10'=>'申', '11'=>'寅', '12'=>'亥');
-		$tianyueStarRule = array('1'=>'戍', '2'=>'巳', '3'=>'辰', '4'=>'寅', '5'=>'未', '6'=>'卯', '7'=>'亥', '8'=>'未', '9'=>'寅', '10'=>'午', '11'=>'戍', '12'=>'寅');
+		$tianyueStarRule = array('1'=>'戌', '2'=>'巳', '3'=>'辰', '4'=>'寅', '5'=>'未', '6'=>'卯', '7'=>'亥', '8'=>'未', '9'=>'寅', '10'=>'午', '11'=>'戌', '12'=>'寅');
 
 		$jieshenStarPalace = $jieshenStarRule[$this->dateTimeData['lunar']['monthNum']];
 		$yinshaStarPalace = $yinshaStarRule[$this->dateTimeData['lunar']['monthNum']];
@@ -1073,7 +1074,7 @@ class Ziweiplateapp extends Home_Controller{
 
 		// 天福、天官 按照生年干安星
 		$tianfuStarRule = array('甲'=>'酉', '乙'=>'申', '丙'=>'子', '丁'=>'亥', '戊'=>'卯', '己'=>'寅', '庚'=>'午', '辛'=>'巳', '壬'=>'午', '癸'=>'巳');
-		$tianguanStarRule = array('甲'=>'未', '乙'=>'辰', '丙'=>'巳', '丁'=>'寅', '戊'=>'卯', '己'=>'酉', '庚'=>'亥', '辛'=>'酉', '壬'=>'戍', '癸'=>'午');
+		$tianguanStarRule = array('甲'=>'未', '乙'=>'辰', '丙'=>'巳', '丁'=>'寅', '戊'=>'卯', '己'=>'酉', '庚'=>'亥', '辛'=>'酉', '壬'=>'戌', '癸'=>'午');
 
 		$tianfuStarPalace = $tianfuStarRule[$this->dateTimeData['lunar']['yearGan']];
 		$tianguanStarPalace = $tianguanStarRule[$this->dateTimeData['lunar']['yearGan']];
