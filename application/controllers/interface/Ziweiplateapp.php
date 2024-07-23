@@ -128,6 +128,7 @@ class Ziweiplateapp extends Home_Controller{
 					$diffStar = array_unique(array_merge($diffStar, $pval['star']));
 					foreach($pval['star'] as $sval){
 						if(str_replace('星','',$sval) == str_replace('星','',$star)){
+							var_dump(mbStrSplit($sval));
 							$this->dateTimeData['palace'][$pkey][$starLevel][] = $sval;
 						}
 					}
