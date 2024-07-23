@@ -129,6 +129,7 @@ class Ziweiplateapp extends Home_Controller{
 					foreach($pval['star'] as $sval){
 						if(str_replace('星','',$sval) == str_replace('星','',$star)){
 							$this->dateTimeData['palace'][$pkey][$starLevel][] = implode('<br>', mbStrSplit($sval));
+							$this->dateTimeData['palace'][$pkey][$starLevel.'_num'][] = $sval;
 						}
 					}
 				}
