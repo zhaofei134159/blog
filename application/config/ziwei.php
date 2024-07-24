@@ -157,16 +157,16 @@ $config['flyStar']['壬'] = array('禄'=>'天梁', '权'=>'紫微', '科'=>'左�
 
 #  三方四正
 $config['sanFangSiZheng'] = [
-	['zi': [['chen', 'shen'], ['wu']]],
-	['chou': [['si', 'you'], ['wei']]],
-	['yin': [['wu', 'xu'], ['shen']]],
-	['mao': [['wei', 'hai'], ['you']]],
-	['chen': [['zi', 'shen'], ['xu']]],
-	['si': [['chou', 'you'], ['hai']]],
-	['wu': [['yin', 'xu'], ['zi']]],
-	['wei': [['mao', 'hai'], ['chou']]],
-	['shen': [['zi', 'chen'], ['yin']]],
-	['you': [['chou', 'si'], ['mao']]],
-	['xu': [['yin', 'wu'], ['chen']]],
-	['hai': [['mao', 'wei'], ['si']]],
+	['zi'=>[['chen', 'shen'], ['wu']]],
+	['chou'=>[['si', 'you'], ['wei']]],
+	['yin'=>[['wu', 'xu'], ['shen']]],
+	['mao'=>[['wei', 'hai'], ['you']]],
+	['chen'=>[['zi', 'shen'], ['xu']]],
+	['si'=>[['chou', 'you'], ['hai']]],
+	['wu'=>[['yin', 'xu'], ['zi']]],
+	['wei'=>[['mao', 'hai'], ['chou']]],
+	['shen'=>[['zi', 'chen'], ['yin']]],
+	['you'=>[['chou', 'si'], ['mao']]],
+	['xu'=>[['yin', 'wu'], ['chen']]],
+	['hai'=>[['mao', 'wei'], ['si']]],
 ];
