@@ -22,6 +22,7 @@ class Ziweiplateapp extends Home_Controller{
 	public $foreTurn = array();
 	public $fiveLongevity = array();
 	public $smallDeadline = array();
+	public $sanFangSiZheng = array();
 
 	# 传递得参数
 	public $params = array();
@@ -67,6 +68,7 @@ class Ziweiplateapp extends Home_Controller{
         $this->foreTurn = $this->config->item('foreTurn');
         $this->fiveLongevity = $this->config->item('fiveLongevity');
         $this->smallDeadline = $this->config->item('smallDeadline');
+        $this->sanFangSiZheng = $this->config->item('sanFangSiZheng');
 	}
 
 	public function index()
@@ -139,6 +141,7 @@ class Ziweiplateapp extends Home_Controller{
 		// 使用json 输出
 		$data = array(
 			'dateTimeData'=>$this->dateTimeData,
+			'sanFangSiZheng'=>$this->sanFangSiZheng,
 		);
 		outputJson($data);
 	}
