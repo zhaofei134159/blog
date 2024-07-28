@@ -24,6 +24,7 @@ class ZiweiInfoapp extends Home_Controller{
 	{
 		$palace = $this->fortune->query("SELECT * from ziwei_palace_info WHERE 1 LIMIT 20");
 
+		var_dump($palace->result());
 		$data = array(
 				'palace'=>$palace,
 			);
