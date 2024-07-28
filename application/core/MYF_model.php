@@ -8,7 +8,7 @@ class MYF_Model extends CI_Model {
   
 	public function __construct(){
 		parent::__construct();
-		$this->load->database('fortune');
+		$this->load->database('fortune', true);
 	}
 
 	public function init($table,$prikey){
