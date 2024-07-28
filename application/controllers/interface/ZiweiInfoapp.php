@@ -46,7 +46,7 @@ class ZiweiInfoapp extends Home_Controller{
 		// $this->zf_work_model->update(array('browse_num'=>$work['browse_num']),$where);
 
 		$data = array(
-				'palaceInfo'=>$palaceInfo,
+				'palaceInfo'=>$palaceInfo->result(),
 			);
 		outputJson($data);
 	}
