@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ziwei_palace_info extends MYF_model {
+class Ziwei_palace_info extends Myf_model {
 
 	public function __construct(){
 		parent::__construct();
