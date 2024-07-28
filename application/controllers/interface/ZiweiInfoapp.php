@@ -10,16 +10,19 @@ class ZiweiInfoapp extends Home_Controller{
 		$this->load->helper('ziwei');
 		$this->load->config('ziwei');
 
+        $this->fortune = $this->load->database('fortune', TRUE);
+
+
 		$this->load->helper('htmlrepair');
-		$this->load->model('ziwei_palace_info');
-		$this->load->model('ziwei_star_palace_info');
-		$this->load->model('ziwei_starlight_info');
+		// $this->load->model('ziwei_palace_info');
+		// $this->load->model('ziwei_star_palace_info');
+		// $this->load->model('ziwei_starlight_info');
         $this->load->library('pager');
 	}
 
 	public function index()
 	{
-		$palace = $this->ziwei_palace_info->get_list('','*','',40,0);
+		$palace = $this->fortune->query("SELECT * from ziwei_palace_info WHERE 1 LIMIT 20");
 
 		$data = array(
 				'palace'=>$palace,
