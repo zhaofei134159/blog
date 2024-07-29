@@ -49,8 +49,8 @@ class Ziweiuserapp extends Home_Controller{
 			$arr = array();
 			$arr['flag'] = false;
 			$arr['msg'] = '用户信息获取错误, 错误:'.$errCode;
-		  	echo json_encode($arr); 
-		  	die;
+
+			outputJson($arr);
 		}
 
 		$result = json_decode($data,true);
@@ -98,8 +98,8 @@ class Ziweiuserapp extends Home_Controller{
 			$arr = array();
 			$arr['flag'] = false;
 			$arr['msg'] = '用户openid为空';
-		  	echo json_encode($arr); 
-		  	die;
+
+			outputJson($arr);
 		}
 
 		$phone_where = "weixin_openid='".$openid."'";
@@ -109,7 +109,7 @@ class Ziweiuserapp extends Home_Controller{
 		$arr['flag'] = true;
 		$arr['msg'] = '用户信息获取成功';
 		$arr['data'] = $ziweiUser[0];
-	  	
+
 		outputJson($arr);
 	}
 
