@@ -39,15 +39,17 @@ class ZiweiInfoapp extends Home_Controller{
 		$itemType = $_POST['itemType'];
 
 		$table = '';
+		$select = '*';
 		if($itemType == 'palace'){
 			$table = 'ziwei_palace_info';
 		} else if ($itemType == 'star'){
+			$select = "id,name,info,cate2,galaxy,lucky_type,known_saying,appearance,personality,advantage,body_parts from ziwei_starlight_info";
 			$table = 'ziwei_starlight_info';
 		} else if ($itemType == 'palaceStar'){
 			$table = 'ziwei_star_palace_info';
 		}
 
-		$palaceInfo = $this->fortune->query("SELECT * from {$table} WHERE id={$itemId}");
+		$palaceInfo = $this->fortune->query("SELECT {$select} from {$table} WHERE id={$itemId}");
 
 		// 点击量
 		// $work['browse_num'] += 1;
