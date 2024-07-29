@@ -76,7 +76,7 @@ class Ziweiuserapp extends Home_Controller{
 			$keyLs = implode(',', array_keys($ziwei_user));
 			$valueLs = "'".implode("', '", array_values($ziwei_user))."'";
 
-			$insertSql = "insert into ziwei_user({$keyLs) values({$valueLs})";
+			$insertSql = "insert into ziwei_user({$keyLs}) values({$valueLs})";
 
 			$this->fortune->query($insertSql);
 		}else{
