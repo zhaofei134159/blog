@@ -23,9 +23,13 @@ class ZiweiInfoapp extends Home_Controller{
 	public function index()
 	{
 		$palace = $this->fortune->query("SELECT * from ziwei_palace_info WHERE 1 LIMIT 20");
+		$star = $this->fortune->query("SELECT id,name,info,cate2,galaxy,lucky_type,known_saying,appearance,personality,advantage,body_parts from ziwei_starlight_info where info!='' LIMIT 50");
+		$palaceStar = $this->fortune->query("SELECT * from ziwei_star_palace_info WHERE 1 LIMIT 1000");
 
 		$data = array(
 				'palace'=>$palace->result(),
+				'star'=>$star->result(),
+				'palaceStar'=>$palaceStar->result(),
 			);
 		outputJson($data);
 	}
@@ -37,11 +41,15 @@ class ZiweiInfoapp extends Home_Controller{
 		$table = '';
 		if($itemType == 'palace'){
 			$table = 'ziwei_palace_info';
+		} else if ($itemType == 'star'){
+			$table = 'ziwei_starlight_info';
+		} else if ($itemType == 'palaceStar'){
+			$table = 'ziwei_star_palace_info';
 		}
 
-		$palaceInfo = $this->fortune->query("SELECT * from {$table} WHERE id={$itemId} LIMIT 20");
+		$palaceInfo = $this->fortune->query("SELECT * from {$table} WHERE id={$itemId}");
 
-		//点击量
+		// 点击量
 		// $work['browse_num'] += 1;
 		// $this->zf_work_model->update(array('browse_num'=>$work['browse_num']),$where);
 
