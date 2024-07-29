@@ -1,7 +1,7 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ziweiuserapp extends Home_Controller{
+class ziweiUserapp extends Home_Controller{
 
 	public $blogId = 1; 
 	public $wxprogramappid = 'wxc0c4a718e3688f4f';
