@@ -23,7 +23,7 @@ class ZiweiInfoapp extends Home_Controller{
 	public function index()
 	{
 		$palace = $this->fortune->query("SELECT * from ziwei_palace_info WHERE 1 LIMIT 20");
-		$star = $this->fortune->query("SELECT id,name,info,cate2,galaxy,lucky_type,known_saying,appearance,personality,advantage,body_parts,shortcoming from ziwei_starlight_info where info!='' LIMIT 50");
+		$star = $this->fortune->query("SELECT id,name,info,cate2,galaxy,lucky_type,known_saying,appearance,personality,advantage,body_parts,shortcoming,createtime from ziwei_starlight_info where info!='' LIMIT 50");
 		$palaceStar = $this->fortune->query("SELECT * from ziwei_star_palace_info WHERE 1 LIMIT 1000");
 
 		$data = array(
@@ -43,7 +43,7 @@ class ZiweiInfoapp extends Home_Controller{
 		if($itemType == 'palace'){
 			$table = 'ziwei_palace_info';
 		} else if ($itemType == 'star'){
-			$select = "id,name,info,cate2,galaxy,lucky_type,known_saying,appearance,personality,advantage,body_parts,shortcoming";
+			$select = "id,name,info,cate2,galaxy,lucky_type,known_saying,appearance,personality,advantage,body_parts,shortcoming,createtime";
 			$table = 'ziwei_starlight_info';
 		} else if ($itemType == 'palaceStar'){
 			$table = 'ziwei_star_palace_info';
