@@ -39,6 +39,7 @@ class Ziweiuserapp extends Home_Controller{
 		 
 		$params = "appid=".$appid."&secret=".$appsecret."&js_code=".$code."&grant_type=".$grant_type;
 		$url = "https://api.weixin.qq.com/sns/jscode2session?".$params;
+		echo $url;die;
 		$res = json_decode($this->httpGet($url),true);
 		$sessionKey = $res['session_key'];//取出json里对应的值
 
