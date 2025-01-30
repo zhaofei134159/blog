@@ -1,40 +1,14 @@
-<?php
-/*
-* 紫微斗数排盘
-* 1. 公元纪年对应的天干（公元纪年的尾数）
-* 4 5 6 7 8 9 0 1 2 3
-* 甲乙丙丁戊己庚辛壬癸
-*/
+<?php 
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 error_reporting(E_ALL & ~E_NOTICE);
-define('S_C_PATH', dirname(__FILE__));
 
-require_once '../common.php';
-require_once './conf/ziwei.conf.php';
-require_once './conf/ziwei.fun.php';
-require_once S_C_PATH.'/../class/lunar/vendor/autoload.php';
+require_once APPPATH.'/../joint/class/lunar/vendor/autoload.php';
 use com\nlf\calendar\util\LunarUtil;
 use com\nlf\calendar\Lunar;
 use com\nlf\calendar\Solar;
 
-# 确定农历的生辰
-$date = $_GET['date'];
-$sex = $_GET['sex'];
-// $date = '一九九四年五月二十四 05:30:00';
-// $date = '一九九四年三月二十四 07:30:00';
-// $date = '一九九四年十一月二十四 19:30:00';
-// $date = '一九九四年十一月二十四 19:30:00';
 
-$data = array();
-$data['date'] = $date;
-$data['dateType'] = 1; # 日期类别 1为阳历 2为阴历
-$data['sex'] = $sex; # 日期类别 1为男 2为女
-// $data['date'] = $date;
-// $data['dateType'] = 2; # 日期类别 1为阳历 2为阴历
-
-/*
-* 紫微斗数
-*/
-class purpleStarAstrology extends common{
+class Ziweiplateapp extends Home_Controller{
 	# 基础数据
 	public $starAll = array();
 	public $tianGan = array();
@@ -48,6 +22,7 @@ class purpleStarAstrology extends common{
 	public $foreTurn = array();
 	public $fiveLongevity = array();
 	public $smallDeadline = array();
+	public $sanFangSiZheng = array();
 
 	# 传递得参数
 	public $params = array();
@@ -65,100 +40,161 @@ class purpleStarAstrology extends common{
 	public $solarDateTime = '';
 	public $longitude = 120; # 默认经度
 
-    public function __construct($data){
-    	global $_CONF;
-        $parentData = parent::__construct();
+	# 前端参数转化
+	public $hourLs = ['请选择','23:30', '01:30', '03:30', '05:30', '07:30', '09:30', '11:30', '13:30', '15:30', '17:30', '19:30', '21:30'];
+
+
+	public function __construct(){
+		parent::__construct();
+
+		# 引入数据
+		$this->load->helper('ziwei');
+		$this->load->config('ziwei');
+
+		# 准备操作
         $this->chineseToNum = array_flip($this->numToChinese);
 
         # 所有基础数据
-        $this->starAll = $_CONF['starAll'];
-        $this->tianGan = $_CONF['tianGan'];
-        $this->diZhi = $_CONF['diZhi'];
-        $this->palaceLs = $_CONF['palaceLs'];
-        $this->fiveBranchesBureau = $_CONF['fiveBranchesBureau'];
-        $this->dateTimeframe = $_CONF['dateTimeframe'];
-        $this->hourGanRule = $_CONF['hourGanRule'];
-        $this->sixtyArr = $_CONF['sixtyArr'];
-        $this->fiveBureauInfo = $_CONF['fiveBureauInfo'];
-        $this->ziweiTianfuPalace = $_CONF['ziweiTianfuPalace'];
-        $this->foreTurn = $_CONF['foreTurn'];
-        $this->fiveLongevity = $_CONF['fiveLongevity'];
-        $this->smallDeadline = $_CONF['smallDeadline'];
+        $this->starAll = $this->config->item('starAll');
+        $this->tianGan = $this->config->item('tianGan');
+        $this->diZhi = $this->config->item('diZhi');
+        $this->palaceLs = $this->config->item('palaceLs');
+        $this->fiveBranchesBureau = $this->config->item('fiveBranchesBureau');
+        $this->dateTimeframe = $this->config->item('dateTimeframe');
+        $this->hourGanRule = $this->config->item('hourGanRule');
+        $this->sixtyArr = $this->config->item('sixtyArr');
+        $this->fiveBureauInfo = $this->config->item('fiveBureauInfo');
+        $this->ziweiTianfuPalace = $this->config->item('ziweiTianfuPalace');
+        $this->foreTurn = $this->config->item('foreTurn');
+        $this->fiveLongevity = $this->config->item('fiveLongevity');
+        $this->smallDeadline = $this->config->item('smallDeadline');
+        $this->sanFangSiZheng = $this->config->item('sanFangSiZheng');
+	}
+
+	public function index()
+	{
+		// 参数校验
+		$dateType = $_POST['dateType'];
+		$gender = $_POST['gender'];
+		$date = $_POST['date'];
+		$time = $_POST['time'];
+		$lunar = $_POST['lunar'];
+		$Hour = $_POST['Hour'];
+		$second = ':00';
+
+		# 确定农历的生辰
+		// $date = '1994-07-02 05:30:00';
+		$paramDate = $date . ' ' . $time.$second;
+		if ($dateType == 2) {
+			// $date = '一九九四年十一月二十四 19:30:00';
+			$lunarLs = explode('/', $lunar);
+			$lunarYearLower = $lunarLs['0'];
+			$lunarMonth = $lunarLs['1'];
+			$lunarDay = str_replace('初', '', str_replace('廿', '二十',$lunarLs['2']));
+
+			# 数字 转 汉字
+			$lunarYear = '';
+			foreach (str_split($lunarYearLower) as $num) {
+				if(isset($this->numToChinese[$num])){
+					$lunarYear .= $this->numToChinese[$num];
+				}else{
+					$lunarYear .= $num;
+				}
+			}  
+
+			$lunarStr = $lunarYear.$lunarMonth.$lunarDay;
+			$paramDate = $lunarStr . ' ' . $this->hourLs[$Hour].$second;
+		}
+
+		# 整理参数
+		$params = array();
+		$params['date'] = $paramDate;
+		$params['dateType'] = $dateType;
+		$params['sex'] = $gender;
 
         # 参数赋值
-        $this->params = $data;
+        $this->params = $params;
 
-        # 计算阳历日期
+		# 进行紫薇排盘
+        $this->ziweiPaiPan();
+
+		# 星星分等级 --- 这儿需要优化, 循环太多了  之后再说吧
+		$diffStar = array();
+		foreach($this->starAll as $starLevel=>$starArr){
+			foreach($starArr as $star){
+				foreach($this->dateTimeData['palace'] as $pkey=>$pval){
+					if(empty($pval['star'])){
+						continue;
+					}
+
+					$diffStar = array_unique(array_merge($diffStar, $pval['star']));
+					foreach($pval['star'] as $sval){
+						if(str_replace('星','',$sval) == str_replace('星','',$star)){
+							$this->dateTimeData['palace'][$pkey][$starLevel][] = implode('<br>', mbStrSplit($sval));
+							$this->dateTimeData['palace'][$pkey][$starLevel.'_num'][] = $sval;
+						}
+					}
+				}
+			}
+		}
+
+		// 使用json 输出
+		$data = array(
+			'dateTimeData'=>$this->dateTimeData,
+			'sanFangSiZheng'=>$this->sanFangSiZheng,
+		);
+		outputJson($data);
+	}
+
+	# 进行紫薇排盘
+	public function ziweiPaiPan(){
+		# 计算阳历日期
     	$this->solarDate = $this->solarDateSearch();
-
         # 计算真太阳时
         $this->solarDateTime = $this->true_solar_time();
-
         # 查询阳历数据
         $this->lunar_calendar();
-
         # 区分阴男、阳男、阴女、阳女
         $this->sexYinYang();
-
         # 查询每宫的天干
         $this->palace_Gan();
-
         # 定命身宫
         $this->set_life_body_palace();
-
         # 排十二人事宫
         $this->put_in_order_palace();
-
         # 起五行局
         $this->five_branches_bureau();
-
         # 定紫微星宫位
         $this->ziwei_star_palace();
-
         # 排紫微系其他甲级星耀
         $this->ziwei_other_star();
-
         # 定天府星宫位
         $this->tianfu_star_palace();
-
-		# 安天府星其他甲级星耀
+        # 安天府星其他甲级星耀
 		$this->tianfu_other_star();
-
 		# 安六级星
 		$this->six_lucky_stars();
-
 		# 安禄存 和 天马
 		$this->anlucun_and_tianma();
-
 		# 安六煞星
 		$this->six_brake_stars();
-
 		# 定四化
 		$this->set_fore_turn();
-
 		# 丙丁级星耀
 		$this->little_star_shine();
-
 		# 丙丁级其他星耀
 		$this->little_star_other();
-
 		# 其他星耀
 		$this->other_star_book();
-
 		# 起大限
 		$this->rise_deadline();
-
 		# 起小限
 		$this->small_deadline();
-
 		# 安命身主
 		$this->lifeBodyHost();
+	}
 
-        // var_dump($this->dateTimeData);
-
-    }
-
-    # 计算阳历日期
+	# 计算阳历日期
     public function solarDateSearch () {
         if ($this->params['dateType'] == 2) {
 			$dateArr = explode(' ', str_replace(':',' ',str_replace('日',' ',str_replace('月',' ',str_replace('年',' ',$this->params['date'])))));
@@ -194,6 +230,22 @@ class purpleStarAstrology extends common{
 	*/
 	public function true_solar_time () {
 		$cityArea = array();
+		/*foreach($this->params['place'] as $key=>$val){
+			$level = $key + 1;
+
+			$where = "1 and level={$level} and district='{$val}'";
+			if(empty($cityArea)){
+				$where .= " and pid=1";
+			}else if(isset($cityArea[$key-1]['id']) && !empty($cityArea[$key-1]['id'])){
+				$where .= " and pid=".$cityArea[$key-1]['id'];
+			}
+
+			$this->mysqlLink->where($where);
+			$this->mysqlLink->limit(1);
+			$city = $this->mysqlLink->select('ziwei_city_district');
+
+			$cityArea[$key] = !empty($city) ? $city[0] : array('id'=>0);
+		}*/
 
 		$mylongitude = 120;
 		foreach($cityArea as $city){
@@ -610,7 +662,7 @@ class purpleStarAstrology extends common{
 		# 从戌宫开始
 		$diZhiTwo = array_merge($this->diZhi, $this->diZhi);
 		$diZhiTwo = array_splice($diZhiTwo,10);
-		array_splice($diZhiTwo,-2);
+		// array_splice($diZhiTwo,-2);
 		$xuDiZhiTwo = array_merge($diZhiTwo);
 
 		# 口诀
@@ -1032,10 +1084,10 @@ class purpleStarAstrology extends common{
 	*/
 	public function other_star_book(){
 		// 解神、阴煞、天巫、天月 按照生月安星
-		$jieshenStarRule = array('1'=>'申', '2'=>'申', '3'=>'戍', '4'=>'戍', '5'=>'子', '6'=>'子', '7'=>'寅', '8'=>'寅', '9'=>'辰', '10'=>'辰', '11'=>'午', '12'=>'午');
-		$yinshaStarRule = array('1'=>'寅', '2'=>'子', '3'=>'戍', '4'=>'申', '5'=>'午', '6'=>'辰', '7'=>'寅', '8'=>'子', '9'=>'戍', '10'=>'申', '11'=>'午', '12'=>'辰');
+		$jieshenStarRule = array('1'=>'申', '2'=>'申', '3'=>'戌', '4'=>'戌', '5'=>'子', '6'=>'子', '7'=>'寅', '8'=>'寅', '9'=>'辰', '10'=>'辰', '11'=>'午', '12'=>'午');
+		$yinshaStarRule = array('1'=>'寅', '2'=>'子', '3'=>'戌', '4'=>'申', '5'=>'午', '6'=>'辰', '7'=>'寅', '8'=>'子', '9'=>'戌', '10'=>'申', '11'=>'午', '12'=>'辰');
 		$tianwuStarRule = array('1'=>'巳', '2'=>'申', '3'=>'寅', '4'=>'亥', '5'=>'巳', '6'=>'申', '7'=>'寅', '8'=>'亥', '9'=>'巳', '10'=>'申', '11'=>'寅', '12'=>'亥');
-		$tianyueStarRule = array('1'=>'戍', '2'=>'巳', '3'=>'辰', '4'=>'寅', '5'=>'未', '6'=>'卯', '7'=>'亥', '8'=>'未', '9'=>'寅', '10'=>'午', '11'=>'戍', '12'=>'寅');
+		$tianyueStarRule = array('1'=>'戌', '2'=>'巳', '3'=>'辰', '4'=>'寅', '5'=>'未', '6'=>'卯', '7'=>'亥', '8'=>'未', '9'=>'寅', '10'=>'午', '11'=>'戌', '12'=>'寅');
 
 		$jieshenStarPalace = $jieshenStarRule[$this->dateTimeData['lunar']['monthNum']];
 		$yinshaStarPalace = $yinshaStarRule[$this->dateTimeData['lunar']['monthNum']];
@@ -1044,7 +1096,7 @@ class purpleStarAstrology extends common{
 
 		// 天福、天官 按照生年干安星
 		$tianfuStarRule = array('甲'=>'酉', '乙'=>'申', '丙'=>'子', '丁'=>'亥', '戊'=>'卯', '己'=>'寅', '庚'=>'午', '辛'=>'巳', '壬'=>'午', '癸'=>'巳');
-		$tianguanStarRule = array('甲'=>'未', '乙'=>'辰', '丙'=>'巳', '丁'=>'寅', '戊'=>'卯', '己'=>'酉', '庚'=>'亥', '辛'=>'酉', '壬'=>'戍', '癸'=>'午');
+		$tianguanStarRule = array('甲'=>'未', '乙'=>'辰', '丙'=>'巳', '丁'=>'寅', '戊'=>'卯', '己'=>'酉', '庚'=>'亥', '辛'=>'酉', '壬'=>'戌', '癸'=>'午');
 
 		$tianfuStarPalace = $tianfuStarRule[$this->dateTimeData['lunar']['yearGan']];
 		$tianguanStarPalace = $tianguanStarRule[$this->dateTimeData['lunar']['yearGan']];
@@ -1742,10 +1794,3 @@ class purpleStarAstrology extends common{
 	}
 }
 
-
-
-$purpleStar = new purpleStarAstrology($data);
-
-# 紫微星宫图
-$html = $purpleStar->ziwei_astrogram();
-echo $html;
