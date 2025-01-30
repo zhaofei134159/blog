@@ -17,7 +17,8 @@ use com\nlf\calendar\Lunar;
 use com\nlf\calendar\Solar;
 
 # 确定农历的生辰
-$date = '1994-07-02 05:30:00';
+$date = $_GET['date'];
+$sex = $_GET['sex'];
 // $date = '一九九四年五月二十四 05:30:00';
 // $date = '一九九四年三月二十四 07:30:00';
 // $date = '一九九四年十一月二十四 19:30:00';
@@ -26,7 +27,7 @@ $date = '1994-07-02 05:30:00';
 $data = array();
 $data['date'] = $date;
 $data['dateType'] = 1; # 日期类别 1为阳历 2为阴历
-$data['sex'] = 1; # 日期类别 1为男 2为女
+$data['sex'] = $sex; # 日期类别 1为男 2为女
 // $data['date'] = $date;
 // $data['dateType'] = 2; # 日期类别 1为阳历 2为阴历
 
